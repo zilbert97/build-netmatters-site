@@ -1,0 +1,158 @@
+@import "partials/variables";
+
+body {
+  font-family: $font-stack;
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.main-header {
+  padding: 20px 0;
+}
+
+.btn {
+  $border-radius: 3px;
+}
+
+.btn-primary {
+  background-color: map-get($nm-services, 'it-support');
+}
+
+.main-wrapper {
+//  position: relative;
+}
+
+.jumbotron {
+//  position: absolute;
+//  top: 0;
+//  bottom: 0;
+//  left: 0;
+//  right: 0;
+
+  background: linear-gradient(to right, #000, rgba(0,0,0,.3)),
+              $dark-1 url('../img/carousel-img.jpg') no-repeat center;
+  background-size: cover;
+  * {
+    color: $light-1;
+  }
+  h1 {
+    text-transform: uppercase;
+  }
+  .btn {
+    text-transform: uppercase;
+  }
+}
+
+//==========================
+// NETMATTERS SERVICE CARDS
+//==========================
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin nm-card($key) {
+  margin: 30px 15px 0;
+  // padding: 30px;
+  background-color: $light-1;
+  color: $dark-1;
+  font-size: .8125rem;  // 13px
+
+  &:hover {
+    background-color: map-get($nm-services, $key);
+    color: $light-1;
+    .card-body > i {
+      background-color: $light-1;
+      border-color: $light-1;
+      color: map-get($nm-services, $key);
+    }
+    .card-body > hr {
+      border-color: $light-1;
+    }
+  }
+
+  .card-body > hr {
+    width: 30px;
+    border-color: $dark-1;
+    border-width: 3px;
+    margin-bottom: 12px;
+  }
+
+  .card-body > p {
+    margin-bottom: 13px;
+    height: auto;
+  }
+
+  .card-body > .read-more {
+    width: 130px;
+
+    padding: 10px;
+    border-radius: $border-radius;
+    background-color: map-get($nm-services, $key);
+    border-color: map-get($nm-services, $key);
+    text-transform: uppercase;
+    font-style: normal;
+    font-size: 1.0625rem;  // =17px
+    color: $light-1;
+  }
+
+  .card-body > .glyph {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 1.5rem;  // 24px
+    line-height: 60px;
+
+    margin-bottom: 1.0625rem;  // =17px
+
+    background-color: map-get($nm-services, $key);
+    border-color: map-get($nm-services, $key);
+    color: $light-1;
+
+  }
+}
+
+.nm-cards {
+//  position: absolute;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  background-color: $light-2;
+
+  padding: 20px 0 50px;
+
+  &-bespoke {
+    @include nm-card('bespoke-software');
+  }
+  &-support {
+    @include nm-card('it-support');
+  }
+  &-marketing {
+    @include nm-card('digital-marketing');
+  }
+  &-telecoms {
+    @include nm-card('telecoms-services');
+  }
+  &-design {
+    @include nm-card('web-design');
+  }
+  &-cyber {
+    @include nm-card('cyber-security');
+  }
+  &-training {
+    @include nm-card('web-design');
+  }
+}
+
+// NOTES:
+// Cards do not stretch - they change widths at media limits.
+// Each has padding
+// column of 3-4 layout

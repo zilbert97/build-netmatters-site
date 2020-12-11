@@ -1,0 +1,398 @@
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.main-header {
+  padding: 20px 0;
+}
+
+.btn-primary {
+  background-color: #4183d7;
+}
+
+.jumbotron {
+  background: linear-gradient(to right, #000, rgba(0, 0, 0, 0.3)), #333645 url("../img/carousel-img.jpg") no-repeat center;
+  background-size: cover;
+}
+.jumbotron * {
+  color: #fff;
+}
+.jumbotron h1 {
+  text-transform: uppercase;
+}
+.jumbotron .btn {
+  text-transform: uppercase;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nm-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #f5f5f5;
+  padding: 20px 0 50px;
+}
+.nm-cards-bespoke {
+  margin: 30px 15px 0;
+  background-color: #fff;
+  color: #333645;
+  font-size: 0.8125rem;
+}
+.nm-cards-bespoke:hover {
+  background-color: #67809f;
+  color: #fff;
+}
+.nm-cards-bespoke:hover .card-body > i {
+  background-color: #fff;
+  border-color: #fff;
+  color: #67809f;
+}
+.nm-cards-bespoke:hover .card-body > hr {
+  border-color: #fff;
+}
+.nm-cards-bespoke .card-body > hr {
+  width: 30px;
+  border-color: #333645;
+  border-width: 3px;
+  margin-bottom: 12px;
+}
+.nm-cards-bespoke .card-body > p {
+  margin-bottom: 13px;
+  height: auto;
+}
+.nm-cards-bespoke .card-body > .read-more {
+  width: 130px;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #67809f;
+  border-color: #67809f;
+  text-transform: uppercase;
+  font-style: normal;
+  font-size: 1.0625rem;
+  color: #fff;
+}
+.nm-cards-bespoke .card-body > .glyph {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 60px;
+  margin-bottom: 1.0625rem;
+  background-color: #67809f;
+  border-color: #67809f;
+  color: #fff;
+}
+.nm-cards-support {
+  margin: 30px 15px 0;
+  background-color: #fff;
+  color: #333645;
+  font-size: 0.8125rem;
+}
+.nm-cards-support:hover {
+  background-color: #4183d7;
+  color: #fff;
+}
+.nm-cards-support:hover .card-body > i {
+  background-color: #fff;
+  border-color: #fff;
+  color: #4183d7;
+}
+.nm-cards-support:hover .card-body > hr {
+  border-color: #fff;
+}
+.nm-cards-support .card-body > hr {
+  width: 30px;
+  border-color: #333645;
+  border-width: 3px;
+  margin-bottom: 12px;
+}
+.nm-cards-support .card-body > p {
+  margin-bottom: 13px;
+  height: auto;
+}
+.nm-cards-support .card-body > .read-more {
+  width: 130px;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #4183d7;
+  border-color: #4183d7;
+  text-transform: uppercase;
+  font-style: normal;
+  font-size: 1.0625rem;
+  color: #fff;
+}
+.nm-cards-support .card-body > .glyph {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 60px;
+  margin-bottom: 1.0625rem;
+  background-color: #4183d7;
+  border-color: #4183d7;
+  color: #fff;
+}
+.nm-cards-marketing {
+  margin: 30px 15px 0;
+  background-color: #fff;
+  color: #333645;
+  font-size: 0.8125rem;
+}
+.nm-cards-marketing:hover {
+  background-color: #2ecc71;
+  color: #fff;
+}
+.nm-cards-marketing:hover .card-body > i {
+  background-color: #fff;
+  border-color: #fff;
+  color: #2ecc71;
+}
+.nm-cards-marketing:hover .card-body > hr {
+  border-color: #fff;
+}
+.nm-cards-marketing .card-body > hr {
+  width: 30px;
+  border-color: #333645;
+  border-width: 3px;
+  margin-bottom: 12px;
+}
+.nm-cards-marketing .card-body > p {
+  margin-bottom: 13px;
+  height: auto;
+}
+.nm-cards-marketing .card-body > .read-more {
+  width: 130px;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #2ecc71;
+  border-color: #2ecc71;
+  text-transform: uppercase;
+  font-style: normal;
+  font-size: 1.0625rem;
+  color: #fff;
+}
+.nm-cards-marketing .card-body > .glyph {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 60px;
+  margin-bottom: 1.0625rem;
+  background-color: #2ecc71;
+  border-color: #2ecc71;
+  color: #fff;
+}
+.nm-cards-telecoms {
+  margin: 30px 15px 0;
+  background-color: #fff;
+  color: #333645;
+  font-size: 0.8125rem;
+}
+.nm-cards-telecoms:hover {
+  background-color: #d64541;
+  color: #fff;
+}
+.nm-cards-telecoms:hover .card-body > i {
+  background-color: #fff;
+  border-color: #fff;
+  color: #d64541;
+}
+.nm-cards-telecoms:hover .card-body > hr {
+  border-color: #fff;
+}
+.nm-cards-telecoms .card-body > hr {
+  width: 30px;
+  border-color: #333645;
+  border-width: 3px;
+  margin-bottom: 12px;
+}
+.nm-cards-telecoms .card-body > p {
+  margin-bottom: 13px;
+  height: auto;
+}
+.nm-cards-telecoms .card-body > .read-more {
+  width: 130px;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #d64541;
+  border-color: #d64541;
+  text-transform: uppercase;
+  font-style: normal;
+  font-size: 1.0625rem;
+  color: #fff;
+}
+.nm-cards-telecoms .card-body > .glyph {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 60px;
+  margin-bottom: 1.0625rem;
+  background-color: #d64541;
+  border-color: #d64541;
+  color: #fff;
+}
+.nm-cards-design {
+  margin: 30px 15px 0;
+  background-color: #fff;
+  color: #333645;
+  font-size: 0.8125rem;
+}
+.nm-cards-design:hover {
+  background-color: #926fb1;
+  color: #fff;
+}
+.nm-cards-design:hover .card-body > i {
+  background-color: #fff;
+  border-color: #fff;
+  color: #926fb1;
+}
+.nm-cards-design:hover .card-body > hr {
+  border-color: #fff;
+}
+.nm-cards-design .card-body > hr {
+  width: 30px;
+  border-color: #333645;
+  border-width: 3px;
+  margin-bottom: 12px;
+}
+.nm-cards-design .card-body > p {
+  margin-bottom: 13px;
+  height: auto;
+}
+.nm-cards-design .card-body > .read-more {
+  width: 130px;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #926fb1;
+  border-color: #926fb1;
+  text-transform: uppercase;
+  font-style: normal;
+  font-size: 1.0625rem;
+  color: #fff;
+}
+.nm-cards-design .card-body > .glyph {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 60px;
+  margin-bottom: 1.0625rem;
+  background-color: #926fb1;
+  border-color: #926fb1;
+  color: #fff;
+}
+.nm-cards-cyber {
+  margin: 30px 15px 0;
+  background-color: #fff;
+  color: #333645;
+  font-size: 0.8125rem;
+}
+.nm-cards-cyber:hover {
+  background-color: #f62459;
+  color: #fff;
+}
+.nm-cards-cyber:hover .card-body > i {
+  background-color: #fff;
+  border-color: #fff;
+  color: #f62459;
+}
+.nm-cards-cyber:hover .card-body > hr {
+  border-color: #fff;
+}
+.nm-cards-cyber .card-body > hr {
+  width: 30px;
+  border-color: #333645;
+  border-width: 3px;
+  margin-bottom: 12px;
+}
+.nm-cards-cyber .card-body > p {
+  margin-bottom: 13px;
+  height: auto;
+}
+.nm-cards-cyber .card-body > .read-more {
+  width: 130px;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #f62459;
+  border-color: #f62459;
+  text-transform: uppercase;
+  font-style: normal;
+  font-size: 1.0625rem;
+  color: #fff;
+}
+.nm-cards-cyber .card-body > .glyph {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 60px;
+  margin-bottom: 1.0625rem;
+  background-color: #f62459;
+  border-color: #f62459;
+  color: #fff;
+}
+.nm-cards-training {
+  margin: 30px 15px 0;
+  background-color: #fff;
+  color: #333645;
+  font-size: 0.8125rem;
+}
+.nm-cards-training:hover {
+  background-color: #926fb1;
+  color: #fff;
+}
+.nm-cards-training:hover .card-body > i {
+  background-color: #fff;
+  border-color: #fff;
+  color: #926fb1;
+}
+.nm-cards-training:hover .card-body > hr {
+  border-color: #fff;
+}
+.nm-cards-training .card-body > hr {
+  width: 30px;
+  border-color: #333645;
+  border-width: 3px;
+  margin-bottom: 12px;
+}
+.nm-cards-training .card-body > p {
+  margin-bottom: 13px;
+  height: auto;
+}
+.nm-cards-training .card-body > .read-more {
+  width: 130px;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #926fb1;
+  border-color: #926fb1;
+  text-transform: uppercase;
+  font-style: normal;
+  font-size: 1.0625rem;
+  color: #fff;
+}
+.nm-cards-training .card-body > .glyph {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 60px;
+  margin-bottom: 1.0625rem;
+  background-color: #926fb1;
+  border-color: #926fb1;
+  color: #fff;
+}
+
+/*# sourceMappingURL=custom.css.map */

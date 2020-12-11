@@ -1,1 +1,42 @@
-/* Vars for Netmatters.co.uk site */
+//==========================
+// COLOURS
+//==========================
+$light-1: #fff;             // Header, card backgrounds, text
+$light-2: #f5f5f5;          // Sections
+$dark-1: #333645;           // Nav bar, logo, menu btn, text
+
+// N.B. for nav drop-downs need to find section colours
+$btn-light-grey: #999aa2;   // Header contact, header search
+
+$nm-services: (
+  'bespoke-software': #67809f,
+  'it-support': #4183d7,
+  'digital-marketing': #2ecc71,
+  'telecoms-services': #d64541,
+  'web-design': #926fb1,         // and developer training
+  'cyber-security': #f62459,
+);
+
+$facebook-blue: #3b5998;
+$twitter-blue: #00aced;
+$linkedin-blue: #0077b5;
+
+//==========================
+// FONTS
+//==========================
+$font-stack: 'Poppins', sans-serif;
+
+//==========================
+// VIEWPORTS
+//==========================
+$breakpoints: (
+  's': 767px,               // 0px-767px
+  'm': 991px,               // 768px-991px
+  'l': 1259px,              // 992px-1259px
+  'xl': 1260px,
+);
+
+//==========================
+// Utilities
+//==========================
+$border-radius: 3px;
