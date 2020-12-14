@@ -4,75 +4,113 @@ body {
 }
 
 h5 {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 400;
 }
 
-.main-header {
+.btn {
+  border-radius: 3px;
+}
+
+.full-viewport {
+  height: 100vh;
+}
+.full-viewport .main-header {
   padding: 20px 0;
 }
-
-.btn-primary {
+.full-viewport .btn-primary {
   background-color: #4183d7;
 }
-
-.jumbotron {
+.full-viewport .jumbotron {
+  height: 100%;
   background: linear-gradient(to right, #000, rgba(0, 0, 0, 0.3)), #333645 url("../img/carousel-img.jpg") no-repeat center;
   background-size: cover;
 }
-.jumbotron * {
+.full-viewport .jumbotron * {
   color: #fff;
 }
-.jumbotron h1 {
+.full-viewport .jumbotron h1 {
   text-transform: uppercase;
 }
-.jumbotron .btn {
+.full-viewport .jumbotron .btn {
   text-transform: uppercase;
-}
-
-.card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .nm-cards {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-flow: column wrap;
   background-color: #f5f5f5;
   padding: 20px 0 50px;
 }
-.nm-cards-bespoke {
+@media (min-width: 992px) {
+  .nm-cards {
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: stretch;
+    align-content: stretch;
+  }
+}
+.nm-cards .card-body {
+  padding: 30px;
+}
+.nm-cards-break {
+  display: hidden;
+}
+@media (min-width: 992px) {
+  .nm-cards-break {
+    display: inline-block;
+    flex-basis: 100%;
+  }
+}
+.nm-cards-bespoke-software {
+  width: 100%;
   margin: 30px 15px 0;
   background-color: #fff;
   color: #333645;
   font-size: 0.8125rem;
+  line-height: 1.5;
+  letter-spacing: 0.03125rem;
 }
-.nm-cards-bespoke:hover {
+@media (min-width: 768px) {
+  .nm-cards-bespoke-software {
+    width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .nm-cards-bespoke-software {
+    flex-basis: 293px;
+  }
+}
+@media (min-width: 1260px) {
+  .nm-cards-bespoke-software {
+    flex-basis: 370px;
+  }
+}
+.nm-cards-bespoke-software:hover {
   background-color: #67809f;
   color: #fff;
 }
-.nm-cards-bespoke:hover .card-body > i {
+.nm-cards-bespoke-software:hover .card-body > i {
   background-color: #fff;
   border-color: #fff;
   color: #67809f;
 }
-.nm-cards-bespoke:hover .card-body > hr {
+.nm-cards-bespoke-software:hover .card-body > hr {
   border-color: #fff;
 }
-.nm-cards-bespoke .card-body > hr {
+.nm-cards-bespoke-software .card-body > hr {
   width: 30px;
   border-color: #333645;
   border-width: 3px;
   margin-bottom: 12px;
 }
-.nm-cards-bespoke .card-body > p {
+.nm-cards-bespoke-software .card-body > p {
   margin-bottom: 13px;
   height: auto;
 }
-.nm-cards-bespoke .card-body > .read-more {
+.nm-cards-bespoke-software .card-body > .read-more {
+  display: inline-block;
   width: 130px;
   padding: 10px;
   border-radius: 3px;
@@ -83,7 +121,7 @@ h5 {
   font-size: 1.0625rem;
   color: #fff;
 }
-.nm-cards-bespoke .card-body > .glyph {
+.nm-cards-bespoke-software .card-body > .glyph {
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -94,35 +132,54 @@ h5 {
   border-color: #67809f;
   color: #fff;
 }
-.nm-cards-support {
+.nm-cards-it-support {
+  width: 100%;
   margin: 30px 15px 0;
   background-color: #fff;
   color: #333645;
   font-size: 0.8125rem;
+  line-height: 1.5;
+  letter-spacing: 0.03125rem;
 }
-.nm-cards-support:hover {
+@media (min-width: 768px) {
+  .nm-cards-it-support {
+    width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .nm-cards-it-support {
+    flex-basis: 293px;
+  }
+}
+@media (min-width: 1260px) {
+  .nm-cards-it-support {
+    flex-basis: 370px;
+  }
+}
+.nm-cards-it-support:hover {
   background-color: #4183d7;
   color: #fff;
 }
-.nm-cards-support:hover .card-body > i {
+.nm-cards-it-support:hover .card-body > i {
   background-color: #fff;
   border-color: #fff;
   color: #4183d7;
 }
-.nm-cards-support:hover .card-body > hr {
+.nm-cards-it-support:hover .card-body > hr {
   border-color: #fff;
 }
-.nm-cards-support .card-body > hr {
+.nm-cards-it-support .card-body > hr {
   width: 30px;
   border-color: #333645;
   border-width: 3px;
   margin-bottom: 12px;
 }
-.nm-cards-support .card-body > p {
+.nm-cards-it-support .card-body > p {
   margin-bottom: 13px;
   height: auto;
 }
-.nm-cards-support .card-body > .read-more {
+.nm-cards-it-support .card-body > .read-more {
+  display: inline-block;
   width: 130px;
   padding: 10px;
   border-radius: 3px;
@@ -133,7 +190,7 @@ h5 {
   font-size: 1.0625rem;
   color: #fff;
 }
-.nm-cards-support .card-body > .glyph {
+.nm-cards-it-support .card-body > .glyph {
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -144,35 +201,54 @@ h5 {
   border-color: #4183d7;
   color: #fff;
 }
-.nm-cards-marketing {
+.nm-cards-digital-marketing {
+  width: 100%;
   margin: 30px 15px 0;
   background-color: #fff;
   color: #333645;
   font-size: 0.8125rem;
+  line-height: 1.5;
+  letter-spacing: 0.03125rem;
 }
-.nm-cards-marketing:hover {
+@media (min-width: 768px) {
+  .nm-cards-digital-marketing {
+    width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .nm-cards-digital-marketing {
+    flex-basis: 293px;
+  }
+}
+@media (min-width: 1260px) {
+  .nm-cards-digital-marketing {
+    flex-basis: 370px;
+  }
+}
+.nm-cards-digital-marketing:hover {
   background-color: #2ecc71;
   color: #fff;
 }
-.nm-cards-marketing:hover .card-body > i {
+.nm-cards-digital-marketing:hover .card-body > i {
   background-color: #fff;
   border-color: #fff;
   color: #2ecc71;
 }
-.nm-cards-marketing:hover .card-body > hr {
+.nm-cards-digital-marketing:hover .card-body > hr {
   border-color: #fff;
 }
-.nm-cards-marketing .card-body > hr {
+.nm-cards-digital-marketing .card-body > hr {
   width: 30px;
   border-color: #333645;
   border-width: 3px;
   margin-bottom: 12px;
 }
-.nm-cards-marketing .card-body > p {
+.nm-cards-digital-marketing .card-body > p {
   margin-bottom: 13px;
   height: auto;
 }
-.nm-cards-marketing .card-body > .read-more {
+.nm-cards-digital-marketing .card-body > .read-more {
+  display: inline-block;
   width: 130px;
   padding: 10px;
   border-radius: 3px;
@@ -183,7 +259,7 @@ h5 {
   font-size: 1.0625rem;
   color: #fff;
 }
-.nm-cards-marketing .card-body > .glyph {
+.nm-cards-digital-marketing .card-body > .glyph {
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -194,35 +270,54 @@ h5 {
   border-color: #2ecc71;
   color: #fff;
 }
-.nm-cards-telecoms {
+.nm-cards-telecoms-services {
+  width: 100%;
   margin: 30px 15px 0;
   background-color: #fff;
   color: #333645;
   font-size: 0.8125rem;
+  line-height: 1.5;
+  letter-spacing: 0.03125rem;
 }
-.nm-cards-telecoms:hover {
+@media (min-width: 768px) {
+  .nm-cards-telecoms-services {
+    width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .nm-cards-telecoms-services {
+    flex-basis: 455px;
+  }
+}
+@media (min-width: 1260px) {
+  .nm-cards-telecoms-services {
+    flex-basis: 270px;
+  }
+}
+.nm-cards-telecoms-services:hover {
   background-color: #d64541;
   color: #fff;
 }
-.nm-cards-telecoms:hover .card-body > i {
+.nm-cards-telecoms-services:hover .card-body > i {
   background-color: #fff;
   border-color: #fff;
   color: #d64541;
 }
-.nm-cards-telecoms:hover .card-body > hr {
+.nm-cards-telecoms-services:hover .card-body > hr {
   border-color: #fff;
 }
-.nm-cards-telecoms .card-body > hr {
+.nm-cards-telecoms-services .card-body > hr {
   width: 30px;
   border-color: #333645;
   border-width: 3px;
   margin-bottom: 12px;
 }
-.nm-cards-telecoms .card-body > p {
+.nm-cards-telecoms-services .card-body > p {
   margin-bottom: 13px;
   height: auto;
 }
-.nm-cards-telecoms .card-body > .read-more {
+.nm-cards-telecoms-services .card-body > .read-more {
+  display: inline-block;
   width: 130px;
   padding: 10px;
   border-radius: 3px;
@@ -233,7 +328,7 @@ h5 {
   font-size: 1.0625rem;
   color: #fff;
 }
-.nm-cards-telecoms .card-body > .glyph {
+.nm-cards-telecoms-services .card-body > .glyph {
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -244,35 +339,54 @@ h5 {
   border-color: #d64541;
   color: #fff;
 }
-.nm-cards-design {
+.nm-cards-web-design {
+  width: 100%;
   margin: 30px 15px 0;
   background-color: #fff;
   color: #333645;
   font-size: 0.8125rem;
+  line-height: 1.5;
+  letter-spacing: 0.03125rem;
 }
-.nm-cards-design:hover {
+@media (min-width: 768px) {
+  .nm-cards-web-design {
+    width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .nm-cards-web-design {
+    flex-basis: 455px;
+  }
+}
+@media (min-width: 1260px) {
+  .nm-cards-web-design {
+    flex-basis: 270px;
+  }
+}
+.nm-cards-web-design:hover {
   background-color: #926fb1;
   color: #fff;
 }
-.nm-cards-design:hover .card-body > i {
+.nm-cards-web-design:hover .card-body > i {
   background-color: #fff;
   border-color: #fff;
   color: #926fb1;
 }
-.nm-cards-design:hover .card-body > hr {
+.nm-cards-web-design:hover .card-body > hr {
   border-color: #fff;
 }
-.nm-cards-design .card-body > hr {
+.nm-cards-web-design .card-body > hr {
   width: 30px;
   border-color: #333645;
   border-width: 3px;
   margin-bottom: 12px;
 }
-.nm-cards-design .card-body > p {
+.nm-cards-web-design .card-body > p {
   margin-bottom: 13px;
   height: auto;
 }
-.nm-cards-design .card-body > .read-more {
+.nm-cards-web-design .card-body > .read-more {
+  display: inline-block;
   width: 130px;
   padding: 10px;
   border-radius: 3px;
@@ -283,7 +397,7 @@ h5 {
   font-size: 1.0625rem;
   color: #fff;
 }
-.nm-cards-design .card-body > .glyph {
+.nm-cards-web-design .card-body > .glyph {
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -294,35 +408,54 @@ h5 {
   border-color: #926fb1;
   color: #fff;
 }
-.nm-cards-cyber {
+.nm-cards-cyber-security {
+  width: 100%;
   margin: 30px 15px 0;
   background-color: #fff;
   color: #333645;
   font-size: 0.8125rem;
+  line-height: 1.5;
+  letter-spacing: 0.03125rem;
 }
-.nm-cards-cyber:hover {
+@media (min-width: 768px) {
+  .nm-cards-cyber-security {
+    width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .nm-cards-cyber-security {
+    flex-basis: 455px;
+  }
+}
+@media (min-width: 1260px) {
+  .nm-cards-cyber-security {
+    flex-basis: 270px;
+  }
+}
+.nm-cards-cyber-security:hover {
   background-color: #f62459;
   color: #fff;
 }
-.nm-cards-cyber:hover .card-body > i {
+.nm-cards-cyber-security:hover .card-body > i {
   background-color: #fff;
   border-color: #fff;
   color: #f62459;
 }
-.nm-cards-cyber:hover .card-body > hr {
+.nm-cards-cyber-security:hover .card-body > hr {
   border-color: #fff;
 }
-.nm-cards-cyber .card-body > hr {
+.nm-cards-cyber-security .card-body > hr {
   width: 30px;
   border-color: #333645;
   border-width: 3px;
   margin-bottom: 12px;
 }
-.nm-cards-cyber .card-body > p {
+.nm-cards-cyber-security .card-body > p {
   margin-bottom: 13px;
   height: auto;
 }
-.nm-cards-cyber .card-body > .read-more {
+.nm-cards-cyber-security .card-body > .read-more {
+  display: inline-block;
   width: 130px;
   padding: 10px;
   border-radius: 3px;
@@ -333,7 +466,7 @@ h5 {
   font-size: 1.0625rem;
   color: #fff;
 }
-.nm-cards-cyber .card-body > .glyph {
+.nm-cards-cyber-security .card-body > .glyph {
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -342,56 +475,6 @@ h5 {
   margin-bottom: 1.0625rem;
   background-color: #f62459;
   border-color: #f62459;
-  color: #fff;
-}
-.nm-cards-training {
-  margin: 30px 15px 0;
-  background-color: #fff;
-  color: #333645;
-  font-size: 0.8125rem;
-}
-.nm-cards-training:hover {
-  background-color: #926fb1;
-  color: #fff;
-}
-.nm-cards-training:hover .card-body > i {
-  background-color: #fff;
-  border-color: #fff;
-  color: #926fb1;
-}
-.nm-cards-training:hover .card-body > hr {
-  border-color: #fff;
-}
-.nm-cards-training .card-body > hr {
-  width: 30px;
-  border-color: #333645;
-  border-width: 3px;
-  margin-bottom: 12px;
-}
-.nm-cards-training .card-body > p {
-  margin-bottom: 13px;
-  height: auto;
-}
-.nm-cards-training .card-body > .read-more {
-  width: 130px;
-  padding: 10px;
-  border-radius: 3px;
-  background-color: #926fb1;
-  border-color: #926fb1;
-  text-transform: uppercase;
-  font-style: normal;
-  font-size: 1.0625rem;
-  color: #fff;
-}
-.nm-cards-training .card-body > .glyph {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  line-height: 60px;
-  margin-bottom: 1.0625rem;
-  background-color: #926fb1;
-  border-color: #926fb1;
   color: #fff;
 }
 

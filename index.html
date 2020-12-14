@@ -24,8 +24,6 @@
     <i class="fas fa-graduation-cap"></i>        EDUCATION
     -->
 
-
-
     <!-- Link to my CSS -->
     <link rel="stylesheet" href="css/custom.css">
 
@@ -33,130 +31,123 @@
   </head>
 
   <body>
-    <header class="main-header">
-      <img src="img/site-logo.png" alt="Netmatters logo" class="logo"> <!-- link to home page -->
-      <button type="button" class="btn btn-primary">Support</button> <!-- Mouse ::before -->
-      <button type="button" class="btn btn-secondary">Contact</button> <!-- Paper plane ::before -->
+    <div class="full-viewport">
+      <header class="main-header">
+        <img src="img/site-logo.png" alt="Netmatters logo" class="logo"> <!-- link to home page -->
+        <button type="button" class="btn btn-primary">Support</button> <!-- Mouse ::before -->
+        <button type="button" class="btn btn-secondary">Contact</button> <!-- Paper plane ::before -->
 
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="button-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-secondary" type="button" id="button-addon2"><!-- Search icon --></button>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="button-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-secondary" type="button" id="button-addon2"><!-- Search icon --></button>
+          </div>
+        </div>
+
+
+        <!-- BREAKPOINTS: -->
+          <!-- xl: support, contact, search button with field, menu -->
+          <!-- l: hide search field from search button -->
+          <!-- m: hide support, contact; expand search button with field -->
+          <!-- s: hide search button, wrap field below; add VOIP button -->
+
+        <!-- VOIP icon shown only in med vp -->
+        <button type="button" class="btn btn-dark">Menu</button>
+
+
+        <nav></nav> <!-- Navbar hidden from 991px and below -->
+
+      </header>
+
+      <div class="jumbotron jumbotron-fluid mb-0 text-center">
+        <div class="container">
+          <h1 class="display-4">Web design</h1>
+          <p class="lead">For businesses looking to make a strong and effective first impression.</p>
+          <a class="btn btn-primary btn-lg" href="#" role="button">
+            Find out more&MediumSpace;
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div> <!-- .main-header -->
+
+    <section class="nm-cards">
+
+      <div class="card text-center nm-cards-bespoke-software">
+        <div class="card-body">
+          <i class="glyph fab fa-buromobelexperte"></i>
+          <h5 class="card-title">Bespoke Software</h5>
+          <hr></>
+          <p class="card-text">Tailored software solutions to improve business productivity and online profits. Our expert team will ensure a software solution.</p>
+          <i class="read-more">Read more</i>
         </div>
       </div>
 
-
-      <!-- BREAKPOINTS: -->
-        <!-- xl: support, contact, search button with field, menu -->
-        <!-- l: hide search field from search button -->
-        <!-- m: hide support, contact; expand search button with field -->
-        <!-- s: hide search button, wrap field below; add VOIP button -->
-
-      <!-- VOIP icon shown only in med vp -->
-      <button type="button" class="btn btn-dark">Menu</button>
-
-
-      <nav></nav> <!-- Navbar hidden from 991px and below -->
-
-    </header>
-
-    <main>
-      <div class="main-wrapper">
-
-        <div class="jumbotron jumbotron-fluid mb-0 text-center">
-          <div class="container">
-            <h1 class="display-4">Web design</h1> <!-- Make upper -->
-            <p class="lead">For businesses looking to make a strong and effective first impression.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">
-              Find out more&MediumSpace;
-              <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
+      <div class="card text-center nm-cards-it-support">
+        <div class="card-body">
+          <i class="glyph fas fa-desktop"></i>
+          <h5 class="card-title">IT Support</h5>
+          <hr></>
+          <p class="card-text">Remotely managed IT services that is catered to your business needs, adds value and reduces costs.</p>
+          <i class="read-more">Read more</i>
         </div>
+      </div>
 
-        <section class="nm-cards">
+      <div class="card text-center nm-cards-digital-marketing">
+        <div class="card-body">
+          <i class="glyph far fa-chart-bar"></i>
+          <h5 class="card-title">Digital Marketing</h5>
+          <hr></>
+          <p class="card-text">Driving brand awareness and ROI through creative digital marketing campaigns. We review and monitor online performaces.</p>
+          <i class="read-more">Read more</i>
+        </div>
+      </div>
 
-          <div class="card text-center nm-cards-bespoke" style="width: 18rem;">
-            <div class="card-body">
-              <i class="glyph fab fa-buromobelexperte"></i>
-              <h5 class="card-title">Bespoke Software</h5>
-              <hr></>
-              <p class="card-text">Tailored software solutions to improve business productivity and online profits. Our expert team will ensure a software solution.</p>
-              <i class="read-more">Read more</i>
-            </div>
-          </div>
+      <div class="nm-cards-break"></div> <!-- break to a new row -->
 
-          <div class="card text-center nm-cards-support" style="width: 18rem;">
-            <div class="card-body">
-              <i class="glyph fas fa-desktop"></i>
-              <h5 class="card-title">IT Support</h5>
-              <hr></>
-              <p class="card-text">Remotely managed IT services that is catered to your business needs, add value and reduces costs.</p>
-              <i class="read-more">Read more</i>
-            </div>
-          </div>
+      <div class="card text-center nm-cards-telecoms-services">
+        <div class="card-body">
+          <i class="glyph fas fa-phone-alt"></i>
+          <h5 class="card-title">Telecoms Services</h5>
+          <hr></>
+          <p class="card-text">Stary connected with bespoke telecoms solutions when you need it most.</p>
+          <i class="read-more">Read more</i>
+        </div>
+      </div>
 
-          <div class="card text-center nm-cards-marketing" style="width: 18rem;">
-            <div class="card-body">
-              <i class="glyph far fa-chart-bar"></i>
-              <h5 class="card-title">Digital Marketing</h5>
-              <hr></>
-              <p class="card-text">Driving brand awareness and ROI through creative digital marketing campaigns. We review and monitor online performaces.</p>
-              <i class="read-more">Read more</i>
-            </div>
-          </div>
+      <div class="card text-center nm-cards-web-design">
+        <div class="card-body">
+          <i class="glyph fas fa-code"></i>
+          <h5 class="card-title">Web Design</h5>
+          <hr></>
+          <p class="card-text">User-centric design for business looking to make a lasting first impression.</p>
+          <i class="read-more">Read more</i>
+        </div>
+      </div>
 
-          <div class="card text-center nm-cards-telecoms" style="width: 18rem;">
-            <div class="card-body">
-              <i class="glyph fas fa-phone-alt"></i>
-              <h5 class="card-title">Telecoms Services</h5>
-              <hr></>
-              <p class="card-text">Stary connected with bespoke telecoms solutions when you need it most.</p>
-              <i class="read-more">Read more</i>
-            </div>
-          </div>
+      <div class="card text-center nm-cards-cyber-security">
+        <div class="card-body">
+          <i class="glyph fas fa-shield-alt"></i>
+          <h5 class="card-title">Cyber Security</h5>
+          <hr></>
+          <p class="card-text">Ensuring your online business stays secure 24/7, 365 days of the year.</p>
+          <i class="read-more">Read more</i>
+        </div>
+      </div>
 
-          <div class="card text-center nm-cards-design" style="width: 18rem;">
-            <div class="card-body">
-              <i class="glyph fas fa-code"></i>
-              <h5 class="card-title">Web Design</h5>
-              <hr></>
-              <p class="card-text">User-centric design for business looking to make a lasting first impression.</p>
-              <i class="read-more">Read more</i>
-            </div>
-          </div>
+      <div class="card text-center nm-cards-web-design">  <!-- Same styling as web design card -->
+        <div class="card-body">
+          <i class="glyph fas fa-graduation-cap"></i>
+          <h5 class="card-title">Developer Training</h5>
+          <hr></>
+          <p class="card-text">Have you considered a career in web development but you aren't sure where to start?</p>
+          <i class="read-more">Read more</i>
+        </div>
+      </div>
 
-          <div class="card text-center nm-cards-cyber" style="width: 18rem;">
-            <div class="card-body">
-              <i class="glyph fas fa-shield-alt"></i>
-              <h5 class="card-title">Cyber Security</h5>
-              <hr></>
-              <p class="card-text">Ensuring your online business stays secure 24/7, 365 days of the year.</p>
-              <i class="read-more">Read more</i>
-            </div>
-          </div>
+    </section> <!-- nm-cards -->
 
-          <div class="card text-center nm-cards-training" style="width: 18rem;">
-            <div class="card-body">
-              <i class="glyph fas fa-graduation-cap"></i>
-              <h5 class="card-title">Developer Training</h5>
-              <hr></>
-              <p class="card-text">Have you considered a career in web development but you aren't sure where to start?</p>
-              <i class="read-more">Read more</i>
-            </div>
-          </div>
 
-        </section> <!-- /nm-cards -->
-
-      </div> <!-- /main-wrapper -->
-
-      <section></section> <!-- About -->
-      <section>
-        <header></header> <!-- Tabs - "latest" -->
-        <div></div> <!-- cards -->
-      </section>
-
-    </main>
 
     <footer>
       <section></section> <!-- Businesses -->
