@@ -7,55 +7,113 @@ body {
   font-size: 16px;
 }
 
+h1 {
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: .025rem;  // .4px
+}
+
 h5 {
   font-size: 1.125rem;
   font-weight: 400;
 }
 
+/*
 .btn {
-  border-radius: 3px;
+  display: inline-block;
+  border-radius: $border-radius;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  // FROM BOOTSTRAP:
+  // user-select: none;
+  // text-decoration: none;
+  // box-sizing: border-box;
+}*/
+
+
+.button {
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: $border-radius;
+  color: $light-1;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  // FROM BOOTSTRAP:
+  // user-select: none;
+  &:hover {
+    // text-decoration: none;
+    color: inherit;
+    // background-color: SET AS MAP OF SECONDARY COLORS
+  }
 }
 
 
 .full-viewport {
+  display: grid;
+  grid-template-rows: max-content auto;
+
   height: 100vh;
 
   .main-header {
+    flex-grow: 0;
+    flex-basis: auto;  // content?
     padding: 20px 0;
   }
-
   .btn-primary {
     background-color: map-get($nm-services, 'it-support');
   }
+}
 
-  .jumbotron {
-    height: 100%;
-    background: linear-gradient(to right, #000, rgba(0,0,0,.3)),
-                $dark-1 url('../img/carousel-img.jpg') no-repeat center;
-    background-size: cover;
-    * {
-      color: $light-1;
-    }
-    h1 {
-      text-transform: uppercase;
-    }
-    .btn {
-      text-transform: uppercase;
-    }
+.jumbotron {
+  // Set as flex container so contents are easily centered
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // Set MQ to adjust at larger
+  @media (min-width: map-get($breakpoints, 'l')) {
   }
 
+  margin: 0;
+  background: linear-gradient(to right, #000, rgba(0,0,0,.3)),
+              $dark-1 url('../img/carousel-img.jpg') no-repeat center;
+  background-size: cover;
+  * {
+    color: $light-1;
+  }
+  h1 {
+    text-transform: uppercase;
+  }
+  .lead {
+    line-height: 2.25rem;
+    font-weight: 400;
+  }
+  .jumbotron-button {
+    @extend .button;
+    background-color: map-get($nm-services, 'web-design');
+    height: auto;
+    padding: 5px 20px;
+    font-size: 1.25rem;
+    line-height: 50px;
+    &:active, &:hover, &:focus {
+      background-color: map-get($nm-secondary, 'web-design');
+    }
+
+  }
+
+
+  // @site https://jonsuh.com/hamburgers
+  // @link https://github.com/jonsuh/hamburgers
 }
 
 
-
-
-
-
-
-//==========================
-// BREAK POINTS
-//==========================
-// Default breakpoint = 's' (0-767px)
+// div within jumbo
+// small: center, margin auto, 15px side padding
+// Large: fixed width
 
 
 
