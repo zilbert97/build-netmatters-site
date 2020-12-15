@@ -1,96 +1,202 @@
-@import "partials/variables";
+@import "partials/variables",
+        "partials/burger-sauce",
+        "partials/globals";
 
-// GLOBALS
-
-body {
-  font-family: $font-stack;
-  font-size: 16px;
-}
-
-h1 {
-  font-size: 3rem;
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: .025rem;  // .4px
-}
-
-h5 {
-  font-size: 1.125rem;
-  font-weight: 400;
-}
-
-/*
-.btn {
-  display: inline-block;
-  border-radius: $border-radius;
-  font-weight: 400;
-  text-align: center;
-  vertical-align: middle;
-  // FROM BOOTSTRAP:
-  // user-select: none;
-  // text-decoration: none;
-  // box-sizing: border-box;
-}*/
-
-
-.button {
-  display: inline-block;
-  box-sizing: border-box;
-  border-radius: $border-radius;
-  color: $light-1;
-  font-weight: 400;
-  text-transform: uppercase;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
-  // FROM BOOTSTRAP:
-  // user-select: none;
-  &:hover {
-    // text-decoration: none;
-    color: inherit;
-    // background-color: SET AS MAP OF SECONDARY COLORS
-  }
-}
-
+//=====================================
+// HEADER & JUMBOTRON LAYOUT
+//=====================================
+// To make the header and banner span
+// the entire viewport i've placed them
+// in a CSS Grid: the header takes up a
+// defined amount with the jumbo taking
+// up all extra space available in the
+// grid's 100vh height.
 
 .full-viewport {
-  display: grid;
-  grid-template-rows: max-content auto;
+  display            : grid;
+  grid-template-rows : max-content auto;
+  height             : 100vh;
 
-  height: 100vh;
-
-  .main-header {
-    flex-grow: 0;
-    flex-basis: auto;  // content?
-    padding: 20px 0;
-  }
   .btn-primary {
-    background-color: map-get($nm-services, 'it-support');
+    background-color : map-get($nm-services, 'it-support');
   }
 }
 
+//=====================================
+// HEADER
+//=====================================
+// The header is a flex container
+
+// !!! This is a LOT of nesting which doesn't need to be there.
+.main-header {
+  display         : flex;
+  flex-flow       : row wrap;
+  justify-content : space-between;
+  align-items     : center;
+  padding         : 20px 15px;
+
+  #logo-container {
+    flex         : 1 1 0;
+    margin-right : auto;
+    a > .logo {
+      max-width : 100%;
+      min-width : 0;
+    }
+  }
+
+  #search-bar {
+    margin-top : 10px;     // Remove when back in line
+    flex-basis : 100%;    // Search - grow to button+field, then wrap below
+    order      : 10;           // Default to 0 on larger sizes
+
+    position   : relative;
+
+    input {
+      // NEED TO IMPLEMENT - shadow only when not selected
+      // box-shadow: inset 0 1px 1px $search-shadow;
+      height      : 48px;
+      width       : 100%;
+      padding     : 5px 40px 5px 15px;
+
+      font-size   : .875rem; // 14px
+      line-height : 1.4;
+      color       : $search-input;
+
+      background-color : $search-background;
+      border           : 2px solid $search-border;
+      border-radius    : $border-radius;
+      /* border-top: 2px solid $search-border;
+      border-bottom: 2px solid $search-border;
+      border-left: 2px solid $search-border;
+      border-right: 0;
+      border-top-left-radius: $border-radius;
+      border-bottom-left-radius: $border-radius; */
+    }
+
+    /*
+    button {
+      background-color : $search-background;
+
+      border-top    : 2px solid $search-border;
+      border-bottom : 2px solid $search-border;
+      border-right  : 2px solid $search-border;
+      border-left   : 0;
+
+      border-top-right-radius    : $border-radius;
+      border-bottom-right-radius : $border-radius;
+    }
+    */
+
+    #search-icon {
+      position : absolute;
+      z-index  : 100;
+      right    : 12px;
+      top      : 10px;
+
+      color      : $dark-1;
+      font-style : 400;
+      font-size  : 1.25rem;  // 20px
+    }
+
+    #search-button {display: none;}  // Only append to search field at wider breakpoints
+  }
+
+  @media (min-width: map-get($breakpoints, 'm')) {
+    #search-bar {
+      position: relative;
+      order : 0;                                   // Place back in source order
+      input {
+        height           : $header-button-height;
+        width            : 174px;                  // Make set width
+        background-color : $light-1;
+        border-width     : 1px;
+        border-radius    : 0;
+      }
+      #search-icon {display: none;}
+      #search-button {
+        display          : inline-block;
+        position         : absolute;
+        height           : $header-button-height;
+        padding          : 0 20px;
+        background-color : $utility-button;
+        color: $light-1  ;
+        font-size        : 1.4375rem; // 1.0625rem;  // 23px
+        border           : 0;
+        border-radius    : 0 $border-radius $border-radius 0;
+
+        &:hover,
+        &:active,
+        &:focus {
+          background-color: $utility-button-ui;
+        }
+      }
+    }
+  }
+
+  #buttons-container {
+    // Be a flex container (as well as flex item):
+    display         : flex;
+    flex-flow       : row nowrap;
+    align-items     : center;
+    justify-content : flex-end;
+
+    #support-button {display: none;}
+    #contact-button {display: none;}
+
+    #voip-icon {
+      width: 70px;
+      text-align: center;
+
+      .glyph {
+        color: $dark-1;
+        font-size: 2rem;  // 32px
+      }
+
+      &:hover {
+        // Need to add horziontal bar below on hover state
+      }
+
+      @media (min-width: map-get($breakpoints, 'm')) {display: none;}  // Only show icon when smaller screen
+    }
+
+    .hamburger {
+      margin-left: 20px;
+    }
+  }
+}
+
+
+
+// Jumbotron = flex container for its content so contents are easily centered
+// Also a grid item
+
 .jumbotron {
-  // Set as flex container so contents are easily centered
   display: flex;
-  justify-content: center;
   align-items: center;
-  // Set MQ to adjust at larger
+  justify-content: center; //
+
+  text-align: center;
   @media (min-width: map-get($breakpoints, 'l')) {
+    text-align: left;
   }
 
   margin: 0;
+
   background: linear-gradient(to right, #000, rgba(0,0,0,.3)),
               $dark-1 url('../img/carousel-img.jpg') no-repeat center;
   background-size: cover;
+
   * {
     color: $light-1;
   }
   h1 {
     text-transform: uppercase;
+    margin-bottom: 25px;
   }
   .lead {
     line-height: 2.25rem;
     font-weight: 400;
+    margin-bottom: 35px;
   }
   .jumbotron-button {
     @extend .button;
@@ -102,9 +208,7 @@ h5 {
     &:active, &:hover, &:focus {
       background-color: map-get($nm-secondary, 'web-design');
     }
-
   }
-
 
   // @site https://jonsuh.com/hamburgers
   // @link https://github.com/jonsuh/hamburgers
@@ -120,6 +224,9 @@ h5 {
 //==========================
 // NETMATTERS SERVICE CARDS
 //==========================
+
+// N.B. Cards are overflowing from side of container. Need to fix.
+
 @mixin nm-card($service, $color) {
 
   width: 100%;

@@ -22,6 +22,7 @@
     <i class="fas fa-code"></i>                  WEB DEVELOPMENT
     <i class="fas fa-shield-alt"></i>            SHIELD
     <i class="fas fa-graduation-cap"></i>        EDUCATION
+    <i class="fas fa-search"></i>                SEARCH
     -->
 
     <!-- Link to my CSS -->
@@ -33,30 +34,52 @@
   <body>
     <div class="full-viewport">
       <header class="main-header">
-        <img src="img/site-logo.png" alt="Netmatters logo" class="logo"> <!-- link to home page -->
-        <button type="button" class="btn btn-primary">Support</button> <!-- Mouse ::before -->
-        <button type="button" class="btn btn-secondary">Contact</button> <!-- Paper plane ::before -->
 
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="button-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-secondary" type="button" id="button-addon2"><!-- Search icon --></button>
-          </div>
+        <div id="logo-container"> <!-- FlexItem 1 -->
+          <a href="#"><img src="img/site-logo.png" alt="Netmatters logo" class="logo"></a> <!-- link to home page -->
         </div>
 
-        <!-- BREAKPOINTS: -->
-          <!-- xl: support, contact, search button with field, menu -->
-          <!-- l: hide search field from search button -->
-          <!-- m: hide support, contact; expand search button with field -->
-          <!-- s: hide search button, wrap field below; add VOIP button -->
+        <div id="search-bar"> <!-- FlexItem 2 -->
+          <input type="text" placeholder="Search..."> <!-- What are  aria-label= and aria-describedby= classes? -->
+          <a id="search-icon">
+            <i class="glyph fas fa-search"></i>
+          </a>
+          <button class="button" type="button" id="search-button">
+            <i class="glyph fas fa-search"></i>
+          </button>
+        </div>
 
-        <!-- VOIP icon shown only in med vp -->
-        <button type="button" class="btn btn-dark">Menu</button>
+        <div id="buttons-container"> <!-- FlexItem 3 -->
+
+          <!-- Support button -->
+          <button type="button" class="btn btn-primary" id="support-button">Support</button> <!-- Mouse ::before -->
+
+          <!-- Contact button -->
+          <button type="button" class="btn btn-secondary" id="contact-button">Contact</button> <!-- Paper plane ::before -->
+
+          <!-- Phone icon -->
+          <div id="voip-icon">
+            <a><i class="glyph fas fa-phone-alt"></i></a>
+            <!-- hr -->
+          </div>
+
+          <!-- Inactive as requires JS to trigger active state (class "is-active") -->
+          <button class="hamburger hamburger--spin" type="button">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+            <span class="burger-text">Menu</span>
+          </button>
+
+        </div> <!-- buttons-container -->
+
+
+
         <nav></nav> <!-- Navbar hidden from 991px and below -->
 
-      </header>
+      </header> <!-- main-header -->
 
-      <div class="jumbotron jumbotron-fluid text-center">
+      <div class="jumbotron jumbotron-fluid">
         <div class="container">
           <h1>Web design</h1>
           <p class="lead">For businesses looking to make a strong<br>and effective first impression.</p>
@@ -65,6 +88,7 @@
             <i class="fas fa-arrow-right"></i>
           </a>
         </div> <!-- container -->
+
       </div> <!-- jumbotron -->
     </div> <!-- full-viewport -->
 
