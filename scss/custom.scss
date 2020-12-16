@@ -27,144 +27,158 @@
 //=====================================
 // The header is a flex container
 
-// !!! This is a LOT of nesting which doesn't need to be there.
 .main-header {
   display         : flex;
   flex-flow       : row wrap;
-  justify-content : space-between;
   align-items     : center;
   padding         : 20px 15px;
+  min-height      : 168px;
 
   #logo-container {
-    flex         : 1 1 0;
-    margin-right : auto;
+    flex           : 1 1 0;
+    margin-right   : auto;
+    padding-bottom : 5px;
     a > .logo {
       max-width : 100%;
       min-width : 0;
     }
   }
+}
+
+#search-bar {
+  margin-top : auto;     // Remove when back in line
+  flex-basis : 100%;    // Search - grow to button+field, then wrap below
+  order      : 10;           // Default to 0 on larger sizes
+  position   : relative;
+
+  input {
+    height      : 48px;
+    width       : 100%;
+    padding     : 5px 40px 5px 15px;
+
+    font-size   : .875rem;  // 14px
+    line-height : 1.4;
+    color       : $search-input;
+
+    background-color : $search-background;
+    border           : 2px solid $search-border;
+    border-radius    : 2px;
+    box-shadow       : inset 0 1px 1px $search-shadow;
+
+    &:active,
+    &:focus {
+      box-shadow: 0;  // CHECK WORKS AS EXPECTED
+    }
+  }
+
+  #search-icon {
+    position : absolute;
+    z-index  : 100;
+    right    : 12px;
+    top      : 10px;
+
+    color      : $dark-1;
+    font-style : 400;
+    font-size  : 1.25rem;  // 20px
+  }
+
+  #search-button {display: none;}  // Only append to search field at wider breakpoints
+}
+
+@media (min-width: map-get($breakpoints, 'm')) {
+  .main-header {
+    flex-wrap  : nowrap;
+    margin     : auto;
+    min-height : 110px;
+
+    #logo-container {
+      flex       : 0 0 auto;
+      box-sizing : content-box;
+      width      : 345px;
+      padding    : 0 15px;
+    }
+  }
+
 
   #search-bar {
-    margin-top : 10px;     // Remove when back in line
-    flex-basis : 100%;    // Search - grow to button+field, then wrap below
-    order      : 10;           // Default to 0 on larger sizes
-
-    position   : relative;
+    order      : 0;  // Place back in source order
+    flex       : 0 0 auto;
+    margin-top : 0;
+    margin-left: 40px;
 
     input {
-      // NEED TO IMPLEMENT - shadow only when not selected
-      // box-shadow: inset 0 1px 1px $search-shadow;
-      height      : 48px;
-      width       : 100%;
-      padding     : 5px 40px 5px 15px;
-
-      font-size   : .875rem; // 14px
-      line-height : 1.4;
-      color       : $search-input;
-
-      background-color : $search-background;
-      border           : 2px solid $search-border;
-      border-radius    : $border-radius;
-      /* border-top: 2px solid $search-border;
-      border-bottom: 2px solid $search-border;
-      border-left: 2px solid $search-border;
-      border-right: 0;
-      border-top-left-radius: $border-radius;
-      border-bottom-left-radius: $border-radius; */
+      height           : $header-button-height;
+      width            : 174px;  // Make set width
+      background-color : $light-1;
+      border-width     : 1px;
+      border-radius    : 0;
     }
+    #search-icon {display: none;}
+    #search-button {
+      display          : inline-block;
+      margin-left      : -5px; // This ensures input and button are flush
+      height           : $header-button-height;
+      padding          : 0 20px;
+      background-color : $utility-button;
 
-    /*
-    button {
-      background-color : $search-background;
+      color            : $light-1;
+      font-size        : 1.4375rem;  // 1.0625rem;  // 23px
+      border           : 0;
+      border-radius    : 0 $border-radius $border-radius 0;
 
-      border-top    : 2px solid $search-border;
-      border-bottom : 2px solid $search-border;
-      border-right  : 2px solid $search-border;
-      border-left   : 0;
-
-      border-top-right-radius    : $border-radius;
-      border-bottom-right-radius : $border-radius;
-    }
-    */
-
-    #search-icon {
-      position : absolute;
-      z-index  : 100;
-      right    : 12px;
-      top      : 10px;
-
-      color      : $dark-1;
-      font-style : 400;
-      font-size  : 1.25rem;  // 20px
-    }
-
-    #search-button {display: none;}  // Only append to search field at wider breakpoints
-  }
-
-  @media (min-width: map-get($breakpoints, 'm')) {
-    #search-bar {
-      position: relative;
-      order : 0;                                   // Place back in source order
-      input {
-        height           : $header-button-height;
-        width            : 174px;                  // Make set width
-        background-color : $light-1;
-        border-width     : 1px;
-        border-radius    : 0;
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: $utility-button-ui;
       }
-      #search-icon {display: none;}
-      #search-button {
-        display          : inline-block;
-        position         : absolute;
-        height           : $header-button-height;
-        padding          : 0 20px;
-        background-color : $utility-button;
-        color: $light-1  ;
-        font-size        : 1.4375rem; // 1.0625rem;  // 23px
-        border           : 0;
-        border-radius    : 0 $border-radius $border-radius 0;
-
-        &:hover,
-        &:active,
-        &:focus {
-          background-color: $utility-button-ui;
-        }
-      }
-    }
-  }
-
-  #buttons-container {
-    // Be a flex container (as well as flex item):
-    display         : flex;
-    flex-flow       : row nowrap;
-    align-items     : center;
-    justify-content : flex-end;
-
-    #support-button {display: none;}
-    #contact-button {display: none;}
-
-    #voip-icon {
-      width: 70px;
-      text-align: center;
-
-      .glyph {
-        color: $dark-1;
-        font-size: 2rem;  // 32px
-      }
-
-      &:hover {
-        // Need to add horziontal bar below on hover state
-      }
-
-      @media (min-width: map-get($breakpoints, 'm')) {display: none;}  // Only show icon when smaller screen
-    }
-
-    .hamburger {
-      margin-left: 20px;
     }
   }
 }
 
+#buttons-container {
+  // Be a flex container (as well as flex item):
+  display         : flex;
+  flex-flow       : row nowrap;
+  align-items     : center;
+  justify-content : flex-end;
+
+  #support-button {display: none;}
+  #contact-button {display: none;}
+
+  #voip-icon {
+    width: 70px;
+    text-align: center;
+
+    .glyph {
+      color: $dark-1;
+      font-size: 2rem;  // 32px
+    }
+
+    &:hover {
+      // Need to add horziontal bar below on hover state
+    }
+
+    @media (min-width: map-get($breakpoints, 'm')) {display: none;}  // Only show icon when smaller screen
+  }
+
+  .hamburger {
+    margin-left: 20px;
+  }
+}
+
+
+@media (min-width: map-get($breakpoints, 'l')) {
+  // Add support button
+  #buttons-container {
+    #support-button {
+      display: inline-block;
+    }
+  }
+  // Add contact button
+  // Hide input field
+    // Remove -ve margin from search button
+    // If click search button show input field, hide other buttons
+}
 
 
 // Jumbotron = flex container for its content so contents are easily centered

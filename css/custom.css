@@ -903,38 +903,27 @@ h5 {
 .main-header {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
   align-items: center;
   padding: 20px 15px;
+  min-height: 168px;
 }
 .main-header #logo-container {
   flex: 1 1 0;
   margin-right: auto;
+  padding-bottom: 5px;
 }
 .main-header #logo-container a > .logo {
   max-width: 100%;
   min-width: 0;
 }
-.main-header #search-bar {
-  margin-top: 10px;
+
+#search-bar {
+  margin-top: auto;
   flex-basis: 100%;
   order: 10;
   position: relative;
-  /*
-  button {
-    background-color : $search-background;
-
-    border-top    : 2px solid $search-border;
-    border-bottom : 2px solid $search-border;
-    border-right  : 2px solid $search-border;
-    border-left   : 0;
-
-    border-top-right-radius    : $border-radius;
-    border-bottom-right-radius : $border-radius;
-  }
-  */
 }
-.main-header #search-bar input {
+#search-bar input {
   height: 48px;
   width: 100%;
   padding: 5px 40px 5px 15px;
@@ -943,15 +932,13 @@ h5 {
   color: #555;
   background-color: rgba(0, 0, 0, 0.1);
   border: 2px solid #ccc;
-  border-radius: 3px;
-  /* border-top: 2px solid $search-border;
-  border-bottom: 2px solid $search-border;
-  border-left: 2px solid $search-border;
-  border-right: 0;
-  border-top-left-radius: $border-radius;
-  border-bottom-left-radius: $border-radius; */
+  border-radius: 2px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
-.main-header #search-bar #search-icon {
+#search-bar input:active, #search-bar input:focus {
+  box-shadow: 0;
+}
+#search-bar #search-icon {
   position: absolute;
   z-index: 100;
   right: 12px;
@@ -960,27 +947,42 @@ h5 {
   font-style: 400;
   font-size: 1.25rem;
 }
-.main-header #search-bar #search-button {
+#search-bar #search-button {
   display: none;
 }
+
 @media (min-width: 768px) {
-  .main-header #search-bar {
-    position: relative;
-    order: 0;
+  .main-header {
+    flex-wrap: nowrap;
+    margin: auto;
+    min-height: 110px;
   }
-  .main-header #search-bar input {
+  .main-header #logo-container {
+    flex: 0 0 auto;
+    box-sizing: content-box;
+    width: 345px;
+    padding: 0 15px;
+  }
+
+  #search-bar {
+    order: 0;
+    flex: 0 0 auto;
+    margin-top: 0;
+    margin-left: 40px;
+  }
+  #search-bar input {
     height: 56px;
     width: 174px;
     background-color: #fff;
     border-width: 1px;
     border-radius: 0;
   }
-  .main-header #search-bar #search-icon {
+  #search-bar #search-icon {
     display: none;
   }
-  .main-header #search-bar #search-button {
+  #search-bar #search-button {
     display: inline-block;
-    position: absolute;
+    margin-left: -5px;
     height: 56px;
     padding: 0 20px;
     background-color: #999aa2;
@@ -989,39 +991,44 @@ h5 {
     border: 0;
     border-radius: 0 3px 3px 0;
   }
-  .main-header #search-bar #search-button:hover, .main-header #search-bar #search-button:active, .main-header #search-bar #search-button:focus {
+  #search-bar #search-button:hover, #search-bar #search-button:active, #search-bar #search-button:focus {
     background-color: #7e808a;
   }
 }
-.main-header #buttons-container {
+#buttons-container {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-end;
 }
-.main-header #buttons-container #support-button {
+#buttons-container #support-button {
   display: none;
 }
-.main-header #buttons-container #contact-button {
+#buttons-container #contact-button {
   display: none;
 }
-.main-header #buttons-container #voip-icon {
+#buttons-container #voip-icon {
   width: 70px;
   text-align: center;
 }
-.main-header #buttons-container #voip-icon .glyph {
+#buttons-container #voip-icon .glyph {
   color: #333645;
   font-size: 2rem;
 }
 @media (min-width: 768px) {
-  .main-header #buttons-container #voip-icon {
+  #buttons-container #voip-icon {
     display: none;
   }
 }
-.main-header #buttons-container .hamburger {
+#buttons-container .hamburger {
   margin-left: 20px;
 }
 
+@media (min-width: 992px) {
+  #buttons-container #support-button {
+    display: inline-block;
+  }
+}
 .jumbotron {
   display: flex;
   align-items: center;
