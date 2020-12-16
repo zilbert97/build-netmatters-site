@@ -920,6 +920,7 @@ h5 {
 }
 
 #buttons-container {
+  order: 10;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -963,10 +964,10 @@ h5 {
 #search-container {
   margin-top: auto;
   flex-basis: 100%;
-  order: 10;
+  order: 50;
   position: relative;
 }
-#search-container input {
+#search-container #search-input {
   height: 48px;
   width: 100%;
   padding: 5px 40px 5px 15px;
@@ -978,7 +979,7 @@ h5 {
   border-radius: 2px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
-#search-container input:active, #search-container input:focus {
+#search-container #search-input:active, #search-container #search-input:focus {
   box-shadow: 0;
 }
 #search-container #search-icon {
@@ -995,6 +996,7 @@ h5 {
 }
 
 #hamburger-container {
+  order: 30;
   margin-left: 20px;
 }
 
@@ -1012,7 +1014,7 @@ h5 {
   }
 
   #search-container {
-    order: 0;
+    order: 20;
     flex: 0 0 auto;
     margin: 0 0 0 20px;
   }
@@ -1044,6 +1046,7 @@ h5 {
     padding: 5px 15px;
     font-size: 1.125rem;
     background-color: #999aa2;
+    width: 63px;
     margin-left: -5px;
     padding-left: 20px;
     padding-right: 20px;
@@ -1056,6 +1059,11 @@ h5 {
   }
 }
 @media (min-width: 992px) {
+  .main-header > #logo-container {
+    padding: 0;
+    margin-right: 75px;
+  }
+
   #buttons-container #support-button {
     display: inline-block;
     box-sizing: border-box;
@@ -1103,20 +1111,36 @@ h5 {
     background-color: #7e808a;
   }
 
-  #search-container {
-    /*
-    // Needs to show search and hide other buttons
-    #search-button:hover {  // Replace hover
-      border-radius: 0 $border-radius $border-radius 0;
-    }
-    */
-  }
   #search-container #search-input {
     display: none;
   }
   #search-container #search-button {
     border-radius: 3px;
     margin-left: 0;
+  }
+
+  #search-container:hover #search-button {
+    border-radius: 0 3px 3px 0;
+  }
+  #search-container:hover #search-input {
+    display: inline-block;
+    width: 300px;
+    position: absolute;
+    right: 63px;
+    border-radius: 3px 0 0 3px;
+  }
+  #search-container:hover ~ #buttons-container {
+    visibility: hidden;
+  }
+}
+@media (min-width: 1260px) {
+  #search-container #search-button {
+    border-radius: 0 3px 3px 0;
+    margin-left: -5px;
+  }
+  #search-container #search-input {
+    display: inline-block;
+    width: 240px;
   }
 }
 .jumbotron {
