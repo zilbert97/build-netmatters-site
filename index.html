@@ -23,6 +23,8 @@
     <i class="fas fa-shield-alt"></i>            SHIELD
     <i class="fas fa-graduation-cap"></i>        EDUCATION
     <i class="fas fa-search"></i>                SEARCH
+    <i class="fas fa-mouse"></i>                 MOUSE
+    <i class="far fa-paper-plane"></i>           PAPER PLANE
     -->
 
     <!-- Link to my CSS -->
@@ -39,8 +41,30 @@
           <a href="#"><img src="img/site-logo.png" alt="Netmatters logo" class="logo"></a> <!-- link to home page -->
         </div>
 
-        <div id="search-bar"> <!-- FlexItem 2 -->
-          <input type="text" placeholder="Search..."> <!-- What are  aria-label= and aria-describedby= classes? -->
+        <div id="buttons-container"> <!-- FlexItem 3 -->
+
+          <!-- Support button -->
+          <button type="button" class="button" id="support-button">
+            <i class="fas fa-mouse"></i>
+            &MediumSpace;Support
+          </button>
+
+          <!-- Contact button -->
+          <button type="button" class="button" id="contact-button">
+            <i class="far fa-paper-plane"></i>
+            &MediumSpace;Contact
+          </button>
+
+          <!-- Phone icon -->
+          <div id="voip-icon">
+            <a><i class="glyph fas fa-phone-alt"></i></a>
+            <hr></>
+            <!-- hr -->
+          </div>
+        </div> <!-- buttons-container -->
+
+        <div id="search-container"> <!-- FlexItem 2 -->
+          <input type="text" placeholder="Search..." id="search-input"> <!-- What are  aria-label= and aria-describedby= classes? -->
           <a id="search-icon">
             <i class="glyph fas fa-search"></i>
           </a>
@@ -49,31 +73,16 @@
           </button>
         </div>
 
-        <div id="buttons-container"> <!-- FlexItem 3 -->
-
-          <!-- Support button -->
-          <button type="button" class="btn btn-primary" id="support-button">Support</button> <!-- Mouse ::before -->
-
-          <!-- Contact button -->
-          <button type="button" class="btn btn-secondary" id="contact-button">Contact</button> <!-- Paper plane ::before -->
-
-          <!-- Phone icon -->
-          <div id="voip-icon">
-            <a><i class="glyph fas fa-phone-alt"></i></a>
-            <!-- hr -->
-          </div>
-
-          <!-- Inactive as requires JS to trigger active state (class "is-active") -->
+        <!-- Hamburger -->
+        <!-- Inactive as requires JS to trigger active state (class "is-active") -->
+        <div id="hamburger-container"> <!-- FlexItem 4 -->
           <button class="hamburger hamburger--spin" type="button">
             <span class="hamburger-box">
               <span class="hamburger-inner"></span>
             </span>
             <span class="burger-text">Menu</span>
           </button>
-
-        </div> <!-- buttons-container -->
-
-
+        </div> <!-- hamburger-container -->
 
         <nav></nav> <!-- Navbar hidden from 991px and below -->
 

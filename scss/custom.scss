@@ -36,7 +36,7 @@
 
   #logo-container {
     flex           : 1 1 0;
-    margin-right   : auto;
+    margin-right   : 20px;
     padding-bottom : 5px;
     a > .logo {
       max-width : 100%;
@@ -45,7 +45,49 @@
   }
 }
 
-#search-bar {
+#buttons-container {
+  // Be a flex container (as well as flex item):
+  display         : flex;
+  flex-flow       : row nowrap;
+  align-items     : center;
+  justify-content : flex-end;
+
+  #support-button {display: none;}
+  #contact-button {display: none;}
+
+  #voip-icon {
+    width: 70px;
+    height: auto;
+    text-align: center;
+    position: relative;
+
+    hr {
+      display: none;
+    }
+    @include combined-ui {
+      hr {
+        display: block;
+        position: absolute;
+        top: 60%;
+        left: 25%;
+        width         : 35px;
+        border-color  : $dark-1;
+        border-width  : 3px;
+        margin-bottom : 12px;
+      }
+    }
+
+    .glyph {
+      color: $dark-1;
+      font-size: 2rem;  // 32px
+    }
+
+
+    @media (min-width: map-get($breakpoints, 'm')) {display: none;}  // Only show icon when smaller screen
+  }
+}
+
+#search-container {
   margin-top : auto;     // Remove when back in line
   flex-basis : 100%;    // Search - grow to button+field, then wrap below
   order      : 10;           // Default to 0 on larger sizes
@@ -85,6 +127,11 @@
   #search-button {display: none;}  // Only append to search field at wider breakpoints
 }
 
+#hamburger-container {
+  margin-left: 20px;
+  // CHANGE HOVER STATE OF HAMBURGER IN _burger-sauce
+}
+
 @media (min-width: map-get($breakpoints, 'm')) {
   .main-header {
     flex-wrap  : nowrap;
@@ -99,128 +146,107 @@
     }
   }
 
+  #search-container {
+    order  : 0;  // Place back in source order
+    flex   : 0 0 auto;
+    margin : 0 0 0 20px;
 
-  #search-bar {
-    order      : 0;  // Place back in source order
-    flex       : 0 0 auto;
-    margin-top : 0;
-    margin-left: 40px;
-
-    input {
+    #search-input {
       height           : $header-button-height;
       width            : 174px;  // Make set width
       background-color : $light-1;
       border-width     : 1px;
       border-radius    : 0;
     }
+
     #search-icon {display: none;}
+
     #search-button {
-      display          : inline-block;
-      margin-left      : -5px; // This ensures input and button are flush
-      height           : $header-button-height;
-      padding          : 0 20px;
-      background-color : $utility-button;
-
-      color            : $light-1;
-      font-size        : 1.4375rem;  // 1.0625rem;  // 23px
-      border           : 0;
-      border-radius    : 0 $border-radius $border-radius 0;
-
-      &:hover,
-      &:active,
-      &:focus {
-        background-color: $utility-button-ui;
+      @include button-base-style($service: 'utility', $context: 'header') {
+        // Overwritten styles
+        margin-left   : -5px;  // This ensures input and button are flush
+        padding-left  : 20px;
+        padding-right : 20px;
+        border-radius : 0 $border-radius $border-radius 0;  // Keep button style continuous with edge of search field
+        font-size     : 1.4375rem;  // 23px
       }
     }
   }
 }
 
-#buttons-container {
-  // Be a flex container (as well as flex item):
-  display         : flex;
-  flex-flow       : row nowrap;
-  align-items     : center;
-  justify-content : flex-end;
-
-  #support-button {display: none;}
-  #contact-button {display: none;}
-
-  #voip-icon {
-    width: 70px;
-    text-align: center;
-
-    .glyph {
-      color: $dark-1;
-      font-size: 2rem;  // 32px
+@media (min-width: map-get($breakpoints, 'l')) {
+  #buttons-container {  // Must be nested due to cascading specificity
+    #support-button {
+      @include button-base-style($service: 'it-support', $context: 'header') {
+      }
     }
-
-    &:hover {
-      // Need to add horziontal bar below on hover state
+    #contact-button {
+      @include button-base-style($service: 'utility', $context: 'header') {
+      }
     }
-
-    @media (min-width: map-get($breakpoints, 'm')) {display: none;}  // Only show icon when smaller screen
   }
+  #search-container {
+    #search-input {
+      display: none;
+    }
+    #search-button {
+      border-radius: $border-radius;
+      margin-left: 0;  // Remove -5px margin
+    }
 
-  .hamburger {
-    margin-left: 20px;
+    /*
+    // Needs to show search and hide other buttons
+    #search-button:hover {  // Replace hover
+      border-radius: 0 $border-radius $border-radius 0;
+    }
+    */
+
   }
 }
 
-
-@media (min-width: map-get($breakpoints, 'l')) {
-  // Add support button
-  #buttons-container {
-    #support-button {
-      display: inline-block;
-    }
-  }
-  // Add contact button
   // Hide input field
     // Remove -ve margin from search button
     // If click search button show input field, hide other buttons
-}
 
-
+//=====================================
+// JUMBOTRON
+//=====================================
 // Jumbotron = flex container for its content so contents are easily centered
 // Also a grid item
 
 .jumbotron {
-  display: flex;
-  align-items: center;
-  justify-content: center; //
+  display         : flex;
+  align-items     : center;
+  justify-content : center; //
 
-  text-align: center;
+  text-align   : center;
   @media (min-width: map-get($breakpoints, 'l')) {
-    text-align: left;
+    text-align : left;
   }
 
-  margin: 0;
+  margin          : 0;
 
-  background: linear-gradient(to right, #000, rgba(0,0,0,.3)),
-              $dark-1 url('../img/carousel-img.jpg') no-repeat center;
-  background-size: cover;
+  background      : linear-gradient(to right, #000, rgba(0,0,0,.3)),
+                    $dark-1 url('../img/carousel-img.jpg') no-repeat center;
+  background-size : cover;
 
   * {
     color: $light-1;
   }
   h1 {
-    text-transform: uppercase;
-    margin-bottom: 25px;
+    text-transform : uppercase;
+    margin-bottom  : 25px;
   }
   .lead {
-    line-height: 2.25rem;
-    font-weight: 400;
-    margin-bottom: 35px;
+    line-height   : 2.25rem;
+    font-weight   : 400;
+    margin-bottom : 35px;
   }
   .jumbotron-button {
-    @extend .button;
-    background-color: map-get($nm-services, 'web-design');
-    height: auto;
-    padding: 5px 20px;
-    font-size: 1.25rem;
-    line-height: 50px;
-    &:active, &:hover, &:focus {
-      background-color: map-get($nm-secondary, 'web-design');
+    @include button-base-style($service: 'web-design', $context: 'jumbo') {
+      // ADD THESE TO _GLOBALS MIXIN?
+      height      : auto;
+      line-height : 50px;
     }
   }
 
@@ -243,8 +269,8 @@
 
 @mixin nm-card($service, $color) {
 
-  width: 100%;
-  margin: 30px 15px 0;
+  width  : 100%;
+  margin : 30px 15px 0;
 
   @media (min-width: map-get($breakpoints, 'm')) {
     width: 720px;
@@ -270,91 +296,90 @@
     }
   }
 
-  background-color: $light-1;
-  color: $dark-1;
-  font-size: .8125rem;          // 13px
-  line-height: 1.5;
-  letter-spacing: .03125rem;    // .5px
+  background-color : $light-1;
+  color            : $dark-1;
+  font-size        : .8125rem;          // 13px
+  line-height      : 1.5;
+  letter-spacing   : .03125rem;         // .5px
 
   &:hover {
-    background-color: $color;
-    color: $light-1;
+    background-color   : $color;
+    color              : $light-1;
     .card-body > i {
-      background-color: $light-1;
-      border-color: $light-1;
-      color: $color;
+      background-color : $light-1;
+      border-color     : $light-1;
+      color            : $color;
     }
     .card-body > hr {
-      border-color: $light-1;
+      border-color     : $light-1;
     }
   }
 
   .card-body > hr {
-    width: 30px;
-    border-color: $dark-1;
-    border-width: 3px;
-    margin-bottom: 12px;
+    width         : 30px;
+    border-color  : $dark-1;
+    border-width  : 3px;
+    margin-bottom : 12px;
   }
 
   .card-body > p {
-    margin-bottom: 13px;
-    height: auto;
+    margin-bottom : 13px;
+    height        : auto;
   }
 
   .card-body > .read-more {
-    display: inline-block;
-    width: 130px;
-    padding: 10px;
-    border-radius: $border-radius;
-    background-color: $color;
-    border-color: $color;
-    text-transform: uppercase;
-    font-style: normal;
-    font-size: 1.0625rem;  // =17px
-    color: $light-1;
+    display          : inline-block;
+    width            : 130px;
+    padding          : 10px;
+    border-radius    : $border-radius;
+    background-color : $color;
+    border-color     : $color;
+    text-transform   : uppercase;
+    font-style       : normal;
+    font-size        : 1.0625rem;  // =17px
+    color            : $light-1;
   }
 
   .card-body > .glyph {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    font-size: 1.5rem;  // 24px
-    line-height: 60px;
+    width            : 60px;
+    height           : 60px;
+    margin-bottom    : 1.0625rem;  // 17px
 
-    margin-bottom: 1.0625rem;  // =17px
+    color            : $light-1;
+    font-size        : 1.5rem;  // 24px
+    line-height      : 60px;
 
-    background-color: $color;
-    border-color: $color;
-    color: $light-1;
-
+    border-radius    : 50%;
+    border-color     : $color;
+    background-color : $color;
   }
 }
 
 .nm-cards {
-  display: flex;
-  align-items: center;
-  flex-flow: column wrap;
+  display     : flex;
+  align-items : center;
+  flex-flow   : column wrap;
 
   @media (min-width: map-get($breakpoints, 'l')) {
-   flex-flow: row wrap;
-   justify-content: center;
-   align-items: stretch;
-   align-content: stretch;
+   flex-flow       : row wrap;
+   justify-content : center;
+   align-items     : stretch;
+   align-content   : stretch;
   }
 
   .card-body {
     padding: 30px;
   }
 
-  background-color: $light-2;
-  padding: 20px 0 50px;
+  background-color : $light-2;
+  padding          : 20px 0 50px;
 
   // At L/XL breakpoints force line break after Digital Marketing card
   &-break {
     display: hidden;
     @media (min-width: map-get($breakpoints, 'l')) {
-      display: inline-block;
-      flex-basis: 100%;
+      display    : inline-block;
+      flex-basis : 100%;
     }
   }
 

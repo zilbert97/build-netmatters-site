@@ -19,6 +19,14 @@ h5 {
   font-weight : 400;
 }
 
+@mixin combined-ui {        // Simple mixin to combine pseudo-class selectors
+  &:hover,                  // Using @mixin as cannot @extend through media queries
+  &:focus,
+  &:active {
+    @content;
+  }
+}
+
 // .btn {
 //  display: inline-block;
 //  border-radius: $border-radius;
@@ -31,6 +39,7 @@ h5 {
 //  box-sizing: border-box;
 // }
 
+/*
 .button {
   display         : inline-block;
   box-sizing      : border-box;
@@ -41,8 +50,76 @@ h5 {
   text-align      : center;
   text-decoration : none;
   vertical-align  : middle;
+  // FROM BOOTSTRAP = user-select: none;
   &:hover {
     color: inherit;
   }
+}
+*/
+
+
+@mixin button-base-style($service: null, $context: 'body') {
+  display         : inline-block;
+  box-sizing      : border-box;
+  width           : max-content;
+
+  border          : 0;
+  border-radius   : $border-radius;
+
+  color           : $light-1;
+  font-weight     : 400;
+  letter-spacing  : .4px;
+  text-transform  : uppercase;
+  text-align      : center;
+  text-decoration : none;
+  vertical-align  : middle;
+
+  // Set the padding and font size for different size parameters
+  @if $context == 'jumbo' {
+    padding       : 5px 20px;
+    font-size     : 1.25rem;                // 20px
+  }
+  @else if $context == 'header' {
+    height        : $header-button-height;  // Consistent height for header buttons
+    margin-left   : 20px;                   // Consistent spacing for header buttons
+    padding       : 5px 15px;
+    font-size     : 1.125rem;               // 18px
+  }
+  @else {                                   // context == 'body' as default
+    // THESE ARE PLACEHOLDERS FOR NOW
+    padding       : 5px 10px;
+    font-size     : 1rem;                   // 16px
+  }
+
+  // Variables must be instantiated
+  // (raises @warn if only defined in the @else block)
+  $button-color : null;
+  $button-color-ui : null;
+
+  @if $service == 'facebook' or
+      $service == 'twitter' or
+      $service == 'linkedin' {
+    $button-color    : $social-buttons;
+    $button-color-ui : map-get($social-buttons-ui, $service);
+  }
+  @else if $service != 'utility' {
+    // Consider using map-has-key() and @warn
+    $button-color    : map-get($nm-services, $service);
+    $button-color-ui : map-get($nm-secondary, $service);
+  }
+  @else {
+    // Default colours to utility colours
+    $button-color    : $utility-button;
+    $button-color-ui : $utility-button-ui;
+  }
+
+  background-color   : $button-color;
+  @include combined-ui {
+    color            : $light-1;
+    background-color : $button-color-ui;
+  }
+
   // FROM BOOTSTRAP = user-select: none;
+
+  @content;
 }

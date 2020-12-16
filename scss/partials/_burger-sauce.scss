@@ -6,6 +6,8 @@
 // but not functional due to JavaScript
 // dependency.
 
+// NEED TO TURN OFF EASE
+
 $hamburger-layer-color         : $light-1;
 $hamburger-layer-border-radius : 0;
 $hamburger-layer-width         : 33px;
@@ -13,6 +15,10 @@ $hamburger-layer-height        : 3px;
 $hamburger-layer-spacing       : 5px;
 $hamburger-padding-x           : 15px;
 $hamburger-padding-y           : 0;
+
+$hamburger-hover-use-filter    : true;
+$hamburger-hover-filter        : contrast(1.5);
+$hamburger-active-hover-filter : $hamburger-hover-filter;
 
 @import "../../assets/hamburgers/hamburgers";
 
@@ -28,4 +34,5 @@ $hamburger-padding-y           : 0;
     font-size      : .75rem;  // 12px
     line-height    : 1;
   }
+
 }

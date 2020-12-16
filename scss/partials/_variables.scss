@@ -31,7 +31,8 @@ $nm-secondary: (
   'cyber-security'    : #e80a42,
 );
 
-$social-buttons: (                     // Colors for social buttons
+$social-buttons: rgba(0,0,0,.25);      // Colors for social buttons
+$social-buttons-ui: (                  // Colors for social buttons upon UI
   'facebook' : #3b5998,
   'twitter'  : #00aced,
   'linkedin' : #0077b5,

@@ -21,10 +21,10 @@
   overflow: visible;
 }
 .hamburger:hover {
-  opacity: 0.7;
+  filter: contrast(1.5);
 }
 .hamburger.is-active:hover {
-  opacity: 0.7;
+  filter: contrast(1.5);
 }
 .hamburger.is-active .hamburger-inner,
 .hamburger.is-active .hamburger-inner::before,
@@ -876,21 +876,23 @@ h5 {
   font-weight: 400;
 }
 
-.button, .jumbotron .jumbotron-button {
-  display: inline-block;
-  box-sizing: border-box;
-  border-radius: 3px;
-  color: #fff;
-  font-weight: 400;
-  text-transform: uppercase;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
+/*
+.button {
+  display         : inline-block;
+  box-sizing      : border-box;
+  border-radius   : $border-radius;
+  color           : $light-1;
+  font-weight     : 400;
+  text-transform  : uppercase;
+  text-align      : center;
+  text-decoration : none;
+  vertical-align  : middle;
+  // FROM BOOTSTRAP = user-select: none;
+  &:hover {
+    color: inherit;
+  }
 }
-.button:hover, .jumbotron .jumbotron-button:hover {
-  color: inherit;
-}
-
+*/
 .full-viewport {
   display: grid;
   grid-template-rows: max-content auto;
@@ -909,7 +911,7 @@ h5 {
 }
 .main-header #logo-container {
   flex: 1 1 0;
-  margin-right: auto;
+  margin-right: 20px;
   padding-bottom: 5px;
 }
 .main-header #logo-container a > .logo {
@@ -917,13 +919,54 @@ h5 {
   min-width: 0;
 }
 
-#search-bar {
+#buttons-container {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-end;
+}
+#buttons-container #support-button {
+  display: none;
+}
+#buttons-container #contact-button {
+  display: none;
+}
+#buttons-container #voip-icon {
+  width: 70px;
+  height: auto;
+  text-align: center;
+  position: relative;
+}
+#buttons-container #voip-icon hr {
+  display: none;
+}
+#buttons-container #voip-icon:hover hr, #buttons-container #voip-icon:focus hr, #buttons-container #voip-icon:active hr {
+  display: block;
+  position: absolute;
+  top: 60%;
+  left: 25%;
+  width: 35px;
+  border-color: #333645;
+  border-width: 3px;
+  margin-bottom: 12px;
+}
+#buttons-container #voip-icon .glyph {
+  color: #333645;
+  font-size: 2rem;
+}
+@media (min-width: 768px) {
+  #buttons-container #voip-icon {
+    display: none;
+  }
+}
+
+#search-container {
   margin-top: auto;
   flex-basis: 100%;
   order: 10;
   position: relative;
 }
-#search-bar input {
+#search-container input {
   height: 48px;
   width: 100%;
   padding: 5px 40px 5px 15px;
@@ -935,10 +978,10 @@ h5 {
   border-radius: 2px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
-#search-bar input:active, #search-bar input:focus {
+#search-container input:active, #search-container input:focus {
   box-shadow: 0;
 }
-#search-bar #search-icon {
+#search-container #search-icon {
   position: absolute;
   z-index: 100;
   right: 12px;
@@ -947,8 +990,12 @@ h5 {
   font-style: 400;
   font-size: 1.25rem;
 }
-#search-bar #search-button {
+#search-container #search-button {
   display: none;
+}
+
+#hamburger-container {
+  margin-left: 20px;
 }
 
 @media (min-width: 768px) {
@@ -964,69 +1011,112 @@ h5 {
     padding: 0 15px;
   }
 
-  #search-bar {
+  #search-container {
     order: 0;
     flex: 0 0 auto;
-    margin-top: 0;
-    margin-left: 40px;
+    margin: 0 0 0 20px;
   }
-  #search-bar input {
+  #search-container #search-input {
     height: 56px;
     width: 174px;
     background-color: #fff;
     border-width: 1px;
     border-radius: 0;
   }
-  #search-bar #search-icon {
+  #search-container #search-icon {
     display: none;
   }
-  #search-bar #search-button {
+  #search-container #search-button {
     display: inline-block;
-    margin-left: -5px;
-    height: 56px;
-    padding: 0 20px;
-    background-color: #999aa2;
-    color: #fff;
-    font-size: 1.4375rem;
+    box-sizing: border-box;
+    width: max-content;
     border: 0;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    height: 56px;
+    margin-left: 20px;
+    padding: 5px 15px;
+    font-size: 1.125rem;
+    background-color: #999aa2;
+    margin-left: -5px;
+    padding-left: 20px;
+    padding-right: 20px;
     border-radius: 0 3px 3px 0;
+    font-size: 1.4375rem;
   }
-  #search-bar #search-button:hover, #search-bar #search-button:active, #search-bar #search-button:focus {
+  #search-container #search-button:hover, #search-container #search-button:focus, #search-container #search-button:active {
+    color: #fff;
     background-color: #7e808a;
   }
 }
-#buttons-container {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: flex-end;
-}
-#buttons-container #support-button {
-  display: none;
-}
-#buttons-container #contact-button {
-  display: none;
-}
-#buttons-container #voip-icon {
-  width: 70px;
-  text-align: center;
-}
-#buttons-container #voip-icon .glyph {
-  color: #333645;
-  font-size: 2rem;
-}
-@media (min-width: 768px) {
-  #buttons-container #voip-icon {
-    display: none;
-  }
-}
-#buttons-container .hamburger {
-  margin-left: 20px;
-}
-
 @media (min-width: 992px) {
   #buttons-container #support-button {
     display: inline-block;
+    box-sizing: border-box;
+    width: max-content;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    height: 56px;
+    margin-left: 20px;
+    padding: 5px 15px;
+    font-size: 1.125rem;
+    background-color: #4183d7;
+  }
+  #buttons-container #support-button:hover, #buttons-container #support-button:focus, #buttons-container #support-button:active {
+    color: #fff;
+    background-color: #2a6ec6;
+  }
+  #buttons-container #contact-button {
+    display: inline-block;
+    box-sizing: border-box;
+    width: max-content;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    height: 56px;
+    margin-left: 20px;
+    padding: 5px 15px;
+    font-size: 1.125rem;
+    background-color: #999aa2;
+  }
+  #buttons-container #contact-button:hover, #buttons-container #contact-button:focus, #buttons-container #contact-button:active {
+    color: #fff;
+    background-color: #7e808a;
+  }
+
+  #search-container {
+    /*
+    // Needs to show search and hide other buttons
+    #search-button:hover {  // Replace hover
+      border-radius: 0 $border-radius $border-radius 0;
+    }
+    */
+  }
+  #search-container #search-input {
+    display: none;
+  }
+  #search-container #search-button {
+    border-radius: 3px;
+    margin-left: 0;
   }
 }
 .jumbotron {
@@ -1056,13 +1146,26 @@ h5 {
   margin-bottom: 35px;
 }
 .jumbotron .jumbotron-button {
-  background-color: #926fb1;
-  height: auto;
+  display: inline-block;
+  box-sizing: border-box;
+  width: max-content;
+  border: 0;
+  border-radius: 3px;
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
   padding: 5px 20px;
   font-size: 1.25rem;
+  background-color: #926fb1;
+  height: auto;
   line-height: 50px;
 }
-.jumbotron .jumbotron-button:active, .jumbotron .jumbotron-button:hover, .jumbotron .jumbotron-button:focus {
+.jumbotron .jumbotron-button:hover, .jumbotron .jumbotron-button:focus, .jumbotron .jumbotron-button:active {
+  color: #fff;
   background-color: #7e57a0;
 }
 
@@ -1154,13 +1257,13 @@ h5 {
 .nm-cards-bespoke-software .card-body > .glyph {
   width: 60px;
   height: 60px;
-  border-radius: 50%;
+  margin-bottom: 1.0625rem;
+  color: #fff;
   font-size: 1.5rem;
   line-height: 60px;
-  margin-bottom: 1.0625rem;
-  background-color: #67809f;
+  border-radius: 50%;
   border-color: #67809f;
-  color: #fff;
+  background-color: #67809f;
 }
 .nm-cards-it-support {
   width: 100%;
@@ -1223,13 +1326,13 @@ h5 {
 .nm-cards-it-support .card-body > .glyph {
   width: 60px;
   height: 60px;
-  border-radius: 50%;
+  margin-bottom: 1.0625rem;
+  color: #fff;
   font-size: 1.5rem;
   line-height: 60px;
-  margin-bottom: 1.0625rem;
-  background-color: #4183d7;
+  border-radius: 50%;
   border-color: #4183d7;
-  color: #fff;
+  background-color: #4183d7;
 }
 .nm-cards-digital-marketing {
   width: 100%;
@@ -1292,13 +1395,13 @@ h5 {
 .nm-cards-digital-marketing .card-body > .glyph {
   width: 60px;
   height: 60px;
-  border-radius: 50%;
+  margin-bottom: 1.0625rem;
+  color: #fff;
   font-size: 1.5rem;
   line-height: 60px;
-  margin-bottom: 1.0625rem;
-  background-color: #2ecc71;
+  border-radius: 50%;
   border-color: #2ecc71;
-  color: #fff;
+  background-color: #2ecc71;
 }
 .nm-cards-telecoms-services {
   width: 100%;
@@ -1361,13 +1464,13 @@ h5 {
 .nm-cards-telecoms-services .card-body > .glyph {
   width: 60px;
   height: 60px;
-  border-radius: 50%;
+  margin-bottom: 1.0625rem;
+  color: #fff;
   font-size: 1.5rem;
   line-height: 60px;
-  margin-bottom: 1.0625rem;
-  background-color: #d64541;
+  border-radius: 50%;
   border-color: #d64541;
-  color: #fff;
+  background-color: #d64541;
 }
 .nm-cards-web-design {
   width: 100%;
@@ -1430,13 +1533,13 @@ h5 {
 .nm-cards-web-design .card-body > .glyph {
   width: 60px;
   height: 60px;
-  border-radius: 50%;
+  margin-bottom: 1.0625rem;
+  color: #fff;
   font-size: 1.5rem;
   line-height: 60px;
-  margin-bottom: 1.0625rem;
-  background-color: #926fb1;
+  border-radius: 50%;
   border-color: #926fb1;
-  color: #fff;
+  background-color: #926fb1;
 }
 .nm-cards-cyber-security {
   width: 100%;
@@ -1499,13 +1602,13 @@ h5 {
 .nm-cards-cyber-security .card-body > .glyph {
   width: 60px;
   height: 60px;
-  border-radius: 50%;
+  margin-bottom: 1.0625rem;
+  color: #fff;
   font-size: 1.5rem;
   line-height: 60px;
-  margin-bottom: 1.0625rem;
-  background-color: #f62459;
+  border-radius: 50%;
   border-color: #f62459;
-  color: #fff;
+  background-color: #f62459;
 }
 
 /*# sourceMappingURL=custom.css.map */
