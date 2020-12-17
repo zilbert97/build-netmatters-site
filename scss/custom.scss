@@ -1,4 +1,5 @@
 @import "partials/variables",
+        "partials/keyframes",
         "partials/burger-sauce",
         "partials/globals";
 
@@ -37,20 +38,25 @@
 
 .main-header {
   display         : flex;
+  position        : relative;   // Set so that checkbox toggle is positioned relative to .main-header
   flex-flow       : row wrap;
   align-items     : center;
   padding         : 20px 15px;
   min-height      : 168px;
+}
 
-  #logo-container {
-    flex           : 1 1 0;
-    margin-right   : 20px;
-    padding-bottom : 5px;
-    a > .logo {
-      max-width : 100%;
-      min-width : 0;
-    }
+#logo-container {
+  flex           : 1 1 0;
+  margin-right   : 20px;
+  padding-bottom : 5px;
+  a > .logo {
+    max-width : 100%;
+    min-width : 0;
   }
+}
+
+#toggle {
+  display: none;
 }
 
 #buttons-container {
@@ -90,9 +96,6 @@
       color: $dark-1;
       font-size: 2rem;  // 32px
     }
-
-
-    @media (min-width: map-get($breakpoints, 'm')) {display: none;}  // Only show icon when smaller screen
   }
 }
 
@@ -149,13 +152,17 @@
     flex-wrap  : nowrap;
     margin     : auto;
     min-height : 110px;
+  }
 
-    #logo-container {
-      flex       : 0 0 auto;
-      box-sizing : content-box;
-      width      : 345px;
-      padding    : 0 15px;
-    }
+  #logo-container {
+    flex       : 0 0 auto;
+    box-sizing : content-box;
+    width      : 345px;
+    padding    : 0 15px;
+  }
+
+  #voip-icon {
+    display: none;
   }
 
   #search-container {
@@ -189,11 +196,13 @@
 }
 
 @media (min-width: map-get($breakpoints, 'l')) {
-  .main-header > #logo-container {
+
+  #logo-container {
     padding: 0;
     margin-right: 75px;
   }
-  #buttons-container {  // Must be nested due to cascading specificity
+
+  #buttons-container {
     #support-button {
       @include button-base-style($service: 'it-support', $context: 'header');
     }
@@ -201,53 +210,91 @@
       @include button-base-style($service: 'utility', $context: 'header');
     }
   }
+
   #search-container {
     #search-input {
-      display: none;
-
+      visibility    : hidden; // Initially set to hidden for animation when button pressed
+      width         : 300px;
+      position      : absolute;
+      right         : 63px;    // Offset by width of the search button
+      border-radius : $border-radius 0 0 $border-radius;
     }
     #search-button {
-      border-radius: $border-radius;
-      margin-left: 0;  // Remove -5px margin
+      transition    : border-radius .2s ease-out;
+      border-radius : $border-radius;
+      margin-left   : 0;  // Remove -5px margin
     }
   }
 
   // In order to target the buttons-container using a sibling selector I have
   // reversed the source order. I have then reversed this using flexbox `order`
   // and set `visibility: hidden;` to retain layout in place.
-  #search-container:hover {
-    // NTD: Change :hover to something more suitable
 
+  // Checkbox hack - a hidden overlay checkbox which toggles the state of other
+  // elements.
+
+  #toggle {
+    display  : block;
+    position : absolute;  // Positioned relative to .main-header wrapper
+    right    : 98px;
+    z-index  : 100;
+
+    width    : 63px;
+    height   : 60px;
+    opacity  : 0;   // Hide from view
+    cursor   : pointer;
+
+    &:hover ~ #search-container > #search-button {
+      background-color: $utility-button-ui;
+    }
+  }
+
+  // NTD:
+  // - When switching breakpoints animation occurs - ideally animation only upon UI.
+  // - Uncheck toggle when click away (I think this is only possible by using JavaScript/JQuery)
+
+  #toggle:checked ~ #search-container {
     #search-button {
-      border-radius: 0 $border-radius $border-radius 0;     // For flush flow with search box
+      transition          : border-radius .2s ease-out .2s;     // Open up rounded corners for flush fit
+      border-radius       : 0 $border-radius $border-radius 0;  // with the search input field
     }
     #search-input {
-      display: inline-block;
-      width: 300px;                                         // Set here so default at the next breakpoint
-      position: absolute;
-      right: 63px;                                          // Offset by width of the search button
-      border-radius: $border-radius 0 0 $border-radius;
-      // NTD: Make `display` transition
+      @include fade-element-in;
     }
-
     & ~ #buttons-container {
-      // NTD: Make `visibiltiy` transition
-      visibility: hidden;
+      @include fade-element-out;
+    }
+  }
+
+  #toggle:not(:checked) ~ #search-container {
+    #search-input {
+      @include fade-element-out;
+    }
+    & ~ #buttons-container {
+      @include fade-element-in;
     }
   }
 }
 
 @media (min-width: map-get($breakpoints, 'xl')) {
+  #toggle {
+    display: none;
+  }
+
   #search-container {
     #search-button {
-      border-radius: 0 $border-radius $border-radius 0;     // For flush flow with search box
-      margin-left: -5px;
+      border-radius : 0 $border-radius $border-radius 0;     // For flush flow with search box
+      margin-left   : -5px;
     }
     #search-input {
-      display: inline-block;
-      width: 240px;
+      visibility : visible !important;
+      width      : 240px;
+      position   : static;
     }
-    // NTD: Remove :hover actions (and transitions once implemented)
+  }
+
+  #buttons-container {
+    visibility   : visible !important;
   }
 }
 

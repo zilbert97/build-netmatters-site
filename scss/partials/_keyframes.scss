@@ -1,0 +1,81 @@
+//===========================
+// FADE IN
+//===========================
+
+@keyframes fade-in {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@-moz-keyframes fade-in {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@-webkit-keyframes fade-in {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@-o-keyframes fade-in {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@-ms-keyframes fade-in {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@mixin fade-element-in {
+  animation           : fade-in ease-in-out .6s;  // Fade in
+  -webkit-animation   : fade-in ease-in-out .6s;
+  -moz-animation      : fade-in ease-in-out .6s;
+  -o-animation        : fade-in ease-in-out .6s;
+  -ms-animation       : fade-in ease-in-out .6s;
+
+  transition-delay    : .3s;                      // Wait to become visible (effect of waiting to fade in)
+  transition-property : visibility;
+  visibility          : visible;
+}
+
+//===========================
+// FADE OUT
+//===========================
+
+@keyframes fade-out {
+  100% {opacity: 0;}
+  0% {opacity: 1;}
+}
+
+@-moz-keyframes fade-in {
+  100% {opacity: 0;}
+  0% {opacity: 1;}
+}
+
+@-webkit-keyframes fade-in {
+  100% {opacity: 0;}
+  0% {opacity: 1;}
+}
+
+@-o-keyframes fade-in {
+  100% {opacity: 0;}
+  0% {opacity: 1;}
+}
+
+@-ms-keyframes fade-in {
+  100% {opacity: 0;}
+  0% {opacity: 1;}
+}
+
+@mixin fade-element-out {
+  animation           : fade-out ease-in-out .3s; // Fade out
+  -webkit-animation   : fade-out ease-in-out .3s;
+  -moz-animation      : fade-out ease-in-out .3s;
+  -o-animation        : fade-out ease-in-out .3s;
+  -ms-animation       : fade-out ease-in-out .3s;
+
+  transition-delay    : .3s;                      // Keep hidden at the end of the fade-out
+  transition-property : visibility;
+  visibility          : hidden;
+}

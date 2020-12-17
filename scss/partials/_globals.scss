@@ -2,6 +2,10 @@
 // GLOBALS
 //===========================
 
+*:focus {
+    outline: none !important;   // Prevent default outline
+}
+
 body {
   font-family : $font-stack;
   font-size   : 16px;
@@ -63,9 +67,6 @@ h5 {
   box-sizing      : border-box;
   width           : max-content;
 
-  border          : 0;
-  border-radius   : $border-radius;
-
   color           : $light-1;
   font-weight     : 400;
   letter-spacing  : .4px;
@@ -113,10 +114,17 @@ h5 {
     $button-color-ui : $utility-button-ui;
   }
 
+  border             : 0;
+  border-radius      : $border-radius;
+
   background-color   : $button-color;
   @include combined-ui {
     color            : $light-1;
     background-color : $button-color-ui;
+  }
+
+  &:active {  // Apply inset shadow effect when button pressed
+    box-shadow       : inset 0 3px 5px $button-shadow;
   }
 
   // FROM BOOTSTRAP = user-select: none;

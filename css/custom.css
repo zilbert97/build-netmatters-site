@@ -1,3 +1,83 @@
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-o-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-ms-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  100% {
+    opacity: 0;
+  }
+  0% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fade-in {
+  100% {
+    opacity: 0;
+  }
+  0% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fade-in {
+  100% {
+    opacity: 0;
+  }
+  0% {
+    opacity: 1;
+  }
+}
+@-o-keyframes fade-in {
+  100% {
+    opacity: 0;
+  }
+  0% {
+    opacity: 1;
+  }
+}
+@-ms-keyframes fade-in {
+  100% {
+    opacity: 0;
+  }
+  0% {
+    opacity: 1;
+  }
+}
 /*!
  * Hamburgers
  * @description Tasty CSS-animated hamburgers
@@ -859,6 +939,10 @@
   line-height: 1;
 }
 
+*:focus {
+  outline: none !important;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   font-size: 16px;
@@ -904,19 +988,25 @@ h5 {
 
 .main-header {
   display: flex;
+  position: relative;
   flex-flow: row wrap;
   align-items: center;
   padding: 20px 15px;
   min-height: 168px;
 }
-.main-header #logo-container {
+
+#logo-container {
   flex: 1 1 0;
   margin-right: 20px;
   padding-bottom: 5px;
 }
-.main-header #logo-container a > .logo {
+#logo-container a > .logo {
   max-width: 100%;
   min-width: 0;
+}
+
+#toggle {
+  display: none;
 }
 
 #buttons-container {
@@ -954,11 +1044,6 @@ h5 {
 #buttons-container #voip-icon .glyph {
   color: #333645;
   font-size: 2rem;
-}
-@media (min-width: 768px) {
-  #buttons-container #voip-icon {
-    display: none;
-  }
 }
 
 #search-container {
@@ -1006,11 +1091,16 @@ h5 {
     margin: auto;
     min-height: 110px;
   }
-  .main-header #logo-container {
+
+  #logo-container {
     flex: 0 0 auto;
     box-sizing: content-box;
     width: 345px;
     padding: 0 15px;
+  }
+
+  #voip-icon {
+    display: none;
   }
 
   #search-container {
@@ -1032,8 +1122,6 @@ h5 {
     display: inline-block;
     box-sizing: border-box;
     width: max-content;
-    border: 0;
-    border-radius: 3px;
     color: #fff;
     font-weight: 400;
     letter-spacing: 0.4px;
@@ -1045,6 +1133,8 @@ h5 {
     margin-left: 20px;
     padding: 5px 15px;
     font-size: 1.125rem;
+    border: 0;
+    border-radius: 3px;
     background-color: #999aa2;
     width: 63px;
     margin-left: -5px;
@@ -1057,9 +1147,12 @@ h5 {
     color: #fff;
     background-color: #7e808a;
   }
+  #search-container #search-button:active {
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
 }
 @media (min-width: 992px) {
-  .main-header > #logo-container {
+  #logo-container {
     padding: 0;
     margin-right: 75px;
   }
@@ -1068,8 +1161,6 @@ h5 {
     display: inline-block;
     box-sizing: border-box;
     width: max-content;
-    border: 0;
-    border-radius: 3px;
     color: #fff;
     font-weight: 400;
     letter-spacing: 0.4px;
@@ -1081,18 +1172,21 @@ h5 {
     margin-left: 20px;
     padding: 5px 15px;
     font-size: 1.125rem;
+    border: 0;
+    border-radius: 3px;
     background-color: #4183d7;
   }
   #buttons-container #support-button:hover, #buttons-container #support-button:focus, #buttons-container #support-button:active {
     color: #fff;
     background-color: #2a6ec6;
   }
+  #buttons-container #support-button:active {
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
   #buttons-container #contact-button {
     display: inline-block;
     box-sizing: border-box;
     width: max-content;
-    border: 0;
-    border-radius: 3px;
     color: #fff;
     font-weight: 400;
     letter-spacing: 0.4px;
@@ -1104,43 +1198,108 @@ h5 {
     margin-left: 20px;
     padding: 5px 15px;
     font-size: 1.125rem;
+    border: 0;
+    border-radius: 3px;
     background-color: #999aa2;
   }
   #buttons-container #contact-button:hover, #buttons-container #contact-button:focus, #buttons-container #contact-button:active {
     color: #fff;
     background-color: #7e808a;
   }
+  #buttons-container #contact-button:active {
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
 
   #search-container #search-input {
-    display: none;
-  }
-  #search-container #search-button {
-    border-radius: 3px;
-    margin-left: 0;
-  }
-
-  #search-container:hover #search-button {
-    border-radius: 0 3px 3px 0;
-  }
-  #search-container:hover #search-input {
-    display: inline-block;
+    visibility: hidden;
     width: 300px;
     position: absolute;
     right: 63px;
     border-radius: 3px 0 0 3px;
   }
-  #search-container:hover ~ #buttons-container {
+  #search-container #search-button {
+    transition: border-radius 0.2s ease-out;
+    border-radius: 3px;
+    margin-left: 0;
+  }
+
+  #toggle {
+    display: block;
+    position: absolute;
+    right: 98px;
+    z-index: 100;
+    width: 63px;
+    height: 60px;
+    opacity: 0;
+    cursor: pointer;
+  }
+  #toggle:hover ~ #search-container > #search-button {
+    background-color: #7e808a;
+  }
+
+  #toggle:checked ~ #search-container #search-button {
+    transition: border-radius 0.2s ease-out 0.2s;
+    border-radius: 0 3px 3px 0;
+  }
+  #toggle:checked ~ #search-container #search-input {
+    animation: fade-in ease-in-out 0.6s;
+    -webkit-animation: fade-in ease-in-out 0.6s;
+    -moz-animation: fade-in ease-in-out 0.6s;
+    -o-animation: fade-in ease-in-out 0.6s;
+    -ms-animation: fade-in ease-in-out 0.6s;
+    transition-delay: 0.3s;
+    transition-property: visibility;
+    visibility: visible;
+  }
+  #toggle:checked ~ #search-container ~ #buttons-container {
+    animation: fade-out ease-in-out 0.3s;
+    -webkit-animation: fade-out ease-in-out 0.3s;
+    -moz-animation: fade-out ease-in-out 0.3s;
+    -o-animation: fade-out ease-in-out 0.3s;
+    -ms-animation: fade-out ease-in-out 0.3s;
+    transition-delay: 0.3s;
+    transition-property: visibility;
     visibility: hidden;
+  }
+
+  #toggle:not(:checked) ~ #search-container #search-input {
+    animation: fade-out ease-in-out 0.3s;
+    -webkit-animation: fade-out ease-in-out 0.3s;
+    -moz-animation: fade-out ease-in-out 0.3s;
+    -o-animation: fade-out ease-in-out 0.3s;
+    -ms-animation: fade-out ease-in-out 0.3s;
+    transition-delay: 0.3s;
+    transition-property: visibility;
+    visibility: hidden;
+  }
+  #toggle:not(:checked) ~ #search-container ~ #buttons-container {
+    animation: fade-in ease-in-out 0.6s;
+    -webkit-animation: fade-in ease-in-out 0.6s;
+    -moz-animation: fade-in ease-in-out 0.6s;
+    -o-animation: fade-in ease-in-out 0.6s;
+    -ms-animation: fade-in ease-in-out 0.6s;
+    transition-delay: 0.3s;
+    transition-property: visibility;
+    visibility: visible;
   }
 }
 @media (min-width: 1260px) {
+  #toggle {
+    display: none;
+  }
+
   #search-container #search-button {
     border-radius: 0 3px 3px 0;
     margin-left: -5px;
   }
   #search-container #search-input {
-    display: inline-block;
+    visibility: visible !important;
     width: 240px;
+    position: static;
+  }
+
+  #buttons-container {
+    visibility: visible !important;
   }
 }
 .jumbotron {
@@ -1173,8 +1332,6 @@ h5 {
   display: inline-block;
   box-sizing: border-box;
   width: max-content;
-  border: 0;
-  border-radius: 3px;
   color: #fff;
   font-weight: 400;
   letter-spacing: 0.4px;
@@ -1184,6 +1341,8 @@ h5 {
   vertical-align: middle;
   padding: 5px 20px;
   font-size: 1.25rem;
+  border: 0;
+  border-radius: 3px;
   background-color: #926fb1;
   height: auto;
   line-height: 50px;
@@ -1191,6 +1350,9 @@ h5 {
 .jumbotron .jumbotron-button:hover, .jumbotron .jumbotron-button:focus, .jumbotron .jumbotron-button:active {
   color: #fff;
   background-color: #7e57a0;
+}
+.jumbotron .jumbotron-button:active {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 
 .nm-cards {
