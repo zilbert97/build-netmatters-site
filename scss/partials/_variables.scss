@@ -5,11 +5,6 @@ $light-1           : #fff;             // Header, card backgrounds, text
 $light-2           : #f5f5f5;          // Sections backgrounds
 $dark-1            : #333645;          // Nav bar, logo, menu btn, text
 
-$search-background : rgba(0,0,0,.1);   // Input field background
-$search-border     : #ccc;             // Input field border
-$search-input      : #555;             // Input field text
-$search-shadow     : rgba(0,0,0,.075); // Input field inset shadow when
-
 $utility-button    : #999aa2;          // Header contact, header search
 $utility-button-ui : #7e808a;          // Secondary colour for user interaction
 
@@ -39,6 +34,15 @@ $social-buttons-ui: (                  // Colors for social buttons upon UI
   'twitter'  : #00aced,
   'linkedin' : #0077b5,
 );
+
+$search-background : rgba(0,0,0,.1);   // Input field background
+$search-border     : #ccc;             // Input field border
+$search-input      : #555;             // Input field text
+$search-shadow     : inset 0 1px 1px rgba(0,0,0,.075);
+
+$field-focus-color      : #5bc0de;
+$field-focus-shadow-in  : inset 0 1px 1px rgba(0,0,0,.075);
+$field-focus-shadow-out : 0 0 8px rgba(91,192,222,.6);
 
 //==========================
 // FONTS

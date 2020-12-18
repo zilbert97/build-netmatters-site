@@ -55,9 +55,7 @@
   }
 }
 
-#toggle {
-  display: none;
-}
+#toggle {display: none;}
 
 #buttons-container {
   // Be a flex container (as well as flex item):
@@ -71,20 +69,19 @@
   #contact-button {display: none;}
 
   #voip-icon {
-    width: 70px;
-    height: auto;
-    text-align: center;
-    position: relative;
+    width      : 70px;
+    height     : auto;
+    text-align : center;
+    position   : relative;
 
-    hr {
-      display: none;
-    }
+    hr {display: none;}
+
     @include combined-ui {
       hr {
-        display: block;
-        position: absolute;
-        top: 60%;
-        left: 25%;
+        display       : block;
+        position      : absolute;
+        top           : 60%;
+        left          : 25%;
         width         : 35px;
         border-color  : $dark-1;
         border-width  : 3px;
@@ -93,8 +90,8 @@
     }
 
     .glyph {
-      color: $dark-1;
-      font-size: 2rem;  // 32px
+      color     : $dark-1;
+      font-size : 2rem;  // 32px
     }
   }
 }
@@ -106,23 +103,22 @@
   position   : relative;
 
   #search-input {
-    // NTD - Add ease cyan blur outline on :focus
     height      : 48px;
     width       : 100%;
     padding     : 5px 40px 5px 15px;
 
-    font-size   : .875rem;  // 14px
+    font-size   : .875rem;             // 14px
     line-height : 1.4;
     color       : $search-input;
 
     background-color : $search-background;
     border           : 2px solid $search-border;
     border-radius    : 2px;
-    box-shadow       : inset 0 1px 1px $search-shadow;
+    box-shadow       : $search-shadow;
 
-    &:active,
-    &:focus {
-      box-shadow: 0;  // CHECK WORKS AS EXPECTED
+    &:focus {                          // At S breakpoint remove inner shadow
+      box-shadow     : none;           // when focused
+      outline        : 0;
     }
   }
 
@@ -137,9 +133,8 @@
     font-size  : 1.25rem;  // 20px
   }
 
-  #search-button {                                          // Only append to search field at wider breakpoints
-    display: none;
-  }
+  #search-button {display: none;}                                          // Only append to search field at wider breakpoints
+
 }
 
 #hamburger-container {
@@ -162,9 +157,7 @@
     padding    : 0 15px;
   }
 
-  #voip-icon {
-    display: none;
-  }
+  #voip-icon {display: none;}
 
   #search-container {
     order  : 20;                                            // Place after buttons-container, before hamburger-container
@@ -177,11 +170,16 @@
       background-color : $light-1;
       border-width     : 1px;
       border-radius    : 0;
+
+      &:focus {                        // At M breakpoint and above apply a
+        outline        : 0;            // blue-cyan effect
+        border-color   : $field-focus-color;
+        box-shadow     : $field-focus-shadow-in,
+                         $field-focus-shadow-out;
+      }
     }
 
-    #search-icon {
-      display: none;
-    }
+    #search-icon {display: none;}
 
     #search-button {
       @include button-base-style($service: 'utility', $context: 'header') {
@@ -256,8 +254,8 @@
 
   #toggle:checked ~ #search-container {
     #search-button {
-      transition          : border-radius .2s ease-out .2s;     // Open up rounded corners for flush fit
-      border-radius       : 0 $border-radius $border-radius 0;  // with the search input field
+      transition    : border-radius .2s ease-out .2s;     // Open up rounded corners for flush fit
+      border-radius : 0 $border-radius $border-radius 0;  // with the search input field
     }
     #search-input {
       @include fade-element-in;
@@ -278,9 +276,7 @@
 }
 
 @media (min-width: map-get($breakpoints, 'xl')) {
-  #toggle {
-    display: none;
-  }
+  #toggle {display: none;}
 
   #search-container {
     #search-button {

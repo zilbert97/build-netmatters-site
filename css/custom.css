@@ -1060,8 +1060,9 @@ h5 {
   border-radius: 2px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
-#search-container #search-input:active, #search-container #search-input:focus {
-  box-shadow: 0;
+#search-container #search-input:focus {
+  box-shadow: none;
+  outline: 0;
 }
 #search-container #search-icon {
   position: absolute;
@@ -1110,6 +1111,11 @@ h5 {
     background-color: #fff;
     border-width: 1px;
     border-radius: 0;
+  }
+  #search-container #search-input:focus {
+    outline: 0;
+    border-color: #5bc0de;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(91, 192, 222, 0.6);
   }
   #search-container #search-icon {
     display: none;
