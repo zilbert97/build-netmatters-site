@@ -9,3 +9,4 @@ My HTML and CSS review
 - [ ] Obtain assets and intgerate into site
 - [ ] Research and integrate best practices for accessibility
 - [ ] Check right arrow and search icons are correct
+- [ ] Remove background from title bar logo
