@@ -8,3 +8,4 @@ My HTML and CSS review
 - [ ] Remove transition from Hamburger
 - [ ] Obtain assets and intgerate into site
 - [ ] Research and integrate best practices for accessibility
+- [ ] Check right arrow and search icons are correct
