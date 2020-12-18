@@ -7,3 +7,4 @@ My HTML and CSS review
 - [ ] Prevent overflow in cards section
 - [ ] Remove transition from Hamburger
 - [ ] Obtain assets and intgerate into site
+- [ ] Research and integrate best practices for accessibility
