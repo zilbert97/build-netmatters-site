@@ -939,10 +939,6 @@
   line-height: 1;
 }
 
-*:focus {
-  outline: none !important;
-}
-
 body {
   font-family: "Poppins", sans-serif;
   font-size: 16px;
@@ -1143,6 +1139,9 @@ h5 {
     border-radius: 0 3px 3px 0;
     font-size: 1.4375rem;
   }
+  #search-container #search-button:focus {
+    outline: none !important;
+  }
   #search-container #search-button:hover, #search-container #search-button:focus, #search-container #search-button:active {
     color: #fff;
     background-color: #7e808a;
@@ -1176,6 +1175,9 @@ h5 {
     border-radius: 3px;
     background-color: #4183d7;
   }
+  #buttons-container #support-button:focus {
+    outline: none !important;
+  }
   #buttons-container #support-button:hover, #buttons-container #support-button:focus, #buttons-container #support-button:active {
     color: #fff;
     background-color: #2a6ec6;
@@ -1201,6 +1203,9 @@ h5 {
     border: 0;
     border-radius: 3px;
     background-color: #999aa2;
+  }
+  #buttons-container #contact-button:focus {
+    outline: none !important;
   }
   #buttons-container #contact-button:hover, #buttons-container #contact-button:focus, #buttons-container #contact-button:active {
     color: #fff;
@@ -1306,10 +1311,10 @@ h5 {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
   margin: 0;
   background: linear-gradient(to right, #000, rgba(0, 0, 0, 0.3)), #333645 url("../img/carousel-img.jpg") no-repeat center;
   background-size: cover;
+  text-align: center;
 }
 @media (min-width: 992px) {
   .jumbotron {
@@ -1347,6 +1352,9 @@ h5 {
   height: auto;
   line-height: 50px;
 }
+.jumbotron .jumbotron-button:focus {
+  outline: none !important;
+}
 .jumbotron .jumbotron-button:hover, .jumbotron .jumbotron-button:focus, .jumbotron .jumbotron-button:active {
   color: #fff;
   background-color: #7e57a0;
@@ -1357,10 +1365,10 @@ h5 {
 
 .nm-cards {
   display: flex;
-  align-items: center;
   flex-flow: column wrap;
-  background-color: #f5f5f5;
+  align-items: center;
   padding: 20px 0 50px;
+  background-color: #f5f5f5;
 }
 @media (min-width: 992px) {
   .nm-cards {
@@ -1370,21 +1378,10 @@ h5 {
     align-content: stretch;
   }
 }
-.nm-cards .card-body {
-  padding: 30px;
-}
-.nm-cards-break {
-  display: hidden;
-}
-@media (min-width: 992px) {
-  .nm-cards-break {
-    display: inline-block;
-    flex-basis: 100%;
-  }
-}
 .nm-cards-bespoke-software {
-  width: 100%;
   margin: 30px 15px 0;
+  min-width: 95%;
+  flex-shrink: 1;
   background-color: #fff;
   color: #333645;
   font-size: 0.8125rem;
@@ -1393,6 +1390,7 @@ h5 {
 }
 @media (min-width: 768px) {
   .nm-cards-bespoke-software {
+    min-width: 0;
     width: 720px;
   }
 }
@@ -1406,39 +1404,30 @@ h5 {
     flex-basis: 370px;
   }
 }
-.nm-cards-bespoke-software:hover {
-  background-color: #67809f;
-  color: #fff;
-}
-.nm-cards-bespoke-software:hover .card-body > i {
-  background-color: #fff;
-  border-color: #fff;
-  color: #67809f;
-}
-.nm-cards-bespoke-software:hover .card-body > hr {
-  border-color: #fff;
+.nm-cards-bespoke-software .card-body {
+  padding: 30px;
 }
 .nm-cards-bespoke-software .card-body > hr {
   width: 30px;
+  margin-bottom: 12px;
   border-color: #333645;
   border-width: 3px;
-  margin-bottom: 12px;
 }
 .nm-cards-bespoke-software .card-body > p {
-  margin-bottom: 13px;
   height: auto;
+  margin-bottom: 13px;
 }
 .nm-cards-bespoke-software .card-body > .read-more {
   display: inline-block;
   width: 130px;
   padding: 10px;
   border-radius: 3px;
-  background-color: #67809f;
   border-color: #67809f;
-  text-transform: uppercase;
-  font-style: normal;
-  font-size: 1.0625rem;
+  background-color: #67809f;
   color: #fff;
+  font-size: 1.0625rem;
+  font-style: normal;
+  text-transform: uppercase;
 }
 .nm-cards-bespoke-software .card-body > .glyph {
   width: 60px;
@@ -1451,9 +1440,22 @@ h5 {
   border-color: #67809f;
   background-color: #67809f;
 }
+.nm-cards-bespoke-software:hover {
+  background-color: #67809f;
+  color: #fff;
+}
+.nm-cards-bespoke-software:hover .card-body > hr {
+  border-color: #fff;
+}
+.nm-cards-bespoke-software:hover .card-body > i {
+  background-color: #fff;
+  border-color: #fff;
+  color: #67809f;
+}
 .nm-cards-it-support {
-  width: 100%;
   margin: 30px 15px 0;
+  min-width: 95%;
+  flex-shrink: 1;
   background-color: #fff;
   color: #333645;
   font-size: 0.8125rem;
@@ -1462,6 +1464,7 @@ h5 {
 }
 @media (min-width: 768px) {
   .nm-cards-it-support {
+    min-width: 0;
     width: 720px;
   }
 }
@@ -1475,39 +1478,30 @@ h5 {
     flex-basis: 370px;
   }
 }
-.nm-cards-it-support:hover {
-  background-color: #4183d7;
-  color: #fff;
-}
-.nm-cards-it-support:hover .card-body > i {
-  background-color: #fff;
-  border-color: #fff;
-  color: #4183d7;
-}
-.nm-cards-it-support:hover .card-body > hr {
-  border-color: #fff;
+.nm-cards-it-support .card-body {
+  padding: 30px;
 }
 .nm-cards-it-support .card-body > hr {
   width: 30px;
+  margin-bottom: 12px;
   border-color: #333645;
   border-width: 3px;
-  margin-bottom: 12px;
 }
 .nm-cards-it-support .card-body > p {
-  margin-bottom: 13px;
   height: auto;
+  margin-bottom: 13px;
 }
 .nm-cards-it-support .card-body > .read-more {
   display: inline-block;
   width: 130px;
   padding: 10px;
   border-radius: 3px;
-  background-color: #4183d7;
   border-color: #4183d7;
-  text-transform: uppercase;
-  font-style: normal;
-  font-size: 1.0625rem;
+  background-color: #4183d7;
   color: #fff;
+  font-size: 1.0625rem;
+  font-style: normal;
+  text-transform: uppercase;
 }
 .nm-cards-it-support .card-body > .glyph {
   width: 60px;
@@ -1520,9 +1514,22 @@ h5 {
   border-color: #4183d7;
   background-color: #4183d7;
 }
+.nm-cards-it-support:hover {
+  background-color: #4183d7;
+  color: #fff;
+}
+.nm-cards-it-support:hover .card-body > hr {
+  border-color: #fff;
+}
+.nm-cards-it-support:hover .card-body > i {
+  background-color: #fff;
+  border-color: #fff;
+  color: #4183d7;
+}
 .nm-cards-digital-marketing {
-  width: 100%;
   margin: 30px 15px 0;
+  min-width: 95%;
+  flex-shrink: 1;
   background-color: #fff;
   color: #333645;
   font-size: 0.8125rem;
@@ -1531,6 +1538,7 @@ h5 {
 }
 @media (min-width: 768px) {
   .nm-cards-digital-marketing {
+    min-width: 0;
     width: 720px;
   }
 }
@@ -1544,39 +1552,30 @@ h5 {
     flex-basis: 370px;
   }
 }
-.nm-cards-digital-marketing:hover {
-  background-color: #2ecc71;
-  color: #fff;
-}
-.nm-cards-digital-marketing:hover .card-body > i {
-  background-color: #fff;
-  border-color: #fff;
-  color: #2ecc71;
-}
-.nm-cards-digital-marketing:hover .card-body > hr {
-  border-color: #fff;
+.nm-cards-digital-marketing .card-body {
+  padding: 30px;
 }
 .nm-cards-digital-marketing .card-body > hr {
   width: 30px;
+  margin-bottom: 12px;
   border-color: #333645;
   border-width: 3px;
-  margin-bottom: 12px;
 }
 .nm-cards-digital-marketing .card-body > p {
-  margin-bottom: 13px;
   height: auto;
+  margin-bottom: 13px;
 }
 .nm-cards-digital-marketing .card-body > .read-more {
   display: inline-block;
   width: 130px;
   padding: 10px;
   border-radius: 3px;
-  background-color: #2ecc71;
   border-color: #2ecc71;
-  text-transform: uppercase;
-  font-style: normal;
-  font-size: 1.0625rem;
+  background-color: #2ecc71;
   color: #fff;
+  font-size: 1.0625rem;
+  font-style: normal;
+  text-transform: uppercase;
 }
 .nm-cards-digital-marketing .card-body > .glyph {
   width: 60px;
@@ -1589,9 +1588,22 @@ h5 {
   border-color: #2ecc71;
   background-color: #2ecc71;
 }
+.nm-cards-digital-marketing:hover {
+  background-color: #2ecc71;
+  color: #fff;
+}
+.nm-cards-digital-marketing:hover .card-body > hr {
+  border-color: #fff;
+}
+.nm-cards-digital-marketing:hover .card-body > i {
+  background-color: #fff;
+  border-color: #fff;
+  color: #2ecc71;
+}
 .nm-cards-telecoms-services {
-  width: 100%;
   margin: 30px 15px 0;
+  min-width: 95%;
+  flex-shrink: 1;
   background-color: #fff;
   color: #333645;
   font-size: 0.8125rem;
@@ -1600,6 +1612,7 @@ h5 {
 }
 @media (min-width: 768px) {
   .nm-cards-telecoms-services {
+    min-width: 0;
     width: 720px;
   }
 }
@@ -1613,39 +1626,30 @@ h5 {
     flex-basis: 270px;
   }
 }
-.nm-cards-telecoms-services:hover {
-  background-color: #d64541;
-  color: #fff;
-}
-.nm-cards-telecoms-services:hover .card-body > i {
-  background-color: #fff;
-  border-color: #fff;
-  color: #d64541;
-}
-.nm-cards-telecoms-services:hover .card-body > hr {
-  border-color: #fff;
+.nm-cards-telecoms-services .card-body {
+  padding: 30px;
 }
 .nm-cards-telecoms-services .card-body > hr {
   width: 30px;
+  margin-bottom: 12px;
   border-color: #333645;
   border-width: 3px;
-  margin-bottom: 12px;
 }
 .nm-cards-telecoms-services .card-body > p {
-  margin-bottom: 13px;
   height: auto;
+  margin-bottom: 13px;
 }
 .nm-cards-telecoms-services .card-body > .read-more {
   display: inline-block;
   width: 130px;
   padding: 10px;
   border-radius: 3px;
-  background-color: #d64541;
   border-color: #d64541;
-  text-transform: uppercase;
-  font-style: normal;
-  font-size: 1.0625rem;
+  background-color: #d64541;
   color: #fff;
+  font-size: 1.0625rem;
+  font-style: normal;
+  text-transform: uppercase;
 }
 .nm-cards-telecoms-services .card-body > .glyph {
   width: 60px;
@@ -1658,9 +1662,22 @@ h5 {
   border-color: #d64541;
   background-color: #d64541;
 }
+.nm-cards-telecoms-services:hover {
+  background-color: #d64541;
+  color: #fff;
+}
+.nm-cards-telecoms-services:hover .card-body > hr {
+  border-color: #fff;
+}
+.nm-cards-telecoms-services:hover .card-body > i {
+  background-color: #fff;
+  border-color: #fff;
+  color: #d64541;
+}
 .nm-cards-web-design {
-  width: 100%;
   margin: 30px 15px 0;
+  min-width: 95%;
+  flex-shrink: 1;
   background-color: #fff;
   color: #333645;
   font-size: 0.8125rem;
@@ -1669,6 +1686,7 @@ h5 {
 }
 @media (min-width: 768px) {
   .nm-cards-web-design {
+    min-width: 0;
     width: 720px;
   }
 }
@@ -1682,39 +1700,30 @@ h5 {
     flex-basis: 270px;
   }
 }
-.nm-cards-web-design:hover {
-  background-color: #926fb1;
-  color: #fff;
-}
-.nm-cards-web-design:hover .card-body > i {
-  background-color: #fff;
-  border-color: #fff;
-  color: #926fb1;
-}
-.nm-cards-web-design:hover .card-body > hr {
-  border-color: #fff;
+.nm-cards-web-design .card-body {
+  padding: 30px;
 }
 .nm-cards-web-design .card-body > hr {
   width: 30px;
+  margin-bottom: 12px;
   border-color: #333645;
   border-width: 3px;
-  margin-bottom: 12px;
 }
 .nm-cards-web-design .card-body > p {
-  margin-bottom: 13px;
   height: auto;
+  margin-bottom: 13px;
 }
 .nm-cards-web-design .card-body > .read-more {
   display: inline-block;
   width: 130px;
   padding: 10px;
   border-radius: 3px;
-  background-color: #926fb1;
   border-color: #926fb1;
-  text-transform: uppercase;
-  font-style: normal;
-  font-size: 1.0625rem;
+  background-color: #926fb1;
   color: #fff;
+  font-size: 1.0625rem;
+  font-style: normal;
+  text-transform: uppercase;
 }
 .nm-cards-web-design .card-body > .glyph {
   width: 60px;
@@ -1727,9 +1736,22 @@ h5 {
   border-color: #926fb1;
   background-color: #926fb1;
 }
+.nm-cards-web-design:hover {
+  background-color: #926fb1;
+  color: #fff;
+}
+.nm-cards-web-design:hover .card-body > hr {
+  border-color: #fff;
+}
+.nm-cards-web-design:hover .card-body > i {
+  background-color: #fff;
+  border-color: #fff;
+  color: #926fb1;
+}
 .nm-cards-cyber-security {
-  width: 100%;
   margin: 30px 15px 0;
+  min-width: 95%;
+  flex-shrink: 1;
   background-color: #fff;
   color: #333645;
   font-size: 0.8125rem;
@@ -1738,6 +1760,7 @@ h5 {
 }
 @media (min-width: 768px) {
   .nm-cards-cyber-security {
+    min-width: 0;
     width: 720px;
   }
 }
@@ -1751,39 +1774,30 @@ h5 {
     flex-basis: 270px;
   }
 }
-.nm-cards-cyber-security:hover {
-  background-color: #f62459;
-  color: #fff;
-}
-.nm-cards-cyber-security:hover .card-body > i {
-  background-color: #fff;
-  border-color: #fff;
-  color: #f62459;
-}
-.nm-cards-cyber-security:hover .card-body > hr {
-  border-color: #fff;
+.nm-cards-cyber-security .card-body {
+  padding: 30px;
 }
 .nm-cards-cyber-security .card-body > hr {
   width: 30px;
+  margin-bottom: 12px;
   border-color: #333645;
   border-width: 3px;
-  margin-bottom: 12px;
 }
 .nm-cards-cyber-security .card-body > p {
-  margin-bottom: 13px;
   height: auto;
+  margin-bottom: 13px;
 }
 .nm-cards-cyber-security .card-body > .read-more {
   display: inline-block;
   width: 130px;
   padding: 10px;
   border-radius: 3px;
-  background-color: #f62459;
   border-color: #f62459;
-  text-transform: uppercase;
-  font-style: normal;
-  font-size: 1.0625rem;
+  background-color: #f62459;
   color: #fff;
+  font-size: 1.0625rem;
+  font-style: normal;
+  text-transform: uppercase;
 }
 .nm-cards-cyber-security .card-body > .glyph {
   width: 60px;
@@ -1795,6 +1809,27 @@ h5 {
   border-radius: 50%;
   border-color: #f62459;
   background-color: #f62459;
+}
+.nm-cards-cyber-security:hover {
+  background-color: #f62459;
+  color: #fff;
+}
+.nm-cards-cyber-security:hover .card-body > hr {
+  border-color: #fff;
+}
+.nm-cards-cyber-security:hover .card-body > i {
+  background-color: #fff;
+  border-color: #fff;
+  color: #f62459;
+}
+.nm-cards-break {
+  display: hidden;
+}
+@media (min-width: 992px) {
+  .nm-cards-break {
+    display: inline-block;
+    flex-basis: 100%;
+  }
 }
 
 /*# sourceMappingURL=custom.css.map */

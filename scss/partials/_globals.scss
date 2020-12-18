@@ -2,10 +2,6 @@
 // GLOBALS
 //===========================
 
-*:focus {
-    outline: none !important;   // Prevent default outline
-}
-
 body {
   font-family : $font-stack;
   font-size   : 16px;
@@ -63,6 +59,10 @@ h5 {
 
 
 @mixin button-base-style($service: null, $context: 'body') {
+  &:focus {
+    outline       : none !important;   // Prevent default outline of elements as set by the user style sheet
+  }
+
   display         : inline-block;
   box-sizing      : border-box;
   width           : max-content;

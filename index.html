@@ -37,30 +37,30 @@
     <div class="full-viewport">
       <header class="main-header">
 
-        <div id="logo-container"> <!-- FlexItem 1 -->
-          <a href="#"><img src="img/site-logo.png" alt="Netmatters logo" class="logo"></a> <!-- link to home page -->
+        <div id="logo-container"> <!-- Flex Item 1 -->
+          <!-- Site logo -->
+          <a href="#">
+            <img src="img/site-logo.png" alt="Netmatters logo" class="logo">
+          </a>
         </div>
 
+        <input type="checkbox" id="toggle">  <!-- Flex Item 2 (hidden checkbox to toggle button visibiltiy at large breakpoint) -->
 
-        <input type="checkbox" id="toggle">
+        <div id="search-container"> <!-- Flex Item 2 -->
 
-        <div id="search-container">
-
-          <input type="text" placeholder="Search..." id="search-input"> <!-- What are  aria-label= and aria-describedby= classes? -->
+          <!-- Search input field -->
+          <input type="text" placeholder="Search..." id="search-input">
           <a id="search-icon">
             <i class="glyph fas fa-search"></i>
           </a>
+
+          <!-- Search button -->
           <button class="button" type="button" id="search-button">
             <i class="glyph fas fa-search"></i>
           </button>
+        </div> <!-- search-container -->
 
-        </div>
-
-
-
-
-
-        <div id="buttons-container"> <!-- FlexItem 3 -->
+        <div id="buttons-container"> <!-- Flex Item 3 -->
 
           <!-- Support button -->
           <button type="button" class="button" id="support-button">
@@ -76,119 +76,128 @@
 
           <!-- Phone icon -->
           <div id="voip-icon">
-            <a><i class="glyph fas fa-phone-alt"></i></a>
+            <a>
+              <i class="glyph fas fa-phone-alt"></i>
+            </a>
             <hr></hr>
           </div>
 
         </div> <!-- buttons-container -->
 
+        <div id="hamburger-container"> <!-- Flex Item 4 -->
 
-
-        <!-- Hamburger -->
-        <!-- Inactive as requires JS to trigger active state (class "is-active") -->
-        <div id="hamburger-container"> <!-- FlexItem 4 -->
+          <!-- Hamburger -->
+          <!-- Inactive as requires JS to trigger active state (class "is-active") -->
           <button class="hamburger hamburger--spin" type="button">
             <span class="hamburger-box">
               <span class="hamburger-inner"></span>
             </span>
             <span class="burger-text">Menu</span>
           </button>
+
         </div> <!-- hamburger-container -->
 
-        <nav></nav> <!-- Navbar hidden from 991px and below -->
+        <div> <!-- Flex Item 5 -->
+          <nav></nav> <!-- Navbar hidden from 991px and below -->
+        </div>
 
       </header> <!-- main-header -->
 
       <div class="jumbotron jumbotron-fluid">
         <div class="container">
           <h1>Web design</h1>
-          <p class="lead">For businesses looking to make a strong<br>and effective first impression.</p>
+          <p class="lead">
+            For businesses looking to make a strong<br>
+            and effective first impression.
+          </p>
           <a class="jumbotron-button" href="#" role="button">
             Find out more&MediumSpace;
             <i class="fas fa-arrow-right"></i>
           </a>
         </div> <!-- container -->
-
       </div> <!-- jumbotron -->
+
     </div> <!-- full-viewport -->
 
-    <section class="nm-cards">
+    <main>
 
-      <div class="card text-center nm-cards-bespoke-software">
-        <div class="card-body">
-          <i class="glyph fab fa-buromobelexperte"></i>
-          <h5 class="card-title">Bespoke Software</h5>
-          <hr></>
-          <p class="card-text">Tailored software solutions to improve business productivity and online profits. Our expert team will ensure a software solution.</p>
-          <i class="read-more">Read more</i>
+      <section class="nm-cards">
+
+        <div class="card text-center nm-cards-bespoke-software">
+          <div class="card-body">
+            <i class="glyph fab fa-buromobelexperte"></i>
+            <h5 class="card-title">Bespoke Software</h5>
+            <hr></>
+            <p class="card-text">Tailored software solutions to improve business productivity and online profits. Our expert team will ensure a software solution.</p>
+            <i class="read-more">Read more</i>
+          </div>
         </div>
-      </div>
 
-      <div class="card text-center nm-cards-it-support">
-        <div class="card-body">
-          <i class="glyph fas fa-desktop"></i>
-          <h5 class="card-title">IT Support</h5>
-          <hr></>
-          <p class="card-text">Remotely managed IT services that is catered to your business needs, adds value and reduces costs.</p>
-          <i class="read-more">Read more</i>
+        <div class="card text-center nm-cards-it-support">
+          <div class="card-body">
+            <i class="glyph fas fa-desktop"></i>
+            <h5 class="card-title">IT Support</h5>
+            <hr></>
+            <p class="card-text">Remotely managed IT services that is catered to your business needs, adds value and reduces costs.</p>
+            <i class="read-more">Read more</i>
+          </div>
         </div>
-      </div>
 
-      <div class="card text-center nm-cards-digital-marketing">
-        <div class="card-body">
-          <i class="glyph far fa-chart-bar"></i>
-          <h5 class="card-title">Digital Marketing</h5>
-          <hr></>
-          <p class="card-text">Driving brand awareness and ROI through creative digital marketing campaigns. We review and monitor online performaces.</p>
-          <i class="read-more">Read more</i>
+        <div class="card text-center nm-cards-digital-marketing">
+          <div class="card-body">
+            <i class="glyph far fa-chart-bar"></i>
+            <h5 class="card-title">Digital Marketing</h5>
+            <hr></>
+            <p class="card-text">Driving brand awareness and ROI through creative digital marketing campaigns. We review and monitor online performaces.</p>
+            <i class="read-more">Read more</i>
+          </div>
         </div>
-      </div>
 
-      <div class="nm-cards-break"></div> <!-- break to a new row -->
+        <div class="nm-cards-break"></div> <!-- break to a new row (at larger breakpoints) -->
 
-      <div class="card text-center nm-cards-telecoms-services">
-        <div class="card-body">
-          <i class="glyph fas fa-phone-alt"></i>
-          <h5 class="card-title">Telecoms Services</h5>
-          <hr></>
-          <p class="card-text">Stary connected with bespoke telecoms solutions when you need it most.</p>
-          <i class="read-more">Read more</i>
+        <div class="card text-center nm-cards-telecoms-services">
+          <div class="card-body">
+            <i class="glyph fas fa-phone-alt"></i>
+            <h5 class="card-title">Telecoms Services</h5>
+            <hr></>
+            <p class="card-text">Stary connected with bespoke telecoms solutions when you need it most.</p>
+            <i class="read-more">Read more</i>
+          </div>
         </div>
-      </div>
 
-      <div class="card text-center nm-cards-web-design">
-        <div class="card-body">
-          <i class="glyph fas fa-code"></i>
-          <h5 class="card-title">Web Design</h5>
-          <hr></>
-          <p class="card-text">User-centric design for business looking to make a lasting first impression.</p>
-          <i class="read-more">Read more</i>
+        <div class="card text-center nm-cards-web-design">
+          <div class="card-body">
+            <i class="glyph fas fa-code"></i>
+            <h5 class="card-title">Web Design</h5>
+            <hr></>
+            <p class="card-text">User-centric design for business looking to make a lasting first impression.</p>
+            <i class="read-more">Read more</i>
+          </div>
         </div>
-      </div>
 
-      <div class="card text-center nm-cards-cyber-security">
-        <div class="card-body">
-          <i class="glyph fas fa-shield-alt"></i>
-          <h5 class="card-title">Cyber Security</h5>
-          <hr></>
-          <p class="card-text">Ensuring your online business stays secure 24/7, 365 days of the year.</p>
-          <i class="read-more">Read more</i>
+        <div class="card text-center nm-cards-cyber-security">
+          <div class="card-body">
+            <i class="glyph fas fa-shield-alt"></i>
+            <h5 class="card-title">Cyber Security</h5>
+            <hr></>
+            <p class="card-text">Ensuring your online business stays secure 24/7, 365 days of the year.</p>
+            <i class="read-more">Read more</i>
+          </div>
         </div>
-      </div>
 
-      <div class="card text-center nm-cards-web-design">  <!-- Same styling as web design card -->
-        <div class="card-body">
-          <i class="glyph fas fa-graduation-cap"></i>
-          <h5 class="card-title">Developer Training</h5>
-          <hr></>
-          <p class="card-text">Have you considered a career in web development but you aren't sure where to start?</p>
-          <i class="read-more">Read more</i>
+        <div class="card text-center nm-cards-web-design">  <!-- Same styling as web design card -->
+          <div class="card-body">
+            <i class="glyph fas fa-graduation-cap"></i>
+            <h5 class="card-title">Developer Training</h5>
+            <hr></>
+            <p class="card-text">Have you considered a career in web development but you aren't sure where to start?</p>
+            <i class="read-more">Read more</i>
+          </div>
         </div>
-      </div>
 
-    </section> <!-- nm-cards -->
+      </section> <!-- nm-cards -->
 
-
+    </main>
 
     <footer>
       <section></section> <!-- Businesses -->

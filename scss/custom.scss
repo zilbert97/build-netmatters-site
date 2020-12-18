@@ -26,14 +26,14 @@
 //=====================================
 // HEADER
 //=====================================
-// The header is a flex container
-// Order of element containers at each breakpoint:
+// The header is a flex container. The order of flex item (containers of similar
+// elements) at each breakpoint are as follows:
 //
-// SMALL:         MEDIUM:   LARGE:
-//   Logo    0
-//   Buttons 10   -> hide   -> 10
-//   Burger  30
-//   Search  50   -> 20
+//         SMALL:  MEDIUM:  LARGE:  X-LARGE:
+// Logo     0
+// Buttons  10      (hide)   10
+// Burger   30
+// Search   50      20
 
 
 .main-header {
@@ -100,12 +100,13 @@
 }
 
 #search-container {
-  margin-top : auto;     // Remove when back in line
-  flex-basis : 100%;    // Search - grow to button+field, then wrap below
-  order      : 50;           // Place after hamburger-container (last item)
+  margin-top : auto;
+  flex-basis : 100%;    // Grow the search-container to full width, to wrap below
+  order      : 50;      // Place after hamburger-container (last item)
   position   : relative;
 
   #search-input {
+    // NTD - Add ease cyan blur outline on :focus
     height      : 48px;
     width       : 100%;
     padding     : 5px 40px 5px 15px;
@@ -307,21 +308,19 @@
 .jumbotron {
   display         : flex;
   align-items     : center;
-  justify-content : center; //
-
-  text-align   : center;
-  @media (min-width: map-get($breakpoints, 'l')) {
-    text-align : left;
-  }
-
+  justify-content : center;
   margin          : 0;
 
   background      : linear-gradient(to right, #000, rgba(0,0,0,.3)),
                     $dark-1 url('../img/carousel-img.jpg') no-repeat center;
   background-size : cover;
 
+  text-align      : center;
+  @media (min-width: map-get($breakpoints, 'l')) {
+    text-align    : left;
+  }
   * {
-    color: $light-1;
+    color         : $light-1;
   }
   h1 {
     text-transform : uppercase;
@@ -332,6 +331,7 @@
     font-weight   : 400;
     margin-bottom : 35px;
   }
+
   .jumbotron-button {
     @include button-base-style($service: 'web-design', $context: 'jumbo') {
       // ADD THESE TO _GLOBALS MIXIN?
@@ -339,9 +339,6 @@
       line-height : 50px;
     }
   }
-
-  // @site https://jonsuh.com/hamburgers
-  // @link https://github.com/jonsuh/hamburgers
 }
 
 
@@ -351,131 +348,137 @@
 
 
 
-//==========================
+//=====================================
 // NETMATTERS SERVICE CARDS
-//==========================
-
-// N.B. Cards are overflowing from side of container. Need to fix.
+//=====================================
+// Styling for each card that describes
+// a specific NetMatters service
 
 @mixin nm-card($service, $color) {
-
-  width  : 100%;
-  margin : 30px 15px 0;
+  margin      : 30px 15px 0;
+  min-width   : 95%;                   // Ensure cards are equal width despite
+                                       // different content at S breakpoint
 
   @media (min-width: map-get($breakpoints, 'm')) {
-    width: 720px;
+    min-width : 0;
+    width     : 720px;                 // Fixed width at M breakpoint
   }
 
-  // Surely there must be a func to eval if val in range
+  flex-shrink : 1;                     // Prevents cards from overflowing the
+                                       // flex container
+
+  // NTD: Surely there must be a func to eval if val in range
+
+  // At L and XL breakpoints set fixed widths for cards 1-3 and 4-7
   $i: index(($nm-services), ($service $color));
   @media (min-width: map-get($breakpoints, 'l')) {
     @if $i==1 or $i==2 or $i==3 {
-      flex-basis: 293px;
+      flex-basis : 293px;
     }
     @else {
-      flex-basis: 455px;
+      flex-basis : 455px;
     }
   }
 
   @media (min-width: map-get($breakpoints, 'xl')) {
     @if $i==1 or $i==2 or $i==3 {
-      flex-basis: 370px;
+      flex-basis : 370px;
     }
     @else {
-      flex-basis: 270px;
+      flex-basis : 270px;
     }
   }
 
-  background-color : $light-1;
-  color            : $dark-1;
-  font-size        : .8125rem;          // 13px
-  line-height      : 1.5;
-  letter-spacing   : .03125rem;         // .5px
+  // Other card styling
+  background-color     : $light-1;
+  color                : $dark-1;
+  font-size            : .8125rem;     // 13px
+  line-height          : 1.5;
+  letter-spacing       : .03125rem;    // .5px
+
+  .card-body {
+    padding            : 30px;
+  }
+
+  .card-body > hr {
+    width              : 30px;
+    margin-bottom      : 12px;
+    border-color       : $dark-1;
+    border-width       : 3px;
+  }
+
+  .card-body > p {
+    height             : auto;
+    margin-bottom      : 13px;
+  }
+
+  .card-body > .read-more {
+    display            : inline-block;
+    width              : 130px;
+    padding            : 10px;
+    border-radius      : $border-radius;
+    border-color       : $color;
+    background-color   : $color;
+    color              : $light-1;
+    font-size          : 1.0625rem;    // 17px
+    font-style         : normal;
+    text-transform     : uppercase;
+  }
+
+  .card-body > .glyph {
+    width              : 60px;
+    height             : 60px;
+    margin-bottom      : 1.0625rem;    // 17px
+    color              : $light-1;
+    font-size          : 1.5rem;       // 24px
+    line-height        : 60px;
+    border-radius      : 50%;
+    border-color       : $color;
+    background-color   : $color;
+  }
 
   &:hover {
     background-color   : $color;
     color              : $light-1;
-    .card-body > i {
+    .card-body > hr {
+      border-color     : $light-1;
+    }
+    .card-body > i {                   // Style both glyph and 'read more' icon
       background-color : $light-1;
       border-color     : $light-1;
       color            : $color;
     }
-    .card-body > hr {
-      border-color     : $light-1;
-    }
-  }
-
-  .card-body > hr {
-    width         : 30px;
-    border-color  : $dark-1;
-    border-width  : 3px;
-    margin-bottom : 12px;
-  }
-
-  .card-body > p {
-    margin-bottom : 13px;
-    height        : auto;
-  }
-
-  .card-body > .read-more {
-    display          : inline-block;
-    width            : 130px;
-    padding          : 10px;
-    border-radius    : $border-radius;
-    background-color : $color;
-    border-color     : $color;
-    text-transform   : uppercase;
-    font-style       : normal;
-    font-size        : 1.0625rem;  // =17px
-    color            : $light-1;
-  }
-
-  .card-body > .glyph {
-    width            : 60px;
-    height           : 60px;
-    margin-bottom    : 1.0625rem;  // 17px
-
-    color            : $light-1;
-    font-size        : 1.5rem;  // 24px
-    line-height      : 60px;
-
-    border-radius    : 50%;
-    border-color     : $color;
-    background-color : $color;
   }
 }
 
 .nm-cards {
-  display     : flex;
-  align-items : center;
-  flex-flow   : column wrap;
+  // Styles for the nm-cards container
+  display              : flex;
+  flex-flow            : column wrap;
+  align-items          : center;
 
   @media (min-width: map-get($breakpoints, 'l')) {
-   flex-flow       : row wrap;
-   justify-content : center;
-   align-items     : stretch;
-   align-content   : stretch;
+    flex-flow          : row wrap;
+    justify-content    : center;
+    align-items        : stretch;
+    align-content      : stretch;
   }
 
-  .card-body {
-    padding: 30px;
-  }
+  padding              : 20px 0 50px;
+  background-color     : $light-2;
 
-  background-color : $light-2;
-  padding          : 20px 0 50px;
-
-  // At L/XL breakpoints force line break after Digital Marketing card
-  &-break {
-    display: hidden;
-    @media (min-width: map-get($breakpoints, 'l')) {
-      display    : inline-block;
-      flex-basis : 100%;
-    }
-  }
-
+  // Target each child element (card) and apply identical and unique styles
   @each $service, $color in $nm-services {
     &-#{$service} {
       @include nm-card($service, $color);
+    }
+  }
+
+  &-break {                            // At L/XL breakpoints force line break
+    display      : hidden;             // after Digital Marketing card
+    @media (min-width: map-get($breakpoints, 'l')) {
+      display    : inline-block;
+      flex-basis : 100%;
     }
   }
 }
