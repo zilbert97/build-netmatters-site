@@ -15,8 +15,10 @@ h1 {
 }
 
 h5 {
+  margin      : 0;
   font-size   : 1.125rem;
   font-weight : 400;
+  line-height : 1.1;
 }
 
 @mixin combined-ui {        // Simple mixin to combine pseudo-class selectors
@@ -27,74 +29,55 @@ h5 {
   }
 }
 
-// .btn {
-//  display: inline-block;
-//  border-radius: $border-radius;
-//  font-weight: 400;
-//  text-align: center;
-//  vertical-align: middle;
-// FROM BOOTSTRAP:
-//  user-select: none;
-//  text-decoration: none;
-//  box-sizing: border-box;
-// }
-
-/*
-.button {
-  display         : inline-block;
-  box-sizing      : border-box;
-  border-radius   : $border-radius;
-  color           : $light-1;
-  font-weight     : 400;
-  text-transform  : uppercase;
-  text-align      : center;
-  text-decoration : none;
-  vertical-align  : middle;
-  // FROM BOOTSTRAP = user-select: none;
-  &:hover {
-    color: inherit;
-  }
-}
-*/
-
-
 @mixin button-base-style($service: null, $context: 'body') {
-  &:focus {
-    outline       : none !important;   // Prevent default outline of elements as set by the user style sheet
+  &:focus {                            // Prevent default outline of elements
+    outline        : none !important;  // as set by the user style sheet
   }
 
-  display         : inline-block;
-  box-sizing      : border-box;
-  width           : max-content;
+  display          : inline-block;
+  box-sizing       : border-box;
+  width            : max-content;
 
-  color           : $light-1;
-  font-weight     : 400;
-  letter-spacing  : .4px;
-  text-transform  : uppercase;
-  text-align      : center;
-  text-decoration : none;
-  vertical-align  : middle;
+  color            : $light-1;
+  font-weight      : 400;
+  letter-spacing   : .4px;
+  text-align       : center;
+  text-decoration  : none;
+  text-transform   : uppercase;
+  vertical-align   : middle;
+
+  .button-text,
+  .glyph {
+    vertical-align : middle;
+  }
 
   // Set the padding and font size for different size parameters
   @if $context == 'jumbo' {
-    padding       : 5px 20px;
-    font-size     : 1.25rem;                // 20px
+    line-height    : 50px;
+    padding        : 5px 20px;
+    font-size      : 1.25rem;          // 20px
+    .glyph {
+      font-size    : 1.25rem;          // 20px
+    }
   }
   @else if $context == 'header' {
-    height        : $header-button-height;  // Consistent height for header buttons
-    margin-left   : 20px;                   // Consistent spacing for header buttons
-    padding       : 5px 15px;
-    font-size     : 1.125rem;               // 18px
+    height         : $header-button-height;  // Consistent height for header buttons
+    margin-left    : 20px;                   // Consistent spacing for header buttons
+    padding        : 5px 15px;
+    font-size      : 1.125rem;            // 18px
+    [class^="icon-"] {
+      font-size    : 1.4375rem;           // 23px
+    }
   }
   @else {                                   // context == 'body' as default
     // THESE ARE PLACEHOLDERS FOR NOW
-    padding       : 5px 10px;
-    font-size     : 1rem;                   // 16px
+    padding        : 5px 10px;
+    font-size      : 1rem;              // 16px
   }
 
   // Variables must be instantiated
   // (raises @warn if only defined in the @else block)
-  $button-color : null;
+  $button-color    : null;
   $button-color-ui : null;
 
   @if $service == 'facebook' or
@@ -119,12 +102,11 @@ h5 {
 
   background-color   : $button-color;
   @include combined-ui {
-    color            : $light-1;
     background-color : $button-color-ui;
   }
 
   &:active {  // Apply inset shadow effect when button pressed
-    box-shadow       : inset 0 3px 5px $button-shadow;
+    box-shadow       : $button-active-shadow;
   }
 
   // FROM BOOTSTRAP = user-select: none;

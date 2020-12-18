@@ -1,0 +1,99 @@
+//==========================
+// TYPEFACE - BODY
+//==========================
+$font-stack: 'Poppins', sans-serif;
+
+//==========================
+// GLYPHS - CSS
+//==========================
+@font-face {
+  font-family  : 'icomoon';
+  src: url('../../assets/icomoon/icomoon.eot?mkvyif');
+  src: url('../../assets/icomoon/icomoon.eot?mkvyif#iefix') format('embedded-opentype'),
+       url('../../assets/icomoon/icomoon.ttf?mkvyif') format('truetype'),
+       url('../../assets/icomoon/icomoon.woff?mkvyif') format('woff'),
+       url('../../assets/icomoon/icomoon.svg?mkvyif#icomoon') format('svg');
+  font-weight  : normal;
+  font-style   : normal;
+  font-display : block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family    : 'icomoon' !important;  // Prevent browser ext changing fonts
+  speak          : never;
+  font-style     : normal;
+  font-weight    : normal;
+  font-variant   : normal;
+  text-transform : none;
+  line-height    : 1;
+  vertical-align : middle;
+
+  // Better Font Rendering
+  -webkit-font-smoothing  : antialiased;
+  -moz-osx-font-smoothing : grayscale;
+}
+
+.icon-linkedin:before {
+  content: "\e907";
+}
+.icon-twitter:before {
+  content: "\e908";
+}
+.icon-facebook:before {
+  content: "\e909";
+}
+.icon-facebook-f:before {
+  content: "\e909";
+}
+.icon-code:before {
+  content: "\e90a";
+}
+.icon-bar-graph:before {
+  content: "\e90b";
+}
+.icon-magnifying-glass:before {
+  content: "\e90c";
+}
+.icon-apps:before {
+  content: "\e90e";
+}
+.icon-school:before {
+  content: "\e901";
+}
+.icon-security:before {
+  content: "\e902";
+}
+.icon-phone_in_talk:before {
+  content: "\e903";
+}
+.icon-mouse:before {
+  content: "\e904";
+}
+.icon-paperplane:before {
+  content: "\e906";
+}
+.icon-display:before {
+  content: "\e956";
+}
+.icon-arrow-right2:before {
+  content: "\ea3c";
+}
+
+//==========================
+// GLYPH ICONS HTML
+//==========================
+
+//  <span class="icon-appss"></span>             APPS
+//  <span class="icon-arrow-right2"></span>      ARROW-RIGHT
+//  <span class="icon-bar-graph"></span>         BAR GRAPH
+//  <span class="icon-code"></span>              CODE
+//  <span class="icon-security"></span>          CYBER SHIELD
+//  <span class="icon-display"></span>           DESKTOP MONITOR
+//  <span class="icon-facebook"></span>          FACEBOOK
+//  <span class="icon-school"></span>            GRADUATE HAT
+//  <span class="icon-linkedin"></span>          LINKEDIN
+//  <span class="icon-mouse"></span>             MOUSE
+//  <span class="icon-paperplane"></span>        PAPER PLANE
+//  <span class="icon-magnifying-glass"></span>  SEARCH
+//  <span class="icon-twitter"></span>           TWITTER
+//  <span class="icon-phone_in_talk"></span>     VOIP

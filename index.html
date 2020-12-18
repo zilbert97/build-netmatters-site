@@ -11,26 +11,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- FontAwesome for Glyphicons -->
-    <script src="https://kit.fontawesome.com/c264568c52.js" crossorigin="anonymous"></script>
-    <!-- Glyph icons - N.B. as placeholders
-    <i class="fas fa-bars"></i>                  MENU BARS
-    <i class="fab fa-buromobelexperte"></i>      9X9 - Download SVG?
-    <i class="fas fa-desktop"></i>               DESKTOP PC
-    <i class="far fa-chart-bar"></i>             BAR CHART
-    <i class="fas fa-phone-alt"></i>             PHONE
-    <i class="fas fa-code"></i>                  WEB DEVELOPMENT
-    <i class="fas fa-shield-alt"></i>            SHIELD
-    <i class="fas fa-graduation-cap"></i>        EDUCATION
-    <i class="fas fa-search"></i>                SEARCH
-    <i class="fas fa-mouse"></i>                 MOUSE
-    <i class="far fa-paper-plane"></i>           PAPER PLANE
-    -->
-
     <!-- Link to my CSS -->
     <link rel="stylesheet" href="css/custom.css">
 
     <title>Netmatters | Full Service Digital Agency | Norwich, Norfolk | Netmatters</title>
+    <link rel="shortcut icon" href="/img/netmatters-logo-small.png" type="image/png">
+    <!-- https://www.w3docs.com/snippets/html/how-to-add-an-image-in-the-title-bar.html -->
   </head>
 
   <body>
@@ -40,7 +26,7 @@
         <div id="logo-container"> <!-- Flex Item 1 -->
           <!-- Site logo -->
           <a href="#">
-            <img src="img/site-logo.png" alt="Netmatters logo" class="logo">
+            <img src="img/netmatters-logo-large.png" alt="Netmatters logo" class="logo">
           </a>
         </div>
 
@@ -51,12 +37,12 @@
           <!-- Search input field -->
           <input type="text" placeholder="Search..." id="search-input">
           <a id="search-icon">
-            <i class="glyph fas fa-search"></i>
+            <span class="icon-magnifying-glass"></span>
           </a>
 
           <!-- Search button -->
           <button class="button" type="button" id="search-button">
-            <i class="glyph fas fa-search"></i>
+            <span class="icon-magnifying-glass"></span>
           </button>
         </div> <!-- search-container -->
 
@@ -64,20 +50,20 @@
 
           <!-- Support button -->
           <button type="button" class="button" id="support-button">
-            <i class="fas fa-mouse"></i>
-            &MediumSpace;Support
+            <span class="icon-mouse"></span>
+            <span class="button-text">&MediumSpace;Support</span>
           </button>
 
           <!-- Contact button -->
           <button type="button" class="button" id="contact-button">
-            <i class="far fa-paper-plane"></i>
-            &MediumSpace;Contact
+            <span class="icon-paperplane"></span>
+            <span class="button-text">&MediumSpace;Contact</span>
           </button>
 
           <!-- Phone icon -->
           <div id="voip-icon">
             <a>
-              <i class="glyph fas fa-phone-alt"></i>
+              <span class="icon-phone_in_talk"></span>
             </a>
             <hr></hr>
           </div>
@@ -111,8 +97,9 @@
             and effective first impression.
           </p>
           <a class="jumbotron-button" href="#" role="button">
-            Find out more&MediumSpace;
-            <i class="fas fa-arrow-right"></i>
+            <!-- Find out more&MediumSpace; -->
+            <span class="button-text">Find out more&MediumSpace;</span>
+            <span class="icon-arrow-right2"></span>
           </a>
         </div> <!-- container -->
       </div> <!-- jumbotron -->
@@ -123,79 +110,96 @@
 
       <section class="nm-cards">
 
-        <div class="card text-center nm-cards-bespoke-software">
-          <div class="card-body">
-            <i class="glyph fab fa-buromobelexperte"></i>
-            <h5 class="card-title">Bespoke Software</h5>
+        <div class="nm-cards-bespoke-software">
+          <a>
+            <span class="icon-apps"></span>
+            <h5>Bespoke Software</h5>
             <hr></>
-            <p class="card-text">Tailored software solutions to improve business productivity and online profits. Our expert team will ensure a software solution.</p>
-            <i class="read-more">Read more</i>
-          </div>
+            <p>Tailored software solutions to improve business productivity and online profits. Our expert team will ensure a software solution.</p>
+            <span class="read-more">Read more</span>
+          </a>
         </div>
 
-        <div class="card text-center nm-cards-it-support">
-          <div class="card-body">
-            <i class="glyph fas fa-desktop"></i>
-            <h5 class="card-title">IT Support</h5>
+        <div class="nm-cards-it-support">
+          <a>
+            <span class="icon-display"></span>
+            <h5>IT Support</h5>
             <hr></>
-            <p class="card-text">Remotely managed IT services that is catered to your business needs, adds value and reduces costs.</p>
-            <i class="read-more">Read more</i>
-          </div>
+            <p>Remotely managed IT services that is catered to your business needs, adds value and reduces costs.</p>
+            <span class="read-more">Read more</span>
+          </a>
         </div>
 
-        <div class="card text-center nm-cards-digital-marketing">
-          <div class="card-body">
-            <i class="glyph far fa-chart-bar"></i>
-            <h5 class="card-title">Digital Marketing</h5>
+        <div class="nm-cards-digital-marketing">
+          <a>
+            <span class="icon-bar-graph"></span>
+            <h5>Digital Marketing</h5>
             <hr></>
-            <p class="card-text">Driving brand awareness and ROI through creative digital marketing campaigns. We review and monitor online performaces.</p>
-            <i class="read-more">Read more</i>
-          </div>
+            <p>Driving brand awareness and ROI through creative digital marketing campaigns. We review and monitor online performaces.</p>
+            <span class="read-more">Read more</span>
+          </a>
         </div>
 
         <div class="nm-cards-break"></div> <!-- break to a new row (at larger breakpoints) -->
 
-        <div class="card text-center nm-cards-telecoms-services">
-          <div class="card-body">
-            <i class="glyph fas fa-phone-alt"></i>
-            <h5 class="card-title">Telecoms Services</h5>
+        <div class="nm-cards-telecoms-services">
+          <a>
+            <span class="icon-phone_in_talk"></span>
+            <h5>Telecoms Services</h5>
             <hr></>
-            <p class="card-text">Stary connected with bespoke telecoms solutions when you need it most.</p>
-            <i class="read-more">Read more</i>
-          </div>
+            <p>Stary connected with bespoke telecoms solutions when you need it most.</p>
+            <span class="read-more">Read more</span>
+          </a>
         </div>
 
-        <div class="card text-center nm-cards-web-design">
-          <div class="card-body">
-            <i class="glyph fas fa-code"></i>
-            <h5 class="card-title">Web Design</h5>
+        <div class="nm-cards-web-design">
+          <a>
+            <span class="icon-code"></span>
+            <h5>Web Design</h5>
             <hr></>
-            <p class="card-text">User-centric design for business looking to make a lasting first impression.</p>
-            <i class="read-more">Read more</i>
-          </div>
+            <p>User-centric design for business looking to make a lasting first impression.</p>
+            <span class="read-more">Read more</span>
+          </a>
         </div>
 
-        <div class="card text-center nm-cards-cyber-security">
-          <div class="card-body">
-            <i class="glyph fas fa-shield-alt"></i>
-            <h5 class="card-title">Cyber Security</h5>
+        <div class="nm-cards-cyber-security">
+          <a>
+            <span class="icon-security"></span>
+            <h5>Cyber Security</h5>
             <hr></>
-            <p class="card-text">Ensuring your online business stays secure 24/7, 365 days of the year.</p>
-            <i class="read-more">Read more</i>
-          </div>
+            <p>Ensuring your online business stays secure 24/7, 365 days of the year.</p>
+            <span class="read-more">Read more</span>
+          </a>
         </div>
 
-        <div class="card text-center nm-cards-web-design">  <!-- Same styling as web design card -->
-          <div class="card-body">
-            <i class="glyph fas fa-graduation-cap"></i>
-            <h5 class="card-title">Developer Training</h5>
+        <div class="nm-cards-web-design">  <!-- Same styling as web design card -->
+          <a>
+            <span class="icon-school"></span>
+            <h5>Developer Training</h5>
             <hr></>
-            <p class="card-text">Have you considered a career in web development but you aren't sure where to start?</p>
-            <i class="read-more">Read more</i>
-          </div>
+            <p>Have you considered a career in web development but you aren't sure where to start?</p>
+            <span class="read-more">Read more</span>
+          </a>
         </div>
 
       </section> <!-- nm-cards -->
+
+      <section id="about">
+        <div id="about-wrapper">
+          <h2>Netmatters</h2>
+          <p>
+            <strong>Netmatters Ltd is a leading web design, IT support and digital marketing agency based in Wymondham, Norfolk.</strong><br>
+            Founded in 2008, we work with businesses from a variety of industries to gain new prospects, nurture existing leads and further grow their sales.<br>
+            We provide cost effective, reliable solutions to a range of services; from bespoke cloud-based management systems, workflow and IT solutions through to creative website development and integrated digital campaigning.
+          </p>
+
+          <button>
+            <span class="button-text">Find out more&MediumSpace;</span>
+            <span class="icon-arrow-right2"></span>
+          </button>
+        </div>
+      </section>
+
 
     </main>
 

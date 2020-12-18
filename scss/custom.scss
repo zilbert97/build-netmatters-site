@@ -1,4 +1,5 @@
 @import "partials/variables",
+        "partials/fonts",
         "partials/keyframes",
         "partials/burger-sauce",
         "partials/globals";
@@ -50,8 +51,8 @@
   margin-right   : 20px;
   padding-bottom : 5px;
   a > .logo {
-    max-width : 100%;
-    min-width : 0;
+    max-width    : 100%;
+    min-width    : 0;
   }
 }
 
@@ -89,9 +90,9 @@
       }
     }
 
-    .glyph {
+    [class^="icon-"] {
       color     : $dark-1;
-      font-size : 2rem;  // 32px
+      font-size : 2rem;                 // 32px
     }
   }
 }
@@ -114,7 +115,7 @@
     background-color : $search-background;
     border           : 2px solid $search-border;
     border-radius    : 2px;
-    box-shadow       : $search-shadow;
+    box-shadow       : $shadow-inset;
 
     &:focus {                          // At S breakpoint remove inner shadow
       box-shadow     : none;           // when focused
@@ -174,8 +175,8 @@
       &:focus {                        // At M breakpoint and above apply a
         outline        : 0;            // blue-cyan effect
         border-color   : $field-focus-color;
-        box-shadow     : $field-focus-shadow-in,
-                         $field-focus-shadow-out;
+        box-shadow     : $shadow-inset,
+                         $shadow-outer;
       }
     }
 
@@ -183,12 +184,11 @@
 
     #search-button {
       @include button-base-style($service: 'utility', $context: 'header') {
-        width         : 63px;
+        width         : $header-button-sq-width;
         margin-left   : -5px;                               // This ensures input and button are flush
         padding-left  : 20px;
         padding-right : 20px;
         border-radius : 0 $border-radius $border-radius 0;  // Keep button style continuous with edge of search field
-        font-size     : 1.4375rem;  // 23px
       }
     }
   }
@@ -197,8 +197,8 @@
 @media (min-width: map-get($breakpoints, 'l')) {
 
   #logo-container {
-    padding: 0;
-    margin-right: 75px;
+    padding      : 0;
+    margin-right : 75px;
   }
 
   #buttons-container {
@@ -215,7 +215,7 @@
       visibility    : hidden; // Initially set to hidden for animation when button pressed
       width         : 300px;
       position      : absolute;
-      right         : 63px;    // Offset by width of the search button
+      right         : $header-button-sq-width;    // Offset by width of the search button
       border-radius : $border-radius 0 0 $border-radius;
     }
     #search-button {
@@ -238,8 +238,8 @@
     right    : 98px;
     z-index  : 100;
 
-    width    : 63px;
-    height   : 60px;
+    width    : $header-button-sq-width;
+    height   : $header-button-sq-width;
     opacity  : 0;   // Hide from view
     cursor   : pointer;
 
@@ -282,6 +282,7 @@
     #search-button {
       border-radius : 0 $border-radius $border-radius 0;     // For flush flow with search box
       margin-left   : -5px;
+      vertical-align: middle;
     }
     #search-input {
       visibility : visible !important;
@@ -295,11 +296,12 @@
   }
 }
 
+
 //=====================================
 // JUMBOTRON
 //=====================================
-// Jumbotron = flex container for its content so contents are easily centered
-// Also a grid item
+// Jumbotron is a flex container for
+// its content as well as a grid item
 
 .jumbotron {
   display         : flex;
@@ -308,7 +310,7 @@
   margin          : 0;
 
   background      : linear-gradient(to right, #000, rgba(0,0,0,.3)),
-                    $dark-1 url('../img/carousel-img.jpg') no-repeat center;
+                    $dark-1 url('../img/web-design-background.jpeg') no-repeat center;
   background-size : cover;
 
   text-align      : center;
@@ -330,18 +332,11 @@
 
   .jumbotron-button {
     @include button-base-style($service: 'web-design', $context: 'jumbo') {
-      // ADD THESE TO _GLOBALS MIXIN?
       height      : auto;
       line-height : 50px;
     }
   }
 }
-
-
-// div within jumbo
-// small: center, margin auto, 15px side padding
-// Large: fixed width
-
 
 
 //=====================================
@@ -350,18 +345,13 @@
 // Styling for each card that describes
 // a specific NetMatters service
 
-@mixin nm-card($service, $color) {
-  margin      : 30px 15px 0;
-  min-width   : 95%;                   // Ensure cards are equal width despite
-                                       // different content at S breakpoint
+@mixin card-style($service, $color) {
+  min-width   : 95%;                   // Equal width despite diff contents
 
   @media (min-width: map-get($breakpoints, 'm')) {
     min-width : 0;
     width     : 720px;                 // Fixed width at M breakpoint
   }
-
-  flex-shrink : 1;                     // Prevents cards from overflowing the
-                                       // flex container
 
   // NTD: Surely there must be a func to eval if val in range
 
@@ -385,30 +375,54 @@
     }
   }
 
+  flex-shrink : 1;                     // Prevents cards from overflowing the
+                                       // flex container
   // Other card styling
+  display              : flex;
+  flex-flow            : column nowrap;
+  align-items          : center;
+
+  margin               : 30px 15px 0;
+  padding              : 30px;
+
+  border               : 1px solid $search-border;
+  border-radius        : $border-radius;
   background-color     : $light-1;
+  box-shadow           : $card-shadow;
+
   color                : $dark-1;
-  font-size            : .8125rem;     // 13px
   line-height          : 1.5;
   letter-spacing       : .03125rem;    // .5px
+  text-align           : center;
 
-  .card-body {
-    padding            : 30px;
+  [class^="icon-"] {
+    display            : inline-block;
+    width              : 60px;
+    height             : 60px;
+    margin-bottom      : 1.0625rem;    // 17px
+    border-radius      : 50%;
+    border-color       : $color;
+    background-color   : $color;
+    color              : $light-1;
+    font-size          : 1.5rem;       // 24px
+    line-height        : 60px;
   }
 
-  .card-body > hr {
+  hr {
     width              : 30px;
     margin-bottom      : 12px;
     border-color       : $dark-1;
     border-width       : 3px;
   }
 
-  .card-body > p {
-    height             : auto;
+  p {
+    flex-grow          : 1;            // Pushes .read-more down despite content
     margin-bottom      : 13px;
+    font-size          : .8125rem;     // 13px
+    line-height        : 1.375rem;     // 22px
   }
 
-  .card-body > .read-more {
+  .read-more {
     display            : inline-block;
     width              : 130px;
     padding            : 10px;
@@ -421,34 +435,23 @@
     text-transform     : uppercase;
   }
 
-  .card-body > .glyph {
-    width              : 60px;
-    height             : 60px;
-    margin-bottom      : 1.0625rem;    // 17px
-    color              : $light-1;
-    font-size          : 1.5rem;       // 24px
-    line-height        : 60px;
-    border-radius      : 50%;
-    border-color       : $color;
-    background-color   : $color;
-  }
-
   &:hover {
+    border             : 1px solid $color;
     background-color   : $color;
     color              : $light-1;
-    .card-body > hr {
+
+    hr, span {
       border-color     : $light-1;
     }
-    .card-body > i {                   // Style both glyph and 'read more' icon
+    span {                             // Style both glyph and 'read more'
       background-color : $light-1;
-      border-color     : $light-1;
       color            : $color;
     }
   }
 }
 
 .nm-cards {
-  // Styles for the nm-cards container
+  // Styles for the nm-cards (flex) container
   display              : flex;
   flex-flow            : column wrap;
   align-items          : center;
@@ -461,20 +464,71 @@
   }
 
   padding              : 20px 0 50px;
-  background-color     : $light-2;
+  background-color     : $light-1;
 
-  // Target each child element (card) and apply identical and unique styles
+  // Styles for each child (flex) item (i.e. the cards themselves)
   @each $service, $color in $nm-services {
     &-#{$service} {
-      @include nm-card($service, $color);
+      @include card-style($service, $color);
     }
   }
 
+  // Styles for the line break
   &-break {                            // At L/XL breakpoints force line break
     display      : hidden;             // after Digital Marketing card
     @media (min-width: map-get($breakpoints, 'l')) {
       display    : inline-block;
       flex-basis : 100%;
     }
+  }
+}
+
+
+//=====================================
+// ABOUT NETMATTERS
+//=====================================
+
+#about {
+  background-color: $dark-1;
+  color: $light-1;
+
+  padding: 50px 0;
+
+  @media (min-width: map-get($breakpoints, 'l')) {
+    background: $dark-1 url("../img/netmatters-logo-background.png") no-repeat center;
+  }
+
+  #about-wrapper {
+    padding: 0 15px;
+
+    h2 {
+      text-transform: uppercase;
+    }
+
+    p {
+    }
+
+    button {
+      @include button-base-style($context: 'body') {
+        color: $dark-1;
+      }
+    }
+
+    @media (min-width: map-get($breakpoints, 'm')) {
+      width: 720px;
+      margin: auto;  // Centered on page
+    }
+
+    @media (min-width: map-get($breakpoints, 'l')) {
+      width: 940px;  // CONTENT AREA, NOT INCLUDING SIDE PADDING
+      // Remains centered on page
+    }
+
+    // EXTRA-LARGE: CONTENTS TAKE UP 50% WIDTH
+    @media (min-width: map-get($breakpoints, 'xl')) {
+      width: 570px;  // CONTENT AREA, NOT INCLUDING SIDE PADDING
+      // Aligned left - no side margin; positioned by %
+    }
+
   }
 }
