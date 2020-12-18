@@ -6,7 +6,8 @@ My HTML and CSS review
 - [ ] Consider condensing media queries
 - [x] Prevent overflow in cards section
 - [ ] Remove transition from Hamburger
-- [ ] Obtain assets and intgerate into site
+- [x] Obtain assets and intgerate into site
 - [ ] Research and integrate best practices for accessibility
-- [ ] Check right arrow and search icons are correct
+- [x] Check right arrow and search icons are correct
 - [ ] Remove background from title bar logo
+- [ ] Remove bootstrap function from jumbotron
