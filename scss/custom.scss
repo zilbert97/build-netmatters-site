@@ -27,8 +27,10 @@
 //=====================================
 // HEADER
 //=====================================
-// The header is a flex container. The order of flex item (containers of similar
-// elements) at each breakpoint are as follows:
+// The header is a flex container. The
+// order of flex item (containers of
+// similar elements) at each breakpoint
+// are as follows:
 //
 //         SMALL:  MEDIUM:  LARGE:  X-LARGE:
 // Logo     0
@@ -74,6 +76,7 @@
     height     : auto;
     text-align : center;
     position   : relative;
+    cursor     : pointer;
 
     hr {display: none;}
 
@@ -185,7 +188,7 @@
     #search-button {
       @include button-base-style($service: 'utility', $context: 'header') {
         width         : $header-button-sq-width;
-        margin-left   : -5px;                               // This ensures input and button are flush
+        margin-left   : -5px;          // This ensures input & button are flush
         padding-left  : 20px;
         padding-right : 20px;
         border-radius : 0 $border-radius $border-radius 0;  // Keep button style continuous with edge of search field
@@ -377,13 +380,8 @@
 
   flex-shrink : 1;                     // Prevents cards from overflowing the
                                        // flex container
-  // Other card styling
-  display              : flex;
-  flex-flow            : column nowrap;
-  align-items          : center;
 
   margin               : 30px 15px 0;
-  padding              : 30px;
 
   border               : 1px solid $search-border;
   border-radius        : $border-radius;
@@ -394,6 +392,17 @@
   line-height          : 1.5;
   letter-spacing       : .03125rem;    // .5px
   text-align           : center;
+
+  a {
+    width              : 100%;
+    height             : 100%;
+    padding            : 30px;
+    display            : flex;
+    flex-flow          : column nowrap;
+    align-items        : center;
+    color              : inherit;  // Override deafault <a> element styling
+    text-decoration    : inherit;
+  }
 
   [class^="icon-"] {
     display            : inline-block;
@@ -447,8 +456,8 @@
       background-color : $light-1;
       color            : $color;
     }
-  }
-}
+  }  // &:hover {}
+}  // @mixin {}
 
 .nm-cards {
   // Styles for the nm-cards (flex) container
@@ -489,46 +498,266 @@
 //=====================================
 
 #about {
-  background-color: $dark-1;
-  color: $light-1;
+  min-height       : 493px;
+  padding          : 50px 0;
 
-  padding: 50px 0;
-
+  background-color : $dark-1;
   @media (min-width: map-get($breakpoints, 'l')) {
-    background: $dark-1 url("../img/netmatters-logo-background.png") no-repeat center;
+    background     : $dark-1 url("../img/netmatters-logo-background.png") no-repeat 100%/auto 100%;
   }
 
+  color            : $light-1;
+
   #about-wrapper {
-    padding: 0 15px;
+    max-width      : 1200px;           // Set wrapper width - at XL breakpoint
+    margin         : auto;             // used to position & width of children
+  }
+
+  #about-contents {
+    padding          : 0 15px;
 
     h2 {
-      text-transform: uppercase;
+      margin         : -6px 0px 28px;
+      font-size      : 2.25rem;        // 36px;
+      font-weight    : 400;
+      line-height    : 1.1;
+      text-transform : uppercase;
     }
 
     p {
+      margin-bottom  : 25px;
+      line-height    : 1.875rem;       // 30px
     }
 
-    button {
+    p > strong {
+      font-weight    : 600;
+    }
+
+    a {
       @include button-base-style($context: 'body') {
-        color: $dark-1;
+        color        : $dark-1;
       }
     }
 
     @media (min-width: map-get($breakpoints, 'm')) {
-      width: 720px;
-      margin: auto;  // Centered on page
+      width          : 720px;
+      margin         : auto;           // Centered on page
+    }
+    @media (min-width: map-get($breakpoints, 'l')) {
+      width          : 940px;
+    }
+    @media (min-width: map-get($breakpoints, 'xl')) {
+      width          : 50%;            // Take up 50% of parent about-wrapper
+      margin-left    : 0;              // Stop centering on the page
+    }
+  } // #about-contents
+} // #about
+
+
+//=====================================
+// LATEST NEWS CARDS
+//=====================================
+// The container with all the cards in
+// is a flex container.
+
+// Each card is a flex item.
+
+#latest-header {
+  height     : 104px;
+  width      : 100%;
+  padding    : 0 15px;
+
+  box-shadow : 0 5px 35px rgba(0,0,0,.1);    // NTD: variable
+}
+
+#latest-inner {
+  display    : inline-block;
+  height     : 100%;
+  margin     : 0;
+  padding    : 0;
+
+  span {
+    display        : block;
+    padding        : 50% 0;
+    color          : $dark-1;
+    font-size      : 1.25rem;          // 16px
+    font-weight    : 600;
+    text-transform : uppercase;
+  }
+
+  hr {
+    margin         : 0;
+    width          : 100%;
+    border-color   : $dark-1;
+    border-width   : 5px;
+  }
+}
+
+
+#news-board {
+  display       : flex;
+  flex-direction: column;
+  flex-wrap     : nowrap;
+  padding       : 35px 0;
+
+  @media (min-width: map-get($breakpoints, 'm')) {
+    flex-direction: row;
+    justify-content: center;
+
+    .news-card:nth-child(1n+3) {       // Hide 3rd item and all others after it (if there are any)
+      display: none;
+    }
+  }
+  @media (min-width: map-get($breakpoints, 'xl')) {
+    .news-card:nth-child(1n+3) {
+      display: block;
+    }
+  }
+}
+
+@mixin latest-card($card-category) {
+
+  @media (min-width: map-get($breakpoints, 'm')) {
+    flex: 345px 0 0;
+  }
+  @media (min-width: map-get($breakpoints, 'l')) {
+    flex: 455px 0 0;
+  }
+  @media (min-width: map-get($breakpoints, 'xl')) {
+    flex: 370px 0 0;
+  }
+
+  $content-color : map-get($nm-services, $card-category);
+
+  margin        : 15px;
+  overflow      : hidden;
+
+  border        : 1px solid $search-border;   // NTD: Check color
+  border-radius : $border-radius;
+
+  .dialogue-box {
+    display     : none;
+  }
+
+  .news-card-cover {
+    display       : block;
+    position      : relative;            // For the news-card-category to be placed on top of
+    overflow      : hidden;
+
+    .image-wrapper {
+      height        : auto;
+      border-bottom : 1px solid $search-border;
+
+      .news-card-image {
+        // display: block;
+        width       : 100%;  // Adjusts with card size
+      }
     }
 
     @media (min-width: map-get($breakpoints, 'l')) {
-      width: 940px;  // CONTENT AREA, NOT INCLUDING SIDE PADDING
-      // Remains centered on page
+      .image-wrapper > .news-card-image {
+        transition : transform .25s cubic-bezier(.215,.61,.355,1);
+        transform  : scale(1);
+      }
+      .image-wrapper:hover > .news-card-image {
+        transition : transform .25s cubic-bezier(.215,.61,.355,1);
+        transform  : scale(1.1);
+      }
+
     }
 
-    // EXTRA-LARGE: CONTENTS TAKE UP 50% WIDTH
-    @media (min-width: map-get($breakpoints, 'xl')) {
-      width: 570px;  // CONTENT AREA, NOT INCLUDING SIDE PADDING
-      // Aligned left - no side margin; positioned by %
+    .news-card-category {
+      position : absolute;
+      top      : 0;
+      right    : 0;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: $light-1;
+      background-color: $content-color;
+      padding: 0 10px;
+      top: 10px;
+      font-size: .75rem;  // 12px
+      line-height: 23px;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }  // .news-card-cover
+
+  .news-card-summary {
+    display     : flex;
+    flex-flow   : row wrap;
+    align-items : center;
+    padding     : 30px;
+
+    h6, p {
+      line-height : 22px;
     }
 
-  }
+    p {
+      color       : #666;                // NTD: Use a variable
+      padding     : 0;
+      margin      : 0;
+    }
+
+    h6 {
+      flex        : 100% 1 1;
+      margin      : 0 0 15px 0;
+      color       : $content-color;
+      font-size   : 1rem;
+      font-weight : 600;
+    }
+
+    .title-link:hover {
+      color: $content-color;
+    }
+
+    .card-description {
+      flex        : 100% 1 1;
+      margin      : 0 0 25px 0;
+      font-size   : .8125rem;            // 13px
+    }
+
+    .read-more {
+      flex        : auto 0 0;
+      @include button-base-style($service: $card-category, $context: 'body');  // Same color as IT support buttons
+    }
+
+    hr {
+      flex         : 100% 1 1;           // Be full width, can grow and shrink
+      border-color : $search-border;
+      margin       : 30px 0;
+    }
+
+    .card-publish-info {
+      flex         : auto 1;
+      padding      : 0 0 0 20px;
+      font-size    : .875rem;            // 14px
+
+      strong {
+        font-weight : 600;
+        color       : $dark-1;
+      }
+    }
+    .logo-small {
+      width        : 47px;
+      border-radius: 50%;
+    }
+  }  // .news-card-summary
+  @content;
+}  // @mixin latest-card
+
+
+#kati-25th-birthday {
+  @include latest-card($card-category: 'it-support');
+}
+
+#zsea-case-study {
+  @include latest-card($card-category: 'it-support');
+}
+
+#now-hiring {
+  @include latest-card($card-category: 'bespoke-software');
 }

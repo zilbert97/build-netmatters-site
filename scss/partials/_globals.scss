@@ -5,6 +5,7 @@
 body {
   font-family : $font-stack;
   font-size   : 16px;
+  letter-spacing: .4px;
 }
 
 h1 {
@@ -30,13 +31,12 @@ h5 {
 }
 
 @mixin button-base-style($service: null, $context: 'body') {
-  &:focus {                            // Prevent default outline of elements
-    outline        : none !important;  // as set by the user style sheet
-  }
-
   display          : inline-block;
   box-sizing       : border-box;
   width            : max-content;
+
+  border           : 0;
+  border-radius    : $border-radius;
 
   color            : $light-1;
   font-weight      : 400;
@@ -47,69 +47,72 @@ h5 {
   vertical-align   : middle;
 
   .button-text,
-  .glyph {
+  [class^="icon-"] {
     vertical-align : middle;
   }
 
-  // Set the padding and font size for different size parameters
+  // I'm using the value passed to the $context parameter to set button and
+  // font sizes
+
   @if $context == 'jumbo' {
     line-height    : 50px;
     padding        : 5px 20px;
     font-size      : 1.25rem;          // 20px
-    .glyph {
+    [class^="icon-"] {
       font-size    : 1.25rem;          // 20px
     }
   }
   @else if $context == 'header' {
     height         : $header-button-height;  // Consistent height for header buttons
-    margin-left    : 20px;                   // Consistent spacing for header buttons
+    margin-left    : 20px;             // Consistent spacing for header buttons
     padding        : 5px 15px;
-    font-size      : 1.125rem;            // 18px
+    font-size      : 1.125rem;         // 18px
     [class^="icon-"] {
-      font-size    : 1.4375rem;           // 23px
+      font-size    : 1.4375rem;        // 23px
     }
   }
-  @else {                                   // context == 'body' as default
-    // THESE ARE PLACEHOLDERS FOR NOW
-    padding        : 5px 10px;
-    font-size      : 1rem;              // 16px
+  @else {                             // $context=='body' as default
+    padding        : 5px 15px;
+    line-height    : 35px;
+    font-size      : 1.0625rem;        // 17px
   }
 
-  // Variables must be instantiated
-  // (raises @warn if only defined in the @else block)
-  $button-color    : null;
-  $button-color-ui : null;
+  // Here i'm using the value passed to the $service paramater to set other
+  // styling such as color, active, focus, and hover states.
 
-  @if $service == 'facebook' or
-      $service == 'twitter' or
-      $service == 'linkedin' {
+  $button-color      : null;           // Variables must be instantiated -
+  $button-color-ui   : null;           // raises @warn if only defined in @else
+
+  @if map-has-key($social-buttons-ui, $service) {
     $button-color    : $social-buttons;
     $button-color-ui : map-get($social-buttons-ui, $service);
   }
-  @else if $service != 'utility' {
-    // Consider using map-has-key() and @warn
+  @else if map-has-key($nm-services, $service) {
+  // Consider using map-has-key() and @warn
     $button-color    : map-get($nm-services, $service);
     $button-color-ui : map-get($nm-secondary, $service);
   }
-  @else {
-    // Default colours to utility colours
+  @else if $service == 'utility' {
     $button-color    : $utility-button;
     $button-color-ui : $utility-button-ui;
   }
+  @else {
+    $button-color    : $light-1;
+    $button-color-ui : #ebebeb;
+  }
 
-  border             : 0;
-  border-radius      : $border-radius;
-
-  background-color   : $button-color;
-  @include combined-ui {
+  background-color   : $button-color;  // Use the values from above to set
+  @include combined-ui {               // background colours
     background-color : $button-color-ui;
   }
 
-  &:active {  // Apply inset shadow effect when button pressed
+  &:active {                           // Apply inset shadow when pressed
     box-shadow       : $button-active-shadow;
   }
 
-  // FROM BOOTSTRAP = user-select: none;
+  &:focus {                            // Prevent default outline of elements
+    outline          : none !important;
+  }
 
-  @content;
+  @content; // FROM BOOTSTRAP = user-select: none;
 }

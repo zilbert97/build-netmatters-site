@@ -36,7 +36,7 @@
 
           <!-- Search input field -->
           <input type="text" placeholder="Search..." id="search-input">
-          <a id="search-icon">
+          <a id="search-icon" href="#">
             <span class="icon-magnifying-glass"></span>
           </a>
 
@@ -62,7 +62,7 @@
 
           <!-- Phone icon -->
           <div id="voip-icon">
-            <a>
+            <a href="#">
               <span class="icon-phone_in_talk"></span>
             </a>
             <hr></hr>
@@ -96,7 +96,7 @@
             For businesses looking to make a strong<br>
             and effective first impression.
           </p>
-          <a class="jumbotron-button" href="#" role="button">
+          <a class="jumbotron-button" href="#">
             <!-- Find out more&MediumSpace; -->
             <span class="button-text">Find out more&MediumSpace;</span>
             <span class="icon-arrow-right2"></span>
@@ -111,7 +111,7 @@
       <section class="nm-cards">
 
         <div class="nm-cards-bespoke-software">
-          <a>
+          <a href="#">
             <span class="icon-apps"></span>
             <h5>Bespoke Software</h5>
             <hr></>
@@ -121,7 +121,7 @@
         </div>
 
         <div class="nm-cards-it-support">
-          <a>
+          <a href="#">
             <span class="icon-display"></span>
             <h5>IT Support</h5>
             <hr></>
@@ -131,7 +131,7 @@
         </div>
 
         <div class="nm-cards-digital-marketing">
-          <a>
+          <a href="#">
             <span class="icon-bar-graph"></span>
             <h5>Digital Marketing</h5>
             <hr></>
@@ -143,7 +143,7 @@
         <div class="nm-cards-break"></div> <!-- break to a new row (at larger breakpoints) -->
 
         <div class="nm-cards-telecoms-services">
-          <a>
+          <a href="#">
             <span class="icon-phone_in_talk"></span>
             <h5>Telecoms Services</h5>
             <hr></>
@@ -153,7 +153,7 @@
         </div>
 
         <div class="nm-cards-web-design">
-          <a>
+          <a href="#">
             <span class="icon-code"></span>
             <h5>Web Design</h5>
             <hr></>
@@ -163,7 +163,7 @@
         </div>
 
         <div class="nm-cards-cyber-security">
-          <a>
+          <a href="#">
             <span class="icon-security"></span>
             <h5>Cyber Security</h5>
             <hr></>
@@ -173,7 +173,7 @@
         </div>
 
         <div class="nm-cards-web-design">  <!-- Same styling as web design card -->
-          <a>
+          <a href="#">
             <span class="icon-school"></span>
             <h5>Developer Training</h5>
             <hr></>
@@ -185,21 +185,132 @@
       </section> <!-- nm-cards -->
 
       <section id="about">
-        <div id="about-wrapper">
-          <h2>Netmatters</h2>
-          <p>
-            <strong>Netmatters Ltd is a leading web design, IT support and digital marketing agency based in Wymondham, Norfolk.</strong><br>
-            Founded in 2008, we work with businesses from a variety of industries to gain new prospects, nurture existing leads and further grow their sales.<br>
-            We provide cost effective, reliable solutions to a range of services; from bespoke cloud-based management systems, workflow and IT solutions through to creative website development and integrated digital campaigning.
-          </p>
+        <div id='about-wrapper'>
+          <div id="about-contents">
+            <h2>Netmatters</h2>
+            <p>
+              <strong>
+                Netmatters Ltd is a leading web design, IT support and digital marketing agency based in Wymondham, Norfolk.
+              </strong>
+            </p>
 
-          <button>
-            <span class="button-text">Find out more&MediumSpace;</span>
-            <span class="icon-arrow-right2"></span>
-          </button>
-        </div>
-      </section>
+            <p>
+              Founded in 2008, we work with businesses from a variety of industries to gain new prospects, nurture existing leads and further grow their sales.
+            </p>
 
+            <p>
+              We provide cost effective, reliable solutions to a range of services; from bespoke cloud-based management systems, workflow and IT solutions through to creative website development and integrated digital campaigning.
+            </p>
+
+            <a href="#">
+              <span class="button-text">Our culture&MediumSpace;</span>
+              <span class="icon-arrow-right2"></span>
+            </a>
+          </div> <!-- about-contents -->
+        </div> <!-- about-wrapper -->
+      </section> <!-- about -->
+
+      <section id="latest-news">
+
+        <header id="latest-header">
+          <div id="latest-inner">
+            <span>Latest</span>
+            <hr></hr>
+          </div>
+        </header>
+
+        <!-- CARDS -->
+        <div id="news-board">
+
+          <!-- Kati 25th Birthday card -->
+          <div class="news-card" id="kati-25th-birthday">
+
+            <div class="news-card-cover">
+              <a href="#">
+                <div class="image-wrapper">
+                  <img class="news-card-image" src="../img/kati-leeson.jpeg" alt="Kati Leeson - Happy 25th Birthday">
+                </div>
+                <a class="news-card-category" href="#">News</a> <!-- Directs differently! -->
+                <span class="dialogue-box">View all: IT Support / News</span> <!-- Comment box visible when hover over News -->
+              </a>
+            </div>
+
+            <div class="news-card-summary">
+              <a class="title-link" href="#">
+                <h6>Happy 25th Birthday Kati!</h6>
+              </a>
+              <p class="card-description">Since joining Netmatters Kati has done a fantastic job keeping our IT projects progressing&hellip;</p>
+              <a class="read-more" href="#">Read more</a>
+              <hr></hr>
+              <img class="logo-small" src="../img/netmatters-logo-small.png" alt="NetMatters logo">
+              <div class="card-publish-info">
+                <p><strong>Posted by Netmatters Ltd</strong></p>
+                <p>18th December 2020</p>
+              </div>
+            </div>
+
+          </div> <!-- #kati-25th-birthday news-card -->
+
+          <!-- ZSEA Case Study card -->
+          <div class="news-card" id="zsea-case-study">
+
+            <div class="news-card-cover">
+              <a href="#">
+                <div class="image-wrapper">
+                  <img class="news-card-image" src="../img/it-support-case-study.jpeg" alt="IT Support Case Study - Zoological Society of East Anglia">
+                </div>
+                <a class="news-card-category" href="#">Case studies</a> <!-- Directs differently! -->
+                <span class="dialogue-box">View all: IT Support / Case Studies</span> <!-- Comment box visible when hover over News -->
+              </a>
+            </div>
+
+            <div class="news-card-summary">
+              <a class="title-link" href="#">
+                <h6>ZSEA IT Support Case Study</h6>
+              </a>
+              <p class="card-description">As the world continues to change, and businesses evolve, they need to look to ways of futurep&hellip;</p>
+              <a class="read-more" href="#">Read more</a>
+              <hr></hr>
+              <img class="logo-small" src="../img/netmatters-logo-small.png" alt="NetMatters logo">
+              <div class="card-publish-info">
+                <p><strong>Posted by Netmatters Ltd</strong></p>
+                <p>10th December 2020</p>
+              </div>
+            </div>
+
+          </div> <!-- #zsea-case-study news-card -->
+
+          <!-- Now Hiring card -->
+          <div class="news-card" id="now-hiring">
+
+            <div class="news-card-cover">
+              <a href="#">
+                <div class="image-wrapper">
+                  <img class="news-card-image" src="../img/now-hiring.jpeg" alt="Now hiring senior web developer">
+                </div>
+                <a class="news-card-category" href="#">Careers</a> <!-- Directs differently! -->
+                <span class="dialogue-box">View all: Bespoke Software / Careers</span> <!-- Comment box visible when hover over News -->
+              </a>
+            </div>
+
+            <div class="news-card-summary">
+              <a class="title-link" href="#">
+                <h6>Senior Web Developer</h6>
+              </a>
+              <p class="card-description">Salary range: &pound;30,000 &ndash; &pound;40,000 (DOE) &plus; Bonus Hours: 40 hours per week, Monday &ndash; Friday Loc&hellip;</p>
+              <a class="read-more" href="#">Read more</a>
+              <hr></hr>
+              <img class="logo-small" src="../img/simon-wright.jpeg" alt="Simon Wright headshot">
+              <div class="card-publish-info">
+                <p><strong>Posted by Simon Wright</strong></p>
+                <p>10th December 2020</p>
+              </div>
+            </div>
+
+          </div> <!-- #now-hiring .news-card -->
+
+        </div> <!-- #news-board -->
+      </section> <!-- #latest-news -->
 
     </main>
 
