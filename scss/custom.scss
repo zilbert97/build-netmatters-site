@@ -316,13 +316,14 @@
                     $dark-1 url('../img/web-design-background.jpeg') no-repeat center;
   background-size : cover;
 
+  color         : $light-1;
   text-align      : center;
   @media (min-width: map-get($breakpoints, 'l')) {
     text-align    : left;
   }
-  * {
-    color         : $light-1;
-  }
+
+  // NTD: at L and XL breakpoints set max-width and box-sizing: content-box so in line with other content
+
   h1 {
     text-transform : uppercase;
     margin-bottom  : 25px;
@@ -514,6 +515,7 @@
   }
 
   #about-contents {
+    box-sizing: content-box;
     padding          : 0 15px;
 
     h2 {
@@ -570,7 +572,18 @@
   box-shadow : 0 5px 35px rgba(0,0,0,.1);    // NTD: variable
 }
 
-#latest-inner {
+#latest-wrapper {
+  margin     : 0 auto;
+  max-width  : 720px;
+  @media (min-width: map-get($breakpoints, 'l')) {
+    max-width: 940px;
+  }
+  @media (min-width: map-get($breakpoints, 'xl')) {
+    max-width: 1164px;
+  }
+}
+
+#latest-label {
   display    : inline-block;
   height     : 100%;
   margin     : 0;
@@ -658,12 +671,14 @@
       .image-wrapper > .news-card-image {
         transition : transform .25s cubic-bezier(.215,.61,.355,1);
         transform  : scale(1);
+        opacity    : 1;
       }
       .image-wrapper:hover > .news-card-image {
-        transition : transform .25s cubic-bezier(.215,.61,.355,1);
+        transition : transform .25s cubic-bezier(.215,.61,.355,1),
+                      opacity .25s cubic-bezier(.215,.61,.355,1);
         transform  : scale(1.1);
+        opacity    : .75;
       }
-
     }
 
     .news-card-category {
