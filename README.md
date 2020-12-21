@@ -16,3 +16,5 @@ My HTML and CSS review
 - [x] Adding a nested anchor element to cards has messed up the card invoking flex item status of card contents - make the nested anchor element the flex container (not the `<div>`) to re-invoke child behaviour
 - [ ] Introduce 'dialogue boxes' (or equivalent name) when on hover state of tag on latest news cards
 - [ ] Integrate scroll-show header behaviour
+- [ ] At the large breakpoint the checkbox overlay expands search, but once expanded needs to function as a submit for the contents
+- [ ] Changing header buttons to anchor elements has introduced some bugs - fix these
