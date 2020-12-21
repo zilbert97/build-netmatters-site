@@ -12,5 +12,7 @@ My HTML and CSS review
 - [ ] Remove background from page title logo
 - [ ] Remove bootstrap function from jumbotron
 - [ ] Search icon is too small - look to change or increase size while maintaining 23px font size
-- [ ] Update button-base-style mixin to check whether the value passed to the "service" parameter is a key in the "nm-services" map
-- [ ] Adding a nested anchor element to cards has messed up the card invoking flex item status of card contents - make the nested anchor element the flex container (not the `<div>`) to re-invoke child behaviour
+- [x] Update button-base-style mixin to check whether the value passed to the "service" parameter is a key in the "nm-services" map
+- [x] Adding a nested anchor element to cards has messed up the card invoking flex item status of card contents - make the nested anchor element the flex container (not the `<div>`) to re-invoke child behaviour
+- [ ] Introduce 'dialogue boxes' (or equivalent name) when on hover state of tag on latest news cards
+- [ ] Integrate scroll-show header behaviour
