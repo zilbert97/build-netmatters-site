@@ -45,7 +45,7 @@
             <button class="button" type="button" id="search-button">
               <span class="icon-magnifying-glass"></span>
             </button>
-          </div> <!-- #search-container -->
+          </div>
 
           <!-- Flex Item 4 -->
           <div id="buttons-container">
@@ -65,7 +65,7 @@
               </a>
               <hr></hr>
             </div>
-          </div> <!-- buttons-container -->
+          </div>
 
           <!-- Flex Item 5 -->
           <div id="hamburger-container">
@@ -76,10 +76,9 @@
               </span>
               <span class="burger-text">Menu</span>
             </button>
-          </div> <!-- #hamburger-container -->
+          </div>
 
         </div> <!-- .main-header -->
-
 
         <div id="nav-container">
           <nav id="nav-inner">
@@ -368,9 +367,69 @@
     </main>
 
     <footer>
-      <section></section> <!-- Businesses -->
-      <section></section> <!-- Main footer content -->
+      <section id="businesses"></section> <!-- Businesses hidden at small breakpoint -->
+
+      <section id="main-footer">
+
+        <div id="footer-wrapper">
+
+          <div class="footer-content">
+            <h6>Contact us</h6>
+            <address>
+              11 Penfold Drive<br>
+              Wymondham<br>
+              Norfolk<br>
+              NR18 0WZ
+            </address>
+
+            <address>
+              <span>Tel:&nbsp;</span><a href="+441603704020">01603 70 40 20</a><br>
+              <span>Email:&nbsp;</span><a href="mailto:support@netmatters.com">support@netmatters.com</a>
+            </address>
+          </div>
+
+          <div class="footer-content">
+            <h6>About netmatters</h6>
+            <ul>
+              <li><a href="#">News</a></li>
+              <li><a href="#">Our Careers</a></li>
+              <li><a href="#">Our Team</a></li>
+              <li><a href="#">Our Office Tour</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Cookie Policy</a></li>
+              <li><a href="#">Terms &amp; Conditions</a></li>
+              <li><a href="#">UK Domains</a></li>
+            </ul> <!-- list of links (no bullet points) -->
+          </div>
+
+          <div class="footer-content">
+            <h6>Website</h6>
+            <a href="#">Sitemap</a><br> <!-- ? -->
+            <span>&copy; Coypright Netmatters Ltd. 2020<br>All rights reserved</span>
+          </div>
+
+          <div class="footer-content">
+            <h6>Social media</h6>
+            <div id="button-grid">
+              <a class="social-button" id="facebook-button" href="#">
+                <span class="icon-facebook"></span>
+              </a>
+              <a class="social-button" id="twitter-button" href="#">
+                <span class="icon-twitter"></span>
+              </a>
+              <a class="social-button" id="linkedin-button" href="#">
+                <span class="icon-linkedin"></span>
+              </a>
+            </div>
+          </div>
+
+        </div> <!-- #footer-wrapper -->
+
+      </section> <!-- Main footer content -->
+
+
       <section></section> <!-- Accreditations -->
+
     </footer>
   </body>
 </html>

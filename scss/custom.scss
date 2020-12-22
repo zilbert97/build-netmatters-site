@@ -368,7 +368,7 @@
         }
       }
     }
-  } // @each
+  }  // @each
 }  // @media(L)
 
 @media (min-width: map-get($breakpoints, 'xl')) {
@@ -432,8 +432,6 @@
       max-width   : 1200px;
     }
   }
-
-  // NTD: at L and XL breakpoints set max-width and box-sizing: content-box so in line with other content
 
   h1 {
     text-transform: uppercase;
@@ -864,11 +862,11 @@
     .card-publish-info {
       flex         : auto 1;
       padding      : 0 0 0 20px;
-      font-size    : .875rem;            // 14px
+      font-size    : .875rem;          // 14px
 
       strong {
-        font-weight : 600;
-        color       : $dark-1;
+        font-weight: 600;
+        color      : $dark-1;
       }
     }
     .logo-small {
@@ -890,4 +888,101 @@
 
 #now-hiring {
   @include latest-card($card-category: 'bespoke-software');
+}
+
+
+//=====================================
+// FOOTER
+//=====================================
+
+footer {
+  #businesses {display: none;}
+  color: $light-1;
+  line-height: 22px;
+}
+
+#main-footer {
+  padding: 47px 0 43px;
+  background-color: $dark-1;
+
+  h6 {
+    // display: inline;
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 26px;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  address, span, a {
+    font-size: .8125rem;  // 13px
+  }
+
+  ul {                               // A flex container for li flex items
+    margin   : 0;
+    padding  : 0;
+    list-style : none;
+  }
+}
+
+  // DEFAULTS:
+  // justify-content: flex-start;
+  // align-items: stretch;
+
+#footer-wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+
+  .footer-content {
+    padding: 0 15px;
+    margin: 0 0 30px;
+  }
+}
+
+@media (min-width: map-get($breakpoints, 'm')) {
+
+  #footer-wrapper {
+    flex-flow: row wrap;
+    width: 750px;
+    margin: 0 auto;
+    .footer-content {
+      width: 50%;
+    }
+  }
+}
+
+@media (min-width: map-get($breakpoints, 'l')) {
+  #footer-wrapper {
+    width: 970px;
+  }
+}
+
+@media (min-width: map-get($breakpoints, 'xl')) {
+  #footer-wrapper {
+    width: 1200px;
+    .footer-content {
+      width: 25%;
+    }
+  }
+}
+
+// NTD: Set basis and scaling for each flex item.
+
+// Only applies to one .footer-content container
+#button-grid {
+  display              : grid;
+  grid-template-columns: auto auto;
+  grid-template-rows   : 55px 55px;
+  grid-gap             : 30px;
+
+  width: 100%;  // 100% width of the parent container
+
+  @each $key, $color in $social-buttons-ui {
+    ##{$key}-button {
+      @include button-base-style($service: $key, $context: 'footer');
+    }
+  }
 }

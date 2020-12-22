@@ -75,6 +75,14 @@ h5 {
       font-size    : 1.4375rem;        // 23px
     }
   }
+  @else if $context == "footer" {
+    height: 55px;
+    width: 100%;
+    border-radius: 0;
+    [class^="icon-"] {
+      font-size: 1.75rem; // 28px
+    }
+  }
   @else {                             // $context=='body' as default
     padding        : 5px 15px;
     line-height    : 35px;
