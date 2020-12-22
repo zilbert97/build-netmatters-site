@@ -80,6 +80,22 @@
   content: "";
 }
 
+/*!
+  <span class="icon-appss"></span>             APPS
+  <span class="icon-arrow-right2"></span>      ARROW-RIGHT
+  <span class="icon-bar-graph"></span>         BAR GRAPH
+  <span class="icon-code"></span>              CODE
+  <span class="icon-security"></span>          CYBER SHIELD
+  <span class="icon-display"></span>           DESKTOP MONITOR
+  <span class="icon-facebook"></span>          FACEBOOK
+  <span class="icon-school"></span>            GRADUATE HAT
+  <span class="icon-linkedin"></span>          LINKEDIN
+  <span class="icon-mouse"></span>             MOUSE
+  <span class="icon-paperplane"></span>        PAPER PLANE
+  <span class="icon-magnifying-glass"></span>  SEARCH
+  <span class="icon-twitter"></span>           TWITTER
+  <span class="icon-phone_in_talk"></span>     VOIP
+*/
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -433,6 +449,10 @@ h5 {
   margin-left: 20px;
 }
 
+#nav-container {
+  display: none;
+}
+
 @media (min-width: 768px) {
   .main-header {
     flex-wrap: nowrap;
@@ -661,6 +681,147 @@ h5 {
     transition-property: visibility;
     visibility: visible;
   }
+
+  .main-header {
+    flex-wrap: wrap;
+  }
+
+  #nav-container {
+    display: block;
+    height: 99px;
+    width: 100%;
+    background-color: #333645;
+  }
+
+  #nav-inner {
+    width: 940px;
+    height: 100%;
+    padding: 0 15px;
+    box-sizing: content-box;
+    margin: 0 auto;
+  }
+  #nav-inner ul {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    ist-style: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.25);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  #nav-inner li {
+    display: inline-block;
+    flex: calc(100%/6) 0 0;
+    border-left: 1px solid rgba(0, 0, 0, 0.25);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  #nav-inner li > a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding: 19px 0 18px;
+  }
+  #nav-inner span {
+    display: block;
+    font-size: 1.125rem;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  #nav-inner span small {
+    font-size: 0.625rem;
+  }
+  #nav-inner .nav-item-name {
+    margin-top: 2px;
+  }
+  #nav-inner [class^=icon-] {
+    font-size: 1.4375rem;
+  }
+
+  #li-bespoke-software a .nav-item-name {
+    color: #fff;
+  }
+  #li-bespoke-software a [class^=icon-] {
+    color: #67809f;
+  }
+  #li-bespoke-software a:hover {
+    text-decoration: none;
+    background-color: #67809f;
+  }
+  #li-bespoke-software a:hover [class^=icon-] {
+    color: #fff;
+  }
+
+  #li-it-support a .nav-item-name {
+    color: #fff;
+  }
+  #li-it-support a [class^=icon-] {
+    color: #4183d7;
+  }
+  #li-it-support a:hover {
+    text-decoration: none;
+    background-color: #4183d7;
+  }
+  #li-it-support a:hover [class^=icon-] {
+    color: #fff;
+  }
+
+  #li-digital-marketing a .nav-item-name {
+    color: #fff;
+  }
+  #li-digital-marketing a [class^=icon-] {
+    color: #2ecc71;
+  }
+  #li-digital-marketing a:hover {
+    text-decoration: none;
+    background-color: #2ecc71;
+  }
+  #li-digital-marketing a:hover [class^=icon-] {
+    color: #fff;
+  }
+
+  #li-telecoms-services a .nav-item-name {
+    color: #fff;
+  }
+  #li-telecoms-services a [class^=icon-] {
+    color: #d64541;
+  }
+  #li-telecoms-services a:hover {
+    text-decoration: none;
+    background-color: #d64541;
+  }
+  #li-telecoms-services a:hover [class^=icon-] {
+    color: #fff;
+  }
+
+  #li-web-design a .nav-item-name {
+    color: #fff;
+  }
+  #li-web-design a [class^=icon-] {
+    color: #926fb1;
+  }
+  #li-web-design a:hover {
+    text-decoration: none;
+    background-color: #926fb1;
+  }
+  #li-web-design a:hover [class^=icon-] {
+    color: #fff;
+  }
+
+  #li-cyber-security a .nav-item-name {
+    color: #fff;
+  }
+  #li-cyber-security a [class^=icon-] {
+    color: #f62459;
+  }
+  #li-cyber-security a:hover {
+    text-decoration: none;
+    background-color: #f62459;
+  }
+  #li-cyber-security a:hover [class^=icon-] {
+    color: #fff;
+  }
 }
 @media (min-width: 1260px) {
   #toggle {
@@ -681,6 +842,10 @@ h5 {
   #buttons-container {
     visibility: visible !important;
   }
+
+  #nav-inner {
+    width: 1170px;
+  }
 }
 .jumbotron {
   display: flex;
@@ -689,6 +854,7 @@ h5 {
   margin: 0;
   background: linear-gradient(to right, #000, rgba(0, 0, 0, 0.3)), #333645 url("../img/web-design-background.jpeg") no-repeat center;
   background-size: cover;
+  border-top: 1px solid #666;
   color: #fff;
   text-align: center;
 }

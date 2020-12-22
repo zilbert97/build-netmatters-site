@@ -139,13 +139,15 @@
 
   #search-button {display: none;}                                          // Only append to search field at wider breakpoints
 
-}
+}  // #search-container
 
 #hamburger-container {
   order: 30;                                                // Place after buttons-container, before search-container
   margin-left: 20px;
   // NTD: Change hover state of hamburger _burger-sauce (not ease)
 }
+
+#nav-container {display: none;}
 
 @media (min-width: map-get($breakpoints, 'm')) {
   .main-header {
@@ -195,7 +197,7 @@
       }
     }
   }
-}
+}  // @media
 
 @media (min-width: map-get($breakpoints, 'l')) {
 
@@ -276,7 +278,98 @@
       @include fade-element-in;
     }
   }
-}
+
+//============================================
+
+  .main-header {
+    flex-wrap: wrap;
+  }
+
+  #nav-container {
+    display    : block;
+    height     : 99px;
+    width      : 100%;
+
+    background-color: $dark-1;
+  }
+
+  #nav-inner {
+    width      : 940px;
+    height     : 100%;
+    padding    : 0 15px;
+    box-sizing : content-box;
+    margin     : 0 auto;
+
+    ul {                               // A flex container for li flex items
+      display  : flex;
+      flex-flow: row nowrap;
+      margin   : 0;
+      padding  : 0;
+      height   : 100%;
+
+      ist-style : none;
+
+      border-right: 1px solid rgba(0,0,0,.25);      // NTD: Vars
+      border-left : 1px solid hsla(0,0%,100%,.1);
+    }
+
+    li {
+      display  : inline-block;
+      flex     : calc(100%/6) 0 0;
+
+      border-left : 1px solid rgba(0,0,0,.25);      // NTD: Vars
+      border-right: 1px solid hsla(0,0%,100%,.1);
+    }
+
+    li > a {
+      display: block;
+      height : 100%;
+      width  : 100%;
+      padding: 19px 0 18px;
+    }
+
+    span {
+      display       : block;
+      font-size     : 1.125rem;       // 18px
+      line-height   : 1;
+      text-align    : center;
+      text-transform: uppercase;
+      small {
+        font-size   : .625rem;        // 10px
+      }
+    }
+
+    .nav-item-name {
+      margin-top    : 2px;
+    }
+
+    [class^=icon-] {
+      font-size     : 1.4375rem;      // 23px (more specific selector)
+    }
+  } // #nav-inner
+
+  @each $service, $color in $nm-services {
+    #li-#{$service} {
+      a {
+        .nav-item-name {
+          color         : $light-1;
+        }
+        [class^=icon-] {
+          color         : $color;
+        }
+      }
+      a:hover {
+        text-decoration : none;
+        background-color: $color;
+        [class^=icon-] {
+          color         : $light-1;
+        }
+      }
+    }
+  } // @each
+}  // @media
+
+//=============================================
 
 @media (min-width: map-get($breakpoints, 'xl')) {
   #toggle {display: none;}
@@ -297,6 +390,10 @@
   #buttons-container {
     visibility   : visible !important;
   }
+
+  #nav-inner {
+    width: 1170px;
+  }
 }
 
 
@@ -316,6 +413,8 @@
                     $dark-1 url('../img/web-design-background.jpeg') no-repeat center;
   background-size : cover;
 
+  border-top: 1px solid #666; // On site this is rgba(51,54,69.5) - and is lighter? NTD: check, use a variable
+  
   color         : $light-1;
   text-align      : center;
   @media (min-width: map-get($breakpoints, 'l')) {
