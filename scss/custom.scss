@@ -938,6 +938,8 @@ footer {
 
   .footer-content {
     padding: 0 15px;
+  }
+  .footer-content:nth-of-type(-n+3) {  // Apply to all flex items except last
     margin: 0 0 30px;
   }
 }

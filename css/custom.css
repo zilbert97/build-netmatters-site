@@ -2114,6 +2114,8 @@ footer #businesses {
 }
 #footer-wrapper .footer-content {
   padding: 0 15px;
+}
+#footer-wrapper .footer-content:nth-of-type(-n+3) {
   margin: 0 0 30px;
 }
 
