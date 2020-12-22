@@ -353,6 +353,7 @@ h5 {
   position: relative;
   flex-flow: row wrap;
   align-items: center;
+  justify-content: center;
   padding: 20px 15px;
   min-height: 168px;
 }
@@ -492,14 +493,15 @@ h5 {
     display: none;
   }
   #search-container #search-button {
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
     width: max-content;
     border: 0;
     border-radius: 3px;
     color: #fff;
     font-weight: 400;
-    letter-spacing: 0.4px;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
@@ -517,6 +519,7 @@ h5 {
   }
   #search-container #search-button .button-text,
 #search-container #search-button [class^=icon-] {
+    display: inline-block;
     vertical-align: middle;
   }
   #search-container #search-button [class^=icon-] {
@@ -533,20 +536,26 @@ h5 {
   }
 }
 @media (min-width: 992px) {
+  .main-header {
+    width: 970px;
+    justify-content: space-between;
+  }
+
   #logo-container {
     padding: 0;
-    margin-right: 75px;
+    margin-right: auto;
   }
 
   #buttons-container #support-button {
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
     width: max-content;
     border: 0;
     border-radius: 3px;
     color: #fff;
     font-weight: 400;
-    letter-spacing: 0.4px;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
@@ -559,6 +568,7 @@ h5 {
   }
   #buttons-container #support-button .button-text,
 #buttons-container #support-button [class^=icon-] {
+    display: inline-block;
     vertical-align: middle;
   }
   #buttons-container #support-button [class^=icon-] {
@@ -573,15 +583,19 @@ h5 {
   #buttons-container #support-button:focus {
     outline: none !important;
   }
+  #buttons-container #support-button [class^=icon-] {
+    margin-right: 10px;
+  }
   #buttons-container #contact-button {
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
     width: max-content;
     border: 0;
     border-radius: 3px;
     color: #fff;
     font-weight: 400;
-    letter-spacing: 0.4px;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
@@ -594,6 +608,7 @@ h5 {
   }
   #buttons-container #contact-button .button-text,
 #buttons-container #contact-button [class^=icon-] {
+    display: inline-block;
     vertical-align: middle;
   }
   #buttons-container #contact-button [class^=icon-] {
@@ -607,6 +622,9 @@ h5 {
   }
   #buttons-container #contact-button:focus {
     outline: none !important;
+  }
+  #buttons-container #contact-button [class^=icon-] {
+    margin-right: 10px;
   }
 
   #search-container #search-input {
@@ -682,10 +700,6 @@ h5 {
     visibility: visible;
   }
 
-  .main-header {
-    flex-wrap: wrap;
-  }
-
   #nav-container {
     display: block;
     height: 99px;
@@ -706,7 +720,7 @@ h5 {
     margin: 0;
     padding: 0;
     height: 100%;
-    ist-style: none;
+    list-style: none;
     border-right: 1px solid rgba(0, 0, 0, 0.25);
     border-left: 1px solid rgba(255, 255, 255, 0.1);
   }
@@ -824,6 +838,10 @@ h5 {
   }
 }
 @media (min-width: 1260px) {
+  .main-header {
+    width: 1200px;
+  }
+
   #toggle {
     display: none;
   }
@@ -863,6 +881,14 @@ h5 {
     text-align: left;
   }
 }
+.jumbotron .container {
+  max-width: 970px;
+}
+@media (min-width: 1260px) {
+  .jumbotron .container {
+    max-width: 1200px;
+  }
+}
 .jumbotron h1 {
   text-transform: uppercase;
   margin-bottom: 25px;
@@ -873,14 +899,15 @@ h5 {
   margin-bottom: 35px;
 }
 .jumbotron .jumbotron-button {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   width: max-content;
   border: 0;
   border-radius: 3px;
   color: #fff;
   font-weight: 400;
-  letter-spacing: 0.4px;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
@@ -889,11 +916,10 @@ h5 {
   padding: 5px 20px;
   font-size: 1.25rem;
   background-color: #926fb1;
-  height: auto;
-  line-height: 50px;
 }
 .jumbotron .jumbotron-button .button-text,
 .jumbotron .jumbotron-button [class^=icon-] {
+  display: inline-block;
   vertical-align: middle;
 }
 .jumbotron .jumbotron-button [class^=icon-] {
@@ -907,6 +933,9 @@ h5 {
 }
 .jumbotron .jumbotron-button:focus {
   outline: none !important;
+}
+.jumbotron .jumbotron-button [class^=icon-] {
+  margin-left: 10px;
 }
 
 .nm-cards {
@@ -1490,14 +1519,15 @@ h5 {
   font-weight: 600;
 }
 #about #about-contents a {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   width: max-content;
   border: 0;
   border-radius: 3px;
   color: #fff;
   font-weight: 400;
-  letter-spacing: 0.4px;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
@@ -1510,6 +1540,7 @@ h5 {
 }
 #about #about-contents a .button-text,
 #about #about-contents a [class^=icon-] {
+  display: inline-block;
   vertical-align: middle;
 }
 #about #about-contents a:hover, #about #about-contents a:focus, #about #about-contents a:active {
@@ -1520,6 +1551,9 @@ h5 {
 }
 #about #about-contents a:focus {
   outline: none !important;
+}
+#about #about-contents a [class^=icon-] {
+  margin-left: 10px;
 }
 @media (min-width: 768px) {
   #about #about-contents {
@@ -1699,14 +1733,15 @@ h5 {
 }
 #kati-25th-birthday .news-card-summary .read-more {
   flex: auto 0 0;
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   width: max-content;
   border: 0;
   border-radius: 3px;
   color: #fff;
   font-weight: 400;
-  letter-spacing: 0.4px;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
@@ -1718,6 +1753,7 @@ h5 {
 }
 #kati-25th-birthday .news-card-summary .read-more .button-text,
 #kati-25th-birthday .news-card-summary .read-more [class^=icon-] {
+  display: inline-block;
   vertical-align: middle;
 }
 #kati-25th-birthday .news-card-summary .read-more:hover, #kati-25th-birthday .news-card-summary .read-more:focus, #kati-25th-birthday .news-card-summary .read-more:active {
@@ -1844,14 +1880,15 @@ h5 {
 }
 #zsea-case-study .news-card-summary .read-more {
   flex: auto 0 0;
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   width: max-content;
   border: 0;
   border-radius: 3px;
   color: #fff;
   font-weight: 400;
-  letter-spacing: 0.4px;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
@@ -1863,6 +1900,7 @@ h5 {
 }
 #zsea-case-study .news-card-summary .read-more .button-text,
 #zsea-case-study .news-card-summary .read-more [class^=icon-] {
+  display: inline-block;
   vertical-align: middle;
 }
 #zsea-case-study .news-card-summary .read-more:hover, #zsea-case-study .news-card-summary .read-more:focus, #zsea-case-study .news-card-summary .read-more:active {
@@ -1989,14 +2027,15 @@ h5 {
 }
 #now-hiring .news-card-summary .read-more {
   flex: auto 0 0;
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   width: max-content;
   border: 0;
   border-radius: 3px;
   color: #fff;
   font-weight: 400;
-  letter-spacing: 0.4px;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
@@ -2008,6 +2047,7 @@ h5 {
 }
 #now-hiring .news-card-summary .read-more .button-text,
 #now-hiring .news-card-summary .read-more [class^=icon-] {
+  display: inline-block;
   vertical-align: middle;
 }
 #now-hiring .news-card-summary .read-more:hover, #now-hiring .news-card-summary .read-more:focus, #now-hiring .news-card-summary .read-more:active {

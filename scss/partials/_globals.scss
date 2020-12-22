@@ -30,8 +30,11 @@ h5 {
   }
 }
 
-@mixin button-base-style($service: null, $context: 'body') {
-  display          : inline-block;
+@mixin button-base-style($service: null, $context: "body") {
+  display          : inline-flex;
+  justify-content  : center;
+  align-items      : center;
+
   box-sizing       : border-box;
   width            : max-content;
 
@@ -40,21 +43,22 @@ h5 {
 
   color            : $light-1;
   font-weight      : 400;
-  letter-spacing   : .4px;
   text-align       : center;
   text-decoration  : none;
   text-transform   : uppercase;
-  vertical-align   : middle;
+
+  vertical-align: middle;
 
   .button-text,
   [class^="icon-"] {
-    vertical-align : middle;
+    display: inline-block;
+    vertical-align: middle;
   }
 
   // I'm using the value passed to the $context parameter to set button and
   // font sizes
 
-  @if $context == 'jumbo' {
+  @if $context == "jumbo" {
     line-height    : 50px;
     padding        : 5px 20px;
     font-size      : 1.25rem;          // 20px
@@ -62,7 +66,7 @@ h5 {
       font-size    : 1.25rem;          // 20px
     }
   }
-  @else if $context == 'header' {
+  @else if $context == "header" {
     height         : $header-button-height;  // Consistent height for header buttons
     margin-left    : 20px;             // Consistent spacing for header buttons
     padding        : 5px 15px;
@@ -92,7 +96,7 @@ h5 {
     $button-color    : map-get($nm-services, $service);
     $button-color-ui : map-get($nm-secondary, $service);
   }
-  @else if $service == 'utility' {
+  @else if $service == "utility" {
     $button-color    : $utility-button;
     $button-color-ui : $utility-button-ui;
   }

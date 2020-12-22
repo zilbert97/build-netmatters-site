@@ -38,12 +38,12 @@
 // Burger   30
 // Search   50      20
 
-
 .main-header {
   display         : flex;
-  position        : relative;   // Set so that checkbox toggle is positioned relative to .main-header
+  position        : relative;          // For positioning checkbox toggle relative to .main-header
   flex-flow       : row wrap;
   align-items     : center;
+  justify-content : center;
   padding         : 20px 15px;
   min-height      : 168px;
 }
@@ -61,9 +61,8 @@
 #toggle {display: none;}
 
 #buttons-container {
-  // Be a flex container (as well as flex item):
   order           : 10;                // Place after logo, before burger
-  display         : flex;
+  display         : flex;              // Is a flex container (as well as item)
   flex-flow       : row nowrap;
   align-items     : center;
   justify-content : flex-end;
@@ -95,10 +94,10 @@
 
     [class^="icon-"] {
       color     : $dark-1;
-      font-size : 2rem;                 // 32px
+      font-size : 2rem;                // 32px
     }
-  }
-}
+  }  // #voip-icon
+}  // #buttons-container
 
 #search-container {
   margin-top : auto;
@@ -137,14 +136,13 @@
     font-size  : 1.25rem;  // 20px
   }
 
-  #search-button {display: none;}                                          // Only append to search field at wider breakpoints
+  #search-button {display: none;}      // Only append to search field at wider breakpoints
 
 }  // #search-container
 
 #hamburger-container {
-  order: 30;                                                // Place after buttons-container, before search-container
-  margin-left: 20px;
-  // NTD: Change hover state of hamburger _burger-sauce (not ease)
+  order: 30;                           // Place after buttons-container, before search-container
+  margin-left: 20px;                   // NTD: Change hover state of hamburger _burger-sauce (not ease)
 }
 
 #nav-container {display: none;}
@@ -166,7 +164,7 @@
   #voip-icon {display: none;}
 
   #search-container {
-    order  : 20;                                            // Place after buttons-container, before hamburger-container
+    order  : 20;                       // Place after buttons-container, before hamburger-container
     flex   : 0 0 auto;
     margin : 0 0 0 20px;
 
@@ -196,31 +194,44 @@
         border-radius : 0 $border-radius $border-radius 0;  // Keep button style continuous with edge of search field
       }
     }
-  }
-}  // @media
+  }  // #search-container
+}  // @media(M)
 
 @media (min-width: map-get($breakpoints, 'l')) {
 
+  .main-header {
+    width          : 970px;
+    justify-content: space-between;
+  }
+
   #logo-container {
     padding      : 0;
-    margin-right : 75px;
+    margin-right : auto;
   }
 
   #buttons-container {
     #support-button {
-      @include button-base-style($service: 'it-support', $context: 'header');
+      @include button-base-style($service: 'it-support', $context: 'header') {
+        [class^="icon-"] {
+          margin-right: 10px;
+        }
+      }
     }
     #contact-button {
-      @include button-base-style($service: 'utility', $context: 'header');
+      @include button-base-style($service: 'utility', $context: 'header') {
+        [class^="icon-"] {
+          margin-right: 10px;
+        }
+      }
     }
   }
 
   #search-container {
     #search-input {
-      visibility    : hidden; // Initially set to hidden for animation when button pressed
-      width         : 300px;
+      visibility    : hidden;          // Initially set to hidden for animation
+      width         : 300px;           // when button pressed.
       position      : absolute;
-      right         : $header-button-sq-width;    // Offset by width of the search button
+      right         : $header-button-sq-width;  // Offset by width of the search button
       border-radius : $border-radius 0 0 $border-radius;
     }
     #search-button {
@@ -234,18 +245,15 @@
   // reversed the source order. I have then reversed this using flexbox `order`
   // and set `visibility: hidden;` to retain layout in place.
 
-  // Checkbox hack - a hidden overlay checkbox which toggles the state of other
-  // elements.
-
-  #toggle {
-    display  : block;
-    position : absolute;  // Positioned relative to .main-header wrapper
+  #toggle {                            // Hidden overlay checkbox which toggles
+    display  : block;                  // toggles the state of other elements.
+    position : absolute;               // Positioned relative to .main-header
     right    : 98px;
-    z-index  : 100;
+    z-index  : 100;                    // Ensure toggle is the top layer
 
     width    : $header-button-sq-width;
     height   : $header-button-sq-width;
-    opacity  : 0;   // Hide from view
+    opacity  : 0;                      // Hide from view
     cursor   : pointer;
 
     &:hover ~ #search-container > #search-button {
@@ -279,12 +287,6 @@
     }
   }
 
-//============================================
-
-  .main-header {
-    flex-wrap: wrap;
-  }
-
   #nav-container {
     display    : block;
     height     : 99px;
@@ -307,7 +309,7 @@
       padding  : 0;
       height   : 100%;
 
-      ist-style : none;
+      list-style : none;
 
       border-right: 1px solid rgba(0,0,0,.25);      // NTD: Vars
       border-left : 1px solid hsla(0,0%,100%,.1);
@@ -346,7 +348,7 @@
     [class^=icon-] {
       font-size     : 1.4375rem;      // 23px (more specific selector)
     }
-  } // #nav-inner
+  }  // #nav-inner
 
   @each $service, $color in $nm-services {
     #li-#{$service} {
@@ -367,11 +369,14 @@
       }
     }
   } // @each
-}  // @media
-
-//=============================================
+}  // @media(L)
 
 @media (min-width: map-get($breakpoints, 'xl')) {
+
+  .main-header {
+    width: 1200px;
+  }
+
   #toggle {display: none;}
 
   #search-container {
@@ -394,7 +399,7 @@
   #nav-inner {
     width: 1170px;
   }
-}
+}  // @media
 
 
 //=====================================
@@ -413,19 +418,26 @@
                     $dark-1 url('../img/web-design-background.jpeg') no-repeat center;
   background-size : cover;
 
-  border-top: 1px solid #666; // On site this is rgba(51,54,69.5) - and is lighter? NTD: check, use a variable
-  
-  color         : $light-1;
+  border-top      : 1px solid #666; // On site this is rgba(51,54,69.5) - and is lighter? NTD: check, use a variable
+
+  color           : $light-1;
   text-align      : center;
   @media (min-width: map-get($breakpoints, 'l')) {
     text-align    : left;
   }
 
+  .container {
+    max-width     : 970px;
+    @media (min-width: map-get($breakpoints, 'xl')) {
+      max-width   : 1200px;
+    }
+  }
+
   // NTD: at L and XL breakpoints set max-width and box-sizing: content-box so in line with other content
 
   h1 {
-    text-transform : uppercase;
-    margin-bottom  : 25px;
+    text-transform: uppercase;
+    margin-bottom : 25px;
   }
   .lead {
     line-height   : 2.25rem;
@@ -435,8 +447,9 @@
 
   .jumbotron-button {
     @include button-base-style($service: 'web-design', $context: 'jumbo') {
-      height      : auto;
-      line-height : 50px;
+      [class^="icon-"] {
+        margin-left: 10px;
+      }
     }
   }
 }
@@ -637,6 +650,9 @@
     a {
       @include button-base-style($context: 'body') {
         color        : $dark-1;
+        [class^="icon-"] {
+          margin-left: 10px;
+        }
       }
     }
 
