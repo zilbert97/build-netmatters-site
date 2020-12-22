@@ -17,4 +17,4 @@ My HTML and CSS review
 - [ ] Introduce 'dialogue boxes' (or equivalent name) when on hover state of tag on latest news cards
 - [ ] Integrate scroll-show header behaviour
 - [ ] At the large breakpoint the checkbox overlay expands search, but once expanded needs to function as a submit for the contents
-- [ ] Changing header buttons to anchor elements has introduced some bugs - fix these
+- [x] Changing header buttons to anchor elements has introduced some bugs - fix these
