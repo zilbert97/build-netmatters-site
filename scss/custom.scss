@@ -444,6 +444,7 @@
 // its content as well as a grid item
 
 .jumbotron {
+  position        : relative;          // For positioning owl buttons
   display         : flex;
   align-items     : center;
   justify-content : center;
@@ -486,6 +487,48 @@
     }
   }
 }
+
+#owl-container {
+  position          : absolute;        // Position relative to the jumbotron
+  text-align        : center;
+  width             : 100%;
+  left              : 0;
+  bottom            : 40px;
+
+  span {
+    display         : inline-block;
+    margin          : 0 8px;
+    width           : 11px;
+    height          : 11px;
+    background-color: rgba(255,255,255,.5); // NTD: Var
+    border-radius   : 50%;
+    vertical-align  : middle;
+    cursor          : pointer;
+  }
+
+  .owl-button {
+    display           : inline-block;
+    position          : relative;
+
+    &:hover > span {
+      background-color: #869791; // NTD: Var
+    }
+
+    span:active {
+      background-color: $light-1;
+      &::after {
+        content       : "";
+        position      : absolute;
+        border-radius : 50%;
+        border        : 2px solid $light-1;
+        width         : 23px;
+        height        : 23px;
+        top           : 1px;
+        right         : 2px;
+      }
+    }
+  }  // .owl-button
+}  // #owl-container
 
 
 //=====================================

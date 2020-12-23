@@ -931,6 +931,7 @@ h5 {
   }
 }
 .jumbotron {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1001,6 +1002,44 @@ h5 {
 }
 .jumbotron .jumbotron-button [class^=icon-] {
   margin-left: 10px;
+}
+
+#owl-container {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  left: 0;
+  bottom: 40px;
+}
+#owl-container span {
+  display: inline-block;
+  margin: 0 8px;
+  width: 11px;
+  height: 11px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  vertical-align: middle;
+  cursor: pointer;
+}
+#owl-container .owl-button {
+  display: inline-block;
+  position: relative;
+}
+#owl-container .owl-button:hover > span {
+  background-color: #869791;
+}
+#owl-container .owl-button span:active {
+  background-color: #fff;
+}
+#owl-container .owl-button span:active::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  width: 23px;
+  height: 23px;
+  top: 1px;
+  right: 2px;
 }
 
 .nm-cards {
