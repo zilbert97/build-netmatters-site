@@ -1621,6 +1621,7 @@ h5 {
   flex-direction: column;
   flex-wrap: nowrap;
   padding: 35px 0;
+  box-shadow: 0 5px 35px rgba(0, 0, 0, 0.1);
 }
 @media (min-width: 768px) {
   #news-board {
@@ -2082,7 +2083,8 @@ footer {
   color: #fff;
   line-height: 22px;
 }
-footer #businesses {
+
+.footer-subsection {
   display: none;
 }
 
@@ -2120,6 +2122,40 @@ footer #businesses {
 }
 
 @media (min-width: 768px) {
+  .footer-subsection {
+    display: block;
+    padding: 50px 0;
+  }
+  .footer-subsection-inner {
+    width: 750px;
+    padding: 0 15px;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-content: flex-start;
+  }
+
+  .footer-subsection-item {
+    padding: 0 20px;
+  }
+  .footer-subsection-item img {
+    max-width: 100%;
+    height: auto;
+  }
+  .footer-subsection-item .item-color {
+    display: none;
+  }
+  .footer-subsection-item:hover .item-color {
+    display: block;
+  }
+  .footer-subsection-item:hover .item-greyscale {
+    display: none;
+  }
+  .footer-subsection-item #google-partner-badge {
+    width: 220px;
+  }
+
   #footer-wrapper {
     flex-flow: row wrap;
     width: 750px;
@@ -2130,16 +2166,23 @@ footer #businesses {
   }
 }
 @media (min-width: 992px) {
-  #footer-wrapper {
+  .footer-subsection > .footer-subsection-inner,
+#footer-wrapper {
     width: 970px;
   }
 }
 @media (min-width: 1260px) {
-  #footer-wrapper {
+  .footer-subsection > .footer-subsection-inner,
+#footer-wrapper {
     width: 1200px;
   }
+
   #footer-wrapper .footer-content {
     width: 25%;
+  }
+
+  .footer-subsection-inner {
+    justify-content: space-evenly;
   }
 }
 #button-grid {

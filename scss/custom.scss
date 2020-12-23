@@ -725,9 +725,10 @@
   flex-direction: column;
   flex-wrap     : nowrap;
   padding       : 35px 0;
+  box-shadow    : 0 5px 35px rgba(0,0,0,.1);
 
   @media (min-width: map-get($breakpoints, 'm')) {
-    flex-direction: row;
+    flex-direction : row;
     justify-content: center;
 
     .news-card:nth-child(1n+3) {       // Hide 3rd item and all others after it (if there are any)
@@ -896,9 +897,12 @@
 //=====================================
 
 footer {
-  #businesses {display: none;}
   color: $light-1;
   line-height: 22px;
+}
+
+.footer-subsection {                   // Hidden at S breakpoint
+  display: none;
 }
 
 #main-footer {
@@ -918,10 +922,10 @@ footer {
   }
 
   address, span, a {
-    font-size: .8125rem;  // 13px
+    font-size: .8125rem;               // 13px
   }
 
-  ul {                               // A flex container for li flex items
+  ul {                                 // A flex container for li flex items
     margin   : 0;
     padding  : 0;
     list-style : none;
@@ -946,6 +950,41 @@ footer {
 
 @media (min-width: map-get($breakpoints, 'm')) {
 
+  .footer-subsection {                 // Apply to clients & accreditations
+    display: block;
+    padding: 50px 0;
+    &-inner {
+      width: 750px;
+      padding: 0 15px;
+      margin         : 0 auto;
+
+      display        : flex;
+      flex-flow      : row nowrap;
+      justify-content: center;
+      align-content  : flex-start;
+    }
+  }
+
+  .footer-subsection-item {
+    padding: 0 20px;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .item-color {display: none;}
+    &:hover {
+      .item-color {display: block}
+      .item-greyscale {display: none}
+    }
+
+    #google-partner-badge {
+      width: 220px;
+    }
+  }
+
+
+
   #footer-wrapper {
     flex-flow: row wrap;
     width: 750px;
@@ -957,16 +996,27 @@ footer {
 }
 
 @media (min-width: map-get($breakpoints, 'l')) {
+  .footer-subsection > .footer-subsection-inner,
   #footer-wrapper {
     width: 970px;
   }
 }
 
+
 @media (min-width: map-get($breakpoints, 'xl')) {
+  .footer-subsection > .footer-subsection-inner,
   #footer-wrapper {
     width: 1200px;
+  }
+
+  #footer-wrapper {
     .footer-content {
       width: 25%;
+    }
+  }
+  .footer-subsection {
+    &-inner {
+      justify-content: space-evenly;
     }
   }
 }
