@@ -705,6 +705,7 @@ h5 {
     height: 99px;
     width: 100%;
     background-color: #333645;
+    position: relative;
   }
 
   #nav-inner {
@@ -724,13 +725,13 @@ h5 {
     border-right: 1px solid rgba(0, 0, 0, 0.25);
     border-left: 1px solid rgba(255, 255, 255, 0.1);
   }
-  #nav-inner li {
+  #nav-inner .nav-item {
     display: inline-block;
     flex: calc(100%/6) 0 0;
     border-left: 1px solid rgba(0, 0, 0, 0.25);
     border-right: 1px solid rgba(255, 255, 255, 0.1);
   }
-  #nav-inner li > a {
+  #nav-inner .nav-item > a {
     display: block;
     height: 100%;
     width: 100%;
@@ -752,89 +753,149 @@ h5 {
   #nav-inner [class^=icon-] {
     font-size: 1.4375rem;
   }
-
-  #li-bespoke-software a .nav-item-name {
-    color: #fff;
+  #nav-inner .subnav {
+    display: none;
+    height: 45px;
+    width: 100vw;
+    position: absolute;
+    left: 0;
+    bottom: -45px;
+    font-size: 0.8125rem;
   }
-  #li-bespoke-software a [class^=icon-] {
-    color: #67809f;
+  #nav-inner .subnav ul {
+    width: 940px;
+    margin: 0 auto;
+    border: none;
+  }
+  #nav-inner .subnav a {
+    display: block;
+    color: #fff;
+    line-height: 45px;
+    text-transform: uppercase;
+  }
+  #nav-inner .subnav li ~ li > a:before {
+    content: "-";
+    padding: 0 22px;
+  }
+
+  #li-bespoke-software:hover {
+    background-color: #67809f;
+  }
+  #li-bespoke-software:hover .subnav {
+    display: block;
+    background-color: #566c88;
+  }
+  #li-bespoke-software:hover [class^=icon-] {
+    color: #fff;
   }
   #li-bespoke-software a:hover {
     text-decoration: none;
-    background-color: #67809f;
   }
-  #li-bespoke-software a:hover [class^=icon-] {
+  #li-bespoke-software .nav-item-name {
     color: #fff;
+  }
+  #li-bespoke-software [class^=icon-] {
+    color: #67809f;
   }
 
-  #li-it-support a .nav-item-name {
-    color: #fff;
+  #li-it-support:hover {
+    background-color: #4183d7;
   }
-  #li-it-support a [class^=icon-] {
-    color: #4183d7;
+  #li-it-support:hover .subnav {
+    display: block;
+    background-color: #2a6ec6;
+  }
+  #li-it-support:hover [class^=icon-] {
+    color: #fff;
   }
   #li-it-support a:hover {
     text-decoration: none;
-    background-color: #4183d7;
   }
-  #li-it-support a:hover [class^=icon-] {
+  #li-it-support .nav-item-name {
     color: #fff;
+  }
+  #li-it-support [class^=icon-] {
+    color: #4183d7;
   }
 
-  #li-digital-marketing a .nav-item-name {
-    color: #fff;
+  #li-digital-marketing:hover {
+    background-color: #2ecc71;
   }
-  #li-digital-marketing a [class^=icon-] {
-    color: #2ecc71;
+  #li-digital-marketing:hover .subnav {
+    display: block;
+    background-color: #26ab5f;
+  }
+  #li-digital-marketing:hover [class^=icon-] {
+    color: #fff;
   }
   #li-digital-marketing a:hover {
     text-decoration: none;
-    background-color: #2ecc71;
   }
-  #li-digital-marketing a:hover [class^=icon-] {
+  #li-digital-marketing .nav-item-name {
     color: #fff;
+  }
+  #li-digital-marketing [class^=icon-] {
+    color: #2ecc71;
   }
 
-  #li-telecoms-services a .nav-item-name {
-    color: #fff;
+  #li-telecoms-services:hover {
+    background-color: #d64541;
   }
-  #li-telecoms-services a [class^=icon-] {
-    color: #d64541;
+  #li-telecoms-services:hover .subnav {
+    display: block;
+    background-color: #c42e2a;
+  }
+  #li-telecoms-services:hover [class^=icon-] {
+    color: #fff;
   }
   #li-telecoms-services a:hover {
     text-decoration: none;
-    background-color: #d64541;
   }
-  #li-telecoms-services a:hover [class^=icon-] {
+  #li-telecoms-services .nav-item-name {
     color: #fff;
+  }
+  #li-telecoms-services [class^=icon-] {
+    color: #d64541;
   }
 
-  #li-web-design a .nav-item-name {
-    color: #fff;
+  #li-web-design:hover {
+    background-color: #926fb1;
   }
-  #li-web-design a [class^=icon-] {
-    color: #926fb1;
+  #li-web-design:hover .subnav {
+    display: block;
+    background-color: #7e57a0;
+  }
+  #li-web-design:hover [class^=icon-] {
+    color: #fff;
   }
   #li-web-design a:hover {
     text-decoration: none;
-    background-color: #926fb1;
   }
-  #li-web-design a:hover [class^=icon-] {
+  #li-web-design .nav-item-name {
     color: #fff;
+  }
+  #li-web-design [class^=icon-] {
+    color: #926fb1;
   }
 
-  #li-cyber-security a .nav-item-name {
-    color: #fff;
+  #li-cyber-security:hover {
+    background-color: #f62459;
   }
-  #li-cyber-security a [class^=icon-] {
-    color: #f62459;
+  #li-cyber-security:hover .subnav {
+    display: block;
+    background-color: #e80a42;
+  }
+  #li-cyber-security:hover [class^=icon-] {
+    color: #fff;
   }
   #li-cyber-security a:hover {
     text-decoration: none;
-    background-color: #f62459;
   }
-  #li-cyber-security a:hover [class^=icon-] {
+  #li-cyber-security .nav-item-name {
     color: #fff;
+  }
+  #li-cyber-security [class^=icon-] {
+    color: #f62459;
   }
 }
 @media (min-width: 1260px) {
@@ -863,6 +924,10 @@ h5 {
 
   #nav-inner {
     width: 1170px;
+  }
+  #nav-inner .subnav > ul {
+    width: 1170px;
+    font-size: 1rem;
   }
 }
 .jumbotron {

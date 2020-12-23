@@ -293,6 +293,7 @@
     width      : 100%;
 
     background-color: $dark-1;
+    position: relative;                // For positioning sub-navigation
   }
 
   #nav-inner {
@@ -315,7 +316,7 @@
       border-left : 1px solid hsla(0,0%,100%,.1);
     }
 
-    li {
+    .nav-item {
       display  : inline-block;
       flex     : calc(100%/6) 0 0;
 
@@ -323,7 +324,7 @@
       border-right: 1px solid hsla(0,0%,100%,.1);
     }
 
-    li > a {
+    .nav-item > a {
       display: block;
       height : 100%;
       width  : 100%;
@@ -348,24 +349,54 @@
     [class^=icon-] {
       font-size     : 1.4375rem;      // 23px (more specific selector)
     }
+
+    .subnav {
+      display  : none;                 // Only display on major nav hover state
+      height   : 45px;
+      width    : 100vw;
+      position : absolute;             // Positioned relative to .nav-conteiner
+      left     : 0;
+      bottom   : -45px;
+      font-size: .8125rem;             // 13px
+
+      ul {
+        width  : 940px;                // Span same width as major navigation
+        margin : 0 auto;
+        border : none;
+      }
+      a {
+        display         : block;
+        color           : $light-1;
+        line-height     : 45px;
+        text-transform  : uppercase;
+      }
+      li ~ li > a:before {             // Add content before to all subsequent
+        content         : "-";         // list items (except first)
+        padding         : 0 22px;
+      }
+    }  // .subnav
   }  // #nav-inner
 
   @each $service, $color in $nm-services {
     #li-#{$service} {
-      a {
-        .nav-item-name {
-          color         : $light-1;
+      &:hover {                        // On hover change color and show subnav
+        background-color   : $color;
+        .subnav {
+          display          : block;
+          background-color : map-get($nm-secondary, $service);
         }
         [class^=icon-] {
-          color         : $color;
+          color            : $light-1;
         }
       }
       a:hover {
-        text-decoration : none;
-        background-color: $color;
-        [class^=icon-] {
-          color         : $light-1;
-        }
+        text-decoration    : none;
+      }
+      .nav-item-name {
+        color              : $light-1;
+      }
+      [class^=icon-] {
+        color              : $color;
       }
     }
   }  // @each
@@ -398,6 +429,10 @@
 
   #nav-inner {
     width: 1170px;
+    .subnav > ul {
+      width: 1170px;
+      font-size: 1rem;
+    }
   }
 }  // @media
 
