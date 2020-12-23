@@ -7,7 +7,7 @@ My HTML and CSS review
 - [ ] Add box shadow to Google Partner logo
 - [ ] Add description boxes for clients and news card categories on hover state
 - [ ] Integrate scroll-show header behaviour
-- [ ] Add sub-navigation
+- [x] Add sub-navigation
 - [ ] Jumbotron owl buttons
 
 ### Pahse 2 - layout tweaks and other minor changes:
