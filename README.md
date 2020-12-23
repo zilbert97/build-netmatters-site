@@ -1,20 +1,63 @@
 # build-netmatters-site
 My HTML and CSS review
 
-## Detailed to-do (besides the obvious):
-- [ ] Go through selectors and properties, check usable with caniuse.com
-- [ ] Consider condensing media queries
-- [x] Prevent overflow in cards section
-- [ ] Remove transition from Hamburger
-- [x] Obtain assets and intgerate into site
-- [ ] Research and integrate best practices for accessibility
-- [x] Check right arrow and search icons are correct
-- [ ] Remove background from page title logo
-- [ ] Remove bootstrap function from jumbotron
-- [ ] Search icon is too small - look to change or increase size while maintaining 23px font size
-- [x] Update button-base-style mixin to check whether the value passed to the "service" parameter is a key in the "nm-services" map
-- [x] Adding a nested anchor element to cards has messed up the card invoking flex item status of card contents - make the nested anchor element the flex container (not the `<div>`) to re-invoke child behaviour
-- [ ] Introduce 'dialogue boxes' (or equivalent name) when on hover state of tag on latest news cards
+## To-do:
+
+### Phase 1 - missing content:
+- [ ] Add box shadow to Google Partner logo
+- [ ] Add description boxes for clients and news card categories on hover state
 - [ ] Integrate scroll-show header behaviour
-- [ ] At the large breakpoint the checkbox overlay expands search, but once expanded needs to function as a submit for the contents
-- [x] Changing header buttons to anchor elements has introduced some bugs - fix these
+- [ ] Add sub-navigation
+- [ ] Jumbotron owl buttons
+
+### Pahse 2 - layout tweaks and other minor changes:
+- [ ] Remove transition from Hamburger
+- [ ] Remove background from page title logo
+- [ ] Search icon is too small - look to change or increase size while maintaining 23px font size
+- [ ] Hide checkbox overlay when search is expanded at the large breakpoint
+- [ ] Navigatiopn text vertical position
+- [ ] Jumbotron border top colour
+- [ ] Jumbotron gradient
+- [ ] Slight difference in button size and position
+
+###### Header
+- [ ] Site logo size
+- [ ] Vertical positioning of text in header buttons
+- [ ] Positioning within hamburger
+- [ ] Search placehodler text alignment, and colour?
+
+###### Cards
+- [ ] Glyph size
+- [ ] Paragraph wrapping
+- [ ] Minor differences in the positioning of card content
+
+###### About section
+- [ ] Body text wrapping
+- [ ] Button height
+- [ ] Very slight difference in section height
+- [ ] Very slight background image position difference
+
+###### Latest news cards
+- [ ] Title tab - position of items slightly right
+- [ ] Bar position slightly too low
+- [ ] Bar box-shadow causing a not-sharp-enough look
+- [ ] Category tag - move right by 1px
+- [ ] Images sightly smaller, because positioned within a border - consider changing box-sizing to content-box?
+- [ ] Card title margin-bottom needs extending
+- [ ] Button size needs to be slightly larger
+
+###### Footer
+- [ ] At XL breakpoint slight vertical positioning of logos
+- [ ] Main footer positioning of text and buttons
+- [ ] Height, size and positioning of accreditation images
+
+### Phase 3 - streamlining Sass/CSS:
+- [ ] Look at condensing media queries - e.g. breakpoints assigning width of items at 750px, 970px, 1200px (M/L/XL)
+- [ ] Look at condensing button base styles
+- [ ] Assess whether a base card style could be established
+- [ ] Split Sass into partials for each major section?
+
+### Phase 4 - final checks before submission:
+- [ ] Research and integrate best practices for accessibility of HTML
+- [ ] Go through selectors and properties, check usable with caniuse.com
+- [ ] Remove bootstrap function from jumbotron (consider needing to re-introduce bootstrap)
