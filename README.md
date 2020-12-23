@@ -8,7 +8,7 @@ My HTML and CSS review
 - [ ] Add description boxes for clients and news card categories on hover state
 - [ ] Integrate scroll-show header behaviour
 - [x] Add sub-navigation
-- [ ] Jumbotron owl buttons
+- [x] Jumbotron owl buttons
 
 ### Pahse 2 - layout tweaks and other minor changes:
 - [ ] Remove transition from Hamburger
