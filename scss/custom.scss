@@ -353,10 +353,11 @@
     .subnav {
       display  : none;                 // Only display on major nav hover state
       height   : 45px;
-      width    : 100vw;
+      width    : 100%;
       position : absolute;             // Positioned relative to .nav-conteiner
       left     : 0;
       bottom   : -45px;
+      z-index  : 100;                  // Bring to front
       font-size: .8125rem;             // 13px
 
       ul {
@@ -755,7 +756,7 @@
 
 // Each card is a flex item.
 
-#latest-header {
+#latest-news-header {
   height     : 104px;
   width      : 100%;
   padding    : 0 15px;
@@ -763,7 +764,7 @@
   box-shadow : 0 5px 35px rgba(0,0,0,.1);    // NTD: variable
 }
 
-#latest-wrapper {
+#latest-news-wrapper {
   margin     : 0 auto;
   max-width  : 720px;
   @media (min-width: map-get($breakpoints, 'l')) {
@@ -774,7 +775,7 @@
   }
 }
 
-#latest-label {
+#latest-news-label {
   display    : inline-block;
   height     : 100%;
   margin     : 0;
@@ -1014,14 +1015,14 @@ footer {
   // justify-content: flex-start;
   // align-items: stretch;
 
-#footer-wrapper {
+#main-footer-wrapper {
   display: flex;
   flex-flow: column nowrap;
 
-  .footer-content {
+  .main-footer-content {
     padding: 0 15px;
   }
-  .footer-content:nth-of-type(-n+3) {  // Apply to all flex items except last
+  .main-footer-content:nth-of-type(-n+3) {  // Apply to all flex items except last
     margin: 0 0 30px;
   }
 }
@@ -1063,11 +1064,11 @@ footer {
 
 
 
-  #footer-wrapper {
+  #main-footer-wrapper {
     flex-flow: row wrap;
     width: 750px;
     margin: 0 auto;
-    .footer-content {
+    .main-footer-content {
       width: 50%;
     }
   }
@@ -1075,7 +1076,7 @@ footer {
 
 @media (min-width: map-get($breakpoints, 'l')) {
   .footer-subsection > .footer-subsection-inner,
-  #footer-wrapper {
+  #main-footer-wrapper {
     width: 970px;
   }
 }
@@ -1083,12 +1084,12 @@ footer {
 
 @media (min-width: map-get($breakpoints, 'xl')) {
   .footer-subsection > .footer-subsection-inner,
-  #footer-wrapper {
+  #main-footer-wrapper {
     width: 1200px;
   }
 
-  #footer-wrapper {
-    .footer-content {
+  #main-footer-wrapper {
+    .main-footer-content {
       width: 25%;
     }
   }
@@ -1101,7 +1102,7 @@ footer {
 
 // NTD: Set basis and scaling for each flex item.
 
-// Only applies to one .footer-content container
+// Only applies to one .main-footer-content container
 #button-grid {
   display              : grid;
   grid-template-columns: auto auto;

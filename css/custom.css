@@ -756,10 +756,11 @@ h5 {
   #nav-inner .subnav {
     display: none;
     height: 45px;
-    width: 100vw;
+    width: 100%;
     position: absolute;
     left: 0;
     bottom: -45px;
+    z-index: 100;
     font-size: 0.8125rem;
   }
   #nav-inner .subnav ul {
@@ -1677,35 +1678,35 @@ h5 {
   }
 }
 
-#latest-header {
+#latest-news-header {
   height: 104px;
   width: 100%;
   padding: 0 15px;
   box-shadow: 0 5px 35px rgba(0, 0, 0, 0.1);
 }
 
-#latest-wrapper {
+#latest-news-wrapper {
   margin: 0 auto;
   max-width: 720px;
 }
 @media (min-width: 992px) {
-  #latest-wrapper {
+  #latest-news-wrapper {
     max-width: 940px;
   }
 }
 @media (min-width: 1260px) {
-  #latest-wrapper {
+  #latest-news-wrapper {
     max-width: 1164px;
   }
 }
 
-#latest-label {
+#latest-news-label {
   display: inline-block;
   height: 100%;
   margin: 0;
   padding: 0;
 }
-#latest-label span {
+#latest-news-label span {
   display: block;
   padding: 50% 0;
   color: #333645;
@@ -1713,7 +1714,7 @@ h5 {
   font-weight: 600;
   text-transform: uppercase;
 }
-#latest-label hr {
+#latest-news-label hr {
   margin: 0;
   width: 100%;
   border-color: #333645;
@@ -2214,14 +2215,14 @@ footer {
   list-style: none;
 }
 
-#footer-wrapper {
+#main-footer-wrapper {
   display: flex;
   flex-flow: column nowrap;
 }
-#footer-wrapper .footer-content {
+#main-footer-wrapper .main-footer-content {
   padding: 0 15px;
 }
-#footer-wrapper .footer-content:nth-of-type(-n+3) {
+#main-footer-wrapper .main-footer-content:nth-of-type(-n+3) {
   margin: 0 0 30px;
 }
 
@@ -2260,28 +2261,28 @@ footer {
     width: 220px;
   }
 
-  #footer-wrapper {
+  #main-footer-wrapper {
     flex-flow: row wrap;
     width: 750px;
     margin: 0 auto;
   }
-  #footer-wrapper .footer-content {
+  #main-footer-wrapper .main-footer-content {
     width: 50%;
   }
 }
 @media (min-width: 992px) {
   .footer-subsection > .footer-subsection-inner,
-#footer-wrapper {
+#main-footer-wrapper {
     width: 970px;
   }
 }
 @media (min-width: 1260px) {
   .footer-subsection > .footer-subsection-inner,
-#footer-wrapper {
+#main-footer-wrapper {
     width: 1200px;
   }
 
-  #footer-wrapper .footer-content {
+  #main-footer-wrapper .main-footer-content {
     width: 25%;
   }
 

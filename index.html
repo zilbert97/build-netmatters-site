@@ -216,7 +216,6 @@
             <span class="icon-arrow-right2"></span>
           </a>
 
-
           <div id="owl-container">
             <div class="owl-button" id="owl-button-1">
               <span></span>
@@ -236,8 +235,7 @@
             <div class="owl-button" id="owl-button-6">
               <span></span>
             </div>
-          </div>
-
+          </div> <!-- #owl-container -->
 
         </div> <!-- .container -->
       </div> <!-- .jumbotron -->
@@ -325,18 +323,9 @@
         <div id='about-wrapper'>
           <div id="about-contents">
             <h2>Netmatters</h2>
-            <p>
-              <strong>Netmatters Ltd is a leading web design, IT support and digital marketing agency based in Wymondham, Norfolk.</strong>
-            </p>
-
-            <p>
-              Founded in 2008, we work with businesses from a variety of industries to gain new prospects, nurture existing leads and further grow their sales.
-            </p>
-
-            <p>
-              We provide cost effective, reliable solutions to a range of services; from bespoke cloud-based management systems, workflow and IT solutions through to creative website development and integrated digital campaigning.
-            </p>
-
+            <p><strong>Netmatters Ltd is a leading web design, IT support and digital marketing agency based in Wymondham, Norfolk.</strong></p>
+            <p>Founded in 2008, we work with businesses from a variety of industries to gain new prospects, nurture existing leads and further grow their sales.</p>
+            <p>We provide cost effective, reliable solutions to a range of services; from bespoke cloud-based management systems, workflow and IT solutions through to creative website development and integrated digital campaigning.</p>
             <a href="#">
               <span class="button-text">Our culture</span>
               <span class="icon-arrow-right2"></span>
@@ -346,10 +335,9 @@
       </section> <!-- #about -->
 
       <section id="latest-news">
-
-        <header id="latest-header">
-          <div id="latest-wrapper">
-            <div id="latest-label">
+        <header id="latest-news-header"> <!-- #latest-news-header -->
+          <div id="latest-news-wrapper"> <!-- #latest-news-wrapper -->
+            <div id="latest-news-label"> <!-- #latest-news-label -->
               <span>Latest</span>
               <hr></hr>
             </div>
@@ -451,6 +439,8 @@
     </main>
 
     <footer>
+
+      <!-- Clients -->
       <section id="clients" class="footer-subsection">
         <div class="footer-subsection-inner">
 
@@ -460,8 +450,10 @@
           </div>
 
           <div class="footer-subsection-item">
-            <img src="../img/crane-color.png" alt="" class="item-color">
-            <img src="../img/crane-greyscale.jpeg" alt="" class="item-greyscale">
+            <a href="#">
+              <img src="../img/crane-color.png" alt="" class="item-color">
+              <img src="../img/crane-greyscale.jpeg" alt="" class="item-greyscale">
+            </a>
           </div>
 
           <div class="footer-subsection-item">
@@ -476,15 +468,14 @@
             </a>
           </div>
 
-        </div>
-      </section> <!-- Businesses hidden at small breakpoint -->
+        </div> <!-- footer-subsection-inner -->
+      </section> <!-- .footer-subsection -->
 
-
-
+      <!-- Contact info and links -->
       <section id="main-footer">
-        <div id="footer-wrapper">
+        <div id="main-footer-wrapper">
 
-          <div class="footer-content">
+          <div class="main-footer-content">
             <h6>Contact us</h6>
             <address>
               11 Penfold Drive<br>
@@ -498,7 +489,7 @@
             </address>
           </div>
 
-          <div class="footer-content">
+          <div class="main-footer-content">
             <h6>About netmatters</h6>
             <ul>
               <li><a href="#">News</a></li>
@@ -509,16 +500,16 @@
               <li><a href="#">Cookie Policy</a></li>
               <li><a href="#">Terms &amp; Conditions</a></li>
               <li><a href="#">UK Domains</a></li>
-            </ul> <!-- list of links (no bullet points) -->
+            </ul>
           </div>
 
-          <div class="footer-content">
+          <div class="main-footer-content">
             <h6>Website</h6>
             <a href="#">Sitemap</a><br> <!-- ? -->
             <span>&copy; Copyright Netmatters Ltd. 2020<br>All rights reserved</span>
           </div>
 
-          <div class="footer-content">
+          <div class="main-footer-content">
             <h6>Social media</h6>
             <div id="button-grid">
               <a class="social-button" id="facebook-button" href="https://en-gb.facebook.com/netmatters/" target="_blank">
@@ -533,13 +524,13 @@
             </div>
           </div>
 
-        </div> <!-- #footer-wrapper -->
-      </section> <!-- Main footer content -->
+        </div> <!-- #main-footer-wrapper -->
+      </section> <!-- #main-footer -->
 
-
+      <!-- Accreditations -->
       <section class="footer-subsection">
         <div class="footer-subsection-inner">
-          <!-- GOOGLE PARTNER BADGE -->
+
           <div class="footer-subsection-item">
             <img src="../img/google-partner.jpg" alt="Google Partner badge" id="google-partner-badge">
           </div>
@@ -563,9 +554,8 @@
             <img src="../img/ncc-greyscale.jpeg" alt"Norfolk Carbon Charter (2019) Silver badge" class="item-greyscale">
           </div>
 
-        </div>
-      </section> <!-- Accreditations -->
-      <!-- 50px top and bottom padding, sizing (height) is border-box
+        </div> <!-- .footer-subsection-inner -->
+      </section> <!-- .footer-subsection -->
 
     </footer>
   </body>
