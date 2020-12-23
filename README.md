@@ -17,7 +17,7 @@ My HTML and CSS review
 - [ ] Hide checkbox overlay when search is expanded at the large breakpoint
 - [ ] Navigatiopn text vertical position
 - [ ] Jumbotron border top colour
-- [ ] Jumbotron gradient
+- [x] Jumbotron gradient ***Still not 100% identical but a closer approximation***
 - [ ] Slight difference in button size and position
 
 ###### Header
