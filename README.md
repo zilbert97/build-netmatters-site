@@ -4,7 +4,7 @@ My HTML and CSS review
 ## To-do:
 
 ### Phase 1 - missing content:
-- [ ] Add box shadow to Google Partner logo
+- [x] Add box shadow to Google Partner logo
 - [ ] Add description boxes for clients and news card categories on hover state
 - [ ] Integrate scroll-show header behaviour
 - [x] Add sub-navigation
