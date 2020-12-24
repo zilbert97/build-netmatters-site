@@ -11,11 +11,10 @@ My HTML and CSS review
 - [x] Jumbotron owl buttons
 
 ### Phase 2 - layout tweaks and other minor changes:
-- [ ] Something is causing a horizontal scroll bar - find out what and fix it
+- [ ] Latest news section speech boxes are causing horizontal scroll. We cannot set overflow to visible and hidden on X and Y axes individually - fix bug, see lines 10-16 in latest_news partial
 - [ ] Remove transition from Hamburger
 - [ ] Remove background from page title logo
 - [ ] Search icon is too small - look to change or increase size while maintaining 23px font size
-- [ ] Hide checkbox overlay when search is expanded at the large breakpoint
 - [ ] Navigation text vertical position
 - [ ] Jumbotron border top colour
 - [x] Jumbotron gradient ***Still not 100% identical but a closer approximation***
