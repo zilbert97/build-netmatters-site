@@ -10,7 +10,8 @@ My HTML and CSS review
 - [x] Add sub-navigation
 - [x] Jumbotron owl buttons
 
-### Pahse 2 - layout tweaks and other minor changes:
+### Phase 2 - layout tweaks and other minor changes:
+- [ ] Something is causing a horizontal scroll bar - find out what and fix it
 - [ ] Remove transition from Hamburger
 - [ ] Remove background from page title logo
 - [ ] Search icon is too small - look to change or increase size while maintaining 23px font size
