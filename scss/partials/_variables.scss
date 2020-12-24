@@ -47,7 +47,7 @@ $field-focus-color : #5bc0de;
 
 
 //==========================
-// VIEWPORTS
+// BREAKPOINTS
 //==========================
 $breakpoints: (
   's'  : 767px,                        // SMALL:   0px-767px
@@ -55,6 +55,25 @@ $breakpoints: (
   'l'  : 992px,                        // LARGE:   992px-1259px
   'xl' : 1260px,                       // X-LARGE: >= 1260px
 );
+
+// Many blocks of content have the same max-width adjusting for each
+// breakpoint. This mixin makes my code more dry by setting the max-width of
+// containers. This is on the basis that the box-sizing is set to border-box.
+
+@mixin set-content-width {
+  $map-of-widths: (
+    's'  : 750px,
+    'm'  : 750px,
+    'l'  : 970px,
+    'xl' : 1200px,
+  );
+  @each $key, $value in $breakpoints {
+    @media (min-width: $value) {
+      max-width: map-get($map-of-widths, $key);
+    }
+  }
+}
+
 
 //==========================
 // UTILITIES

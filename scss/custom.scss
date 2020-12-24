@@ -18,10 +18,6 @@
   display            : grid;
   grid-template-rows : max-content auto;
   height             : 100vh;
-
-  .btn-primary {
-    background-color : map-get($nm-services, 'it-support');
-  }
 }
 
 //=====================================
@@ -38,14 +34,20 @@
 // Burger   30
 // Search   50      20
 
+.main-header,
+#nav-inner,
+.subnav > ul {                         // Set max-width at each breakpoint
+  @include set-content-width;
+}
+
 .main-header {
-  display         : flex;
-  position        : relative;          // For positioning checkbox toggle relative to .main-header
-  flex-flow       : row wrap;
-  align-items     : center;
-  justify-content : center;
-  padding         : 20px 15px;
-  min-height      : 168px;
+  display        : flex;
+  position       : relative;           // For positioning checkbox toggle relative to .main-header
+  flex-flow      : row wrap;
+  align-items    : center;
+  justify-content: center;
+  padding        : 20px 15px;
+  min-height     : 168px;
 }
 
 #logo-container {
@@ -61,87 +63,86 @@
 #toggle {display: none;}
 
 #buttons-container {
-  order           : 10;                // Place after logo, before burger
-  display         : flex;              // Is a flex container (as well as item)
-  flex-flow       : row nowrap;
-  align-items     : center;
-  justify-content : flex-end;
+  order          : 10;                 // Place after logo, before burger
+  display        : flex;               // Is a flex container (as well as item)
+  flex-flow      : row nowrap;
+  align-items    : center;
+  justify-content: flex-end;
 
   #support-button {display: none;}
   #contact-button {display: none;}
 
   #voip-icon {
-    width      : 70px;
-    height     : auto;
-    text-align : center;
-    position   : relative;
-    cursor     : pointer;
+    width            : 70px;
+    height           : auto;
+    text-align       : center;
+    position         : relative;
+    cursor           : pointer;
 
     hr {display: none;}
 
     @include combined-ui {
       hr {
-        display       : block;
-        position      : absolute;
-        top           : 60%;
-        left          : 25%;
-        width         : 35px;
-        border-color  : $dark-1;
-        border-width  : 3px;
-        margin-bottom : 12px;
+        display      : block;
+        position     : absolute;
+        top          : 60%;
+        left         : 25%;
+        width        : 35px;
+        border-color : $dark-1;
+        border-width : 3px;
+        margin-bottom: 12px;
       }
     }
 
     [class^="icon-"] {
-      color     : $dark-1;
-      font-size : 2rem;                // 32px
+      color          : $dark-1;
+      font-size      : 2rem;           // 32px
     }
   }  // #voip-icon
 }  // #buttons-container
 
 #search-container {
   margin-top : auto;
-  flex-basis : 100%;    // Grow the search-container to full width, to wrap below
-  order      : 50;      // Place after hamburger-container (last item)
+  flex-basis : 100%;                   // Grow the search-container to full width, to wrap below
+  order      : 50;                     // Place after hamburger-container (last item)
   position   : relative;
 
   #search-input {
-    height      : 48px;
-    width       : 100%;
-    padding     : 5px 40px 5px 15px;
+    height          : 48px;
+    width           : 100%;
+    padding         : 5px 40px 5px 15px;
 
-    font-size   : .875rem;             // 14px
-    line-height : 1.4;
-    color       : $search-input;
+    font-size       : .875rem;         // 14px
+    line-height     : 1.4;
+    color           : $search-input;
 
-    background-color : $search-background;
-    border           : 2px solid $search-border;
-    border-radius    : 2px;
-    box-shadow       : $shadow-inset;
+    background-color: $search-background;
+    border          : 2px solid $search-border;
+    border-radius   : 2px;
+    box-shadow      : $shadow-inset;
 
     &:focus {                          // At S breakpoint remove inner shadow
-      box-shadow     : none;           // when focused
-      outline        : 0;
+      box-shadow    : none;            // when focused
+      outline       : 0;
     }
   }
 
   #search-icon {
-    position : absolute;
-    z-index  : 100;
-    right    : 12px;
-    top      : 10px;
+    position  : absolute;
+    z-index   : 100;
+    right     : 12px;
+    top       : 10px;
 
-    color      : $dark-1;
-    font-style : 400;
-    font-size  : 1.25rem;  // 20px
+    color     : $dark-1;
+    font-style: 400;
+    font-size : 1.25rem;               // 20px
   }
 
   #search-button {display: none;}      // Only append to search field at wider breakpoints
-
 }  // #search-container
 
 #hamburger-container {
-  order: 30;                           // Place after buttons-container, before search-container
+  order      : 30;                     // Place after buttons-container, before search-container
   margin-left: 20px;                   // NTD: Change hover state of hamburger _burger-sauce (not ease)
 }
 
@@ -170,7 +171,7 @@
 
     #search-input {
       height           : $header-button-height;
-      width            : 174px;  // Make set width
+      width            : 174px;
       background-color : $light-1;
       border-width     : 1px;
       border-radius    : 0;
@@ -200,7 +201,6 @@
 @media (min-width: map-get($breakpoints, 'l')) {
 
   .main-header {
-    width          : 970px;
     justify-content: space-between;
   }
 
@@ -261,9 +261,14 @@
     }
   }
 
-  // NTD:
-  // - When switching breakpoints animation occurs - ideally animation only upon UI.
-  // - Uncheck toggle when click away (I think this is only possible by using JavaScript/JQuery)
+  // For the hidden checkbox toggle the expected behaviour is when selected
+  // hide other buttons and expand the search container (this is the current
+  // behaviour). If no text in the search box then re-clicking the search icon
+  // should close the search field, but if there is text in the field then
+  // clicking the search icon should submit the text to perform a search. In
+  // addition clicking outside of the search field while there is no text
+  // input should re-close the search field. This behaviour seems to depend
+  // on additional logic.
 
   #toggle:checked ~ #search-container {
     #search-button {
@@ -288,19 +293,17 @@
   }
 
   #nav-container {
-    display    : block;
-    height     : 99px;
-    width      : 100%;
+    display         : block;
+    height          : 99px;
+    width           : 100%;
 
     background-color: $dark-1;
-    position: relative;                // For positioning sub-navigation
+    position        : relative;        // For positioning sub-navigation
   }
 
   #nav-inner {
-    width      : 940px;
     height     : 100%;
     padding    : 0 15px;
-    box-sizing : content-box;
     margin     : 0 auto;
 
     ul {                               // A flex container for li flex items
@@ -361,9 +364,9 @@
       font-size: .8125rem;             // 13px
 
       ul {
-        width  : 940px;                // Span same width as major navigation
         margin : 0 auto;
         border : none;
+        padding: 0 15px;
       }
       a {
         display         : block;
@@ -390,9 +393,6 @@
           color            : $light-1;
         }
       }
-      a:hover {
-        text-decoration    : none;
-      }
       .nav-item-name {
         color              : $light-1;
       }
@@ -404,11 +404,6 @@
 }  // @media(L)
 
 @media (min-width: map-get($breakpoints, 'xl')) {
-
-  .main-header {
-    width: 1200px;
-  }
-
   #toggle {display: none;}
 
   #search-container {
@@ -429,9 +424,7 @@
   }
 
   #nav-inner {
-    width: 1170px;
     .subnav > ul {
-      width: 1170px;
       font-size: 1rem;
     }
   }
@@ -571,7 +564,6 @@
 
   flex-shrink : 1;                     // Prevents cards from overflowing the
                                        // flex container
-
   margin               : 30px 15px 0;
 
   border               : 1px solid $search-border;
@@ -592,7 +584,6 @@
     flex-flow          : column nowrap;
     align-items        : center;
     color              : inherit;  // Override deafault <a> element styling
-    text-decoration    : inherit;
   }
 
   [class^="icon-"] {
@@ -689,7 +680,6 @@
 //=====================================
 
 #about {
-  min-height       : 493px;
   padding          : 50px 0;
 
   background-color : $dark-1;
@@ -705,7 +695,6 @@
   }
 
   #about-contents {
-    box-sizing: content-box;
     padding          : 0 15px;
 
     h2 {
@@ -734,12 +723,9 @@
       }
     }
 
+    @include set-content-width;
     @media (min-width: map-get($breakpoints, 'm')) {
-      width          : 720px;
       margin         : auto;           // Centered on page
-    }
-    @media (min-width: map-get($breakpoints, 'l')) {
-      width          : 940px;
     }
     @media (min-width: map-get($breakpoints, 'xl')) {
       width          : 50%;            // Take up 50% of parent about-wrapper
@@ -760,20 +746,14 @@
 #latest-news-header {
   height     : 104px;
   width      : 100%;
-  padding    : 0 15px;
-
   box-shadow : 0 5px 35px rgba(0,0,0,.1);    // NTD: variable
 }
 
-#latest-news-wrapper {
+#latest-news-inner {
   margin     : 0 auto;
-  max-width  : 720px;
-  @media (min-width: map-get($breakpoints, 'l')) {
-    max-width: 940px;
-  }
-  @media (min-width: map-get($breakpoints, 'xl')) {
-    max-width: 1164px;
-  }
+  padding    : 0 15px;
+
+  @include set-content-width;
 }
 
 #latest-news-label {
@@ -799,7 +779,6 @@
   }
 }
 
-
 #news-board {
   display       : flex;
   flex-direction: column;
@@ -822,7 +801,7 @@
   }
 }
 
-@mixin latest-card($card-category) {
+@mixin latest-card($card-category, $desc-box-position-small:0, $desc-box-position-large:0) {
 
   @media (min-width: map-get($breakpoints, 'm')) {
     flex: 345px 0 0;
@@ -837,23 +816,19 @@
   $content-color : map-get($nm-services, $card-category);
 
   margin        : 15px;
-  overflow      : hidden;
+  // overflow      : hidden;
 
   border        : 1px solid $search-border;   // NTD: Check color
   border-radius : $border-radius;
 
-  .dialogue-box {
-    display     : none;
-  }
-
   .news-card-cover {
     display       : block;
-    position      : relative;            // For the news-card-category to be placed on top of
-    overflow      : hidden;
+    position      : relative;            // For positioning .news-card-category and .dialogue-box
 
     .image-wrapper {
       height        : auto;
       border-bottom : 1px solid $search-border;
+      overflow      : hidden;
 
       .news-card-image {
         // display: block;
@@ -877,14 +852,12 @@
 
     .news-card-category {
       position : absolute;
-      top      : 0;
+      top: 10px;
       right    : 0;
-      text-decoration: none;
       text-transform: uppercase;
       color: $light-1;
       background-color: $content-color;
       padding: 0 10px;
-      top: 10px;
       font-size: .75rem;  // 12px
       line-height: 23px;
       font-weight: 600;
@@ -917,6 +890,9 @@
       color       : $content-color;
       font-size   : 1rem;
       font-weight : 600;
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     .title-link:hover {
@@ -955,22 +931,84 @@
       border-radius: 50%;
     }
   }  // .news-card-summary
+
+  .description-box {
+    position        : absolute;
+    bottom          : 100%;
+    z-index         : 1000;
+    visibility      : collapse;
+
+    padding         : 10px 15px;
+
+    max-width       : 150px;
+    right           : $desc-box-position-small;
+
+    @media (min-width: map-get($breakpoints, 'm')) {
+      max-width     : 200px;
+      right         : $desc-box-position-large;
+    }
+
+    background-color: transparentize($dark-1, .1);
+
+    color           : $light-1;
+    font-size       : .75rem; //12px
+    text-align      : center;
+
+    // vertical-align  : top;
+
+    &:before {
+     content: "";
+     width: 0px;
+     height: 0px;
+     position: absolute;
+     border-left: 6px solid transparent;
+     border-right: 6px solid transparent;
+     border-top: 6px solid transparentize($dark-1, .1);
+     border-bottom: 6px solid transparent;
+     right: 45%;
+     bottom: -12px;
+    }
+  }
+
+  .news-card-category + .description-box {
+    transition : opacity .3s cubic-bezier(.215,.61,.355,1),
+                 visibility .1s .3s;      // wait for the opacity transition before making visibiiltiy collapse. // NTD: Vars
+    opacity    : 0;
+    visibility: collapse;
+  }
+
+  .news-card-category:hover + .description-box {
+    transition : opacity .3s cubic-bezier(.215,.61,.355,1);
+    opacity    : 1;
+    visibility : visible; // On hover, show dialog box describing the card category
+  }
+
   @content;
 }  // @mixin latest-card
 
+// Each card's description-box (the hidden speech bubble) is individually
+// positioned, for both small and medium+ breakpoints... not the most elegant
+// solution
 
 #kati-25th-birthday {
-  @include latest-card($card-category: 'it-support');
+  @include latest-card(
+    $card-category: 'it-support',
+    $desc-box-position-small: -45px,
+    $desc-box-position-large: -67px);
 }
 
 #zsea-case-study {
-  @include latest-card($card-category: 'it-support');
+  @include latest-card(
+    $card-category: 'it-support',
+    $desc-box-position-small: -20px,
+    $desc-box-position-large: -40px);
 }
 
 #now-hiring {
-  @include latest-card($card-category: 'bespoke-software');
+  @include latest-card(
+    $card-category: 'bespoke-software',
+    $desc-box-position-large: -55px);
 }
-
 
 //=====================================
 // FOOTER
@@ -986,135 +1024,118 @@ footer {
 }
 
 #main-footer {
-  padding: 47px 0 43px;
+  padding         : 47px 0 43px;
   background-color: $dark-1;
 
   h6 {
-    // display: inline;
-    font-size: 1rem;
-    font-weight: 400;
+    font-size     : 1rem;
+    font-weight   : 400;
     text-transform: uppercase;
-    margin-bottom: 26px;
+    margin-bottom : 26px;
   }
 
   a {
     color: inherit;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   address, span, a {
-    font-size: .8125rem;               // 13px
+    font-size    : .8125rem;           // 13px
   }
 
   ul {                                 // A flex container for li flex items
-    margin   : 0;
-    padding  : 0;
-    list-style : none;
+    margin       : 0;
+    padding      : 0;
+    list-style   : none;
   }
 }
 
-  // DEFAULTS:
-  // justify-content: flex-start;
-  // align-items: stretch;
-
-#main-footer-wrapper {
-  display: flex;
-  flex-flow: column nowrap;
+#main-footer-inner {
+  display        : flex;
+  flex-flow      : column nowrap;
 
   .main-footer-content {
-    padding: 0 15px;
+    padding      : 0 15px;
   }
   .main-footer-content:nth-of-type(-n+3) {  // Apply to all flex items except last
-    margin: 0 0 30px;
+    margin       : 0 0 30px;
   }
+
+  #button-grid {
+    display      : grid;
+    width        : 100%;
+    grid-template: 55px 55px / auto auto;  // <rows> / <columns>
+    grid-gap     : 30px;
+
+    @each $key, $color in $social-buttons-ui {
+      ##{$key}-button {
+        @include button-base-style($service: $key, $context: 'footer') {
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }  // @each
+  }  // #button-grid
+}  // #main-footer-inner
+
+.footer-subsection-inner,              // Sets max-width of containers for each
+#main-footer-inner {                   // breakpoint
+  @include set-content-width;
 }
 
 @media (min-width: map-get($breakpoints, 'm')) {
 
   .footer-subsection {                 // Apply to clients & accreditations
-    display: block;
-    padding: 50px 0;
+    display          : block;
+    padding          : 50px 0;
     &-inner {
-      width: 750px;
-      padding: 0 15px;
-      margin         : 0 auto;
-
       display        : flex;
       flex-flow      : row nowrap;
       justify-content: center;
       align-content  : flex-start;
+      margin         : 0 auto;
+      padding        : 0 15px;
     }
   }
 
   .footer-subsection-item {
-    padding: 0 20px;
+    padding          : 0 20px;
     img {
-      max-width: 100%;
-      height: auto;
+      max-width      : 100%;
+      height         : auto;
     }
 
-    .item-color {display: none;}
-    &:hover {
+    .item-color {display: none;}       // Show & hide color/greyscale versions
+    &:hover {                          // based on hover state
       .item-color {display: block}
       .item-greyscale {display: none}
     }
 
     #google-partner-badge {
-      width: 220px;
+      width     : 220px;
+      box-shadow: 1px 1px 2px rgba(0,0,0,.2);   // NTD: Var
     }
   }
 
-
-
-  #main-footer-wrapper {
+  #main-footer-inner {
     flex-flow: row wrap;
-    width: 750px;
-    margin: 0 auto;
+    margin   : 0 auto;
     .main-footer-content {
-      width: 50%;
+      width  : 50%;
     }
   }
 }
-
-@media (min-width: map-get($breakpoints, 'l')) {
-  .footer-subsection > .footer-subsection-inner,
-  #main-footer-wrapper {
-    width: 970px;
-  }
-}
-
 
 @media (min-width: map-get($breakpoints, 'xl')) {
-  .footer-subsection > .footer-subsection-inner,
-  #main-footer-wrapper {
-    width: 1200px;
-  }
-
-  #main-footer-wrapper {
+  #main-footer-inner {
     .main-footer-content {
       width: 25%;
     }
   }
-  .footer-subsection {
-    &-inner {
-      justify-content: space-evenly;
-    }
-  }
-}
-
-// NTD: Set basis and scaling for each flex item.
-
-// Only applies to one .main-footer-content container
-#button-grid {
-  display              : grid;
-  grid-template-columns: auto auto;
-  grid-template-rows   : 55px 55px;
-  grid-gap             : 30px;
-
-  width: 100%;  // 100% width of the parent container
-
-  @each $key, $color in $social-buttons-ui {
-    ##{$key}-button {
-      @include button-base-style($service: $key, $context: 'footer');
-    }
+  .footer-subsection-inner {
+    justify-content: space-evenly;
   }
 }

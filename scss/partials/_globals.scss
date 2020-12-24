@@ -8,6 +8,10 @@ body {
   letter-spacing: .4px;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 h1 {
   font-size      : 3rem;
   font-weight    : 400;
@@ -44,15 +48,14 @@ h5 {
   color            : $light-1;
   font-weight      : 400;
   text-align       : center;
-  text-decoration  : none;
   text-transform   : uppercase;
 
-  vertical-align: middle;
+  vertical-align   : middle;
 
   .button-text,
   [class^="icon-"] {
-    display: inline-block;
-    vertical-align: middle;
+    display        : inline-block;
+    vertical-align : middle;
   }
 
   // I'm using the value passed to the $context parameter to set button and
@@ -76,14 +79,14 @@ h5 {
     }
   }
   @else if $context == "footer" {
-    height: 55px;
-    width: 100%;
-    border-radius: 0;
+    height         : 55px;
+    width          : 100%;
+    border-radius  : 0;
     [class^="icon-"] {
-      font-size: 1.75rem; // 28px
+      font-size    : 1.75rem;          // 28px
     }
   }
-  @else {                             // $context=='body' as default
+  @else {                              // $context=='body' as default
     padding        : 5px 15px;
     line-height    : 35px;
     font-size      : 1.0625rem;        // 17px
