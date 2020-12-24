@@ -1,0 +1,99 @@
+//=====================================
+// JUMBOTRON
+//=====================================
+// Jumbotron is a flex container for
+// its content as well as a grid item
+
+.jumbotron {
+  position        : relative;          // For positioning owl buttons
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  margin          : 0;
+
+  background      : linear-gradient(to right, #000, rgba(0,0,0,.3)),
+                    linear-gradient(to left, rgba(0,0,0,.3), transparent 25%),
+                    $primary-dark url('../img/web-design-background.jpeg') no-repeat center;
+  background-size : cover;
+
+  border-top      : 1px solid #666; // On site this is rgba(51,54,69.5) - and is lighter? NTD: check, use a variable
+
+  color           : $primary-light;
+  text-align      : center;
+  @media (min-width: map-get($breakpoints, 'l')) {
+    text-align    : left;
+  }
+
+  .container {
+    @include set-content-width;
+  }
+
+  /*
+  .container {
+    max-width     : 970px;
+    @media (min-width: map-get($breakpoints, 'xl')) {
+      max-width   : 1200px;
+    }
+  }
+  */
+
+  h1 {
+    text-transform: uppercase;
+    margin-bottom : 25px;
+  }
+  .lead {
+    line-height   : 2.25rem;
+    font-weight   : 400;
+    margin-bottom : 35px;
+  }
+
+  .jumbotron-button {
+    @include button-base-style($service: 'web-design', $context: 'jumbo') {
+      [class^="icon-"] {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+#owl-container {
+  position          : absolute;        // Position relative to the jumbotron
+  text-align        : center;
+  width             : 100%;
+  left              : 0;
+  bottom            : 40px;
+
+  span {
+    display         : inline-block;
+    margin          : 0 8px;
+    width           : 11px;
+    height          : 11px;
+    background-color: rgba(255,255,255,.5); // NTD: Var
+    border-radius   : 50%;
+    vertical-align  : middle;
+    cursor          : pointer;
+  }
+
+  .owl-button {
+    display           : inline-block;
+    position          : relative;
+
+    &:hover > span {
+      background-color: #869791; // NTD: Var
+    }
+
+    span:active {
+      background-color: $primary-light;
+      &::after {
+        content       : "";
+        position      : absolute;
+        border-radius : 50%;
+        border        : 2px solid $primary-light;
+        width         : 23px;
+        height        : 23px;
+        top           : 1px;
+        right         : 2px;
+      }
+    }
+  }  // .owl-button
+}  // #owl-container

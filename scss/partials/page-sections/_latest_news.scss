@@ -1,0 +1,281 @@
+//=====================================
+// LATEST NEWS CARDS
+//=====================================
+// The container with all the cards in
+// is a flex container.
+
+// Each card is a flex item.
+
+#news-board {
+  // In order to prevent horizntal scrollbar I need to
+  // set overflow to hidden but only on X - this is not
+  // possible as Y will be set as well... because
+  // overflow-x: hidden and overflow-y: visible cannot
+  // be used in combination.
+  // https://stackoverflow.com/questions/6421966/css-overflow-x-visible-and-overflow-y-hidden-causing-scrollbar-issue
+  // https://www.gavsblog.com/blog/only-hide-css-overflow-on-a-single-x-or-y-axis-or-ignore-it
+}
+
+#latest-news-header {
+  height     : 104px;
+  width      : 100%;
+  box-shadow : 0 5px 35px rgba(0,0,0,.1);    // NTD: variable
+}
+
+#latest-news-inner {
+  margin     : 0 auto;
+  padding    : 0 15px;
+
+  @include set-content-width;
+}
+
+#latest-news-label {
+  display    : inline-block;
+  height     : 100%;
+  margin     : 0;
+  padding    : 0;
+
+  span {
+    display        : block;
+    padding        : 50% 0;
+    color          : $primary-dark;
+    font-size      : 1.25rem;          // 16px
+    font-weight    : 600;
+    text-transform : uppercase;
+  }
+
+  hr {
+    margin         : 0;
+    width          : 100%;
+    border-color   : $primary-dark;
+    border-width   : 5px;
+  }
+}
+
+#news-board {
+  display       : flex;
+  flex-direction: column;
+  flex-wrap     : nowrap;
+  padding       : 35px 0;
+  box-shadow    : 0 5px 35px rgba(0,0,0,.1);
+
+  @media (min-width: map-get($breakpoints, 'm')) {
+    flex-direction : row;
+    justify-content: center;
+
+    .news-card:nth-child(1n+3) {       // Hide 3rd item and all others after it (if there are any)
+      display: none;
+    }
+  }
+  @media (min-width: map-get($breakpoints, 'xl')) {
+    .news-card:nth-child(1n+3) {
+      display: block;
+    }
+  }
+}
+
+@mixin latest-card($card-category, $desc-box-position-small:0, $desc-box-position-large:0) {
+
+  @media (min-width: map-get($breakpoints, 'm')) {
+    flex: 345px 0 0;
+  }
+  @media (min-width: map-get($breakpoints, 'l')) {
+    flex: 455px 0 0;
+  }
+  @media (min-width: map-get($breakpoints, 'xl')) {
+    flex: 370px 0 0;
+  }
+
+  $content-color : map-get($nm-services, $card-category);
+
+  margin        : 15px;
+
+  border        : 1px solid $search-border;   // NTD: Check color
+  border-radius : $border-radius;
+
+  .news-card-cover {
+    display       : block;
+    position      : relative;            // For positioning .news-card-category and .dialogue-box
+
+    .image-wrapper {
+      height        : auto;
+      border-bottom : 1px solid $search-border;
+      overflow      : hidden;
+
+      .news-card-image {
+        width       : 100%;  // Adjusts with card size
+      }
+    }
+
+    @media (min-width: map-get($breakpoints, 'l')) {
+      .image-wrapper > .news-card-image {
+        transition : transform .25s cubic-bezier(.215,.61,.355,1);
+        transform  : scale(1);
+        opacity    : 1;
+      }
+      .image-wrapper:hover > .news-card-image {
+        transition : transform .25s cubic-bezier(.215,.61,.355,1),
+                      opacity .25s cubic-bezier(.215,.61,.355,1);
+        transform  : scale(1.1);
+        opacity    : .75;
+      }
+    }
+
+    .news-card-category {
+      position : absolute;
+      top: 10px;
+      right    : 0;
+      text-transform: uppercase;
+      color: $primary-light;
+      background-color: $content-color;
+      padding: 0 10px;
+      font-size: .75rem;               // 12px
+      line-height: 23px;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }  // .news-card-cover
+
+  .news-card-summary {
+    display     : flex;
+    flex-flow   : row wrap;
+    align-items : center;
+    padding     : 30px;
+
+    h6, p {
+      line-height : 22px;
+    }
+
+    p {
+      color       : #666;              // NTD: Use a variable
+      padding     : 0;
+      margin      : 0;
+    }
+
+    h6 {
+      flex        : 100% 1 1;
+      margin      : 0 0 15px 0;
+      color       : $content-color;
+      font-size   : 1rem;
+      font-weight : 600;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .title-link:hover {
+      color: $content-color;
+    }
+
+    .card-description {
+      flex        : 100% 1 1;
+      margin      : 0 0 25px 0;
+      font-size   : .8125rem;          // 13px
+    }
+
+    .read-more {
+      flex        : auto 0 0;
+      @include button-base-style($service: $card-category, $context: 'body');  // Same color as IT support buttons
+    }
+
+    hr {
+      flex         : 100% 1 1;         // Be full width, can grow and shrink
+      border-color : $search-border;
+      margin       : 30px 0;
+    }
+
+    .card-publish-info {
+      flex         : auto 1;
+      padding      : 0 0 0 20px;
+      font-size    : .875rem;          // 14px
+
+      strong {
+        font-weight: 600;
+        color      : $primary-dark;
+      }
+    }
+    .logo-small {
+      width        : 47px;
+      border-radius: 50%;
+    }
+  }  // .news-card-summary
+
+  .description-box {
+    position        : absolute;
+    bottom          : 100%;
+    visibility      : collapse;
+
+    padding         : 15px 15px;
+
+    max-width       : 150px;
+    right           : $desc-box-position-small;
+
+    @media (min-width: map-get($breakpoints, 'm')) {
+      max-width     : 200px;
+      right         : $desc-box-position-large;
+    }
+
+    background-color: transparentize($primary-dark, .1);
+
+    color           : $primary-light;
+    font-size       : .75rem;          //12px
+    text-align      : center;
+
+    &:before {
+      content      : "";
+      position     : absolute;
+      right        : 45%;
+      bottom       : -12px;
+      width        : 0px;
+      height       : 0px;
+
+      border-top   : 6px solid transparentize($primary-dark, .1);
+      border-bottom: 6px solid transparent;
+      border-left  : 6px solid transparent;
+      border-right : 6px solid transparent;
+    }
+  }
+
+  .news-card-category + .description-box {
+    transition : opacity .3s cubic-bezier(.215,.61,.355,1),
+                 visibility .1s .3s;      // wait for the opacity transition before making visibiiltiy collapse. // NTD: Vars
+    opacity    : 0;
+    visibility: collapse;
+  }
+
+  .news-card-category:hover + .description-box {
+    transition : opacity .3s cubic-bezier(.215,.61,.355,1);
+    opacity    : 1;
+    visibility : visible; // On hover, show dialog box describing the card category
+  }
+
+  @content;
+}  // @mixin latest-card
+
+// Each card's description-box (the hidden speech bubble) is individually
+// positioned, for both small and medium+ breakpoints... not the most elegant
+// solution
+
+#kati-25th-birthday {
+  @include latest-card(
+    $card-category: 'it-support',
+    $desc-box-position-small: -45px,
+    $desc-box-position-large: -67px);
+}
+
+#zsea-case-study {
+  @include latest-card(
+    $card-category: 'it-support',
+    $desc-box-position-small: -20px,
+    $desc-box-position-large: -40px);
+}
+
+#now-hiring {
+  @include latest-card(
+    $card-category: 'bespoke-software',
+    $desc-box-position-small: -30px,
+    $desc-box-position-large: -55px);
+}

@@ -1,0 +1,409 @@
+//=====================================
+// HEADER
+//=====================================
+// The header is a flex container. The
+// order of flex item (containers of
+// similar elements) at each breakpoint
+// are as follows:
+//
+//         SMALL:  MEDIUM:  LARGE:  X-LARGE:
+// Logo     0
+// Buttons  10      (hide)   10
+// Burger   30
+// Search   50      20
+
+.main-header,
+#nav-inner,
+.subnav > ul {                         // Set max-width at each breakpoint
+  @include set-content-width;
+}
+
+.main-header {
+  display        : flex;
+  position       : relative;           // For positioning checkbox toggle relative to .main-header
+  flex-flow      : row wrap;
+  align-items    : center;
+  justify-content: center;
+  padding        : 20px 15px;
+  min-height     : 168px;
+}
+
+#logo-container {
+  flex           : 1 1 0;
+  margin-right   : 20px;
+  padding-bottom : 5px;
+  a > .logo {
+    max-width    : 100%;
+    min-width    : 0;
+  }
+}
+
+#toggle {display: none;}
+
+#buttons-container {
+  order          : 10;                 // Place after logo, before burger
+  display        : flex;               // Is a flex container (as well as item)
+  flex-flow      : row nowrap;
+  align-items    : center;
+  justify-content: flex-end;
+
+  #support-button {display: none;}
+  #contact-button {display: none;}
+
+  #voip-icon {
+    width            : 70px;
+    height           : auto;
+    text-align       : center;
+    position         : relative;
+    cursor           : pointer;
+
+    hr {display: none;}
+
+    @include combined-ui {
+      hr {
+        display      : block;
+        position     : absolute;
+        top          : 60%;
+        left         : 25%;
+        width        : 35px;
+        border-color : $primary-dark;
+        border-width : 3px;
+        margin-bottom: 12px;
+      }
+    }
+
+    [class^="icon-"] {
+      color          : $primary-dark;
+      font-size      : 2rem;           // 32px
+    }
+  }  // #voip-icon
+}  // #buttons-container
+
+#search-container {
+  margin-top : auto;
+  flex-basis : 100%;                   // Grow the search-container to full width, to wrap below
+  order      : 50;                     // Place after hamburger-container (last item)
+  position   : relative;
+
+  #search-input {
+    height          : 48px;
+    width           : 100%;
+    padding         : 5px 40px 5px 15px;
+
+    font-size       : .875rem;         // 14px
+    line-height     : 1.4;
+    color           : $search-input;
+
+    background-color: $search-background;
+    border          : 2px solid $search-border;
+    border-radius   : 2px;
+    box-shadow      : $shadow-inset;
+
+    &:focus {                          // At S breakpoint remove inner shadow
+      box-shadow    : none;            // when focused
+      outline       : 0;
+    }
+  }
+
+  #search-icon {
+    position  : absolute;
+    z-index   : 100;
+    right     : 12px;
+    top       : 10px;
+
+    color     : $primary-dark;
+    font-style: 400;
+    font-size : 1.25rem;               // 20px
+  }
+
+  #search-button {display: none;}      // Only append to search field at wider breakpoints
+}  // #search-container
+
+#hamburger-container {
+  order      : 30;                     // Place after buttons-container, before search-container
+  margin-left: 20px;                   // NTD: Change hover state of hamburger _burger-sauce (not ease)
+}
+
+#nav-container {display: none;}
+
+@media (min-width: map-get($breakpoints, 'm')) {
+  .main-header {
+    flex-wrap  : nowrap;
+    margin     : auto;
+    min-height : 110px;
+  }
+
+  #logo-container {
+    flex       : 0 0 auto;
+    box-sizing : content-box;
+    width      : 345px;
+    padding    : 0 15px;
+  }
+
+  #voip-icon {display: none;}
+
+  #search-container {
+    order  : 20;                       // Place after buttons-container, before hamburger-container
+    flex   : 0 0 auto;
+    margin : 0 0 0 20px;
+
+    #search-input {
+      height           : $header-button-height;
+      width            : 174px;
+      background-color : $primary-light;
+      border-width     : 1px;
+      border-radius    : 0;
+
+      &:focus {                        // At M breakpoint and above apply a
+        outline        : 0;            // blue-cyan effect
+        border-color   : $field-focus-color;
+        box-shadow     : $shadow-inset,
+                         $shadow-outer;
+      }
+    }
+
+    #search-icon {display: none;}
+
+    #search-button {
+      @include button-base-style($service: 'utility', $context: 'header') {
+        width         : $header-button-sq-width;
+        margin-left   : -5px;          // This ensures input & button are flush
+        padding-left  : 20px;
+        padding-right : 20px;
+        border-radius : 0 $border-radius $border-radius 0;  // Keep button style continuous with edge of search field
+      }
+    }
+  }  // #search-container
+}  // @media(M)
+
+@media (min-width: map-get($breakpoints, 'l')) {
+
+  .main-header {
+    justify-content: space-between;
+  }
+
+  #logo-container {
+    padding      : 0;
+    margin-right : auto;
+  }
+
+  #buttons-container {
+    #support-button {
+      @include button-base-style($service: 'it-support', $context: 'header') {
+        [class^="icon-"] {
+          margin-right: 10px;
+        }
+      }
+    }
+    #contact-button {
+      @include button-base-style($service: 'utility', $context: 'header') {
+        [class^="icon-"] {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  #search-container {
+    #search-input {
+      visibility    : hidden;          // Initially set to hidden for animation
+      width         : 300px;           // when button pressed.
+      position      : absolute;
+      right         : $header-button-sq-width;  // Offset by width of the search button
+      border-radius : $border-radius 0 0 $border-radius;
+    }
+    #search-button {
+      transition    : border-radius .2s ease-out;
+      border-radius : $border-radius;
+      margin-left   : 0;  // Remove -5px margin
+    }
+  }
+
+  // In order to target the buttons-container using a sibling selector I have
+  // reversed the source order. I have then reversed this using flexbox `order`
+  // and set `visibility: hidden;` to retain layout in place.
+
+  #toggle {                            // Hidden overlay checkbox which toggles
+    display  : block;                  // toggles the state of other elements.
+    position : absolute;               // Positioned relative to .main-header
+    right    : 98px;
+    z-index  : 100;                    // Ensure toggle is the top layer
+
+    width    : $header-button-sq-width;
+    height   : $header-button-sq-width;
+    opacity  : 0;                      // Hide from view
+    cursor   : pointer;
+
+    &:hover ~ #search-container > #search-button {
+      background-color: $utility-button-ui;
+    }
+  }
+
+  // For the hidden checkbox toggle the expected behaviour is when selected
+  // hide other buttons and expand the search container (this is the current
+  // behaviour). If no text in the search box then re-clicking the search icon
+  // should close the search field, but if there is text in the field then
+  // clicking the search icon should submit the text to perform a search. In
+  // addition clicking outside of the search field while there is no text
+  // input should re-close the search field. This behaviour seems to depend
+  // on additional logic.
+
+  #toggle:checked ~ #search-container {
+    #search-button {
+      transition    : border-radius .2s ease-out .2s;     // Open up rounded corners for flush fit
+      border-radius : 0 $border-radius $border-radius 0;  // with the search input field
+    }
+    #search-input {
+      @include fade-element-in;
+    }
+    & ~ #buttons-container {
+      @include fade-element-out;
+    }
+  }
+
+  #toggle:not(:checked) ~ #search-container {
+    #search-input {
+      @include fade-element-out;
+    }
+    & ~ #buttons-container {
+      @include fade-element-in;
+    }
+  }
+
+  #nav-container {
+    display         : block;
+    height          : 99px;
+    width           : 100%;
+
+    background-color: $primary-dark;
+    position        : relative;        // For positioning sub-navigation
+  }
+
+  #nav-inner {
+    height     : 100%;
+    padding    : 0 15px;
+    margin     : 0 auto;
+
+    ul {                               // A flex container for li flex items
+      display  : flex;
+      flex-flow: row nowrap;
+      margin   : 0;
+      padding  : 0;
+      height   : 100%;
+
+      list-style : none;
+
+      border-right: 1px solid rgba(0,0,0,.25);      // NTD: Vars
+      border-left : 1px solid hsla(0,0%,100%,.1);
+    }
+
+    .nav-item {
+      display  : inline-block;
+      flex     : calc(100%/6) 0 0;
+
+      border-left : 1px solid rgba(0,0,0,.25);      // NTD: Vars
+      border-right: 1px solid hsla(0,0%,100%,.1);
+    }
+
+    .nav-item > a {
+      display: block;
+      height : 100%;
+      width  : 100%;
+      padding: 19px 0 18px;
+    }
+
+    span {
+      display       : block;
+      font-size     : 1.125rem;       // 18px
+      line-height   : 1;
+      text-align    : center;
+      text-transform: uppercase;
+      small {
+        font-size   : .625rem;        // 10px
+      }
+    }
+
+    .nav-item-name {
+      margin-top    : 2px;
+    }
+
+    [class^=icon-] {
+      font-size     : 1.4375rem;      // 23px (more specific selector)
+    }
+
+    .subnav {
+      display  : none;                 // Only display on major nav hover state
+      height   : 45px;
+      width    : 100%;
+      position : absolute;             // Positioned relative to .nav-conteiner
+      left     : 0;
+      bottom   : -45px;
+      z-index  : 100;                  // Bring to front
+      font-size: .8125rem;             // 13px
+
+      ul {
+        margin : 0 auto;
+        border : none;
+        padding: 0 15px;
+      }
+      a {
+        display         : block;
+        color           : $primary-light;
+        line-height     : 45px;
+        text-transform  : uppercase;
+      }
+      li ~ li > a:before {             // Add content before to all subsequent
+        content         : "-";         // list items (except first)
+        padding         : 0 22px;
+      }
+    }  // .subnav
+  }  // #nav-inner
+
+  @each $service, $color in $nm-services {
+    #li-#{$service} {
+      &:hover {                        // On hover change color and show subnav
+        background-color   : $color;
+        .subnav {
+          display          : block;
+          background-color : map-get($nm-secondary, $service);
+        }
+        [class^=icon-] {
+          color            : $primary-light;
+        }
+      }
+      .nav-item-name {
+        color              : $primary-light;
+      }
+      [class^=icon-] {
+        color              : $color;
+      }
+    }
+  }  // @each
+}  // @media(L)
+
+@media (min-width: map-get($breakpoints, 'xl')) {
+  #toggle {display: none;}
+
+  #search-container {
+    #search-button {
+      border-radius : 0 $border-radius $border-radius 0;     // For flush flow with search box
+      margin-left   : -5px;
+      vertical-align: middle;
+    }
+    #search-input {
+      visibility : visible !important;
+      width      : 240px;
+      position   : static;
+    }
+  }
+
+  #buttons-container {
+    visibility   : visible !important;
+  }
+
+  #nav-inner {
+    .subnav > ul {
+      font-size: 1rem;
+    }
+  }
+}  // @media

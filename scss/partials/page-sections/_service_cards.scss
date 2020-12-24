@@ -1,0 +1,147 @@
+//=====================================
+// NETMATTERS SERVICE CARDS
+//=====================================
+// Styling for each card that describes
+// a specific NetMatters service
+
+@mixin card-style($service, $color) {
+  min-width   : 95%;                   // Equal width despite diff contents
+
+  @media (min-width: map-get($breakpoints, 'm')) {
+    min-width : 0;
+    width     : 720px;                 // Fixed width at M breakpoint
+  }
+
+  // NTD: Surely there must be a func to eval if val in range
+
+  // At L and XL breakpoints set fixed widths for cards 1-3 and 4-7
+  $i: index(($nm-services), ($service $color));
+  @media (min-width: map-get($breakpoints, 'l')) {
+    @if $i==1 or $i==2 or $i==3 {
+      flex-basis : 293px;
+    }
+    @else {
+      flex-basis : 455px;
+    }
+  }
+
+  @media (min-width: map-get($breakpoints, 'xl')) {
+    @if $i==1 or $i==2 or $i==3 {
+      flex-basis       : 370px;
+    }
+    @else {
+      flex-basis       : 270px;
+    }
+  }
+
+  flex-shrink          : 1;            // Prevents cards from overflowing the
+                                       // flex container
+  margin               : 30px 15px 0;
+
+  border               : 1px solid $search-border;
+  border-radius        : $border-radius;
+  background-color     : $primary-light;
+  box-shadow           : $card-shadow;
+
+  color                : $primary-dark;
+  line-height          : 1.5;
+  letter-spacing       : .03125rem;    // .5px
+  text-align           : center;
+
+  a {
+    width              : 100%;
+    height             : 100%;
+    padding            : 30px;
+    display            : flex;
+    flex-flow          : column nowrap;
+    align-items        : center;
+    color              : inherit;      // Override deafault <a> element styling
+  }
+
+  [class^="icon-"] {
+    display            : inline-block;
+    width              : 60px;
+    height             : 60px;
+    margin-bottom      : 1.0625rem;    // 17px
+    border-radius      : 50%;
+    border-color       : $color;
+    background-color   : $color;
+    color              : $primary-light;
+    font-size          : 1.5rem;       // 24px
+    line-height        : 60px;
+  }
+
+  hr {
+    width              : 30px;
+    margin-bottom      : 12px;
+    border-color       : $primary-dark;
+    border-width       : 3px;
+  }
+
+  p {
+    flex-grow          : 1;            // Pushes .read-more down despite content
+    margin-bottom      : 13px;
+    font-size          : .8125rem;     // 13px
+    line-height        : 1.375rem;     // 22px
+  }
+
+  .read-more {
+    display            : inline-block;
+    width              : 130px;
+    padding            : 10px;
+    border-radius      : $border-radius;
+    border-color       : $color;
+    background-color   : $color;
+    color              : $primary-light;
+    font-size          : 1.0625rem;    // 17px
+    font-style         : normal;
+    text-transform     : uppercase;
+  }
+
+  &:hover {
+    border             : 1px solid $color;
+    background-color   : $color;
+    color              : $primary-light;
+
+    hr, span {
+      border-color     : $primary-light;
+    }
+    span {                             // Style both glyph and 'read more'
+      background-color : $primary-light;
+      color            : $color;
+    }
+  }  // &:hover
+}  // @mixin
+
+.nm-cards {
+  // Styles for the nm-cards (flex) container
+  display              : flex;
+  flex-flow            : column wrap;
+  align-items          : center;
+
+  @media (min-width: map-get($breakpoints, 'l')) {
+    flex-flow          : row wrap;
+    justify-content    : center;
+    align-items        : stretch;
+    align-content      : stretch;
+  }
+
+  padding              : 20px 0 50px;
+  background-color     : $primary-light;
+
+  // Styles for each child (flex) item (i.e. the cards themselves)
+  @each $service, $color in $nm-services {
+    &-#{$service} {
+      @include card-style($service, $color);
+    }
+  }
+
+  // Styles for the line break
+  &-break {                            // At L/XL breakpoints force line break
+    display      : hidden;             // after Digital Marketing card
+    @media (min-width: map-get($breakpoints, 'l')) {
+      display    : inline-block;
+      flex-basis : 100%;
+    }
+  }
+}

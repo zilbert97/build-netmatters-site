@@ -1,0 +1,58 @@
+//=====================================
+// ABOUT NETMATTERS
+//=====================================
+
+#about {
+  padding          : 50px 0;
+
+  background-color : $primary-dark;
+  @media (min-width: map-get($breakpoints, 'l')) {
+    background     : $primary-dark url("../img/netmatters-logo-background.png") no-repeat 100%/auto 100%;
+  }
+
+  color            : $primary-light;
+
+  #about-wrapper {
+    max-width      : 1200px;           // Set wrapper width - at XL breakpoint
+    margin         : auto;             // used to position & width of children
+  }
+
+  #about-contents {
+    padding          : 0 15px;
+
+    h2 {
+      margin         : -6px 0px 28px;
+      font-size      : 2.25rem;        // 36px;
+      font-weight    : 400;
+      line-height    : 1.1;
+      text-transform : uppercase;
+    }
+
+    p {
+      margin-bottom  : 25px;
+      line-height    : 1.875rem;       // 30px
+    }
+
+    p > strong {
+      font-weight    : 600;
+    }
+
+    a {
+      @include button-base-style($context: 'body') {
+        color        : $primary-dark;
+        [class^="icon-"] {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    @include set-content-width;
+    @media (min-width: map-get($breakpoints, 'm')) {
+      margin         : auto;           // Centered on page
+    }
+    @media (min-width: map-get($breakpoints, 'xl')) {
+      width          : 50%;            // Take up 50% of parent about-wrapper
+      margin-left    : 0;              // Stop centering on the page
+    }
+  } // #about-contents
+} // #about

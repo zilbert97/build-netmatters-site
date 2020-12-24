@@ -1,0 +1,187 @@
+//=====================================
+// FOOTER
+//=====================================
+
+footer {
+  color: $primary-light;
+  line-height: 22px;
+}
+
+.footer-subsection {                   // Hidden at S breakpoint
+  display: none;
+}
+
+#main-footer {
+  padding         : 47px 0 43px;
+  background-color: $primary-dark;
+
+  h6 {
+    font-size     : 1rem;
+    font-weight   : 400;
+    text-transform: uppercase;
+    margin-bottom : 26px;
+  }
+
+  a {
+    color: inherit;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  address, span, a {
+    font-size    : .8125rem;           // 13px
+  }
+
+  ul {                                 // A flex container for li flex items
+    margin       : 0;
+    padding      : 0;
+    list-style   : none;
+  }
+}
+
+#main-footer-inner {
+  display        : flex;
+  flex-flow      : column nowrap;
+
+  .main-footer-content {
+    padding      : 0 15px;
+  }
+  .main-footer-content:nth-of-type(-n+3) {  // Apply to all flex items except last
+    margin       : 0 0 30px;
+  }
+
+  #button-grid {
+    display      : grid;
+    width        : 100%;
+    grid-template: 55px 55px / auto auto;  // <rows> / <columns>
+    grid-gap     : 30px;
+
+    @each $key, $color in $social-buttons-ui {
+      ##{$key}-button {
+        @include button-base-style($service: $key, $context: 'footer') {
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }  // @each
+  }  // #button-grid
+}  // #main-footer-inner
+
+.footer-subsection-inner,              // Sets max-width of containers for each
+#main-footer-inner {                   // breakpoint
+  @include set-content-width;
+}
+
+@media (min-width: map-get($breakpoints, 'm')) {
+
+  .footer-subsection {                 // Apply to clients & accreditations
+    display          : block;
+    padding          : 50px 0;
+    &-inner {
+      display        : flex;
+      flex-flow      : row nowrap;
+      justify-content: center;
+      align-content  : flex-start;
+      margin         : 0 auto;
+      padding        : 0 15px;
+    }
+  }
+
+  .footer-subsection-item {
+    padding          : 0 20px;
+    img {
+      max-width      : 100%;
+      height         : auto;
+    }
+
+    .item-color {display: none;}       // Show & hide color/greyscale versions
+    &:hover {                          // based on hover state
+      .item-color {display: block}
+      .item-greyscale {display: none}
+    }
+
+    #google-partner-badge {
+      width     : 220px;
+      box-shadow: 1px 1px 2px rgba(0,0,0,.2);   // NTD: Var
+    }
+  }
+
+  #main-footer-inner {
+    flex-flow: row wrap;
+    margin   : 0 auto;
+    .main-footer-content {
+      width  : 50%;
+    }
+  }
+}
+
+@media (min-width: map-get($breakpoints, 'xl')) {
+  #main-footer-inner {
+    .main-footer-content {
+      width: 25%;
+    }
+  }
+  .footer-subsection-inner {
+    justify-content: space-evenly;
+  }
+}
+
+$clients: ('busseys', 'crane', 'beat', 'northern-diver');
+
+@each $client in $clients {
+  #client-#{$client} {
+    position          : relative;
+    .client-description {
+      display         : none;
+      width           : 260px;
+      padding         : 20px;
+      position        : absolute;
+      bottom          : 211%;
+      @media (min-width: map-get($breakpoints, 'l')) {
+        bottom: 180%;
+      }
+      @media (min-width: map-get($breakpoints, 'l')) {
+        bottom: 171%;
+      }
+      left            : 50%;
+      transform       : translateX(-50%);
+
+      text-align      : center;
+      background-color: $primary-dark;
+
+      h3 {
+        font-size     : 1.125rem;      // 18px
+        margin: 0;
+      }
+      hr {
+        margin        : 14 auto;
+        width         : 28px;
+        border-width  : 3px;
+        border-color  : $primary-light;
+      }
+      p {
+        font-size     : .8125rem;      // 13px
+        line-height   : 22px;
+        margin        : 0;
+      }
+
+      &:before {
+       content        : "";
+       width          : 0px;
+       height         : 0px;
+       position       : absolute;
+       border-top     : 30px solid $primary-dark;
+       border-bottom  : 30px solid transparent;
+       border-left    : 30px solid transparent;
+       border-right   : 30px solid transparent;
+       right          : 39%;
+       bottom         : -60px;
+      }
+    }  // .client-description
+    &:hover > .client-description {
+      display: block;
+    }
+  }  // #client#{$client}
+}  // @each
