@@ -45,7 +45,7 @@ h5 {
   border           : 0;
   border-radius    : $border-radius;
 
-  color            : $light-1;
+  color            : $primary-light;
   font-weight      : 400;
   text-align       : center;
   text-transform   : uppercase;
@@ -112,7 +112,7 @@ h5 {
     $button-color-ui : $utility-button-ui;
   }
   @else {
-    $button-color    : $light-1;
+    $button-color    : $primary-light;
     $button-color-ui : #ebebeb;
   }
 

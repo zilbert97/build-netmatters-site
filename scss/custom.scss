@@ -88,14 +88,14 @@
         top          : 60%;
         left         : 25%;
         width        : 35px;
-        border-color : $dark-1;
+        border-color : $primary-dark;
         border-width : 3px;
         margin-bottom: 12px;
       }
     }
 
     [class^="icon-"] {
-      color          : $dark-1;
+      color          : $primary-dark;
       font-size      : 2rem;           // 32px
     }
   }  // #voip-icon
@@ -133,7 +133,7 @@
     right     : 12px;
     top       : 10px;
 
-    color     : $dark-1;
+    color     : $primary-dark;
     font-style: 400;
     font-size : 1.25rem;               // 20px
   }
@@ -172,7 +172,7 @@
     #search-input {
       height           : $header-button-height;
       width            : 174px;
-      background-color : $light-1;
+      background-color : $primary-light;
       border-width     : 1px;
       border-radius    : 0;
 
@@ -297,7 +297,7 @@
     height          : 99px;
     width           : 100%;
 
-    background-color: $dark-1;
+    background-color: $primary-dark;
     position        : relative;        // For positioning sub-navigation
   }
 
@@ -370,7 +370,7 @@
       }
       a {
         display         : block;
-        color           : $light-1;
+        color           : $primary-light;
         line-height     : 45px;
         text-transform  : uppercase;
       }
@@ -390,11 +390,11 @@
           background-color : map-get($nm-secondary, $service);
         }
         [class^=icon-] {
-          color            : $light-1;
+          color            : $primary-light;
         }
       }
       .nav-item-name {
-        color              : $light-1;
+        color              : $primary-light;
       }
       [class^=icon-] {
         color              : $color;
@@ -446,23 +446,29 @@
 
   background      : linear-gradient(to right, #000, rgba(0,0,0,.3)),
                     linear-gradient(to left, rgba(0,0,0,.3), transparent 25%),
-                    $dark-1 url('../img/web-design-background.jpeg') no-repeat center;
+                    $primary-dark url('../img/web-design-background.jpeg') no-repeat center;
   background-size : cover;
 
   border-top      : 1px solid #666; // On site this is rgba(51,54,69.5) - and is lighter? NTD: check, use a variable
 
-  color           : $light-1;
+  color           : $primary-light;
   text-align      : center;
   @media (min-width: map-get($breakpoints, 'l')) {
     text-align    : left;
   }
 
   .container {
+    @include set-content-width;
+  }
+
+  /*
+  .container {
     max-width     : 970px;
     @media (min-width: map-get($breakpoints, 'xl')) {
       max-width   : 1200px;
     }
   }
+  */
 
   h1 {
     text-transform: uppercase;
@@ -510,12 +516,12 @@
     }
 
     span:active {
-      background-color: $light-1;
+      background-color: $primary-light;
       &::after {
         content       : "";
         position      : absolute;
         border-radius : 50%;
-        border        : 2px solid $light-1;
+        border        : 2px solid $primary-light;
         width         : 23px;
         height        : 23px;
         top           : 1px;
@@ -555,23 +561,23 @@
 
   @media (min-width: map-get($breakpoints, 'xl')) {
     @if $i==1 or $i==2 or $i==3 {
-      flex-basis : 370px;
+      flex-basis       : 370px;
     }
     @else {
-      flex-basis : 270px;
+      flex-basis       : 270px;
     }
   }
 
-  flex-shrink : 1;                     // Prevents cards from overflowing the
+  flex-shrink          : 1;            // Prevents cards from overflowing the
                                        // flex container
   margin               : 30px 15px 0;
 
   border               : 1px solid $search-border;
   border-radius        : $border-radius;
-  background-color     : $light-1;
+  background-color     : $primary-light;
   box-shadow           : $card-shadow;
 
-  color                : $dark-1;
+  color                : $primary-dark;
   line-height          : 1.5;
   letter-spacing       : .03125rem;    // .5px
   text-align           : center;
@@ -583,7 +589,7 @@
     display            : flex;
     flex-flow          : column nowrap;
     align-items        : center;
-    color              : inherit;  // Override deafault <a> element styling
+    color              : inherit;      // Override deafault <a> element styling
   }
 
   [class^="icon-"] {
@@ -594,7 +600,7 @@
     border-radius      : 50%;
     border-color       : $color;
     background-color   : $color;
-    color              : $light-1;
+    color              : $primary-light;
     font-size          : 1.5rem;       // 24px
     line-height        : 60px;
   }
@@ -602,7 +608,7 @@
   hr {
     width              : 30px;
     margin-bottom      : 12px;
-    border-color       : $dark-1;
+    border-color       : $primary-dark;
     border-width       : 3px;
   }
 
@@ -620,7 +626,7 @@
     border-radius      : $border-radius;
     border-color       : $color;
     background-color   : $color;
-    color              : $light-1;
+    color              : $primary-light;
     font-size          : 1.0625rem;    // 17px
     font-style         : normal;
     text-transform     : uppercase;
@@ -629,17 +635,17 @@
   &:hover {
     border             : 1px solid $color;
     background-color   : $color;
-    color              : $light-1;
+    color              : $primary-light;
 
     hr, span {
-      border-color     : $light-1;
+      border-color     : $primary-light;
     }
     span {                             // Style both glyph and 'read more'
-      background-color : $light-1;
+      background-color : $primary-light;
       color            : $color;
     }
-  }  // &:hover {}
-}  // @mixin {}
+  }  // &:hover
+}  // @mixin
 
 .nm-cards {
   // Styles for the nm-cards (flex) container
@@ -655,7 +661,7 @@
   }
 
   padding              : 20px 0 50px;
-  background-color     : $light-1;
+  background-color     : $primary-light;
 
   // Styles for each child (flex) item (i.e. the cards themselves)
   @each $service, $color in $nm-services {
@@ -682,12 +688,12 @@
 #about {
   padding          : 50px 0;
 
-  background-color : $dark-1;
+  background-color : $primary-dark;
   @media (min-width: map-get($breakpoints, 'l')) {
-    background     : $dark-1 url("../img/netmatters-logo-background.png") no-repeat 100%/auto 100%;
+    background     : $primary-dark url("../img/netmatters-logo-background.png") no-repeat 100%/auto 100%;
   }
 
-  color            : $light-1;
+  color            : $primary-light;
 
   #about-wrapper {
     max-width      : 1200px;           // Set wrapper width - at XL breakpoint
@@ -716,7 +722,7 @@
 
     a {
       @include button-base-style($context: 'body') {
-        color        : $dark-1;
+        color        : $primary-dark;
         [class^="icon-"] {
           margin-left: 10px;
         }
@@ -765,7 +771,7 @@
   span {
     display        : block;
     padding        : 50% 0;
-    color          : $dark-1;
+    color          : $primary-dark;
     font-size      : 1.25rem;          // 16px
     font-weight    : 600;
     text-transform : uppercase;
@@ -774,7 +780,7 @@
   hr {
     margin         : 0;
     width          : 100%;
-    border-color   : $dark-1;
+    border-color   : $primary-dark;
     border-width   : 5px;
   }
 }
@@ -855,7 +861,7 @@
       top: 10px;
       right    : 0;
       text-transform: uppercase;
-      color: $light-1;
+      color: $primary-light;
       background-color: $content-color;
       padding: 0 10px;
       font-size: .75rem;  // 12px
@@ -923,7 +929,7 @@
 
       strong {
         font-weight: 600;
-        color      : $dark-1;
+        color      : $primary-dark;
       }
     }
     .logo-small {
@@ -948,9 +954,9 @@
       right         : $desc-box-position-large;
     }
 
-    background-color: transparentize($dark-1, .1);
+    background-color: transparentize($primary-dark, .1);
 
-    color           : $light-1;
+    color           : $primary-light;
     font-size       : .75rem; //12px
     text-align      : center;
 
@@ -963,7 +969,7 @@
      position: absolute;
      border-left: 6px solid transparent;
      border-right: 6px solid transparent;
-     border-top: 6px solid transparentize($dark-1, .1);
+     border-top: 6px solid transparentize($primary-dark, .1);
      border-bottom: 6px solid transparent;
      right: 45%;
      bottom: -12px;
@@ -1015,7 +1021,7 @@
 //=====================================
 
 footer {
-  color: $light-1;
+  color: $primary-light;
   line-height: 22px;
 }
 
@@ -1025,7 +1031,7 @@ footer {
 
 #main-footer {
   padding         : 47px 0 43px;
-  background-color: $dark-1;
+  background-color: $primary-dark;
 
   h6 {
     font-size     : 1rem;
@@ -1139,3 +1145,61 @@ footer {
     justify-content: space-evenly;
   }
 }
+
+$clients: ('busseys', 'crane', 'beat', 'northern-diver');
+
+@each $client in $clients {
+  #client-#{$client} {
+    position          : relative;
+    .client-description {
+      display         : none;
+      width           : 260px;
+      padding         : 20px;
+      position        : absolute;
+      bottom          : 211%;
+      @media (min-width: map-get($breakpoints, 'l')) {
+        bottom: 180%;
+      }
+      @media (min-width: map-get($breakpoints, 'l')) {
+        bottom: 171%;
+      }
+      left            : 50%;
+      transform       : translateX(-50%);
+
+      text-align      : center;
+      background-color: $primary-dark;
+
+      h3 {
+        font-size     : 1.125rem;      // 18px
+        margin: 0;
+      }
+      hr {
+        margin        : 14 auto;
+        width         : 28px;
+        border-width  : 3px;
+        border-color  : $primary-light;
+      }
+      p {
+        font-size     : .8125rem;      // 13px
+        line-height   : 22px;
+        margin        : 0;
+      }
+
+      &:before {
+       content        : "";
+       width          : 0px;
+       height         : 0px;
+       position       : absolute;
+       border-top     : 30px solid $primary-dark;
+       border-bottom  : 30px solid transparent;
+       border-left    : 30px solid transparent;
+       border-right   : 30px solid transparent;
+       right          : 39%;
+       bottom         : -60px;
+      }
+    }  // .client-description
+    &:hover > .client-description {
+      display: block;
+    }
+  }  // #client#{$client}
+}  // @each
