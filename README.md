@@ -4,9 +4,9 @@ My HTML and CSS review
 ## To-do:
 
 ### Phase 1 - missing content:
+- [x] Apply set-content-width mixin to nav, jumbo, and service cards (if applicable)
 - [x] Add box shadow to Google Partner logo
-- [ ] Add description boxes for clients and news card categories on hover state
-- [ ] Integrate scroll-show header behaviour
+- [x] Add description boxes for clients and news card categories on hover state
 - [x] Add sub-navigation
 - [x] Jumbotron owl buttons
 
@@ -15,7 +15,7 @@ My HTML and CSS review
 - [ ] Remove background from page title logo
 - [ ] Search icon is too small - look to change or increase size while maintaining 23px font size
 - [ ] Hide checkbox overlay when search is expanded at the large breakpoint
-- [ ] Navigatiopn text vertical position
+- [ ] Navigation text vertical position
 - [ ] Jumbotron border top colour
 - [x] Jumbotron gradient ***Still not 100% identical but a closer approximation***
 - [ ] Slight difference in button size and position
