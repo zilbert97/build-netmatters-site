@@ -11,6 +11,7 @@ My HTML and CSS review
 - [x] Jumbotron owl buttons
 
 ### Phase 2 - layout tweaks and other minor changes:
+- [ ] Background color (gradient) for jumbo - either needs to be more precise, or different values for different breakpoints
 - [ ] Latest news section speech boxes are causing horizontal scroll. We cannot set overflow to visible and hidden on X and Y axes individually - fix bug, see lines 10-16 in latest_news partial
 - [ ] Remove transition from Hamburger
 - [ ] Remove background from page title logo
