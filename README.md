@@ -14,20 +14,21 @@ My HTML and CSS review
 ### Phase 2 - layout tweaks and other minor changes:
 - [x] Background color (gradient) for jumbo - either needs to be more precise, or different values for different breakpoints
 - [x] Latest news section speech boxes are causing horizontal scroll. We cannot set overflow to visible and hidden on X and Y axes individually - fix bug, see lines 10-16 in latest_news partial
-- [ ] Remove transition from Hamburger
 - [ ] Remove background from page title logo
-- [x] Search icon is too small - look to change or increase size while maintaining 23px font size
-- [ ] Navigation text vertical position
-- [x] Jumbotron border top colour
-- [x] Jumbotron gradient ***Still not 100% identical but a closer approximation***
-- [ ] Slight difference in button size and position
 
 ###### Header
+- [x] Search icon is too small - look to change or increase size while maintaining 23px font size
+- [ ] Remove transition from Hamburger
 - [ ] Site logo size
 - [ ] Vertical positioning of text in header buttons
 - [ ] Positioning within hamburger
 - [ ] Search placehodler text alignment, and colour?
 - [ ] VOIP icon positioning
+
+###### Jumbotron
+- [x] Jumbotron border top colour
+- [x] Jumbotron gradient ***Still not 100% identical but a closer approximation***
+- [ ] Slight difference in button size and position
 
 ###### Cards
 - [ ] Glyph size
