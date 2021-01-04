@@ -16,26 +16,20 @@
                     $primary-dark url('../img/web-design-background.jpeg') no-repeat center;
   background-size : cover;
 
-  border-top      : 1px solid #666; // On site this is rgba(51,54,69.5) - and is lighter? NTD: check, use a variable
+  border-top      : 1px solid #999aa2; // On site this is rgba(51,54,69.5) but this value in my code seems far too dark   NTD: Var
 
   color           : $primary-light;
   text-align      : center;
   @media (min-width: map-get($breakpoints, 'l')) {
+    background    : linear-gradient(to right, #000, transparent 75%),
+                    $primary-dark url('../img/web-design-background.jpeg') no-repeat center;
+    background-size : cover;
     text-align    : left;
   }
 
   .container {
     @include set-content-width;
   }
-
-  /*
-  .container {
-    max-width     : 970px;
-    @media (min-width: map-get($breakpoints, 'xl')) {
-      max-width   : 1200px;
-    }
-  }
-  */
 
   h1 {
     text-transform: uppercase;

@@ -938,20 +938,14 @@ h5 {
   margin: 0;
   background: linear-gradient(to right, #000, rgba(0, 0, 0, 0.3)), linear-gradient(to left, rgba(0, 0, 0, 0.3), transparent 25%), #333645 url("../img/web-design-background.jpeg") no-repeat center;
   background-size: cover;
-  border-top: 1px solid #666;
+  border-top: 1px solid #999aa2;
   color: #fff;
   text-align: center;
-  /*
-  .container {
-    max-width     : 970px;
-    @media (min-width: map-get($breakpoints, 'xl')) {
-      max-width   : 1200px;
-    }
-  }
-  */
 }
 @media (min-width: 992px) {
   .jumbotron {
+    background: linear-gradient(to right, #000, transparent 75%), #333645 url("../img/web-design-background.jpeg") no-repeat center;
+    background-size: cover;
     text-align: left;
   }
 }
@@ -2341,7 +2335,7 @@ footer {
   font-size: 1rem;
   font-weight: 400;
   text-transform: uppercase;
-  margin-bottom: 26px;
+  margin-bottom: 24px;
 }
 #main-footer a {
   color: inherit;
@@ -2352,10 +2346,16 @@ footer {
 #main-footer address, #main-footer span, #main-footer a {
   font-size: 0.8125rem;
 }
+#main-footer address {
+  margin: 0;
+}
 #main-footer ul {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+#main-footer li {
+  height: 22px;
 }
 
 #main-footer-inner {
@@ -2365,10 +2365,19 @@ footer {
 #main-footer-inner .main-footer-content {
   padding: 0 15px;
 }
+#main-footer-inner .main-footer-content > *:not(:last-child) {
+  margin-bottom: 22px;
+}
 #main-footer-inner .main-footer-content:nth-of-type(-n+3) {
   margin: 0 0 30px;
 }
+@media (min-width: 1260px) {
+  #main-footer-inner .main-footer-content:nth-of-type(-n+3) {
+    margin: 0;
+  }
+}
 #main-footer-inner #button-grid {
+  margin-top: 30px;
   display: grid;
   width: 100%;
   grid-template: 55px 55px/auto auto;

@@ -19,11 +19,11 @@ footer {
     font-size     : 1rem;
     font-weight   : 400;
     text-transform: uppercase;
-    margin-bottom : 26px;
+    margin-bottom : 24px;
   }
 
   a {
-    color: inherit;
+    color         : inherit;
     &:hover {
       text-decoration: underline;
     }
@@ -33,10 +33,18 @@ footer {
     font-size    : .8125rem;           // 13px
   }
 
+  address {
+    margin: 0;
+  }
+
   ul {                                 // A flex container for li flex items
     margin       : 0;
     padding      : 0;
     list-style   : none;
+  }
+
+  li {
+    height       : 22px;
   }
 }
 
@@ -46,12 +54,22 @@ footer {
 
   .main-footer-content {
     padding      : 0 15px;
+
+    & > *:not(:last-child) {           // Apply to direct children except last
+      margin-bottom: 22px;
+    }
   }
   .main-footer-content:nth-of-type(-n+3) {  // Apply to all flex items except last
     margin       : 0 0 30px;
+    @media (min-width: map-get($breakpoints, 'xl')) {
+      margin     : 0;
+    }
   }
 
   #button-grid {
+
+    margin-top   : 30px;
+
     display      : grid;
     width        : 100%;
     grid-template: 55px 55px / auto auto;  // <rows> / <columns>
