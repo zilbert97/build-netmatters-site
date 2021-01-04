@@ -9,15 +9,16 @@ My HTML and CSS review
 - [x] Add description boxes for clients and news card categories on hover state
 - [x] Add sub-navigation
 - [x] Jumbotron owl buttons
+- [ ] Email sign-up section (added to site over Xmas break)
 
 ### Phase 2 - layout tweaks and other minor changes:
-- [ ] Background color (gradient) for jumbo - either needs to be more precise, or different values for different breakpoints
-- [ ] Latest news section speech boxes are causing horizontal scroll. We cannot set overflow to visible and hidden on X and Y axes individually - fix bug, see lines 10-16 in latest_news partial
+- [x] Background color (gradient) for jumbo - either needs to be more precise, or different values for different breakpoints
+- [x] Latest news section speech boxes are causing horizontal scroll. We cannot set overflow to visible and hidden on X and Y axes individually - fix bug, see lines 10-16 in latest_news partial
 - [ ] Remove transition from Hamburger
 - [ ] Remove background from page title logo
 - [ ] Search icon is too small - look to change or increase size while maintaining 23px font size
 - [ ] Navigation text vertical position
-- [ ] Jumbotron border top colour
+- [x] Jumbotron border top colour
 - [x] Jumbotron gradient ***Still not 100% identical but a closer approximation***
 - [ ] Slight difference in button size and position
 
@@ -26,6 +27,7 @@ My HTML and CSS review
 - [ ] Vertical positioning of text in header buttons
 - [ ] Positioning within hamburger
 - [ ] Search placehodler text alignment, and colour?
+- [ ] VOIP icon positioning
 
 ###### Cards
 - [ ] Glyph size
@@ -49,14 +51,14 @@ My HTML and CSS review
 
 ###### Footer
 - [ ] At XL breakpoint slight vertical positioning of logos
-- [ ] Main footer positioning of text and buttons
+- [x] Main footer positioning of text and buttons
 - [ ] Height, size and positioning of accreditation images
 
 ### Phase 3 - streamlining Sass/CSS:
 - [ ] Look at condensing media queries - e.g. breakpoints assigning width of items at 750px, 970px, 1200px (M/L/XL)
 - [ ] Look at condensing button base styles
 - [ ] Assess whether a base card style could be established
-- [ ] Split Sass into partials for each major section?
+- [x] Split Sass into partials for each major section?
 
 ### Phase 4 - final checks before submission:
 - [ ] Research and integrate best practices for accessibility of HTML
