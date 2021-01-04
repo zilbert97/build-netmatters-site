@@ -9,14 +9,14 @@ My HTML and CSS review
 - [x] Add description boxes for clients and news card categories on hover state
 - [x] Add sub-navigation
 - [x] Jumbotron owl buttons
-- [ ] Email sign-up section (added to site over Xmas break)
+- [x] Email sign-up section (added to site over Xmas break)
 
 ### Phase 2 - layout tweaks and other minor changes:
 - [x] Background color (gradient) for jumbo - either needs to be more precise, or different values for different breakpoints
 - [x] Latest news section speech boxes are causing horizontal scroll. We cannot set overflow to visible and hidden on X and Y axes individually - fix bug, see lines 10-16 in latest_news partial
 - [ ] Remove transition from Hamburger
 - [ ] Remove background from page title logo
-- [ ] Search icon is too small - look to change or increase size while maintaining 23px font size
+- [x] Search icon is too small - look to change or increase size while maintaining 23px font size
 - [ ] Navigation text vertical position
 - [x] Jumbotron border top colour
 - [x] Jumbotron gradient ***Still not 100% identical but a closer approximation***
