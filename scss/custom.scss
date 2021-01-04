@@ -78,37 +78,41 @@
   // Here i'm using the value passed to the $service paramater to set other
   // styling such as color, active, focus, and hover states.
 
-  $button-color      : null;           // Variables must be instantiated -
-  $button-color-ui   : null;           // raises @warn if only defined in @else
+  $button-color     : null;            // Variables must be instantiated -
+  $button-color-ui  : null;            // raises @warn if only defined in @else
 
   @if map-has-key($social-buttons-ui, $service) {
-    $button-color    : $social-buttons;
-    $button-color-ui : map-get($social-buttons-ui, $service);
+    $button-color   : $social-buttons;
+    $button-color-ui: map-get($social-buttons-ui, $service);
   }
   @else if map-has-key($nm-services, $service) {
   // Consider using map-has-key() and @warn
-    $button-color    : map-get($nm-services, $service);
-    $button-color-ui : map-get($nm-secondary, $service);
+    $button-color   : map-get($nm-services, $service);
+    $button-color-ui: map-get($nm-secondary, $service);
   }
   @else if $service == "utility" {
-    $button-color    : $utility-button;
-    $button-color-ui : $utility-button-ui;
+    $button-color   : $utility-button;
+    $button-color-ui: $utility-button-ui;
+  }
+  @else if $service == "signup" {
+    $button-color   : $primary-dark;
+    $button-color-ui: darken($primary-dark, 10%);
   }
   @else {
-    $button-color    : $primary-light;
-    $button-color-ui : #ebebeb;                     // NTD: Vars
+    $button-color   : $primary-light;
+    $button-color-ui: #ebebeb;         // NTD: Vars
   }
 
-  background-color   : $button-color;  // Use the values from above to set
+  background-color  : $button-color;   // Use the values from above to set
   @include combined-ui {               // background colours
-    background-color : $button-color-ui;
+    background-color: $button-color-ui;
   }
 
   &:active {                           // Apply inset shadow when pressed
-    box-shadow       : $button-active-shadow;
+    box-shadow      : $button-active-shadow;
   }
   &:focus {                            // Prevent default outline of elements
-    outline          : none !important;
+    outline         : none !important;
   }
   @content;
 }

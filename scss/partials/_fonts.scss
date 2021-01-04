@@ -7,15 +7,15 @@ $font-stack: 'Poppins', sans-serif;
 // GLYPHS - CSS
 //==========================
 @font-face {
-  font-family  : 'icomoon';
-  src: url('../../assets/icomoon/icomoon.eot?mkvyif');
-  src: url('../../assets/icomoon/icomoon.eot?mkvyif#iefix') format('embedded-opentype'),
-       url('../../assets/icomoon/icomoon.ttf?mkvyif') format('truetype'),
-       url('../../assets/icomoon/icomoon.woff?mkvyif') format('woff'),
-       url('../../assets/icomoon/icomoon.svg?mkvyif#icomoon') format('svg');
-  font-weight  : normal;
-  font-style   : normal;
-  font-display : block;
+  font-family: 'icomoon';
+  src: url('../../../assets/icomoon/icomoon.eot?lyrcyy');
+  src: url('../../../assets/icomoon/icomoon.eot?lyrcyy#iefix') format('embedded-opentype'),
+       url('../../../assets/icomoon/icomoon.ttf?lyrcyy') format('truetype'),
+       url('../../../assets/icomoon/icomoon.woff?lyrcyy') format('woff'),
+       url('../../../assets/icomoon/icomoon.svg?lyrcyy#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
 }
 
 [class^="icon-"], [class*=" icon-"] {
@@ -33,44 +33,47 @@ $font-stack: 'Poppins', sans-serif;
   -moz-osx-font-smoothing : grayscale;
 }
 
-.icon-linkedin:before {
-  content: "\e907";
-}
-.icon-twitter:before {
-  content: "\e908";
-}
-.icon-facebook:before {
-  content: "\e909";
-}
-.icon-facebook-f:before {
-  content: "\e909";
-}
-.icon-code:before {
-  content: "\e90a";
-}
-.icon-bar-graph:before {
-  content: "\e90b";
-}
-.icon-magnifying-glass:before {
-  content: "\e90c";
-}
-.icon-apps:before {
-  content: "\e90e";
-}
-.icon-school:before {
+.icon-paperplane:before {
   content: "\e901";
 }
-.icon-security:before {
-  content: "\e902";
-}
-.icon-phone_in_talk:before {
+.icon-magnifying-glass:before {
   content: "\e903";
 }
-.icon-mouse:before {
+.icon-bar-graph:before {
   content: "\e904";
 }
-.icon-paperplane:before {
+.icon-mouse:before {
+  content: "\e905";
+}
+.icon-school:before {
   content: "\e906";
+}
+.icon-security:before {
+  content: "\e907";
+}
+.icon-phone_in_talk:before {
+  content: "\e908";
+}
+.icon-apps:before {
+  content: "\e909";
+}
+.icon-check:before {
+  content: "\e90a";
+}
+.icon-linkedin:before {
+  content: "\e90b";
+}
+.icon-twitter:before {
+  content: "\e90c";
+}
+.icon-facebook:before {
+  content: "\e90d";
+}
+.icon-facebook-f:before {
+  content: "\e90d";
+}
+.icon-code:before {
+  content: "\e90e";
 }
 .icon-display:before {
   content: "\e956";
@@ -83,10 +86,11 @@ $font-stack: 'Poppins', sans-serif;
 // GLYPH ICONS HTML
 //==========================
 /*!
-  <span class="icon-appss"></span>             APPS
+  <span class="icon-apps"></span>              APPS
   <span class="icon-arrow-right2"></span>      ARROW-RIGHT
   <span class="icon-bar-graph"></span>         BAR GRAPH
   <span class="icon-code"></span>              CODE
+  <span class="icon-check"></span>             CHECKMARK (TICK)
   <span class="icon-security"></span>          CYBER SHIELD
   <span class="icon-display"></span>           DESKTOP MONITOR
   <span class="icon-facebook"></span>          FACEBOOK
