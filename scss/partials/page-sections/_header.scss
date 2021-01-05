@@ -21,9 +21,9 @@
 .main-header {
   @include flexbox;
   @include flex-flow((row wrap));
-  position      : relative;           // For positioning checkbox toggle relative to .main-header
   @include align-items(center);
   @include justify-content(center);
+  position      : relative;           // For positioning checkbox toggle relative to .main-header
   padding       : 20px 15px;
   min-height    : 168px;
 }
@@ -408,6 +408,10 @@
   #nav-inner {
     .subnav > ul {
       font-size: 1rem;
+
+      li ~ li > a:before {
+        padding         : 0 32px;
+      }
     }
   }
 }  // @media

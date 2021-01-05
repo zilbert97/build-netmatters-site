@@ -2,9 +2,8 @@
 // LATEST NEWS CARDS
 //=====================================
 // The container with all the cards in
-// is a flex container.
-
-// Each card is a flex item.
+// is a flex container. Each card is a
+// flex item.
 
 // NTD below?
 #news-board {
@@ -77,25 +76,25 @@
 
 @mixin latest-card($card-category, $desc-box-position-small:0, $desc-box-position-large:0) {
   @media (min-width: map-get($breakpoints, 'm')) {
-    @include flex(0, 0, 345px);  // flex: 345px 0 0;
+    @include flex(0, 0, 345px);
   }
   @media (min-width: map-get($breakpoints, 'l')) {
-    @include flex(0, 0, 455px);  // flex: 455px 0 0;
+    @include flex(0, 0, 455px);
   }
   @media (min-width: map-get($breakpoints, 'xl')) {
-    @include flex(0, 0, 370px);  // flex: 370px 0 0;
+    @include flex(0, 0, 370px);
   }
 
   $content-color : map-get($nm-services, $card-category);
 
   margin        : 15px;
 
-  border        : 1px solid $search-border;   // NTD: Check color
+  border        : 1px solid $search-border;
   border-radius : $border-radius;
 
   .news-card-cover {
     display       : block;
-    position      : relative;            // For positioning .news-card-category and .dialogue-box
+    position      : relative;          // For positioning .news-card-category and .dialogue-box
 
     .image-wrapper {
       height        : auto;
@@ -103,7 +102,7 @@
       overflow      : hidden;
 
       .news-card-image {
-        width       : 100%;  // Adjusts with card size
+        width       : 100%;            // Adjusts with card size
       }
     }
 
@@ -150,7 +149,7 @@
     }
 
     p {
-      color       : #666;              // NTD: Use a variable
+      color       : $news-card-text;
       padding     : 0;
       margin      : 0;
     }
@@ -172,7 +171,7 @@
     }
 
     .card-description {
-      @include flex(1, 1, 100%);  // flex: 100% 1 1;
+      @include flex(1, 1, 100%);
       margin      : 0 0 25px 0;
       font-size   : .8125rem;          // 13px
     }
@@ -189,19 +188,19 @@
     }
 
     .read-more {
-      @include flex(0, 0, auto);  // flex: auto 0 0;
+      @include flex(0, 0, auto);
       @include button-base-style($service: $card-category, $context: 'body');  // Same color as IT support buttons
     }
 
     hr {
-      @include flex(1, 1, 100%);  // flex: 100% 1 1;  // Be full width, can grow and shrink
+      @include flex(1, 1, 100%);       // Be full width, can grow and shrink
       border-color : $search-border;
       margin       : 30px 0;
     }
 
     .card-publish-info {
       @include flex-grow(1);
-      flex-basis   : auto;  // flex: auto 1;
+      flex-basis   : auto;
       padding      : 0 0 0 20px;
       font-size    : .875rem;          // 14px
 

@@ -1,53 +1,55 @@
 //==========================
 // COLOURS
 //==========================
-$primary-light : #fff;                 // Header, card backgrounds, text
-$primary-dark  : #333645;              // Nav bar, logo, menu btn, text
+$primary-light       : #fff;           // Header, card backgrounds, text
+$primary-dark        : #333645;        // Nav bar, logo, menu btn, text
 
 $nm-services: (                        // Colors of NetMatters services
-  'bespoke-software'  : #67809f,
-  'it-support'        : #4183d7,       // + News cards
-  'digital-marketing' : #2ecc71,
-  'telecoms-services' : #d64541,
-  'web-design'        : #926fb1,       // + developer training
-  'cyber-security'    : #f62459,
+  'bespoke-software' : #67809f,
+  'it-support'       : #4183d7,        // + News cards
+  'digital-marketing': #2ecc71,
+  'telecoms-services': #d64541,
+  'web-design'       : #926fb1,        // + developer training
+  'cyber-security'   : #f62459,
 );
 
 $nm-secondary: (
-  'bespoke-software'  : #566c88,       // User interaction changes to
-  'it-support'        : #2a6ec6,       // $nm-services colors [e.g. :hover]
-  'digital-marketing' : #26ab5f,
-  'telecoms-services' : #c42e2a,
-  'web-design'        : #7e57a0,
-  'cyber-security'    : #e80a42,
+  'bespoke-software' : #566c88,        // User interaction changes to
+  'it-support'       : #2a6ec6,        // $nm-services colors [e.g. :hover]
+  'digital-marketing': #26ab5f,
+  'telecoms-services': #c42e2a,
+  'web-design'       : #7e57a0,
+  'cyber-security'   : #e80a42,
 );
 
 $social-buttons: rgba(0,0,0,.25);      // Colors for social buttons
 $social-buttons-ui: (                  // Colors for social buttons upon UI
-  'facebook' : #3b5998,
-  'twitter'  : #00aced,
-  'linkedin' : #0077b5,
+  'facebook'         : #3b5998,
+  'twitter'          : #00aced,
+  'linkedin'         : #0077b5,
 );
 
-$utility-button    : #999aa2;          // Header contact, header search
-$utility-button-ui : #7e808a;          // Secondary colour for user interaction
+$utility-button      : #999aa2;        // Header contact, header search
+$utility-button-ui   : #7e808a;        // Secondary colour for user interaction
 
-$button-active-shadow : inset 0 3px 5px rgba(0,0,0,.125);
-$card-shadow          : 0 3px 35px rgba(0,0,0,.1);
+$button-active-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+$card-shadow         : 0 3px 35px rgba(0,0,0,.1);
 
-$shadow-inset         : inset 0 1px 1px rgba(0,0,0,.075);
-$shadow-outer         : 0 0 8px rgba(91,192,222,.6);
+$shadow-inset        : inset 0 1px 1px rgba(0,0,0,.075);
+$shadow-outer        : 0 0 8px rgba(91,192,222,.6);
 
-$search-background : rgba(0,0,0,.1);   // Input field background
-$search-border     : #ccc;             // Input field border (and card border)
-$search-input      : #555;             // Input field text
+$search-background   : rgba(0,0,0,.1); // Input field background
+$search-border       : #ccc;           // Input field border (and card border)
+$search-input        : #555;           // Input field text
 
-$field-focus-color : #5bc0de;
+$field-focus-color   : #5bc0de;
 
-$newsletter-signup : #ddd;             // Newsletter signup background colour
+$newsletter-signup   : #ddd;           // Newsletter signup background colour
 
-$nav-edge-light    : 1px solid hsla(0,0%,100%,.1);
-$nav-edge-dark     : 1px solid rgba(0,0,0,.25);
+$nav-edge-light      : 1px solid hsla(0,0%,100%,.1);
+$nav-edge-dark       : 1px solid rgba(0,0,0,.25);
+
+$news-card-text      : #666;
 
 //==========================
 // BREAKPOINTS
@@ -65,10 +67,10 @@ $breakpoints: (
 
 @mixin set-content-width {
   $map-of-widths: (
-    's'  : 750px,
-    'm'  : 750px,
-    'l'  : 970px,
-    'xl' : 1200px,
+    's' : 750px,
+    'm' : 750px,
+    'l' : 970px,
+    'xl': 1200px,
   );
   @each $key, $value in $breakpoints {
     @media (min-width: $value) {
@@ -80,7 +82,6 @@ $breakpoints: (
 //==========================
 // UTILITIES
 //==========================
-$border-radius: 3px;
-
-$header-button-height   : 56px;
-$header-button-sq-width : 63px;
+$border-radius         : 3px;
+$header-button-height  : 56px;
+$header-button-sq-width: 63px;

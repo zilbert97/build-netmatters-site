@@ -5,116 +5,120 @@
 // a specific NetMatters service
 
 @mixin card-style($service, $color) {
-  box-sizing  : content-box;           // non-auto flex-basis in IE makes box-sizing implicitly content-box
-  min-width   : 95%;                   // Equal width despite diff contents
+  box-sizing          : content-box;   // non-auto flex-basis in IE makes box-sizing implicitly content-box
+  min-width           : 95%;           // Equal width despite diff contents
 
   // At L and XL breakpoints set fixed widths for cards 1-3 and 4-7
   $i: index(($nm-services), ($service $color));
 
   @media (min-width: map-get($breakpoints, 'm')) {
-    min-width : 0;
+    min-width         : 0;
     @if $i==1 or $i==2 or $i==3 {
-      width     : 718px;               // Fixed width at medium breakpoint
+      width           : 718px;         // Fixed width at medium breakpoint
     }
     @else {
-      flex-basis: 343px;               // 720px/2 -30px/2 -2px (fullwidth - gutter - border)
+      flex-basis      : 343px;         // 720px/2 -30px/2 -2px (fullwidth - gutter - border)
     }
   }
 
   @media (min-width: map-get($breakpoints, 'l')) {
     @if $i==1 or $i==2 or $i==3 {
-      flex-basis: 293px;
+      flex-basis      : 293px;
     }
     @else {
-      flex-basis: 455px;
+      flex-basis      : 455px;
     }
   }
 
   @media (min-width: map-get($breakpoints, 'xl')) {
     @if $i==1 or $i==2 or $i==3 {
-      flex-basis       : 370px;
+      flex-basis      : 370px;
     }
     @else {
-      flex-basis       : 270px;
+      flex-basis      : 270px;
     }
   }
 
   @include flex-shrink(1);             // Prevents cards from overflowing the
                                        // flex container
-  margin               : 30px 15px 0;
+  margin              : 30px 15px 0;
 
-  border               : 1px solid $search-border;
-  border-radius        : $border-radius;
-  background-color     : $primary-light;
-  box-shadow           : $card-shadow;
+  border              : 1px solid $search-border;
+  border-radius       : $border-radius;
+  background-color    : $primary-light;
+  box-shadow          : $card-shadow;
 
-  color                : $primary-dark;
-  line-height          : 1.5;
-  letter-spacing       : .03125rem;    // .5px
-  text-align           : center;
+  color               : $primary-dark;
+  line-height         : 1.5;
+  letter-spacing      : .03125rem;     // .5px
+  text-align          : center;
 
   a {
-    width              : 100%;
-    height             : 100%;
-    padding            : 30px;
+    width             : 100%;
+    height            : 100%;
+    padding           : 30px;
 
     @include flexbox;
     @include flex-flow((column nowrap));
     @include align-items(center);
-    color              : inherit;      // Override deafault <a> element styling
+    color             : inherit;       // Override deafault <a> element styling
   }
 
   [class^="icon-"] {
-    display            : inline-block;
-    width              : 60px;
-    height             : 60px;
-    margin-bottom      : 1.0625rem;    // 17px
-    border-radius      : 50%;
-    border-color       : $color;
-    background-color   : $color;
-    color              : $primary-light;
-    font-size          : 1.5rem;       // 24px
-    line-height        : 60px;
+    display           : inline-block;
+    width             : 60px;
+    height            : 60px;
+    margin-bottom     : 1.0625rem;     // 17px
+    border-radius     : 50%;
+    border-color      : $color;
+    background-color  : $color;
+    color             : $primary-light;
+    font-size         : 1.5rem;        // 24px
+    line-height       : 60px;
   }
 
   hr {
-    width              : 30px;
-    margin-bottom      : 12px;
-    border-color       : $primary-dark;
-    border-width       : 3px;
+    width             : 30px;
+    margin-bottom     : 12px;
+    border-color      : $primary-dark;
+    border-width      : 3px;
   }
 
   p {
     @include flex-grow(1);             // Pushes .read-more down despite content
-    margin-bottom      : 13px;
-    font-size          : .8125rem;     // 13px
-    line-height        : 1.375rem;     // 22px
+    margin-bottom     : 13px;
+    font-size         : .8125rem;      // 13px
+    line-height       : 1.375rem;      // 22px
   }
 
   .read-more {
-    display            : inline-block;
-    width              : 130px;
-    padding            : 10px;
-    border-radius      : $border-radius;
-    border-color       : $color;
-    background-color   : $color;
-    color              : $primary-light;
-    font-size          : 1.0625rem;    // 17px
-    font-style         : normal;
-    text-transform     : uppercase;
+    display           : inline-block;
+    width             : 130px;
+    padding           : 10px;
+    border-radius     : $border-radius;
+    border-color      : $color;
+    background-color  : $color;
+    color             : $primary-light;
+    font-size         : 1.0625rem;     // 17px
+    font-style        : normal;
+    text-transform    : uppercase;
+  }
+
+  .read-more:active {
+    box-shadow        : $button-active-shadow;
   }
 
   &:hover {
-    border             : 1px solid $color;
-    background-color   : $color;
-    color              : $primary-light;
+    border            : 1px solid $color;
+    background-color  : $color;
+    color             : $primary-light;
 
     hr, span {
-      border-color     : $primary-light;
+      border-color    : $primary-light;
     }
     span {                             // Style both glyph and 'read more'
-      background-color : $primary-light;
-      color            : $color;
+      background-color: $primary-light;
+      color           : $color;
     }
   }  // &:hover
 }  // @mixin
@@ -125,8 +129,6 @@
   @include flex-flow((column wrap));
   @include align-items(center);
 
-  //======== ADDING MEDIUM BREAKPOINT ========//
-
   @media (min-width: map-get($breakpoints, 'm')) {
     @include flex-flow((row wrap));
     @include justify-content(center);
@@ -134,17 +136,8 @@
     @include align-content(stretch);
   }
 
-  //==========================================//
-
-  @media (min-width: map-get($breakpoints, 'l')) {
-    @include flex-flow((row wrap));
-    @include justify-content(center);
-    @include align-items(stretch);
-    @include align-content(stretch);
-  }
-
-  padding              : 20px 0 50px;
-  background-color     : $primary-light;
+  padding         : 20px 0 50px;
+  background-color: $primary-light;
 
   // Styles for each child (flex) item (i.e. the cards themselves)
   @each $service, $color in $nm-services {
@@ -155,10 +148,10 @@
 
   // Styles for the line break
   &-break {                            // At L/XL breakpoints force line break
-    display      : hidden;             // after Digital Marketing card
+    display       : hidden;            // after Digital Marketing card
     @media (min-width: map-get($breakpoints, 'l')) {
-      display    : inline-block;
-      flex-basis : 100%;               // Hidden line break with 100% width -
+      display     : inline-block;
+      flex-basis  : 100%;              // Hidden line break with 100% width -
     }                                  // doesn't matter that the IE FlexBug7
   }                                    // changes box sizing to content-box
 }

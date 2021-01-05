@@ -130,8 +130,8 @@
 
 .full-viewport {
   @include grid;
-  grid-template-rows : max-content auto;
-  height             : 100vh;
+  grid-template-rows: max-content auto;
+  height            : 100vh;
 }
 
 body {
