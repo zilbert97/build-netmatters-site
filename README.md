@@ -5,7 +5,7 @@ My HTML and CSS review
 - [x] Make favicon
 - [x] Service cards at medium breakpoint
 - [ ] Banner height at different viewport sizes
-- [ ] Telephone link for phone number in footer
+- [x] Telephone link for phone number in footer
 - [ ] Test and edit for IE
 - [ ] "Dots on image in mobile - could have just been a dev tools issues"
 - [ ] Dropdown nav link spacing
