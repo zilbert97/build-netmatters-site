@@ -10,4 +10,4 @@ My HTML and CSS review
 - [ ] "Dots on image in mobile - could have just been a dev tools issues"
 - [x] Dropdown nav link spacing
 - [ ] News tooltip text cuts off at certain screen sizes - horizontal scrolling
-- [ ] On click – button shadows for the cards - read more
+- [x] On click – button shadows for the cards - read more
