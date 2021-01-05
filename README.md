@@ -3,7 +3,7 @@ My HTML and CSS review
 
 ## To-do:
 - [x] Make favicon
-- [ ] Service cards at medium breakpoint
+- [x] Service cards at medium breakpoint
 - [ ] Banner height at different viewport sizes
 - [ ] Telephone link for phone number in footer
 - [ ] Test and edit for IE
