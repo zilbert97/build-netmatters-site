@@ -19,33 +19,34 @@
 }
 
 .main-header {
-  display        : flex;
-  position       : relative;           // For positioning checkbox toggle relative to .main-header
-  flex-flow      : row wrap;
-  align-items    : center;
-  justify-content: center;
-  padding        : 20px 15px;
-  min-height     : 168px;
+  @include flexbox;
+  @include flex-flow((row wrap));
+  position      : relative;           // For positioning checkbox toggle relative to .main-header
+  @include align-items(center);
+  @include justify-content(center);
+  padding       : 20px 15px;
+  min-height    : 168px;
 }
 
 #logo-container {
-  flex           : 1 1 0;
-  margin-right   : 20px;
-  padding-bottom : 5px;
+  @include flex(1, 1, 0);  // flex: 1 1 0;
+  box-sizing    : content-box;
+  margin-right  : 20px;
+  padding-bottom: 5px;
   a > .logo {
-    max-width    : 100%;
-    min-width    : 0;
+    max-width   : 100%;
+    min-width   : 0;
   }
 }
 
 #toggle {display: none;}
 
 #buttons-container {
-  order          : 10;                 // Place after logo, before burger
-  display        : flex;               // Is a flex container (as well as item)
-  flex-flow      : row nowrap;
-  align-items    : center;
-  justify-content: flex-end;
+  @include order(10);                  // Place after logo, before burger
+  @include flexbox;                    // Is a flex container (as well as item)
+  @include flex-flow((row nowrap));
+  @include align-items(center);
+  @include justify-content(flex-end);
 
   #support-button {display: none;}
   #contact-button {display: none;}
@@ -82,7 +83,7 @@
 #search-container {
   margin-top : auto;
   flex-basis : 100%;                   // Grow the search-container to full width, to wrap below
-  order      : 50;                     // Place after hamburger-container (last item)
+  @include order(50);                  // Place after hamburger-container (last item)
   position   : relative;
 
   #search-input {
@@ -126,13 +127,13 @@
 
 @media (min-width: map-get($breakpoints, 'm')) {
   .main-header {
-    flex-wrap  : nowrap;
+    @include flex-wrap(nowrap);
     margin     : auto;
     min-height : 110px;
   }
 
   #logo-container {
-    flex       : 0 0 auto;
+    @include flex(0, 0, auto);  // flex: 0 0 auto;
     box-sizing : content-box;
     width      : 345px;
     padding    : 0 15px;
@@ -141,8 +142,8 @@
   #voip-icon {display: none;}
 
   #search-container {
-    order  : 20;                       // Place after buttons-container, before hamburger-container
-    flex   : 0 0 auto;
+    @include order(20);                // Place after buttons-container, before hamburger-container
+    @include flex(0, 0, auto);  // flex: 0 0 auto;
     margin : 0 0 0 20px;
 
     #search-input {
@@ -179,7 +180,7 @@
 @media (min-width: map-get($breakpoints, 'l')) {
 
   .main-header {
-    justify-content: space-between;
+    @include justify-content(space-between);
   }
 
   #logo-container {
@@ -280,26 +281,30 @@
   }
 
   #nav-inner {
-    height     : 100%;
-    padding    : 0 15px;
-    margin     : 0 auto;
+    height        : 100%;
+    padding       : 0 15px;
+    margin        : 0 auto;
 
     ul {                               // A flex container for li flex items
-      display  : flex;
-      flex-flow: row nowrap;
-      margin   : 0;
-      padding  : 0;
-      height   : 100%;
+      @include flexbox;
+      @include flex-flow((row nowrap));
+      margin      : 0;
+      padding     : 0;
+      height      : 100%;
 
-      list-style : none;
+      list-style  : none;
 
       border-right: 1px solid rgba(0,0,0,.25);      // NTD: Vars
       border-left : 1px solid hsla(0,0%,100%,.1);
     }
 
     .nav-item {
-      display  : inline-block;
-      flex     : calc(100%/6) 0 0;
+      display     : inline-block;
+      box-sizing  : content-box;       // Set because of IE 10/11 FlexBug7, in
+      $item-width : calc((100%/6) - 2px); // which a non-auto flex-basis
+      @include flex(0, 0, $item-width);   // causes box-sizing to be calculated
+                                       // as content-box. Therefore width of nav
+                                       // items calculated as 1/6 minus borders
 
       border-left : 1px solid rgba(0,0,0,.25);      // NTD: Vars
       border-right: 1px solid hsla(0,0%,100%,.1);

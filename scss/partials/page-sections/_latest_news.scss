@@ -6,6 +6,7 @@
 
 // Each card is a flex item.
 
+// NTD below?
 #news-board {
   // In order to prevent horizntal scrollbar I need to
   // set overflow to hidden but only on X - this is not
@@ -53,15 +54,15 @@
 }
 
 #news-board {
-  display       : flex;
-  flex-direction: column;
-  flex-wrap     : nowrap;
+  @include flexbox;
+  @include flex-direction(column);
+  @include flex-wrap(nowrap);
   padding       : 35px 0;
   box-shadow    : 0 5px 35px rgba(0,0,0,.1);
 
   @media (min-width: map-get($breakpoints, 'm')) {
-    flex-direction : row;
-    justify-content: center;
+    @include flex-direction(row);
+    @include justify-content(center);
 
     .news-card:nth-child(1n+3) {       // Hide 3rd item and all others after it (if there are any)
       display: none;
@@ -75,15 +76,14 @@
 }
 
 @mixin latest-card($card-category, $desc-box-position-small:0, $desc-box-position-large:0) {
-
   @media (min-width: map-get($breakpoints, 'm')) {
-    flex: 345px 0 0;
+    @include flex(0, 0, 345px);  // flex: 345px 0 0;
   }
   @media (min-width: map-get($breakpoints, 'l')) {
-    flex: 455px 0 0;
+    @include flex(0, 0, 455px);  // flex: 455px 0 0;
   }
   @media (min-width: map-get($breakpoints, 'xl')) {
-    flex: 370px 0 0;
+    @include flex(0, 0, 370px);  // flex: 370px 0 0;
   }
 
   $content-color : map-get($nm-services, $card-category);
@@ -140,9 +140,9 @@
   }  // .news-card-cover
 
   .news-card-summary {
-    display     : flex;
-    flex-flow   : row wrap;
-    align-items : center;
+    @include flexbox;
+    @include flex-flow((row wrap));
+    @include align-items(center);
     padding     : 30px;
 
     h6, p {
@@ -156,8 +156,9 @@
     }
 
     h6 {
-      flex        : 100% 1 1;
+      @include flex(1, 1, 100%);  // flex: 100% 1 1;
       margin      : 0 0 15px 0;
+      height      : 24px;
       color       : $content-color;
       font-size   : 1rem;
       font-weight : 600;
@@ -171,24 +172,36 @@
     }
 
     .card-description {
-      flex        : 100% 1 1;
+      @include flex(1, 1, 100%);  // flex: 100% 1 1;
       margin      : 0 0 25px 0;
       font-size   : .8125rem;          // 13px
     }
 
+    @media (min-width: map-get($breakpoints, 'l')) {
+      h6, .card-description {
+        margin: 0 0 39px;
+      }
+    }
+    @media (min-width: map-get($breakpoints, 'xl')) {
+      .card-description {
+        margin: 0 0 25px;
+      }
+    }
+
     .read-more {
-      flex        : auto 0 0;
+      @include flex(0, 0, auto);  // flex: auto 0 0;
       @include button-base-style($service: $card-category, $context: 'body');  // Same color as IT support buttons
     }
 
     hr {
-      flex         : 100% 1 1;         // Be full width, can grow and shrink
+      @include flex(1, 1, 100%);  // flex: 100% 1 1;  // Be full width, can grow and shrink
       border-color : $search-border;
       margin       : 30px 0;
     }
 
     .card-publish-info {
-      flex         : auto 1;
+      @include flex-grow(1);
+      flex-basis   : auto;  // flex: auto 1;
       padding      : 0 0 0 20px;
       font-size    : .875rem;          // 14px
 
@@ -243,7 +256,7 @@
     transition : opacity .3s cubic-bezier(.215,.61,.355,1),
                  visibility .1s .3s;      // wait for the opacity transition before making visibiiltiy collapse. // NTD: Vars
     opacity    : 0;
-    visibility: collapse;
+    visibility : collapse;
   }
 
   .news-card-category:hover + .description-box {

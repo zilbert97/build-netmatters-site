@@ -18,10 +18,10 @@
   $i: index(($nm-services), ($service $color));
   @media (min-width: map-get($breakpoints, 'l')) {
     @if $i==1 or $i==2 or $i==3 {
-      flex-basis : 293px;
-    }
-    @else {
-      flex-basis : 455px;
+      flex-basis : 293px;              // Tested to check IE 10/11 FlexBug7
+    }                                  // (which calculates box-sizing as
+    @else {                            // content-box when non-auto flex-basis
+      flex-basis : 455px;              // value given) doesn't cause layout bugs
     }
   }
 
@@ -34,7 +34,7 @@
     }
   }
 
-  flex-shrink          : 1;            // Prevents cards from overflowing the
+  @include flex-shrink(1);             // Prevents cards from overflowing the
                                        // flex container
   margin               : 30px 15px 0;
 
@@ -52,9 +52,10 @@
     width              : 100%;
     height             : 100%;
     padding            : 30px;
-    display            : flex;
-    flex-flow          : column nowrap;
-    align-items        : center;
+
+    @include flexbox;
+    @include flex-flow((column nowrap));
+    @include align-items(center);
     color              : inherit;      // Override deafault <a> element styling
   }
 
@@ -79,7 +80,7 @@
   }
 
   p {
-    flex-grow          : 1;            // Pushes .read-more down despite content
+    @include flex-grow(1);             // Pushes .read-more down despite content
     margin-bottom      : 13px;
     font-size          : .8125rem;     // 13px
     line-height        : 1.375rem;     // 22px
@@ -115,15 +116,15 @@
 
 .nm-cards {
   // Styles for the nm-cards (flex) container
-  display              : flex;
-  flex-flow            : column wrap;
-  align-items          : center;
+  @include flexbox;
+  @include flex-flow((column wrap));
+  @include align-items(center);
 
   @media (min-width: map-get($breakpoints, 'l')) {
-    flex-flow          : row wrap;
-    justify-content    : center;
-    align-items        : stretch;
-    align-content      : stretch;
+    @include flex-flow((row wrap));
+    @include justify-content(center);
+    @include align-items(stretch);
+    @include align-content(stretch);
   }
 
   padding              : 20px 0 50px;
@@ -141,7 +142,7 @@
     display      : hidden;             // after Digital Marketing card
     @media (min-width: map-get($breakpoints, 'l')) {
       display    : inline-block;
-      flex-basis : 100%;
-    }
-  }
+      flex-basis : 100%;               // Hidden line break with 100% width -
+    }                                  // doesn't matter that the IE FlexBug7
+  }                                    // changes box sizing to content-box
 }
