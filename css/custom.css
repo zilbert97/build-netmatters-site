@@ -1,7 +1,6 @@
 @charset "UTF-8";
 @font-face {
   font-family: "icomoon";
-  font-family: "icomoon";
   src: url("../assets/icomoon/icomoon.eot?lyrcyy");
   src: url("../assets/icomoon/icomoon.eot?lyrcyy#iefix") format("embedded-opentype"), url("../assets/icomoon/icomoon.ttf?lyrcyy") format("truetype"), url("../assets/icomoon/icomoon.woff?lyrcyy") format("woff"), url("../assets/icomoon/icomoon.svg?lyrcyy#icomoon") format("svg");
   font-weight: normal;
@@ -969,7 +968,6 @@ h5 {
   }
 }
 .jumbotron {
-  position: relative;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -977,6 +975,7 @@ h5 {
   -ms-flex-pack: center;
   justify-content: center;
   margin: 0;
+  position: relative;
   background: linear-gradient(to right, #000, rgba(0, 0, 0, 0.3)), linear-gradient(to left, rgba(0, 0, 0, 0.3), transparent 25%), #333645 url("../img/web-design-background.jpeg") no-repeat center;
   background-size: cover;
   border-top: 1px solid #999aa2;
@@ -1109,6 +1108,18 @@ h5 {
   padding: 20px 0 50px;
   background-color: #fff;
 }
+@media (min-width: 768px) {
+  .nm-cards {
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+  }
+}
 @media (min-width: 992px) {
   .nm-cards {
     -ms-flex-flow: row wrap;
@@ -1122,6 +1133,7 @@ h5 {
   }
 }
 .nm-cards-bespoke-software {
+  box-sizing: content-box;
   min-width: 95%;
   -ms-flex: 1;
   flex-shrink: 1;
@@ -1138,7 +1150,7 @@ h5 {
 @media (min-width: 768px) {
   .nm-cards-bespoke-software {
     min-width: 0;
-    width: 720px;
+    width: 718px;
   }
 }
 @media (min-width: 992px) {
@@ -1213,6 +1225,7 @@ h5 {
   color: #67809f;
 }
 .nm-cards-it-support {
+  box-sizing: content-box;
   min-width: 95%;
   -ms-flex: 1;
   flex-shrink: 1;
@@ -1229,7 +1242,7 @@ h5 {
 @media (min-width: 768px) {
   .nm-cards-it-support {
     min-width: 0;
-    width: 720px;
+    width: 718px;
   }
 }
 @media (min-width: 992px) {
@@ -1304,6 +1317,7 @@ h5 {
   color: #4183d7;
 }
 .nm-cards-digital-marketing {
+  box-sizing: content-box;
   min-width: 95%;
   -ms-flex: 1;
   flex-shrink: 1;
@@ -1320,7 +1334,7 @@ h5 {
 @media (min-width: 768px) {
   .nm-cards-digital-marketing {
     min-width: 0;
-    width: 720px;
+    width: 718px;
   }
 }
 @media (min-width: 992px) {
@@ -1395,6 +1409,7 @@ h5 {
   color: #2ecc71;
 }
 .nm-cards-telecoms-services {
+  box-sizing: content-box;
   min-width: 95%;
   -ms-flex: 1;
   flex-shrink: 1;
@@ -1411,7 +1426,7 @@ h5 {
 @media (min-width: 768px) {
   .nm-cards-telecoms-services {
     min-width: 0;
-    width: 720px;
+    flex-basis: 343px;
   }
 }
 @media (min-width: 992px) {
@@ -1486,6 +1501,7 @@ h5 {
   color: #d64541;
 }
 .nm-cards-web-design {
+  box-sizing: content-box;
   min-width: 95%;
   -ms-flex: 1;
   flex-shrink: 1;
@@ -1502,7 +1518,7 @@ h5 {
 @media (min-width: 768px) {
   .nm-cards-web-design {
     min-width: 0;
-    width: 720px;
+    flex-basis: 343px;
   }
 }
 @media (min-width: 992px) {
@@ -1577,6 +1593,7 @@ h5 {
   color: #926fb1;
 }
 .nm-cards-cyber-security {
+  box-sizing: content-box;
   min-width: 95%;
   -ms-flex: 1;
   flex-shrink: 1;
@@ -1593,7 +1610,7 @@ h5 {
 @media (min-width: 768px) {
   .nm-cards-cyber-security {
     min-width: 0;
-    width: 720px;
+    flex-basis: 343px;
   }
 }
 @media (min-width: 992px) {
@@ -1736,7 +1753,7 @@ h5 {
   vertical-align: middle;
 }
 #about #about-contents a:hover, #about #about-contents a:focus, #about #about-contents a:active {
-  background-color: #ebebeb;
+  background-color: #e6e6e6;
 }
 #about #about-contents a:active {
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);

@@ -101,7 +101,7 @@
   }
   @else {
     $button-color   : $primary-light;
-    $button-color-ui: #ebebeb;         // NTD: Vars
+    $button-color-ui: darken($primary-light, 10%);
   }
 
   background-color  : $button-color;   // Use the values from above to set

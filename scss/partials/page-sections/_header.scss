@@ -29,7 +29,7 @@
 }
 
 #logo-container {
-  @include flex(1, 1, 0);  // flex: 1 1 0;
+  @include flex(1, 1, 0);
   box-sizing    : content-box;
   margin-right  : 20px;
   padding-bottom: 5px;
@@ -100,8 +100,8 @@
     border-radius   : 2px;
     box-shadow      : $shadow-inset;
 
-    &:focus {                          // At S breakpoint remove inner shadow
-      box-shadow    : none;            // when focused
+    &:focus {                          // At small breakpoint remove inner
+      box-shadow    : none;            // shadow when focused
       outline       : 0;
     }
   }
@@ -120,7 +120,7 @@
 
 #hamburger-container {
   order      : 30;                     // Place after buttons-container, before search-container
-  margin-left: 20px;                   // NTD: Change hover state of hamburger _burger-sauce (not ease)
+  margin-left: 20px;
 }
 
 #nav-container {display: none;}
@@ -133,7 +133,7 @@
   }
 
   #logo-container {
-    @include flex(0, 0, auto);  // flex: 0 0 auto;
+    @include flex(0, 0, auto);
     box-sizing : content-box;
     width      : 345px;
     padding    : 0 15px;
@@ -143,7 +143,7 @@
 
   #search-container {
     @include order(20);                // Place after buttons-container, before hamburger-container
-    @include flex(0, 0, auto);  // flex: 0 0 auto;
+    @include flex(0, 0, auto);
     margin : 0 0 0 20px;
 
     #search-input {
@@ -153,8 +153,8 @@
       border-width     : 1px;
       border-radius    : 0;
 
-      &:focus {                        // At M breakpoint and above apply a
-        outline        : 0;            // blue-cyan effect
+      &:focus {                        // At medium breakpoint and above apply
+        outline        : 0;            // a blue-cyan effect
         border-color   : $field-focus-color;
         box-shadow     : $shadow-inset,
                          $shadow-outer;
@@ -216,7 +216,7 @@
     #search-button {
       transition    : border-radius .2s ease-out;
       border-radius : $border-radius;
-      margin-left   : 0;  // Remove -5px margin
+      margin-left   : 0;               // Remove -5px margin
     }
   }
 
@@ -294,8 +294,8 @@
 
       list-style  : none;
 
-      border-right: 1px solid rgba(0,0,0,.25);      // NTD: Vars
-      border-left : 1px solid hsla(0,0%,100%,.1);
+      border-right: $nav-edge-dark;
+      border-left : $nav-edge-light;
     }
 
     .nav-item {
@@ -305,9 +305,8 @@
       @include flex(0, 0, $item-width);   // causes box-sizing to be calculated
                                        // as content-box. Therefore width of nav
                                        // items calculated as 1/6 minus borders
-
-      border-left : 1px solid rgba(0,0,0,.25);      // NTD: Vars
-      border-right: 1px solid hsla(0,0%,100%,.1);
+      border-left : $nav-edge-dark;
+      border-right: $nav-edge-light;
     }
 
     .nav-item > a {

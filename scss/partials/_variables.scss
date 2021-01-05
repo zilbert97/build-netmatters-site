@@ -44,6 +44,10 @@ $search-input      : #555;             // Input field text
 
 $field-focus-color : #5bc0de;
 
+$newsletter-signup : #ddd;             // Newsletter signup background colour
+
+$nav-edge-light    : 1px solid hsla(0,0%,100%,.1);
+$nav-edge-dark     : 1px solid rgba(0,0,0,.25);
 
 //==========================
 // BREAKPOINTS
@@ -72,7 +76,6 @@ $breakpoints: (
     }
   }
 }
-
 
 //==========================
 // UTILITIES

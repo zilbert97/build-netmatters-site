@@ -5,26 +5,28 @@
 // its content as well as a grid item
 
 .jumbotron {
-  position        : relative;          // For positioning owl buttons
   @include flexbox;
   @include align-items(center);
   @include justify-content(center);
-  margin          : 0;
+  margin           : 0;
+  position         : relative;          // For positioning owl buttons
 
-  background      : linear-gradient(to right, #000, rgba(0,0,0,.3)),
-                    linear-gradient(to left, rgba(0,0,0,.3), transparent 25%),
-                    $primary-dark url('../img/web-design-background.jpeg') no-repeat center;
-  background-size : cover;
+  background       : linear-gradient(to right, #000, rgba(0,0,0,.3)),
+                     linear-gradient(to left, rgba(0,0,0,.3), transparent 25%),
+                     $primary-dark url('../img/web-design-background.jpeg') no-repeat center;
+  background-size  : cover;
 
-  border-top      : 1px solid #999aa2; // On site this is rgba(51,54,69.5) but this value in my code seems far too dark   NTD: Var
+  border-top       : 1px solid #999aa2; // On site this is rgba(51,54,69.5) but
+                                        // this value in my code seems far too
+                                        // dark! Approximated as this value.
 
-  color           : $primary-light;
-  text-align      : center;
+  color            : $primary-light;
+  text-align       : center;
   @media (min-width: map-get($breakpoints, 'l')) {
-    background    : linear-gradient(to right, #000, transparent 75%),
+    background     : linear-gradient(to right, #000, transparent 75%),
                     $primary-dark url('../img/web-design-background.jpeg') no-repeat center;
-    background-size : cover;
-    text-align    : left;
+    background-size: cover;
+    text-align     : left;
   }
 
   .container {
@@ -62,7 +64,7 @@
     margin          : 0 8px;
     width           : 11px;
     height          : 11px;
-    background-color: rgba(255,255,255,.5); // NTD: Var
+    background-color: transparentize($primary-light, .5);
     border-radius   : 50%;
     vertical-align  : middle;
     cursor          : pointer;

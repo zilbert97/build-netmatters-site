@@ -7,7 +7,7 @@ footer {
   line-height     : 22px;
 }
 
-.footer-subsection {                   // Hidden at S breakpoint
+.footer-subsection {                   // Hidden at small breakpoint
   display         : none;
 }
 
@@ -144,7 +144,7 @@ footer {
 
     #google-partner-badge {
       width     : 220px;
-      box-shadow: 1px 1px 2px rgba(0,0,0,.2);   // NTD: Var
+      box-shadow: 1px 1px 2px rgba(0,0,0,.2);
     }
   }
 
@@ -232,11 +232,11 @@ $clients: ('busseys', 'crane', 'beat', 'northern-diver');
 //=====================================
 
 #footer-signup {
-  background-color: #ddd; // NTD: var
+  background-color: $newsletter-signup;
   #footer-signup-inner {
+    @include set-content-width;
     margin        : 0 auto;
     padding       : 50px 45px;
-    @include set-content-width;
   }
 
   h2, label, a {
@@ -299,7 +299,7 @@ $clients: ('busseys', 'crane', 'beat', 'northern-diver');
     @include grid;
 
     // IE (workaround due to no CSS grid gap support)
-    -ms-grid-columns     : auto 20px auto;
+    -ms-grid-columns : auto 20px auto;
 
     #signup-checkbox {
       -ms-grid-column: 1;
@@ -321,7 +321,7 @@ $clients: ('busseys', 'crane', 'beat', 'northern-diver');
     }
 
     #signup-checkbox {
-      position: relative;
+      position           : relative;
     }
     input {
       margin-bottom      : 50px;
@@ -337,7 +337,7 @@ $clients: ('busseys', 'crane', 'beat', 'northern-diver');
       cursor             : pointer;
       & ~ .icon-check {
         visibility       : hidden;
-        color: $primary-light;
+        color            : $primary-light;
         position         : absolute;
         font-size        : 1.5rem;
         left             : 4px;
@@ -365,11 +365,11 @@ $clients: ('busseys', 'crane', 'beat', 'northern-diver');
 
   #signup-submit {
     @include button-base-style($context: "body", $service: "signup") {
-      height: 47px;
-      border: 1px solid $primary-dark;
+      height  : 47px;
+      border  : 1px solid $primary-dark;
       &:hover {
         border: 1px solid darken($primary-dark, 10%);
       }
     }
   }
-}
+}  // #footer-signup
