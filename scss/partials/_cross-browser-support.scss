@@ -1,0 +1,111 @@
+//=====================================
+// CROSS-BROWSER FLEXBOX SUPPORT
+//=====================================
+// https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Mixins
+
+// Flex containers:
+@mixin flexbox {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin inline-flex {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+@mixin flex-direction($value: row) {
+  -ms-flex-direction : $value;
+  -moz-flex-direction: $value;         // https://caniuse.com/mdn-css_properties_flex-direction
+  flex-direction     : $value;         // Not default for firefox, enabled using -moz- prefix
+}
+
+@mixin flex-wrap($value: nowrap) {
+  @if $value == nowrap {
+    -ms-flex-wrap: none;
+  } @else {
+    -ms-flex-wrap: $value;
+  }
+  flex-wrap      : $value;
+}
+
+@mixin flex-flow($values: (row nowrap)) {
+  -ms-flex-flow: $values;
+  flex-flow    : $values;
+}
+
+@mixin order($int: 0) {
+  -ms-flex-order: $int;
+  order         : $int;
+}
+
+@mixin justify-content($value: flex-start) {
+  @if $value == flex-start {
+    -ms-flex-pack: start;
+  } @else if $value == flex-end {
+    -ms-flex-pack: end;
+  } @else if $value == space-between {
+    -ms-flex-pack: justify;
+  } @else if $value == space-around {
+    -ms-flex-pack: distribute;
+  } @else {
+    -ms-flex-pack: $value;
+  }
+  justify-content: $value;
+}
+
+@mixin align-items($value: stretch) {
+  @if $value == flex-start {
+    -ms-flex-align: start;
+  } @else if $value == flex-end {
+    -ms-flex-align: end;
+  } @else {
+    -ms-flex-align: $value;
+  }
+  align-items     : $value;
+}
+
+// Flex items
+@mixin flex-grow($int: 1) {
+  -ms-flex : $int;
+  flex-grow: $int;
+}
+
+@mixin flex-shrink($int: 0) {
+  -ms-flex   : $int;
+  flex-shrink: $int;
+}
+
+@mixin flex($f-grow: 1, $f-shrink: 0, $f-basis: auto) {
+  $fg-boxflex  : $f-grow;
+  @if type-of($f-grow) == 'list' {
+    $fg-boxflex: nth($f-grow, 1);
+  }
+  -ms-flex     : $f-grow $f-shrink $f-basis;
+  flex         : $f-grow $f-shrink $f-basis;
+}
+
+@mixin align-content($value: stretch) {
+  @if $value == flex-start {
+    -ms-flex-line-pack: start;
+  } @else if $value == flex-end {
+    -ms-flex-line-pack: end;
+  } @else {
+    -ms-flex-line-pack: $value;
+  }
+  align-content       : $value;
+}
+
+// align-self not used, and is not supported by IE.
+
+//=====================================
+// CROSS-BROWSER CSS GRID SUPPORT
+//=====================================
+
+@mixin grid {
+  display: -ms-grid;
+  display: grid;
+}
+
+// Additional CSS grid support is present
+// where CSS grid is used (in the footer)

@@ -325,6 +325,7 @@
 }
 
 .full-viewport {
+  display: -ms-grid;
   display: grid;
   grid-template-rows: max-content auto;
   height: 100vh;
@@ -2547,10 +2548,25 @@ footer {
 }
 #main-footer-inner #button-grid {
   margin-top: 30px;
-  display: grid;
   width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 55px 30px 55px;
+  -ms-grid-columns: auto 30px auto;
   grid-template: 55px 55px/auto auto;
   grid-gap: 30px;
+}
+#main-footer-inner #button-grid #facebook-button {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+}
+#main-footer-inner #button-grid #twitter-button {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+}
+#main-footer-inner #button-grid #linkedin-button {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
 }
 #main-footer-inner #button-grid #facebook-button {
   display: -ms-inline-flexbox;
@@ -3058,10 +3074,18 @@ footer {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(91, 192, 222, 0.6);
 }
 #footer-signup #signup-confirm {
+  display: -ms-grid;
   display: grid;
+  -ms-grid-columns: auto 20px auto;
   grid-template-columns: auto auto;
   grid-gap: 20px;
   margin: 0 0 31px;
+}
+#footer-signup #signup-confirm #signup-checkbox {
+  -ms-grid-column: 1;
+}
+#footer-signup #signup-confirm #signup-terms {
+  -ms-grid-column: 3;
 }
 @media (min-width: 992px) {
   #footer-signup #signup-confirm {

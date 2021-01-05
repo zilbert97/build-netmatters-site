@@ -319,12 +319,12 @@
 
     span {
       display       : block;
-      font-size     : 1.125rem;       // 18px
+      font-size     : 1.125rem;        // 18px
       line-height   : 1;
       text-align    : center;
       text-transform: uppercase;
       small {
-        font-size   : .625rem;        // 10px
+        font-size   : .625rem;         // 10px
       }
     }
 
@@ -333,7 +333,7 @@
     }
 
     [class^=icon-] {
-      font-size     : 1.4375rem;      // 23px (more specific selector)
+      font-size     : 1.4375rem;       // 23px (more specific selector)
     }
 
     .subnav {

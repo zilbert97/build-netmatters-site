@@ -69,11 +69,33 @@ footer {
   #button-grid {
 
     margin-top   : 30px;
-
-    display      : grid;
     width        : 100%;
-    grid-template: 55px 55px / auto auto;  // <rows> / <columns>
-    grid-gap     : 30px;
+
+    @include grid;
+    // As IE doesn't support gutters, i've added intermediary columns and rows
+    // with specified button placement in the grid. For modern browsers the
+    // grid-template shortand and grid-gap properties are used.
+
+    // Grid compatibility in IE:
+    -ms-grid-rows    : 55px 30px 55px;
+    -ms-grid-columns : auto 30px auto;
+
+    #facebook-button {
+      -ms-grid-row   : 1;
+      -ms-grid-column: 1;
+    }
+    #twitter-button {
+      -ms-grid-row   : 1;
+      -ms-grid-column: 3;
+    }
+    #linkedin-button {
+      -ms-grid-row   : 3;
+      -ms-grid-column: 1;
+    }
+
+    // Grid compatibility in modern browsers:
+    grid-template    : 55px 55px / auto auto;  // <rows> / <columns>
+    grid-gap         : 30px;
 
     @each $key, $color in $social-buttons-ui {
       ##{$key}-button {
@@ -274,7 +296,19 @@ $clients: ('busseys', 'crane', 'beat', 'northern-diver');
   }  // .input-field
 
   #signup-confirm {
-    display              : grid;
+    @include grid;
+
+    // IE (workaround due to no CSS grid gap support)
+    -ms-grid-columns     : auto 20px auto;
+
+    #signup-checkbox {
+      -ms-grid-column: 1;
+    }
+    #signup-terms {
+      -ms-grid-column: 3;
+    }
+
+    // Modern browser approach for CSS grid
     grid-template-columns: auto auto;
     grid-gap             : 20px;
 
