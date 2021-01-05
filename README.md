@@ -15,6 +15,7 @@ My HTML and CSS review
 - [x] Background color (gradient) for jumbo - either needs to be more precise, or different values for different breakpoints
 - [x] Latest news section speech boxes are causing horizontal scroll. We cannot set overflow to visible and hidden on X and Y axes individually - fix bug, see lines 10-16 in latest_news partial
 - [ ] Remove background from page title logo
+- [ ] Horizontal scroll appeared after introducing flexbox cross-browser compatibilities. Likely due to one fo the cards sections.
 
 ###### Header
 - [x] Search icon is too small - look to change or increase size while maintaining 23px font size
@@ -64,4 +65,7 @@ My HTML and CSS review
 ### Phase 4 - final checks before submission:
 - [ ] Research and integrate best practices for accessibility of HTML
 - [ ] Go through selectors and properties, check usable with caniuse.com
+- [ ] Check and adjust grid compatibility
+- [x] Check and adjust flexbox compatibility
+- [ ] Check and adjust animation/transition compatibility
 - [ ] Remove bootstrap function from jumbotron (consider needing to re-introduce bootstrap)
