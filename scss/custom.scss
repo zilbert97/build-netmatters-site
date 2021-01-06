@@ -130,8 +130,9 @@
 
 .full-viewport {
   @include grid;
-  grid-template-rows: max-content auto;   // max-content auto  // NTD: check maxcontent in IE?
-  height            : 100vh;
+  grid-template-rows: max-content auto;    // NTD: check maxcontent in IE?
+  // NTD: --ms-grid-rows: max-content auto;
+  min-height            : 100vh;
 }
 
 body {

@@ -328,7 +328,7 @@
   display: -ms-grid;
   display: grid;
   grid-template-rows: max-content auto;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 body {
@@ -1109,6 +1109,7 @@ h5 {
 }
 
 .nm-cards {
+  min-height: 100%;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-flow: column wrap;
