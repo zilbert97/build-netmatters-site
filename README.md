@@ -13,4 +13,4 @@ My HTML and CSS review
 - [x] On click – button shadows for the cards - read more
 - [x] Owl buttons misaligned on Firefox
 - [x] General Firefox testing
-- [ ] Cards section hidden behind banner at short viewports
+- [x] Cards section hidden behind banner at short viewports
