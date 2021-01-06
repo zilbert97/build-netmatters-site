@@ -1805,6 +1805,10 @@ h5 {
   }
 }
 
+#latest-news {
+  overflow-x: hidden;
+}
+
 #latest-news-header {
   height: 104px;
   width: 100%;

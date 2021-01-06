@@ -5,15 +5,8 @@
 // is a flex container. Each card is a
 // flex item.
 
-// NTD below?
-#news-board {
-  // In order to prevent horizntal scrollbar I need to
-  // set overflow to hidden but only on X - this is not
-  // possible as Y will be set as well... because
-  // overflow-x: hidden and overflow-y: visible cannot
-  // be used in combination.
-  // https://stackoverflow.com/questions/6421966/css-overflow-x-visible-and-overflow-y-hidden-causing-scrollbar-issue
-  // https://www.gavsblog.com/blog/only-hide-css-overflow-on-a-single-x-or-y-axis-or-ignore-it
+#latest-news {                         // Fix horizontal scroll due to hidden
+  overflow-x : hidden;                 // description boxes shown on hover
 }
 
 #latest-news-header {
