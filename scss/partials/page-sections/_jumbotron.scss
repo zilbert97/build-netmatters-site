@@ -73,7 +73,6 @@
   .owl-button {
     display           : inline-block;
     position          : relative;
-
     &:hover > span {
       background-color: #869791; // NTD: Var
     }
@@ -87,6 +86,10 @@
         border        : 2px solid $primary-light;
         width         : 23px;
         height        : 23px;
+        @-moz-document url-prefix() {  // Absolute positioning renders
+          top: 2px;                    // differently in firefox - using a
+          right: 2px;                  // firefox hack as a workaround
+        }
         top           : 1px;
         right         : 2px;
       }

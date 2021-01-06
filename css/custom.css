@@ -1100,6 +1100,12 @@ h5 {
   top: 1px;
   right: 2px;
 }
+@-moz-document url-prefix() {
+  #owl-container .owl-button span:active::after {
+    top: 2px;
+    right: 2px;
+  }
+}
 
 .nm-cards {
   display: -ms-flexbox;
