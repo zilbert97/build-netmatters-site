@@ -977,6 +977,7 @@ h5 {
   align-items: center;
   -ms-flex-pack: center;
   justify-content: center;
+  min-height: 490px;
   margin: 0;
   position: relative;
   background: linear-gradient(to right, #000, rgba(0, 0, 0, 0.3)), linear-gradient(to left, rgba(0, 0, 0, 0.3), transparent 25%), #333645 url("../img/web-design-background.jpeg") no-repeat center;

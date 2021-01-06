@@ -8,6 +8,9 @@
   @include flexbox;
   @include align-items(center);
   @include justify-content(center);
+
+  min-height       : 490px;
+
   margin           : 0;
   position         : relative;          // For positioning owl buttons
 
