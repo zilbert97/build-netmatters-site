@@ -11,5 +11,6 @@ My HTML and CSS review
 - [x] Dropdown nav link spacing
 - [x] News tooltip text cuts off at certain screen sizes - horizontal scrolling
 - [x] On click – button shadows for the cards - read more
-- [ ] Owl buttons misaligned on Firefox
+- [x] Owl buttons misaligned on Firefox
 - [ ] General Firefox testing
+- [ ] Cards section hidden behind banner at short viewports
