@@ -130,9 +130,20 @@
 
 .full-viewport {
   @include grid;
-  grid-template-rows: max-content auto;    // NTD: check maxcontent in IE?
-  // NTD: --ms-grid-rows: max-content auto;
-  min-height            : 100vh;
+  -ms-grid-rows     : max-content auto;
+  grid-template-rows: max-content auto;
+  -ms-grid-columns  : 100vw;
+
+  header {                             // IE needs grid items set explicitly
+    -ms-grid-row: 1;                   // in the grid.
+    -ms-grid-column: 1;
+  }
+  .jumbotron {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+  }
+
+  min-height        : 100vh;
 }
 
 body {

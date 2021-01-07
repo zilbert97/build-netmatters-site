@@ -76,9 +76,10 @@ footer {
     // with specified button placement in the grid. For modern browsers the
     // grid-template shortand and grid-gap properties are used.
 
-    // Grid compatibility in IE:
+    // Grid compatibility in IE; minmax() used instead of auto, as columns need
+    // to be abe to stretch (in IE auto caused them to assue width max-content)
     -ms-grid-rows    : 55px 30px 55px;
-    -ms-grid-columns : auto 30px auto;
+    -ms-grid-columns : minmax(min-content, 1fr) 30px minmax(min-content, 1fr);
 
     #facebook-button {
       -ms-grid-row   : 1;
@@ -305,6 +306,7 @@ $clients: ('busseys', 'crane', 'beat', 'northern-diver');
       -ms-grid-column: 1;
     }
     #signup-terms {
+      display        : block;
       -ms-grid-column: 3;
     }
 

@@ -12,7 +12,7 @@
 #latest-news-header {
   height     : 104px;
   width      : 100%;
-  box-shadow : 0 5px 35px rgba(0,0,0,.1);    // NTD: variable
+  box-shadow : $card-shadow;
 }
 
 #latest-news-inner {
@@ -246,7 +246,7 @@
 
   .news-card-category + .description-box {
     transition : opacity .3s cubic-bezier(.215,.61,.355,1),
-                 visibility .1s .3s;      // wait for the opacity transition before making visibiiltiy collapse. // NTD: Vars
+                 visibility .1s .3s;      // wait for the opacity transition before making visibiiltiy collapse.
     opacity    : 0;
     visibility : collapse;
   }
