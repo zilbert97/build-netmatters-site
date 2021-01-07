@@ -798,8 +798,7 @@ h5 {
   #nav-inner .nav-item {
     display: inline-block;
     box-sizing: content-box;
-    -ms-flex: 0 0 calc((100%/6) - 2px);
-    flex: 0 0 calc((100%/6) - 2px);
+    flex-basis: calc((100%/6) - 2px);
     border-left: 1px solid rgba(0, 0, 0, 0.25);
     border-right: 1px solid rgba(255, 255, 255, 0.1);
   }
@@ -974,7 +973,7 @@ h5 {
   }
 
   #nav-inner .subnav > ul {
-    font-size: 1rem;
+    font-size: 0.9375rem;
   }
   #nav-inner .subnav > ul li ~ li > a:before {
     padding: 0 32px;
