@@ -12,6 +12,10 @@
 // Burger   30
 // Search   50      20
 
+header {
+  background-color: $primary-light;
+}
+
 .main-header,
 #nav-inner,
 .subnav > ul {                         // Set max-width at each breakpoint
