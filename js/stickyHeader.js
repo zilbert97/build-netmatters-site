@@ -11,14 +11,7 @@ function createScrollSpy() {
     if (scrollTop > lastScrollTop) {
 
       if (lastDirection !== 'down') {
-        // Show the header
-        $(document).ready(() => {
-          $('#sticker').sticky({
-            topSpacing: 0,
-            zIndex: 5000
-          });
-        });
-
+        $('#sticker').unstick();
         lastDirection = 'down';
       }
     }
@@ -26,7 +19,13 @@ function createScrollSpy() {
     // Scrolls up
     else {
       if (lastDirection !== 'up') {
-        $('#sticker').unstick();
+        // Show the header
+        $(document).ready(() => {
+          $('#sticker').sticky({
+            topSpacing: 0,
+            zIndex: 5000
+          });
+        });
         lastDirection = 'up';
       }
     }
