@@ -1,16 +1,24 @@
 # build-netmatters-site
-My HTML and CSS review
+JS reflection:
+- Banner slider
+- Mobile menu
+- Sticky header
+- Pop-up notifying the user the website uses cookies, this should store locally and prevent the pop-up reappearing on page reload
 
 ## To-do:
-- [x] Make favicon
-- [x] Service cards at medium breakpoint
-- [x] Banner height at different viewport sizes
-- [x] Telephone link for phone number in footer
-- [ ] Test and edit for IE
-- [ ] "Dots on image in mobile - could have just been a dev tools issues"
-- [x] Dropdown nav link spacing
-- [x] News tooltip text cuts off at certain screen sizes - horizontal scrolling
-- [x] On click – button shadows for the cards - read more
-- [x] Owl buttons misaligned on Firefox
-- [x] General Firefox testing
-- [x] Cards section hidden behind banner at short viewports
+- [] Get jQuery from CDN
+
+### Branch `sticky-header`:
+- [] Get sticky header plugin
+
+### Branch `mobile-menu`:
+- []
+
+### Branch `banner-slider`:
+- []
+
+### Branch `cookies-popup`:
+- [] Create some session storage object which stores a boolean value, key `acceptedCookies`
+- [] Generate a modal
+- [] Modal only opens if session storage `acceptedCookies === false`
+- [] Prevent modal from closing
