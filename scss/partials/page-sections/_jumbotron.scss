@@ -27,7 +27,7 @@
   text-align       : center;
   @media (min-width: map-get($breakpoints, 'l')) {
     background     : linear-gradient(to right, black, transparent 75%),
-                    $primary-dark url('../img/web-design-background.jpeg') no-repeat center;
+                    $primary-dark url('../img/slider-web-design.jpeg') no-repeat center;
     background-size: cover;
     text-align     : left;
   }
