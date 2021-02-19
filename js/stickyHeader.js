@@ -1,4 +1,5 @@
 function makeSticky(target) {
+
   $(document).ready(() => {
     target.sticky({
       topSpacing: 0,
@@ -22,35 +23,32 @@ function createScrollSpy() {
   return $(window).scroll(() => {
     let scrollTop = $(this).scrollTop();
 
-    // If not past height of header
+    // If at top of the page
     if (scrollTop === 0) {
       stickyTarget.unstick();
-      stickyTarget.removeClass('slide-up').removeClass('slide-down');
+      stickyTarget.removeClass('slide-up slide-down');
     }
+
+    // If past header height
     else if (scrollTop > 211) {
 
-      // Scrolls down
+      // On scroll down
       if (scrollTop > lastScrollTop) {
 
-
+        // If changed direction of scroll
         if (lastDirection !== 'down') {
           stickyTarget.addClass('slide-up').removeClass('slide-down');
-
-          setTimeout(() => {
-            stickyTarget.unstick();
-          }, 300);
         }
 
         lastDirection = 'down';
       }
 
-      // Scrolls up
+      // On scroll up, if changed direction of scroll
       else if (lastDirection !== 'up') {
 
         // Show the header
         stickyTarget.addClass('slide-down').removeClass('slide-up');
         makeSticky(stickyTarget);
-
 
         lastDirection = 'up';
       }

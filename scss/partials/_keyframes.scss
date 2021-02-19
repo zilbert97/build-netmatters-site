@@ -79,3 +79,125 @@
   transition-property : visibility;
   visibility          : hidden;
 }
+
+//============
+// SLIDE DOWN
+//============
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@-moz-keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@-o-keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@-ms-keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+$duration: 250ms;
+$bezier: cubic-bezier(.48,1.07,.75,.99);
+$delay: 0ms;
+
+.slide-down {
+  animation        : $duration $bezier $delay 1 slideDown;
+  -webkit-animation: $duration $bezier $delay 1 slideDown;
+  -moz-animation   : $duration $bezier $delay 1 slideDown;
+  -o-animation     : $duration $bezier $delay 1 slideDown;
+  -ms-animation    : $duration $bezier $delay 1 slideDown;
+
+  animation-fill-mode: forwards;
+}
+
+//==========
+// SLIDE UP
+//==========
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@-moz-keyframes slideUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@-webkit-keyframes slideUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@-o-keyframes slideUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@-ms-keyframes slideUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.slide-up {
+  animation        : $duration $bezier $delay 1 slideUp;
+  -webkit-animation: $duration $bezier $delay 1 slideUp;
+  -moz-animation   : $duration $bezier $delay 1 slideUp;
+  -o-animation     : $duration $bezier $delay 1 slideUp;
+  -ms-animation    : $duration $bezier $delay 1 slideUp;
+
+  animation-fill-mode: forwards;
+}

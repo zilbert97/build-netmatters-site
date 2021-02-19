@@ -14,6 +14,9 @@
 
 header {
   background-color: $primary-light;
+  -webkit-box-shadow: $card-shadow;
+  -moz-box-shadow: $card-shadow;
+  box-shadow: $card-shadow;
 }
 
 .main-header,

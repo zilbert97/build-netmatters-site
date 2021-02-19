@@ -184,36 +184,3 @@ h5 {
         "partials/page-sections/about",
         "partials/page-sections/latest_news",
         "partials/page-sections/footer";
-
-// ADD TO HEADER AND KEYFRAMES CLASSES AS APPROPRIATE
-
-@keyframes slideDown {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideUp {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-100%);
-  }
-}
-
-$duration: 300ms;
-$bezier: cubic-bezier(.48,1.07,.75,.99);
-$delay: 0ms;
-
-.slide-down {
-  animation        : $duration $bezier $delay 1 slideDown;
-  animation-fill-mode: forwards;
-}
-.slide-up {
-  animation        : $duration $bezier $delay 1 slideUp;
-  animation-fill-mode: forwards;
-}
