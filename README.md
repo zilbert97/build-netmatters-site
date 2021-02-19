@@ -8,15 +8,19 @@ JS reflection:
 ## To-do:
 - [x] Get jQuery from CDN
 
-### Branch `sticky-header`:
+#### Branch `sticky-header`:
 - [x] Get sticky header plugin
+- [x] Make stick to top of viewort
+- [x] Show on scroll up, hide on scroll down
+- [x] Animate show/hide
+- [x] Test X-browser
 
-### Branch `mobile-menu`:
+#### Branch `mobile-menu`:
 
-### Branch `banner-slider`:
+#### Branch `banner-slider`:
 - [x] Get slick carousels plugin
 
-### Branch `cookies-popup`:
+#### Branch `cookies-popup`:
 - [x] Get modals plugin
 - [ ] Create some session storage object which stores a boolean value, key `acceptedCookies`
 - [ ] Generate a modal
