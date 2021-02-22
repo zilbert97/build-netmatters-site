@@ -1,7 +1,6 @@
 
 
-
+checkAcceptCookies();
 
 // Sticky header
-
 createScrollSpy();
