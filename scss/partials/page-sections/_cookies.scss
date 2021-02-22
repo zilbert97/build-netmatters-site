@@ -1,0 +1,80 @@
+#modal {
+  height: max-content;
+  padding: 0;
+
+  // z-index: 5000;
+
+  &-title,
+  &-copy-container,
+  &-button-container {
+    padding: 20px;
+  }
+
+  border-radius: 5px;
+
+  &-title {
+    margin: 0;
+    color: #333645;
+    font-size: 26px;
+    font-weight: 400;
+    text-transform: capitalize;
+    border-bottom: 1px solid rgb(229,229,229); // Change colour
+  }
+
+  &-copy-container p {
+    margin: 0;
+    color: #666;
+    line-height: 2;
+  }
+
+  &-button-container {
+    border-top: 1px solid rgb(229, 229, 229);
+  }
+
+  &-button {
+    &-change {
+      @include button-base-style($service: "utility") {
+        margin: 0 0 15px;
+      }
+    }
+    &-accept {
+      @include button-base-style($service: "web-design") {
+        margin: 15px 0 0;
+      }
+    }
+
+    &-change, &-accept {
+      display: inline-block;
+      width  : 100%;
+    }
+  }
+
+  @media (min-width: map-get($breakpoints, 'm')) {
+    min-width: max-content;
+
+    &-copy-container p {
+      width: 558px;
+    }
+
+    &-button-container {
+      @include flexbox;
+      @include flex-flow(row nowrap);
+      @include justify-content(space-between);
+    }
+
+    &-button {
+      &-change, &-accept {
+        @include flex($f-grow: 1, $f-shrink: 1, $f-basis: auto);
+
+        min-width: 264px;
+        max-width: 264px;
+      }
+      &-change {
+        margin: 0 15px 0 0;
+      }
+      &-accept {
+        margin: 0 0 0 15px;
+      }
+    }
+  }
+}

@@ -19,6 +19,9 @@
     <!-- NEW STYLES - REMOVE -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
+    <!-- Modal (cookies) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
     <!-- Link to my CSS -->
     <link rel="stylesheet" href="css/custom.css">
   </head>
@@ -625,6 +628,21 @@
       </section> <!-- .footer-subsection -->
     </footer>
 
+    <!-- Cookies modal -->
+    <!-- Modal HTML embedded directly into document -->
+    <div id="modal" class="modal">
+      <h3 id="modal-title">Cookies policy</h3>
+      <div id="modal-copy-container">
+        <p>We use cookies to obtain aggregate data regarding site traffic and interaction, in order to identify user trends and obtain insights in order to continually improve our site. These cookies enable us to improve your customer experience as you use our site and help provide you with relevant online marketing.</p>
+        <br/>
+        <p>You can see a list of the other companies who use cookies on this website, by visiting cookie settings at the bottom of each page. For full details of how we use your personal information, and your rights in relation to it, view our privacy policy.</p>
+      </div>
+      <div id="modal-button-container">
+        <a id="modal-button-change" class="modal-button" href="#" rel="modal:close">Change settings</a>
+        <a id="modal-button-accept" class="modal-button" href="#" rel="modal:close">Accept cookies</a>
+      </div>
+    </div>
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
             integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -639,7 +657,15 @@
 
     <!-- jQuery modal -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+    <script>
+      $("#modal").modal({
+       escapeClose: false,
+       clickClose: false,
+       showClose: false
+      });
+    </script>
+
 
     <!-- My Scripts -->
     <script src="js/stickyHeader.js"></script>>
