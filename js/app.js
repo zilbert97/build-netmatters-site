@@ -1,6 +1,6 @@
-
-
 checkAcceptCookies();
 
+const header = $('#sticker');
+
 // Sticky header
-createScrollSpy();
+createScrollSpy(header);

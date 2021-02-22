@@ -1,4 +1,9 @@
 function makeSticky(target) {
+  /**
+   * Initialises an element to be sticky (such as a header).
+   *
+   * @param {element} target - the element that will be made sticky when called
+   */
 
   $(document).ready(() => {
     target.sticky({
@@ -11,33 +16,51 @@ function makeSticky(target) {
 }
 
 
-function createScrollSpy() {
-  const stickyTarget = $('#sticker');
-  //makeSticky(stickyTarget);
+function createScrollSpy(target) {
+  /**
+   * Creates an instance of listening for scroll events to show/hide header.
+   *
+   * Closure that returns a function to listen for user scrolling, and on
+   * scroll direction change shows or hides a DOM element. If past the height
+   * of the element, on scroll down the element is slid up out of view, while
+   * on scroll up the element is slid down into view.
+   *
+   * @param {element} target - the element that will be manipulated on scroll
+   *
+   * @return {function}      - event listener to listen for scroll events and
+   *                           show/hide the target element via animation if
+   *                           scroll direction has changed.
+   */
 
+  // Remember the last scroll position
   let lastScrollTop = 0;
 
   // Save processing by only executing on scroll direction change
   let lastDirection = null;
 
   return $(window).scroll(() => {
+    // On scroll event set the scroll position
     let scrollTop = $(this).scrollTop();
+
+    // Get the height (in px) of the target element as a number. Helps with
+    // responsiveness as this may change at different breakpoints.
+    const targetHeight = parseInt(target.css('height'));
 
     // If at top of the page
     if (scrollTop === 0) {
-      stickyTarget.unstick();
-      stickyTarget.removeClass('slide-up slide-down');
+      target.unstick();
+      target.removeClass('slide-up slide-down');
     }
 
-    // If past header height
-    else if (scrollTop > 211) {
+    // If scrolled past the height of the target element
+    else if (scrollTop > targetHeight) {
 
       // On scroll down
       if (scrollTop > lastScrollTop) {
 
         // If changed direction of scroll
         if (lastDirection !== 'down') {
-          stickyTarget.addClass('slide-up').removeClass('slide-down');
+          target.addClass('slide-up').removeClass('slide-down');
         }
 
         lastDirection = 'down';
@@ -47,50 +70,13 @@ function createScrollSpy() {
       else if (lastDirection !== 'up') {
 
         // Show the header
-        stickyTarget.addClass('slide-down').removeClass('slide-up');
-        makeSticky(stickyTarget);
+        target.addClass('slide-down').removeClass('slide-up');
+        makeSticky(target);
 
         lastDirection = 'up';
       }
 
       lastScrollTop = scrollTop;
-
     }
   });
 }
-
-
-
-
-function createMediaQuery(on, width, callback) {
-  const mediaQuery = window.matchMedia(`(${on}: ${width}px)`);
-  // Watch for event and execute code passed in the callback
-  mediaQuery.addListener(callback);
-}
-
-// Fix bug where changing width causes incorrect adjustment of header height.
-createMediaQuery('min-width', 768, (event) => {
-  console.log('Changed');
-});
-
-  /*
-  const stickyWrapper = $('#sticker-sticky-wrapper');
-
-  // Medium breakpoint (~ tablet) or above
-  if (event.matches) {
-    stickyWrapper.css('height', '95px');
-  }
-  // Mobile (below medium breakpoint)
-  else {
-    stickyWrapper.css('height', '130px');
-  }
-  */
-
-
-// When MQ changed: uopdate
-
-
-// Google Chrome
-// XL: 211
-// M : 110
-// S : 171
