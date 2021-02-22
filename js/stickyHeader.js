@@ -3,6 +3,8 @@ function makeSticky(target) {
    * Initialises an element to be sticky (such as a header).
    *
    * @param {element} target - the element that will be made sticky when called
+   *
+   * @return {void} Nothing
    */
 
   $(document).ready(() => {

@@ -5,6 +5,8 @@ function checkAcceptCookies () {
    * Checks if the user has accepted cookies, and if not accepted
    * opens a modal prompting the user to accept. If the user accepts,
    * this information is stored in localStorage, the the modal is closed.
+   *
+   * @return {void} Nothing
    */
 
   const acceptedCookies = localStorage.getItem('acceptedCookies');
