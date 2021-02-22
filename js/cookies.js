@@ -14,7 +14,7 @@ function checkAcceptCookies () {
   // Check if key exists and value is 'true'
   if (acceptedCookies !== 'true') {
     // If does not exist or is not 'true', prompt user via modal.
-    // Parameters prevent closing unless user selects an option.
+    // Key: value pairs prevent closing unless user selects an option.
     $("#modal").modal({
      escapeClose: false,
      clickClose: false,
