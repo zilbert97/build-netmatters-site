@@ -4,20 +4,21 @@
   left            : 0;
   top             : 0;
   z-index         : 5000;
-
   padding         : 35px 15px;
-
-  height          : 100%;
   width           : 100%;
+  height          : 100%;
 
   background-color: rgba(0,0,0,0.75);
 }
 
 #modal-content {
   display   : block;
+  position  : relative;
   margin    : auto;
-  height    : max-content;
   padding   : 0;
+  width     : 95%;
+  max-width : 598px;
+  height    : max-content;
 
   // Center in the page for tablets and above
   @media (min-width: map-get($breakpoints, 'm')) {
@@ -31,10 +32,12 @@
   &-title,
   &-copy-container,
   &-button-container {
-    padding: 20px;
+    padding : 20px;
   }
 
-  border-radius: 5px;
+  background-color: #fff;
+  border-radius   : 5px;
+  box-shadow      : 0 0 10px #000;
 
   &-title {
     margin        : 0;
