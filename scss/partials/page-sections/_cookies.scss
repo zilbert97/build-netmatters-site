@@ -1,28 +1,32 @@
 #modal {
-  height          : 100%;
-  width           : 100%;
   display         : none;
   position        : fixed;
   left            : 0;
   top             : 0;
   z-index         : 5000;
-  background-color: rgba(0,0,0,0.4);
+
+  padding         : 35px 15px;
+
+  height          : 100%;
+  width           : 100%;
+
+  background-color: rgba(0,0,0,0.75);
 }
 
 #modal-content {
-  display  : block;
-  position : fixed;
-  z-index  : 5001;
+  display   : block;
+  margin    : auto;
+  height    : max-content;
+  padding   : 0;
 
-  // Center in the page
-  left     : 0;
-  right    : 0;
-  top      : 0;
-  bottom   : 0;
-  margin   : auto;
-
-  height   : max-content;
-  padding  : 0;
+  // Center in the page for tablets and above
+  @media (min-width: map-get($breakpoints, 'm')) {
+    position: absolute;
+    left    : 0;
+    right   : 0;
+    top     : 0;
+    bottom  : 0;
+  }
 
   &-title,
   &-copy-container,

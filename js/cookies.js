@@ -10,42 +10,47 @@ function checkAcceptCookies () {
    */
 
 
-   function showHideModal(modal, display = 'none') {
-     /**
-      *
-      *
-      */
+   function showHideModal(modal, show = 'show') {
+      /**
+       * Shows or hides the modal, and toggles the body scrolling.
+       *
+       * @param {element} modal - the element to show/hide as a modal.
+       * @param {string} show   - the display property to set for the modal.
+       *                          'hide' hides the modal, 'show' opens the
+       *                          modal and prevents background scrolling.
+       */
 
-     if (display === 'hide') {
-       // Hide the modal
-       modal.style.display = 'none';
-       // Re-enable scrolling the background
-       document.body.style.overflow = 'visible';
-     } else {
-       // Show the modal (set the display property to value passed)
-       modal.style.display = display;
-       // Prevent scrolling the document body
-       document.body.style.overflow = 'hidden';
-     }
-   }
+      if (show === 'hide') {
+        // Hide the modal
+        modal.style.display = 'none';
+        // Re-enable scrolling the body
+        document.body.style.overflow = 'visible';
+      } else if (show === 'show') {
+        // Show the modal
+        modal.style.display = 'block';
+        // Scroll the modal
+        modal.style.overflow = 'auto';
+        // Prevent scrolling the document body
+        document.body.style.overflow = 'hidden';
+      }
+    }
 
 
   const modal = document.getElementById('modal');
-
   const acceptedCookies = localStorage.getItem('acceptedCookies');
 
   // Check if key exists and value is 'true'
   if (acceptedCookies !== 'true') {
     // If does not exist or is not 'true', prompt user via modal.
     // Parameters prevent closing unless user selects an option.
-    showHideModal(modal, 'block');
+    showHideModal(modal, 'show');
 
     const buttons = document.getElementsByClassName('modal-button');
 
     // Add click event listeners to each button to close the modal
     for (let i = 0; i < buttons.length; i++) {
       buttons[i].addEventListener('click', () => {
-        showHideModal(modal, 'none');
+        showHideModal(modal, 'hide');
 
         // On user click accept, set value in localStorage so that the user
         // is not be re-prompted while navigating the site.
