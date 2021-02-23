@@ -1,5 +1,4 @@
 
-
 checkAcceptCookies();
 
 // Sticky header

@@ -1,6 +1,28 @@
 #modal {
-  height: max-content;
-  padding: 0;
+  height          : 100%;
+  width           : 100%;
+  display         : none;
+  position        : fixed;
+  left            : 0;
+  top             : 0;
+  z-index         : 5000;
+  background-color: rgba(0,0,0,0.4);
+}
+
+#modal-content {
+  display  : block;
+  position : fixed;
+  z-index  : 5001;
+
+  // Center in the page
+  left     : 0;
+  right    : 0;
+  top      : 0;
+  bottom   : 0;
+  margin   : auto;
+
+  height   : max-content;
+  padding  : 0;
 
   &-title,
   &-copy-container,
@@ -11,17 +33,17 @@
   border-radius: 5px;
 
   &-title {
-    margin: 0;
-    color: #333645;
-    font-size: 26px;
-    font-weight: 400;
+    margin        : 0;
+    color         : #333645;
+    font-size     : 26px;
+    font-weight   : 400;
     text-transform: capitalize;
-    border-bottom: 1px solid rgb(229,229,229); // Change colour
+    border-bottom : 1px solid rgb(229,229,229); // Change colour
   }
 
   &-copy-container p {
-    margin: 0;
-    color: #666;
+    margin     : 0;
+    color      : #666;
     line-height: 2;
   }
 
