@@ -51,6 +51,7 @@
     font-size      : 1.25rem;          // 20px
     [class^="icon-"] {
       font-size    : 1.25rem;          // 20px
+      margin-left: 10px;
     }
   }
   @else if $context == "header" {
