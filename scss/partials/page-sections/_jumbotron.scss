@@ -66,6 +66,7 @@
         background   : linear-gradient(to right, black, transparent 75%),
                        $primary-dark url('../img/slider-#{$service}.jpg') no-repeat center;
       }
+      -webkit-background-size: cover;
       background-size: cover;
 
       .slide-button {
