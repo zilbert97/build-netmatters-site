@@ -1,3 +1,4 @@
+
 checkAcceptCookies();
 
 const header = $('#sticker');
