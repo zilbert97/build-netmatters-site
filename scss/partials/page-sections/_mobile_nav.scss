@@ -1,0 +1,148 @@
+#mobile-nav {
+  border          : 1px solid transparent;  // Prevent collapsing margin // NTD check if still need
+  background-color: $primary-dark;
+
+  * {
+    text-transform: uppercase;
+  }
+
+  ul {
+    list-style    : none;
+  }
+}
+
+//===============================
+// MAIN NAVIGATION - MOBILE ONLY
+//===============================
+
+.mobile-main {
+  &-nav {
+    margin          : 0;
+    padding         : 20px 20px 0;
+    border-bottom   : $nav-edge-dark;
+  }
+
+  &-subnav {
+    margin          : 0 0 20px 0;
+    padding         : 0;
+    background-color: rgba(0,0,0,.25);
+    border          : 1px solid transparent;
+    border-radius   : $border-radius;
+
+    a {
+      display   : inline-block;
+      padding   : 10px 0;
+      width     : 100%;
+      text-align: center;
+    }
+
+    li:not(:first-child) {
+      border-top   : $nav-edge-light;
+    }
+    li:not(:last-child) {
+      border-bottom: $nav-edge-dark;
+    }
+  }
+
+  &-nav-item {
+    display      : inline-block;
+    width        : 100%;
+    margin       : 0 0 20px 0;
+    padding      : 19px 20px 18px;
+
+    border       : $nav-edge-light;
+    border-radius: $border-radius;
+    outline      : $nav-edge-dark;
+
+    color        : $primary-light;
+    font-size    : 1.125rem;  // 18px
+    text-align   : center;
+  }
+
+  &-subnav-item {
+    color        : $primary-light;
+  }
+
+  &-nav-category {
+    color        : $primary-light;
+
+    [class^="icon-"] {
+      display    : block;
+      font-size  : 1.4375rem;  // 16px
+
+      ~ span small {
+        font-size: .625rem;    // 10px
+      }
+    }
+
+    @each $service, $color in $nm-services {
+      .mobile-icon-#{$service} {
+        color    : $color;
+      }
+    }
+  }
+
+  &-nav-category:hover {
+    > a {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+  &-nav-item:hover,
+  &-subnav-item:hover {
+    cursor: pointer;
+    color : $primary-light;
+  }
+}
+
+@media (min-width: map-get($breakpoints, 'm')) {
+  .mobile-main-nav {
+    display: none;
+  }
+}
+//====================================
+// AUX NAVIGATION - MOBILE AND TABLET
+//====================================
+
+.mobile-aux-nav {
+  margin            : 0;
+  padding           : 0;
+  &-category {
+    cursor          : pointer;
+    border-top      : $nav-edge-light;
+    border-bottom   : $nav-edge-dark;
+  }
+  &-category:hover > .mobile-aux-nav-item {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  &-item,
+  &-item:hover {
+    color           : $primary-light;
+  }
+  &-item {
+    display         : block;
+    padding         : 15px 20px;
+  }
+}
+
+.mobile-aux-subnav {
+  padding           : 0;
+
+  &-item,
+  &-item:hover {
+    color           : $primary-light;
+  }
+
+  &-item {
+    display         : block;
+    padding         : 15px 20px;
+    background-color: rgba(0,0,0,.25);
+    border-top      : $nav-edge-light;
+    border-bottom   : $nav-edge-dark;
+    font-size       : .875rem;  // 14px
+
+    &::before {
+      content       : '\BB';
+      padding       : 0 15px 0 0;
+    }
+  }
+}
