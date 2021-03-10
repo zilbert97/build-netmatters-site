@@ -48,7 +48,8 @@ class SideMenu {
     else {
       page.removeAttr('style');
 
-      setTimeout(() => {window.scroll(0, this.scrollPosition)}, 1);
+      // Scroll down to the last known scroll position
+      window.scroll(0, this.scrollPosition);
 
       createScrollSpy(header);
     }
