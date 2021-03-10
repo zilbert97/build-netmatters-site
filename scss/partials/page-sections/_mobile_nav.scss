@@ -1,7 +1,11 @@
 #mobile-nav {
   border          : 1px solid transparent;  // Prevent collapsing margin // NTD check if still need
   background-color: $primary-dark;
-
+  position        : absolute;
+  top             : 0;
+  right           : 0;
+  z-index         : 100000;                 // NTD - ADJUST?
+  overflow-x      : hidden;
   * {
     text-transform: uppercase;
   }
@@ -10,6 +14,26 @@
     list-style    : none;
   }
 }
+
+#mobile-nav {
+  &.mobile-nav-open {
+    width: 275px;
+    overflow:auto;
+  }
+  &.mobile-nav-closed {
+    width: 0;
+  }
+}
+
+#page-content {
+  &.mobile-nav-open {
+    transform: translateX(-275px);
+  }
+  &.mobile-nav-closed {
+    transform: translateX(0);
+  }
+}
+
 
 //===============================
 // MAIN NAVIGATION - MOBILE ONLY
