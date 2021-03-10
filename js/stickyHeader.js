@@ -1,4 +1,4 @@
-function makeSticky(target) {
+function makeSticky(target, topSpacing = 0) {
   /**
    * Initialises an element to be sticky (such as a header).
    *
@@ -9,7 +9,7 @@ function makeSticky(target) {
 
   $(document).ready(() => {
     target.sticky({
-      topSpacing: 0,
+      topSpacing: topSpacing,
       zIndex: 5000,            // Ensures sits above all other elements on page
       getWidthFrom: 'body',    // Prevents bug where resizing causes x-overflow/scroll
       responsiveWidth: true
@@ -34,13 +34,7 @@ function createScrollSpy(target) {
    *                           scroll direction has changed.
    */
 
-  // Remember the last scroll position
-  let lastScrollTop = 0;
-
-  // Save processing by only executing on scroll direction change
-  let lastDirection = null;
-
-  return $(window).scroll(() => {
+  const callback = function() {
     // On scroll event set the scroll position
     let scrollTop = $(this).scrollTop();
 
@@ -80,5 +74,13 @@ function createScrollSpy(target) {
 
       lastScrollTop = scrollTop;
     }
-  });
+  }
+
+  // Remember the last scroll position
+  let lastScrollTop = 0;
+
+  // Save processing by only executing on scroll direction change
+  let lastDirection = null;
+
+  return $(window).on('scroll', callback);
 }
