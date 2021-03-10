@@ -19,7 +19,7 @@
   </head>
 
   <body>
-    <div id="page-content" class="mobile-nav-closed">
+    <div id="page-content">
       <div class="full-viewport">
         <header id="sticker">
           <div class="main-header">
@@ -70,7 +70,7 @@
             <!-- Flex Item 5 -->
             <div id="hamburger-container">
               <!-- Inactive as requires JS to trigger active state (class "is-active") -->
-              <a href="#" class="hamburger hamburger--spin" onclick="showSideNav()">
+              <a href="#" id="hamburger-button" class="hamburger hamburger--spin">
                 <span class="hamburger-box">
                   <span class="hamburger-inner"></span>
                 </span>
@@ -667,7 +667,7 @@
     </div> <!-- #page-content -->
 
     <!-- Mobile Menu -->
-    <nav id="mobile-nav" class="mobile-nav-closed">
+    <nav id="mobile-nav">
       <ul class="mobile-main-nav">
         <li class="mobile-main-nav-category">
           <a href="#" class="mobile-main-nav-item">Contact us</a>
@@ -952,26 +952,6 @@
     <script type="text/javascript" src="js/jquery.simpleslider.package.min.js"></script>
 
     <!-- My Scripts -->
-    <script>
-      function showSideNav() {
-        $('#mobile-nav').toggleClass(['mobile-nav-open', 'mobile-nav-closed']);
-        $('#page-content').toggleClass(['mobile-nav-open', 'mobile-nav-closed']);
-
-        // Prevent scrolling the document body
-        if ($('#page-content').hasClass('mobile-nav-open')) {
-          $('#page-content').css({
-            'position': 'fixed',
-            'overflow': 'hidden'
-          });
-        } else {
-          $('#page-content').css({
-            'position': 'static',
-            'overflow': 'auto'
-          });
-        }
-      }
-    </script>
-
     <script src="js/cookies.js"></script>
     <script src="js/stickyHeader.js"></script>
     <script src="js/app.js"></script>
