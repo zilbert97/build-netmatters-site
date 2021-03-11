@@ -30,6 +30,7 @@ class SideMenu {
     page.toggleClass('mobile-nav-open');
 
     const header = $('#sticker');
+    const headerHeight = parseInt(header.css('height'));
 
     // If closed, in the process of being opened
     if (page.hasClass('mobile-nav-open')) {
@@ -48,7 +49,6 @@ class SideMenu {
         'top': `-${this.scrollPosition}px`        // Keep position on page (otherwise jumpos to top)
       });
 
-      const headerHeight = parseInt(header.css('height'));
 
       const headerStent = $('<div id="headerStent"></div>').css({
         height: `${headerHeight}px`,
@@ -83,10 +83,6 @@ class SideMenu {
         });
       }
 
-      // If not scrolled past height of the header element
-      else {
-      }
-
       // Ensure the scroll position of the side menu is at the top
       window.scroll(0, 0);
     }
@@ -103,8 +99,10 @@ class SideMenu {
       // Scroll down to the last known scroll position
       window.scroll(0, this.scrollPosition);
 
-      // Re-enable sticky behaviour
-      makeSticky(header);
+      if (this.scrollPosition > headerHeight) {
+        // Re-enable sticky behaviour
+        makeSticky(header);
+      }
 
       // On first scroll
       $(window).one('scroll', function() {
