@@ -26,8 +26,10 @@ class SideMenu {
 
 
   showHideMobileNav() {
-    let page = $('#page-content');
+    const page = $('#page-content');
     page.toggleClass('mobile-nav-open');
+
+    const header = $('#sticker');
 
     // If closed, in the process of being opened
     if (page.hasClass('mobile-nav-open')) {
@@ -46,16 +48,44 @@ class SideMenu {
         'top': `-${this.scrollPosition}px`        // Keep position on page (otherwise jumpos to top)
       });
 
-      //=======================================
-      let targetHeight = parseInt($('#sticker').css('height'));
+      const headerHeight = parseInt(header.css('height'));
 
-      // If scrolled past the height of the target element
-      if (this.scrollPosition > targetHeight) {
-        $('#sticker').removeClass('slide-up slide-down');
+      const headerStent = $('<div id="headerStent"></div>').css({
+        height: `${headerHeight}px`,
+        width: '100%',
+        display: 'block',
+      });
 
-        // #sticker is the only element inside its wrapper (sticker-sticky-wrapper)
+      // If scrolled past the height of the header element
+      if (this.scrollPosition > headerHeight) {
+        header.removeClass('slide-up slide-down');
+
+        // Stop the header from being sticky, removing its sticky wrapper
+        header.unstick()
+
+        // As the header is by deafult at the top of the page, set its parent
+        // to be position relative so that we can set the position of the
+        // header to be absolute, a certain number of pixels (the known scroll
+        // position) from the top of the page
+        header.parent().css('position', 'relative');
+
+        // When we take the header out of the document flow its container will
+        // collapse - therefore provide an element as a placeholder
+        header.parent().prepend(headerStent);
+
+        // Remove element from the document flow
+        header.css({
+          position: 'absolute',
+          top: `${this.scrollPosition}px`,
+          right: '0',
+          zIndex: 5000,
+          width: '100%'  // Added due to bug where width would be smaller on open
+        });
       }
-      //=======================================
+
+      // If not scrolled past height of the header element
+      else {
+      }
 
       // Ensure the scroll position of the side menu is at the top
       window.scroll(0, 0);
@@ -66,13 +96,21 @@ class SideMenu {
       // Remove styles that adjusted page position, i.e. put back in place
       page.removeAttr('style');
 
+      // Remove any instance of the header stent that was added when the side
+      // menu was opened
+      $('#headerStent').remove();
+
       // Scroll down to the last known scroll position
       window.scroll(0, this.scrollPosition);
 
-      $('#sticker').sticky('update');
+      // Re-enable sticky behaviour
+      makeSticky(header);
 
-      // Re-enable scrollspy event listening
-      createScrollSpy(header);
+      // On first scroll
+      $(window).one('scroll', function() {
+        // Re-enable scrollspy event listening
+        createScrollSpy(header);
+      });
     }
   }
 }

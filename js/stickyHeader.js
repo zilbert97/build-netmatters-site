@@ -1,4 +1,4 @@
-function makeSticky(target, topSpacing = 0) {
+function makeSticky(target) {
   /**
    * Initialises an element to be sticky (such as a header).
    *
@@ -7,6 +7,7 @@ function makeSticky(target, topSpacing = 0) {
    * @return {void} Nothing
    */
 
+  /*
   $(document).ready(() => {
     target.sticky({
       topSpacing: topSpacing,
@@ -14,6 +15,13 @@ function makeSticky(target, topSpacing = 0) {
       getWidthFrom: 'body',    // Prevents bug where resizing causes x-overflow/scroll
       responsiveWidth: true
     });
+  });  */
+
+  target.sticky({
+    topSpacing: 0,
+    zIndex: 5000,            // Ensures sits above all other elements on page
+    getWidthFrom: 'body',    // Prevents bug where resizing causes x-overflow/scroll
+    responsiveWidth: true
   });
 }
 
