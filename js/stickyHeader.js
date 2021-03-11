@@ -56,6 +56,7 @@ function createScrollSpy(target) {
 
         // If changed direction of scroll
         if (lastDirection !== 'down') {
+          // Hide the header
           target.addClass('slide-up').removeClass('slide-down');
         }
 

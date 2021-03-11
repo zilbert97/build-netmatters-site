@@ -38,8 +38,6 @@ class SideMenu {
       // Disable scrollspy event listening
       $(window).off('scroll');
 
-      $('#sticker').unstick();
-
       // Set styles to adjust page position
       page.css({
         'transform': 'translateX(-275px)',
@@ -47,6 +45,33 @@ class SideMenu {
         'overflow': 'hidden',
         'top': `-${this.scrollPosition}px`        // Keep position on page (otherwise jumpos to top)
       });
+
+      //=======================================
+      let targetHeight = parseInt($('#sticker').css('height'));
+
+      // If scrolled past the height of the target element
+      if (this.scrollPosition > targetHeight) {
+        $('#sticker').removeClass('slide-up slide-down');
+
+        // If still jQuery-sticky, #sticker is the only child wrapped by a
+        // #sticker-sticky-wrapper. Calling .unstick() removes that wrapper -
+        // as a result #sticker is not the only child in the parent. This is
+        // important because in order for `position: sticky` to work the
+        // element must not be an only child.
+        $('#sticker').unstick();
+
+        $('#sticker').css({
+          position: 'sticky',
+          top: this.scrollPosition,
+          zIndex: 100000000
+        });
+        //$('#sticker').sticky({topSpacing: targetHeight}).sticky('update');
+        // #sticker is the only element inside its wrapper (sticker-sticky-wrapper)
+      }
+      //=======================================
+
+      // Ensure the scroll position of the side menu is at the top
+      window.scroll(0, 0);
     }
 
     // If open, in the process of being closed
