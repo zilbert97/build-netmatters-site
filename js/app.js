@@ -53,19 +53,6 @@ class SideMenu {
       if (this.scrollPosition > targetHeight) {
         $('#sticker').removeClass('slide-up slide-down');
 
-        // If still jQuery-sticky, #sticker is the only child wrapped by a
-        // #sticker-sticky-wrapper. Calling .unstick() removes that wrapper -
-        // as a result #sticker is not the only child in the parent. This is
-        // important because in order for `position: sticky` to work the
-        // element must not be an only child.
-        $('#sticker').unstick();
-
-        $('#sticker').css({
-          position: 'sticky',
-          top: this.scrollPosition,
-          zIndex: 100000000
-        });
-        //$('#sticker').sticky({topSpacing: targetHeight}).sticky('update');
         // #sticker is the only element inside its wrapper (sticker-sticky-wrapper)
       }
       //=======================================
