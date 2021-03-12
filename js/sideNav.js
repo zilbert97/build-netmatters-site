@@ -109,43 +109,36 @@ class SideMenu {
     // CLOSE THE SIDE MENU
     //=====================
     else {
+      // Re-translate page back into place
+      page.css({
+        transform: 'translateX(0)',
+        transition: '0.5s'
+      });
 
-      // If header is not sticky
-      if (!this.headerIsSticky) {
-        page.css({
-          transform: 'translateX(0)',
-          transition: '0.5s'
+      // After translate transition, do cleanup
+      setTimeout(function() {
+        // Remove styles that adjusted page position
+        page.removeAttr('style');
+
+        // Remove any instance of the header stent that was added when the side
+        // menu was opened
+        $('#headerStent').remove();
+
+        // If header was sticky at open, make it sticky again at close
+        if (this.headerIsSticky) {
+          makeSticky(header);
+        }
+
+        // Scroll down to the last known scroll position
+        window.scroll(0, this.scrollPosition);
+
+        // On first scroll
+        $(window).one('scroll', function() {
+          // Re-enable scrollspy event listening
+          createScrollSpy(header);
         });
 
-        // Apply after page transitions back into place
-        setTimeout(function() {
-          // Remove styles that adjusted page position
-          page.removeAttr('style');
-        }, 500);
-      }
-
-      else {
-        page.removeAttr('style');
-      }
-
-      // Remove any instance of the header stent that was added when the side
-      // menu was opened
-      $('#headerStent').remove();
-
-      // If header was sticky at side menu open, re-enable header stickyness
-      if (this.headerIsSticky) {
-        // Make header sticky again
-        makeSticky(header);
-      }
-
-      // Scroll down to the last known scroll position
-      window.scroll(0, this.scrollPosition);
-
-      // On first scroll
-      $(window).one('scroll', function() {
-        // Re-enable scrollspy event listening
-        createScrollSpy(header);
-      });
+      }.bind(this), 500);
     }
   }
 }
