@@ -7,16 +7,6 @@ function makeSticky(target) {
    * @return {void} Nothing
    */
 
-  /*
-  $(document).ready(() => {
-    target.sticky({
-      topSpacing: topSpacing,
-      zIndex: 5000,            // Ensures sits above all other elements on page
-      getWidthFrom: 'body',    // Prevents bug where resizing causes x-overflow/scroll
-      responsiveWidth: true
-    });
-  });  */
-
   target.sticky({
     topSpacing: 0,
     zIndex: 5000,            // Ensures sits above all other elements on page

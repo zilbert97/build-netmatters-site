@@ -49,7 +49,7 @@ function checkAcceptCookies () {
 
     // Add click event listeners to each button to close the modal
     for (let i = 0; i < buttons.length; i++) {
-      buttons[i].addEventListener('click', () => {
+      buttons[i].addEventListener('click', function() {
         showHideModal(modal, 'hide');
 
         // On user click accept, set value in localStorage so that the user

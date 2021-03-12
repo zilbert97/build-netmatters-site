@@ -35,7 +35,6 @@ $(document).ready(function(){
     sideNavHandler.triggerSideNav(true);
   });
 
-
   // There was a bug where double-clicking the cover would cause the side nav
   // and header to do unexpected behaviours. Using a setTimeout and a gate to
   // wait until processes complete before allowing another event to fire
