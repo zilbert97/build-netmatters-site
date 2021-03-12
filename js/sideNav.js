@@ -11,6 +11,8 @@ class SideMenu {
   constructor() {
     this.scrollPosition = window.scrollY;
     this.isSticky = null;   // This is set to true on open event
+    this.page = $('#page-content');
+    this.button = $('#hamburger-button');
   }
   set scrollPosition(scrollPosition) {
     this._scrollPosition = scrollPosition;
@@ -31,8 +33,7 @@ class SideMenu {
      *
      */
 
-    const page = $('#page-content');
-    page.toggleClass('mobile-nav-open');
+    this.page.toggleClass('mobile-nav-open');
 
     const header = $('#sticker');
     const headerHeight = parseInt(header.css('height'));
@@ -40,7 +41,7 @@ class SideMenu {
     //====================
     // OPEN THE SIDE MENU
     //====================
-    if (page.hasClass('mobile-nav-open')) {
+    if (this.page.hasClass('mobile-nav-open')) {
 
       // Set sticky status at start of open side menu (because always unstuck
       // during open)
@@ -58,11 +59,12 @@ class SideMenu {
       $(window).off('scroll');
 
       // Set styles to adjust page position
-      page.css({
+      this.page.css({
         transform: 'translateX(-275px)',
         position: 'fixed',
         overflow: 'hidden',
         top: `-${this.scrollPosition}px`,        // Keep position on page (otherwise jumpos to top)
+        transitionProperty: 'transform',
         transition: '0.5s'
       });
 
@@ -110,15 +112,16 @@ class SideMenu {
     //=====================
     else {
       // Re-translate page back into place
-      page.css({
+      this.page.css({
         transform: 'translateX(0)',
+        transitionProperty: 'transform',
         transition: '0.5s'
       });
 
       // After translate transition, do cleanup
       setTimeout(function() {
         // Remove styles that adjusted page position
-        page.removeAttr('style');
+        this.page.removeAttr('style');
 
         // Remove any instance of the header stent that was added when the side
         // menu was opened
@@ -143,22 +146,34 @@ class SideMenu {
   }
 
   triggerShowHideSideNav(show = false) {
-    const pageCover = $('#page-cover')
-    const page = $('#page-content');
-    const hamburgerButton = $('#hamburger-button');
+    const pageCover = $('#page-cover');
 
     // Call the show/hide method
     this.showHideMobileNav();
 
-    // Trigger hamburger animation
-    // Timeout required - otherewise when sticky transition appears instant
-    setTimeout(function() {hamburgerButton.toggleClass('is-active')}, 50);
+    // Trigger hamburger animation. Timeout required - otherewise when sticky,
+    // transition appears instant
+    setTimeout(function() {
+      this.button.toggleClass('is-active');
+    }.bind(this), 50);
 
     // Whether to show/hide the overlay
     if (show) {
+      // Show the element in the DOM (opacity is already set to 0)
       pageCover.css('display', 'block');
+      // Make visible after click (setTimeout required else acts immediately)
+      setTimeout(function() {
+        pageCover.css('opacity', '1');
+      }, 50);
     } else {
-      pageCover.css('display', 'none');
+      // Make visibly hidden over 500ms
+      pageCover.css({
+        opacity: 0
+      });
+      // After made visible, hide element from DOM
+      setTimeout(function() {
+        pageCover.css('display', 'none');
+      }, 500);
     }
   }
 }

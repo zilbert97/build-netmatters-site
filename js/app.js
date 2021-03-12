@@ -24,7 +24,10 @@ $(document).ready(function(){
     height: '100%',
     backgroundColor: 'rgba(0,0,0,.5)',
     cursor: 'pointer',
-    zIndex: 5001
+    zIndex: 5001,
+    opacity: 0,
+    transitionPorperty: 'opacity',
+    transition: '0.5s'
   }));
 
   const hamburgerButton = $('#hamburger-button');
@@ -36,46 +39,4 @@ $(document).ready(function(){
   pageCover.on('click', function() {
     sideNavHandler.triggerShowHideSideNav(false);
   });
-
-  /*
-const pageCover = $('<div id="page-cover"></div>').css({
-    display: 'none',
-    position: 'fixed',
-    top: 0,
-    right: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0,0,0,.5)',
-    cursor: 'pointer',
-    zIndex: 5001
-  });
-
-  const hamburgerButton = $('#hamburger-button');
-  const page = $('#page-content');
-
-  page.append(pageCover);
-
-  function triggerSideNav(show = true) {
-    sideNavHandler.showHideMobileNav();
-
-    // Trigger hamburger animation
-    // Timeout required - otherewise when sticky transition appears instant
-    setTimeout(function() {hamburgerButton.toggleClass('is-active')}, 50);
-
-    if (show) {
-      $('#page-cover').css('display', 'block');
-    } else {
-      $('#page-cover').css('display', 'none');
-    }
-  }
-
-  hamburgerButton.on('click', function () {
-    triggerSideNav(true);
-  });
-
-  pageCover.on('click', function() {
-    triggerSideNav(false);
-  });*/
-
-
 });
