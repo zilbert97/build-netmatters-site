@@ -141,4 +141,24 @@ class SideMenu {
       }.bind(this), 500);
     }
   }
+
+  triggerShowHideSideNav(show = false) {
+    const pageCover = $('#page-cover')
+    const page = $('#page-content');
+    const hamburgerButton = $('#hamburger-button');
+
+    // Call the show/hide method
+    this.showHideMobileNav();
+
+    // Trigger hamburger animation
+    // Timeout required - otherewise when sticky transition appears instant
+    setTimeout(function() {hamburgerButton.toggleClass('is-active')}, 50);
+
+    // Whether to show/hide the overlay
+    if (show) {
+      pageCover.css('display', 'block');
+    } else {
+      pageCover.css('display', 'none');
+    }
+  }
 }
