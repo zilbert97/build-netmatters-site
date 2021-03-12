@@ -30,6 +30,7 @@ class SideMenu {
 
   showHideMobileNav() {
     /**
+     * Shows and hides the side nav, adjusting the rest of the page with it
      *
      */
 
@@ -145,7 +146,7 @@ class SideMenu {
     }
   }
 
-  triggerShowHideSideNav(show = false) {
+  triggerSideNav(show = false) {
     const pageCover = $('#page-cover');
 
     // Call the show/hide method
@@ -155,7 +156,7 @@ class SideMenu {
     // transition appears instant
     setTimeout(function() {
       this.button.toggleClass('is-active');
-    }.bind(this), 50);
+    }.bind(this), 5);
 
     // Whether to show/hide the overlay
     if (show) {
@@ -164,7 +165,7 @@ class SideMenu {
       // Make visible after click (setTimeout required else acts immediately)
       setTimeout(function() {
         pageCover.css('opacity', '1');
-      }, 50);
+      }, 5);
     } else {
       // Make visibly hidden over 500ms
       pageCover.css({

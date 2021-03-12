@@ -31,12 +31,24 @@ $(document).ready(function(){
   }));
 
   const hamburgerButton = $('#hamburger-button');
-  hamburgerButton.on('click', function() {
-    sideNavHandler.triggerShowHideSideNav(true);
+  hamburgerButton.on('click', function(event) {
+    sideNavHandler.triggerSideNav(true);
   });
 
+
+  // There was a bug where double-clicking the cover would cause the side nav
+  // and header to do unexpected behaviours. Using a setTimeout and a gate to
+  // wait until processes complete before allowing another event to fire
   const pageCover = $('#page-cover');
-  pageCover.on('click', function() {
-    sideNavHandler.triggerShowHideSideNav(false);
+  let shouldRespond = true;
+
+  pageCover.on('click', function(event) {
+    if (shouldRespond) {
+      sideNavHandler.triggerSideNav(false);
+      shouldRespond = false;
+      setTimeout(function() {
+        shouldRespond = true;
+      }, 500);
+    }
   });
 });
