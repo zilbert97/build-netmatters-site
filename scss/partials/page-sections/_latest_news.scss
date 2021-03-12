@@ -51,6 +51,7 @@
   @include flex-wrap(nowrap);
   padding       : 35px 0;
   box-shadow    : 0 5px 35px rgba(0,0,0,.1);
+  background-color: $primary-light;
 
   @media (min-width: map-get($breakpoints, 'm')) {
     @include flex-direction(row);

@@ -62,7 +62,8 @@ class SideMenu {
         transform: 'translateX(-275px)',
         position: 'fixed',
         overflow: 'hidden',
-        top: `-${this.scrollPosition}px`        // Keep position on page (otherwise jumpos to top)
+        top: `-${this.scrollPosition}px`,        // Keep position on page (otherwise jumpos to top)
+        transition: '0.5s'
       });
 
       // Define a 'stent', which is the same size as the header element and
@@ -108,8 +109,24 @@ class SideMenu {
     // CLOSE THE SIDE MENU
     //=====================
     else {
-      // Remove styles that adjusted page position, i.e. put back in place
-      page.removeAttr('style');
+
+      // If header is not sticky
+      if (!this.headerIsSticky) {
+        page.css({
+          transform: 'translateX(0)',
+          transition: '0.5s'
+        });
+
+        // Apply after page transitions back into place
+        setTimeout(function() {
+          // Remove styles that adjusted page position
+          page.removeAttr('style');
+        }, 500);
+      }
+
+      else {
+        page.removeAttr('style');
+      }
 
       // Remove any instance of the header stent that was added when the side
       // menu was opened
