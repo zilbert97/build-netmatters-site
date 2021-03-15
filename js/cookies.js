@@ -1,4 +1,6 @@
-function checkAcceptCookies () {
+"use strict";
+
+function checkAcceptCookies() {
   /**
    * Checks and if required prompts user to accept cookies.
    *
@@ -8,60 +10,60 @@ function checkAcceptCookies () {
    *
    * @return {void} Nothing
    */
+  function showHideModal(modal) {
+    var show = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'show';
 
+    /**
+     * Shows or hides the modal, and toggles the body scrolling.
+     *
+     * @param {element} modal - the element to show/hide as a modal.
+     * @param {string} show   - the display property to set for the modal.
+     *                          'hide' hides the modal, 'show' opens the
+     *                          modal and prevents background scrolling.
+     */
+    if (show === 'hide') {
+      // Hide the modal
+      modal.style.display = 'none'; // Re-enable scrolling the body
 
-   function showHideModal(modal, show = 'show') {
-      /**
-       * Shows or hides the modal, and toggles the body scrolling.
-       *
-       * @param {element} modal - the element to show/hide as a modal.
-       * @param {string} show   - the display property to set for the modal.
-       *                          'hide' hides the modal, 'show' opens the
-       *                          modal and prevents background scrolling.
-       */
+      document.body.style.overflow = 'visible';
+    } else if (show === 'show') {
+      // Show the modal
+      modal.style.display = 'block'; // Scroll the modal
 
-      if (show === 'hide') {
-        // Hide the modal
-        modal.style.display = 'none';
-        // Re-enable scrolling the body
-        document.body.style.overflow = 'visible';
-      } else if (show === 'show') {
-        // Show the modal
-        modal.style.display = 'block';
-        // Scroll the modal
-        modal.style.overflow = 'auto';
-        // Prevent scrolling the document body
-        document.body.style.overflow = 'hidden';
-      }
+      modal.style.overflow = 'auto'; // Prevent scrolling the document body
+
+      document.body.style.overflow = 'hidden';
     }
+  }
 
+  var modal = document.getElementById('modal');
+  var acceptedCookies = localStorage.getItem('acceptedCookies'); // Check if key exists and value is 'true'
 
-  const modal = document.getElementById('modal');
-  const acceptedCookies = localStorage.getItem('acceptedCookies');
-
-  // Check if key exists and value is 'true'
   if (acceptedCookies !== 'true') {
-    // If does not exist or is not 'true', prompt user via modal.
-    // Parameters prevent closing unless user selects an option.
-    showHideModal(modal, 'show');
+    (function () {
+      // If does not exist or is not 'true', prompt user via modal.
+      // Parameters prevent closing unless user selects an option.
+      showHideModal(modal, 'show');
+      var buttons = document.getElementsByClassName('modal-button'); // Add click event listeners to each button to close the modal
 
-    const buttons = document.getElementsByClassName('modal-button');
+      var _loop = function _loop(i) {
+        buttons[i].addEventListener('click', function () {
+          showHideModal(modal, 'hide'); // On user click accept, set value in localStorage so that the user
+          // is not be re-prompted while navigating the site.
 
-    // Add click event listeners to each button to close the modal
-    for (let i = 0; i < buttons.length; i++) {
-      buttons[i].addEventListener('click', function() {
-        showHideModal(modal, 'hide');
+          if (buttons[i].id === 'modal-content-button-accept') {
+            localStorage.setItem('acceptedCookies', 'true');
+          } // Fix bug where closing modal causes adjustment of carousel image -
+          // reset width of each slide to 100%
 
-        // On user click accept, set value in localStorage so that the user
-        // is not be re-prompted while navigating the site.
-        if (buttons[i].id === 'modal-content-button-accept') {
-          localStorage.setItem('acceptedCookies', 'true');
-        }
 
-        // Fix bug where closing modal causes adjustment of carousel image -
-        // reset width of each slide to 100%
-        $('.slide').css('width', '100%');
-      });
-    }
+          $('.slide').css('width', '100%');
+        });
+      };
+
+      for (var i = 0; i < buttons.length; i++) {
+        _loop(i);
+      }
+    })();
   }
 }

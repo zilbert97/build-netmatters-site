@@ -1,3 +1,5 @@
+"use strict";
+
 function makeSticky(target) {
   /**
    * Initialises an element to be sticky (such as a header).
@@ -6,15 +8,15 @@ function makeSticky(target) {
    *
    * @return {void} Nothing
    */
-
   target.sticky({
     topSpacing: 0,
-    zIndex: 5000,            // Ensures sits above all other elements on page
-    getWidthFrom: 'body',    // Prevents bug where resizing causes x-overflow/scroll
+    zIndex: 5000,
+    // Ensures sits above all other elements on page
+    getWidthFrom: 'body',
+    // Prevents bug where resizing causes x-overflow/scroll
     responsiveWidth: true
   });
 }
-
 
 function createScrollSpy(target) {
   /**
@@ -31,55 +33,42 @@ function createScrollSpy(target) {
    *                           show/hide the target element via animation if
    *                           scroll direction has changed.
    */
-
-  const callback = function() {
+  var callback = function callback() {
     // On scroll event set the scroll position
-    let scrollTop = $(this).scrollTop();
-
-    // Get the height (in px) of the target element as a number. Helps with
+    var scrollTop = $(this).scrollTop(); // Get the height (in px) of the target element as a number. Helps with
     // responsiveness as this may change at different breakpoints.
-    const targetHeight = parseInt(target.css('height'));
 
-    // If at top of the page
+    var targetHeight = parseInt(target.css('height')); // If at top of the page
+
     if (scrollTop === 0) {
       target.unstick();
       target.removeClass('slide-up slide-down');
-    }
-
-    // If scrolled past the height of the target element
+    } // If scrolled past the height of the target element
     else if (scrollTop > targetHeight) {
+        // On scroll down
+        if (scrollTop > lastScrollTop) {
+          // If changed direction of scroll
+          if (lastDirection !== 'down') {
+            // Hide the header
+            target.addClass('slide-up').removeClass('slide-down');
+          }
 
-      // On scroll down
-      if (scrollTop > lastScrollTop) {
+          lastDirection = 'down';
+        } // On scroll up, if changed direction of scroll
+        else if (lastDirection !== 'up') {
+            // Show the header
+            target.addClass('slide-down').removeClass('slide-up');
+            makeSticky(target);
+            lastDirection = 'up';
+          }
 
-        // If changed direction of scroll
-        if (lastDirection !== 'down') {
-          // Hide the header
-          target.addClass('slide-up').removeClass('slide-down');
-        }
-
-        lastDirection = 'down';
+        lastScrollTop = scrollTop;
       }
+  }; // Remember the last scroll position
 
-      // On scroll up, if changed direction of scroll
-      else if (lastDirection !== 'up') {
 
-        // Show the header
-        target.addClass('slide-down').removeClass('slide-up');
-        makeSticky(target);
+  var lastScrollTop = 0; // Save processing by only executing on scroll direction change
 
-        lastDirection = 'up';
-      }
-
-      lastScrollTop = scrollTop;
-    }
-  }
-
-  // Remember the last scroll position
-  let lastScrollTop = 0;
-
-  // Save processing by only executing on scroll direction change
-  let lastDirection = null;
-
+  var lastDirection = null;
   return $(window).on('scroll', callback);
 }
