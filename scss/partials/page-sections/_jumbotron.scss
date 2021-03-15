@@ -62,10 +62,7 @@
       background     : linear-gradient(to right, black, rgba(0,0,0,.3)),
                        linear-gradient(to left, rgba(0,0,0,.3), transparent 25%),
                        $primary-dark url('../img/slider-#{$service}.jpg') no-repeat center;
-      @media (min-width: map-get($breakpoints, 'l')) {
-        background   : linear-gradient(to right, black, transparent 75%),
-                       $primary-dark url('../img/slider-#{$service}.jpg') no-repeat center;
-      }
+
       -webkit-background-size: cover;
       background-size: cover;
 
