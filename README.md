@@ -8,8 +8,8 @@ JS reflection:
 ## Known issues:
 
 ### Major :bangbang:
-- [ ] When user closes cookies modal, carousel position is off
-- [ ] Carousel positioning incorrect when opening index.html in browser via filepath instead of localhost
+- [x] When user closes cookies modal, carousel position is off
+- [x] Carousel positioning incorrect when opening index.html in browser via filepath instead of localhost
 - [ ] Carousel markers too high on some mobile views
 - [ ] On some tablets and mobile devices carousel height is incorrect
 - [ ] Not tested for IE
