@@ -17,3 +17,4 @@ JS reflection:
 - [x] IE - Opening menu causes overlay to sit above side-menu
 - [x] IE - Open side-menu - various major layout issues
 - [ ] IE - Open side-menu always jumps to page top
+- [ ] IE - Open side-menu does not transition
