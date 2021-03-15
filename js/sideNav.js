@@ -56,6 +56,7 @@ var SideMenu = /*#__PURE__*/function () {
           position: 'fixed',
           overflow: 'hidden',
           top: "-".concat(this.scrollPosition, "px"),
+          width: '100%',
           transitionProperty: 'transform',
           transition: '0.5s'
         });
@@ -81,7 +82,6 @@ var SideMenu = /*#__PURE__*/function () {
             right: '0',
             zIndex: 5000,
             width: '100%'
-
           });
 
           window.scroll(0, 0);

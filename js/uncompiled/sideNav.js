@@ -65,6 +65,7 @@ class SideMenu {
         position: 'fixed',
         overflow: 'hidden',
         top: `-${this.scrollPosition}px`,        // Keep position on page (otherwise jumpos to top)
+        width: '100%',
         transitionProperty: 'transform',
         transition: '0.5s'
       });
