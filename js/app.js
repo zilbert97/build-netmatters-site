@@ -3,7 +3,7 @@ $(document).ready(function(){
   checkAcceptCookies();
 
   //===== Carousel =====
-  $(".slider").simpleSlider({
+  $('.slider').simpleSlider({
     interval: 4000,
     animateDuration: 300
   });

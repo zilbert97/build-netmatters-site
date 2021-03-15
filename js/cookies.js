@@ -57,6 +57,10 @@ function checkAcceptCookies () {
         if (buttons[i].id === 'modal-content-button-accept') {
           localStorage.setItem('acceptedCookies', 'true');
         }
+
+        // Fix bug where closing modal causes adjustment of carousel image -
+        // reset width of each slide to 100%
+        $('.slide').css('width', '100%');
       });
     }
   }
