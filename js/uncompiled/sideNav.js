@@ -37,7 +37,7 @@ class SideMenu {
   // are made).
 
   constructor() {
-    this.scrollPosition = window.scrollY;
+    this.scrollPosition = window.pageYOffset;
     this.isSticky = null;   // This is set to true on open event
     this.page = $('#page-content');
     this.button = $('#hamburger-button');
@@ -103,7 +103,7 @@ class SideMenu {
       }
 
       // Call the setter method to set the current scroll position
-      this.scrollPosition = window.scrollY;
+      this.scrollPosition = window.pageYOffset;
 
       // Disable scrollspy event listening - otherwise scrolling the side menu
       // causes header slide up/down transition
