@@ -117,12 +117,12 @@ class SideMenu {
         top: `-${this.scrollPosition}px`,  // Keep position on page (otherwise jumpos to top)
         width: '100%',
         transitionProperty: 'transform',
-        transition: '0.5s'
+        transition: '500ms'
       });
 
       // Define a 'stent', which is the same size as the header element and
       // will replace it while the header is taken out of the element flow
-      const headerStent = $('<div id="headerStent"></div>').css({
+      const headerStent = $('<div id="header-stent"></div>').css({
         height: `${headerHeight}px`,
         width: '100%',
         display: 'block',
@@ -167,7 +167,7 @@ class SideMenu {
       this.page.css({
         transform: 'translateX(0)',
         transitionProperty: 'transform',
-        transition: '0.5s'
+        transition: '500ms'
       });
 
       // After translate transition, do cleanup
@@ -177,7 +177,7 @@ class SideMenu {
 
         // Remove any instance of the header stent that was added when the side
         // menu was opened
-        $('#headerStent').remove();
+        $('#header-stent').remove();
 
         // If header was sticky at open, make it sticky again at close
         if (this.headerIsSticky) {
@@ -193,17 +193,20 @@ class SideMenu {
           createScrollSpy(header);
         });
 
-      }.bind(this), 500);
+      }.bind(this), 510);
     }
   }
 
   /**
    * Calls the open/close of the side menu based on click events.
    *
-   * Listens for click events on the hamburger button and the overlay (on open)
-   * to open/close the side menu. Opening and closing triggers the hamburger
-   * button icon animation. Opening shows the overlay to prevent UI with the
-   * page contents, which once clicked triggers closing of the side menu.
+   * Intended to be triggered upon click events on the hamburger button and the
+   * overlay (on open) to open/close the side menu. Opening and closing
+   * triggers the hamburger button icon animation. Opening shows the overlay to
+   * prevent UI with the page contents, which once clicked triggers closing of
+   * the side menu.
+   *
+   * @param {bool} show - whether to show or hide the overlay.
    *
    * @return {void} - Nothing.
    */
@@ -217,7 +220,7 @@ class SideMenu {
     // transition appears instant
     setTimeout(function() {
       this.button.toggleClass('is-active');
-    }.bind(this), 5);
+    }.bind(this), 15);
 
     // Whether to show/hide the overlay
     if (show) {
@@ -226,7 +229,7 @@ class SideMenu {
       // Make visible after click (setTimeout required else acts immediately)
       setTimeout(function() {
         pageCover.css('opacity', '1');
-      }, 5);
+      }, 15);
     } else {
       // Make visibly hidden over 500ms
       pageCover.css({
@@ -235,7 +238,7 @@ class SideMenu {
       // After made visible, hide element from DOM
       setTimeout(function() {
         pageCover.css('display', 'none');
-      }, 500);
+      }, 510);
     }
   }
 }
