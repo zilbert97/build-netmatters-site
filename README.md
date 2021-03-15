@@ -14,8 +14,8 @@ JS reflection:
 - [ ] On some tablets and mobile devices carousel height is incorrect
 - [ ] Not tested for IE
 - [ ] Header buttons refresh (transitions in opacity with their changes in visibility and display properties)
-- [ ] Carousel digital marketing button wraps strange - too big
 
 ### Minor :heavy_exclamation_mark:
 - [ ] Header buttons refresh (transitions in opacity with their changes in visibility and display properties)
 - [ ] On open side nav while header is sticky followed by close, first scroll-up triggers header slide-down once
+- [ ] Carousel digital marketing button very wide - overflows the carousel slide
