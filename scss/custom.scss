@@ -134,7 +134,6 @@
   -ms-grid-rows     : max-content auto;
   grid-template-rows: max-content auto;
   -ms-grid-columns  : 100vw;
-  overflow          : hidden;
 
   header {                             // IE needs grid items set explicitly
     -ms-grid-row: 1;                   // in the grid.
