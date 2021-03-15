@@ -37,7 +37,7 @@ function checkAcceptCookies () {
 
 
   const modal = document.getElementById('modal');
-  const acceptedCookies = localStorage.getItem('acceptedCookies') || '';
+  const acceptedCookies = localStorage.getItem('acceptedCookies');
 
   // Check if key exists and value is 'true'
   if (acceptedCookies !== 'true') {
