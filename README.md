@@ -5,7 +5,7 @@ JS reflection:
 - Sticky header
 - Pop-up notifying the user the website uses cookies, this should store locally and prevent the pop-up reappearing on page reload
 
-## Known issues:
+## Known issues (last updated 15/03/21 09:10)
 
 ### Major :bangbang:
 - [x] When user closes cookies modal, carousel position is off
