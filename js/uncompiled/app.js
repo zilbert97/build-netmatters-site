@@ -18,7 +18,7 @@ $(document).ready(function(){
   $('#page-content').append(
     $('<div id="page-cover"></div>').css({
       display: 'none',
-      position: 'fixed',
+      position: 'absolute',
       top: 0,
       right: 0,
       width: '100%',
