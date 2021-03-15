@@ -10,10 +10,8 @@ JS reflection:
 ### Major :bangbang:
 - [x] When user closes cookies modal, carousel position is off
 - [x] Carousel positioning incorrect when opening index.html in browser via filepath instead of localhost
-- [ ] Carousel markers too high on some mobile views
-- [ ] On some tablets and mobile devices carousel height is incorrect
+- [x] On some tablets and mobile devices carousel height is incorrect
 - [ ] Not tested for IE
-- [ ] Header buttons refresh (transitions in opacity with their changes in visibility and display properties)
 
 ### Minor :heavy_exclamation_mark:
 - [ ] Header buttons refresh (transitions in opacity with their changes in visibility and display properties)
