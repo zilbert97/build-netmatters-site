@@ -15,9 +15,9 @@ function checkAcceptCookies () {
        * Shows or hides the modal, and toggles the body scrolling.
        *
        * @param {element} modal - the element to show/hide as a modal.
-       * @param {string} show   - the display property to set for the modal.
-       *                          'hide' hides the modal, 'show' opens the
-       *                          modal and prevents background scrolling.
+       * @param {string} show   - whether to show/hide the modal. 'hide' sets
+       *                          modal display to 'none'; 'show' sets display
+       *                          'block' and prevents background scrolling.
        */
 
       if (show === 'hide') {

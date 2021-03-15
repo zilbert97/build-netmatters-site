@@ -1,12 +1,40 @@
+/**
+ * The side menu handler class.
+ *
+ * This file defines the SideMenu class, which controls the opening/closing of
+ * the side navigation for the Netmatters site JS reflection.
+ *
+ * @link   /js/uncompiled/sideNav.js
+ * @file   This files defines the SideMenu class.
+ * @author Zach Gilbert.
+ */
+
+
 class SideMenu {
   /**
+   * Calls, opens, and closes the site side-navigation menu.
+   *
+   * Requires that the entire page contents that are to be moved by the menu
+   * open/close be wrapped in a container (prefferably a <div>) with the ID
+   * "page-content".
+   *
+   * @type {object}
+   * @property {number} scrollPosition - the last known vertical scroll
+   *                                     position of the page contents.
+   * @property {boolean} isSticky      - whether, at the time of menu opening,
+   *                                     the sticky header is sticky.
+   * @property {element} page          - the container (with ID "page-content"
+   *                                     wrapping the page contents to be moved
+   *                                     by the open/close of the side menu.
+   * @property {element} button        - the button element (with ID "hamburger
+   *                                     -button") which opens the side menu.
    *
    */
 
-  // scroll position and sticky status are being defined here, with getters and
+  // Scroll position and sticky status are being defined here, with getters and
   // setters, because their values need to be remembered at the start of the
   // open event and used on the close event (between which changes to the DOM
-  // are made)
+  // are made).
 
   constructor() {
     this.scrollPosition = window.scrollY;
@@ -14,26 +42,48 @@ class SideMenu {
     this.page = $('#page-content');
     this.button = $('#hamburger-button');
   }
+
+  /**
+   * Set the horizontal scroll position.
+   * @return {void} - Nothing.
+   */
   set scrollPosition(scrollPosition) {
     this._scrollPosition = scrollPosition;
   }
+  /**
+   * Get the most recently recorded horizontal scroll position.
+   * @return {number} - The ScrollY position
+   */
   get scrollPosition() {
     return this._scrollPosition;
   }
 
+  /**
+   * Set the sticky state of the sticky header as bool.
+   * @return {void} - Nothing.
+   */
   set headerIsSticky(headerIsSticky) {
     this._headerIsSticky = headerIsSticky;
   }
+  /**
+   * Get the sticky state of the sticky header.
+   * @return {bool} - Whether the last known state of the header is sticky (true)
+   *                  or static (false)
+   */
   get headerIsSticky() {
     return this._headerIsSticky;
   }
 
+  /**
+   * Shows and hides the side nav, adjusting the rest of the page with it.
+   *
+   * Opens and closes the side menu, by toggling a class for the page contents
+   * and adjusting the page contents position. This also requires adapting the
+   * sticky header stickyness and page position based on scroll location.
+   *
+   *  @return {void} Nothing.
+   */
   showHideMobileNav() {
-    /**
-     * Shows and hides the side nav, adjusting the rest of the page with it
-     *
-     */
-
     this.page.toggleClass('mobile-nav-open');
 
     const header = $('#sticker');
@@ -64,7 +114,7 @@ class SideMenu {
         transform: 'translateX(-275px)',
         position: 'fixed',
         overflow: 'hidden',
-        top: `-${this.scrollPosition}px`,        // Keep position on page (otherwise jumpos to top)
+        top: `-${this.scrollPosition}px`,  // Keep position on page (otherwise jumpos to top)
         width: '100%',
         transitionProperty: 'transform',
         transition: '0.5s'
@@ -147,6 +197,16 @@ class SideMenu {
     }
   }
 
+  /**
+   * Calls the open/close of the side menu based on click events.
+   *
+   * Listens for click events on the hamburger button and the overlay (on open)
+   * to open/close the side menu. Opening and closing triggers the hamburger
+   * button icon animation. Opening shows the overlay to prevent UI with the
+   * page contents, which once clicked triggers closing of the side menu.
+   *
+   * @return {void} - Nothing.
+   */
   triggerSideNav(show = false) {
     const pageCover = $('#page-cover');
 
