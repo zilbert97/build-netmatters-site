@@ -15,32 +15,31 @@
     min-width         : 0;
     @if $i==1 or $i==2 or $i==3 {
       width           : 718px;         // Fixed width at medium breakpoint
+      @include flex($f-grow: 0, $f-shrink: 1, $f-basis: 718px);
     }
     @else {
-      flex-basis      : 343px;         // 720px/2 -30px/2 -2px (fullwidth - gutter - border)
+      @include flex($f-grow: 0, $f-shrink: 1, $f-basis: 343px);  // 720px/2 -30px/2 -2px (fullwidth - gutter - border)
     }
   }
 
   @media (min-width: map-get($breakpoints, 'l')) {
     @if $i==1 or $i==2 or $i==3 {
-      flex-basis      : 293px;
+      @include flex($f-grow: 0, $f-shrink: 1, $f-basis: 293px);
     }
     @else {
-      flex-basis      : 455px;
+      @include flex($f-grow: 0, $f-shrink: 1, $f-basis: 455px);
     }
   }
 
   @media (min-width: map-get($breakpoints, 'xl')) {
     @if $i==1 or $i==2 or $i==3 {
-      flex-basis      : 370px;
+      @include flex($f-grow: 0, $f-shrink: 1, $f-basis: 370px);
     }
     @else {
-      flex-basis      : 270px;
+      @include flex($f-grow: 0, $f-shrink: 1, $f-basis: 270px);
     }
   }
 
-  @include flex-shrink(1);             // Prevents cards from overflowing the
-                                       // flex container
   margin              : 30px 15px 0;
 
   border              : 1px solid $search-border;
@@ -85,13 +84,17 @@
   }
 
   p {
-    @include flex-grow(1);             // Pushes .read-more down despite content
+    @include flex($f-grow: 1, $f-shrink: 0, $f-basis: auto);  // Pushes .read-more down despite content
     margin-bottom     : 13px;
     font-size         : .8125rem;      // 13px
     line-height       : 1.375rem;      // 22px
+    width             : 100%;
   }
 
   .read-more {
+    @media (min-width: map-get($breakpoints, 'l')) {
+      @include flex($f-grow: 0, $f-shrink: 0, $f-basis: auto);
+    }
     display           : inline-block;
     width             : 130px;
     padding           : 10px;
