@@ -134,6 +134,7 @@
   -ms-grid-rows     : max-content auto;
   grid-template-rows: max-content auto;
   -ms-grid-columns  : 100vw;
+  overflow          : hidden;
 
   header {                             // IE needs grid items set explicitly
     -ms-grid-row: 1;                   // in the grid.
@@ -171,6 +172,12 @@ h5 {
   font-size      : 1.125rem;
   font-weight    : 400;
   line-height    : 1.1;
+}
+
+// Fix for IE bug where header/carousel x-overflowed (set on entire page so
+// that does not affect sticky header behaviour)
+#page-content {
+  overflow: hidden;
 }
 
 //=====================================
