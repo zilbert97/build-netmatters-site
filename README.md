@@ -20,5 +20,5 @@ JS reflection:
 - [x] IE - Open side-menu - various major layout issues
 
 ### Minor
-- [ ] IE - Open side-menu always jumps to page top
-- [ ] IE - Open side-menu does not transition
+- [x] IE - Open side-menu always jumps to page top
+- [ ] IE - Open side-menu does not transition (but close does)
