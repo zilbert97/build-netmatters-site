@@ -246,37 +246,6 @@ header {
     }
   }
 
-  // For the hidden checkbox toggle the expected behaviour is when selected
-  // hide other buttons and expand the search container (this is the current
-  // behaviour). If no text in the search box then re-clicking the search icon
-  // should close the search field, but if there is text in the field then
-  // clicking the search icon should submit the text to perform a search. In
-  // addition clicking outside of the search field while there is no text
-  // input should re-close the search field. This behaviour seems to depend
-  // on additional logic.
-
-  #toggle:checked ~ #search-container {
-    #search-button {
-      transition    : border-radius .2s ease-out .2s;     // Open up rounded corners for flush fit
-      border-radius : 0 $border-radius $border-radius 0;  // with the search input field
-    }
-    #search-input {
-      @include fade-element-in;
-    }
-    & ~ #buttons-container {
-      @include fade-element-out;
-    }
-  }
-
-  #toggle:not(:checked) ~ #search-container {
-    #search-input {
-      @include fade-element-out;
-    }
-    & ~ #buttons-container {
-      @include fade-element-in;
-    }
-  }
-
   #nav-container {
     display         : block;
     height          : 99px;

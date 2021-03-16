@@ -39,6 +39,11 @@
   visibility          : visible;
 }
 
+// For toggling header items using JS
+.fade-in-header-element {
+  @include fade-element-in;
+}
+
 //===========================
 // FADE OUT
 //===========================
@@ -78,6 +83,11 @@
   transition-delay    : .3s;                      // Keep hidden at the end of the fade-out
   transition-property : visibility;
   visibility          : hidden;
+}
+
+// For toggling header items unsing JS
+.fade-out-header-element {
+  @include fade-element-out;
 }
 
 //============
