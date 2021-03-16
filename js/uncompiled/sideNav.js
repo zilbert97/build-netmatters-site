@@ -53,6 +53,24 @@ class SideMenu {
      * @return {void} - Nothing.
      */
     this.init = function() {
+      // Add a black alpha overlay to the DOM (set to hidden) for use in open/close
+        $('#page-content').parent().append(
+          $('<div id="page-cover"></div>').css({
+            display: 'none',
+            position: 'fixed',
+            top: 0,
+            right: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0,0,0,.5)',
+            cursor: 'pointer',
+            zIndex: 5001,
+            opacity: 0,
+            transitionPorperty: 'opacity',
+            transition: '0.5s'
+          })
+        );
+
       // Listen for changes in viewport width above/below L breakpoint (992px)
       this.mediaQuery.addListener(function() {
 
@@ -65,6 +83,11 @@ class SideMenu {
             transform: `translateX(-${this.sideNavWidth()}px)`,
             transitionProperty: '',
             transition: ''
+          });
+
+          $('#page-cover').css({
+            transform: `translateX(-${this.sideNavWidth()}px)`,
+            transitionProperty: 'opacity',
           });
         }
       }.bind(this));
@@ -143,9 +166,11 @@ class SideMenu {
       this.page.css({
         transform: `translateX(-${this.sideNavWidth()}px)`,
         position: 'fixed',
-        overflow: 'hidden',
+        overflowY: 'scroll',
+        overflowX: 'hidden',
         top: `-${this.scrollPosition}px`,  // Keep position on page (otherwise jumpos to top)
         width: '100%',
+        minHeight: '100%',
         transitionProperty: 'transform',
         transition: '500ms'
       });
@@ -258,12 +283,17 @@ class SideMenu {
       pageCover.css('display', 'block');
       // Make visible after click (setTimeout required else acts immediately)
       setTimeout(function() {
-        pageCover.css('opacity', '1');
-      }, 15);
+        pageCover.css({
+          transitionProperty: 'opacity, transform',
+          opacity: 1,
+          transform: `translateX(-${this.sideNavWidth()}px)`
+        });
+      }.bind(this), 15);
     } else {
       // Make visibly hidden over 500ms
       pageCover.css({
-        opacity: 0
+        opacity: 0,
+        transform: `translateX(0)`
       });
       // After made visible, hide element from DOM
       setTimeout(function() {
