@@ -7,6 +7,9 @@
   z-index         : -1;
   overflow-x      : hidden;
   width           : 275px;
+  @media (min-width: map-get($breakpoints, 'l')) {
+    width         : 335px;
+  }
   * {
     text-transform: uppercase;
   }
@@ -99,7 +102,7 @@
   }
 }
 
-@media (min-width: map-get($breakpoints, 'm')) {
+@media (min-width: map-get($breakpoints, 'l')) {
   .mobile-main-nav {
     display: none;
   }

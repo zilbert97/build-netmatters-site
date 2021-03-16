@@ -41,6 +41,36 @@ class SideMenu {
     this.isSticky = null;   // This is set to true on open event
     this.page = $('#page-content');
     this.button = $('#hamburger-button');
+    this.mediaQuery = window.matchMedia('(min-width: 992px)');
+
+    /**
+     * Listen for viewport width change and adjust the side nav width if open.
+     *
+     * Adjusts the perceived side nav width by moving the page contents. This
+     * only occurs if the side nav is already open. These changes are instant
+     * without any transition.
+     *
+     * @return {void} - Nothing.
+     */
+    this.init = function() {
+      // Listen for changes in viewport width above/below L breakpoint (992px)
+      this.mediaQuery.addListener(function() {
+
+        // If the side nav is open
+        if (this.page.hasClass('mobile-nav-open')) {
+
+          // Adjust apparent width of the side nav (by moving page contents)
+          // Transition is removed for instant change on viewport width change
+          this.page.css({
+            transform: `translateX(-${this.sideNavWidth()}px)`,
+            transitionProperty: '',
+            transition: ''
+          });
+        }
+      }.bind(this));
+    }.bind(this);
+
+    this.init();
   }
 
   /**
@@ -81,7 +111,7 @@ class SideMenu {
    * and adjusting the page contents position. This also requires adapting the
    * sticky header stickyness and page position based on scroll location.
    *
-   *  @return {void} Nothing.
+   * @return {void} Nothing.
    */
   showHideMobileNav() {
     this.page.toggleClass('mobile-nav-open');
@@ -111,7 +141,7 @@ class SideMenu {
 
       // Set styles to adjust page position
       this.page.css({
-        transform: 'translateX(-275px)',
+        transform: `translateX(-${this.sideNavWidth()}px)`,
         position: 'fixed',
         overflow: 'hidden',
         top: `-${this.scrollPosition}px`,  // Keep position on page (otherwise jumpos to top)
@@ -239,6 +269,25 @@ class SideMenu {
       setTimeout(function() {
         pageCover.css('display', 'none');
       }, 510);
+    }
+  }
+
+  /**
+   * Sets the width of the side navigation menu
+   *
+   * Uses a media query from this class' constructor to look at the viewport
+   * size, and return the width for the side navigation.
+   *
+   * @return {number} - 335 or 275, depending on viewport size.
+   */
+  sideNavWidth() {
+    // If side nav is at L/XL (desktop) breakpoint
+    if (this.mediaQuery.matches) {
+      return 335;
+    }
+    // Else if below L breakpoint (mobile/tablet devices)
+    else {
+      return 275;
     }
   }
 }
