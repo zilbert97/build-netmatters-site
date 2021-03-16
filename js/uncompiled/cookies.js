@@ -37,10 +37,10 @@ function checkAcceptCookies () {
 
 
   const modal = document.getElementById('modal');
-  const acceptedCookies = localStorage.getItem('acceptedCookies');
+  //const acceptedCookies = localStorage.getItem('acceptedCookies');
 
   // Check if key exists and value is 'true'
-  if (acceptedCookies !== 'true') {
+  if (!document.cookie.split('; ').find(row => row.startsWith('acceptedCookies='))) {//if (acceptedCookies !== 'true') {
     // If does not exist or is not 'true', prompt user via modal.
     // Parameters prevent closing unless user selects an option.
     showHideModal(modal, 'show');
@@ -55,7 +55,7 @@ function checkAcceptCookies () {
         // On user click accept, set value in localStorage so that the user
         // is not be re-prompted while navigating the site.
         if (buttons[i].id === 'modal-content-button-accept') {
-          localStorage.setItem('acceptedCookies', 'true');
+          document.cookie = 'acceptedCookies=true';//localStorage.setItem('acceptedCookies', 'true');
         }
 
         // Fix bug where closing modal causes adjustment of carousel image -
