@@ -18,9 +18,9 @@ JS reflection:
 - [x] IE - No JS is triggered
 - [x] IE - Opening menu causes overlay to sit above side-menu
 - [x] IE - Open side-menu - various major layout issues
-- [ ] IE - opening with local filepath causes issues as does not have access to web storage API. Use cookies instead to store info?
-- [ ] Contents of side menu should show extra nav for medium (tablet)
-- [ ] Width of side menu changes for above/below medium (tablet)
+- [ ] IE - Opening with local filepath causes issues as does not have access to web storage API. Use cookies instead to store info?
+- [x] Contents of side menu should show extra nav for medium (tablet)
+- [x] Width of side menu should change for above/below medium (tablet)
 
 ### Minor :exclamation:
 - [x] IE - Open side-menu always jumps to page top
