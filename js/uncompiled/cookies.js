@@ -11,36 +11,35 @@ function checkAcceptCookies () {
 
 
    function showHideModal(modal, show = 'show') {
-      /**
-       * Shows or hides the modal, and toggles the body scrolling.
-       *
-       * @param {element} modal - the element to show/hide as a modal.
-       * @param {string} show   - whether to show/hide the modal. 'hide' sets
-       *                          modal display to 'none'; 'show' sets display
-       *                          'block' and prevents background scrolling.
-       */
+    /**
+     * Shows or hides the modal, and toggles the body scrolling.
+     *
+     * @param {element} modal - the element to show/hide as a modal.
+     * @param {string} show   - whether to show/hide the modal. 'hide' sets
+     *                          modal display to 'none'; 'show' sets display
+     *                          'block' and prevents background scrolling.
+     */
 
-      if (show === 'hide') {
-        // Hide the modal
-        modal.style.display = 'none';
-        // Re-enable scrolling the body
-        document.body.style.overflow = 'visible';
-      } else if (show === 'show') {
-        // Show the modal
-        modal.style.display = 'block';
-        // Scroll the modal
-        modal.style.overflow = 'auto';
-        // Prevent scrolling the document body
-        document.body.style.overflow = 'hidden';
-      }
+    if (show === 'hide') {
+      // Hide the modal
+      modal.style.display = 'none';
+      // Re-enable scrolling the body
+      document.body.style.overflow = 'visible';
+    } else if (show === 'show') {
+      // Show the modal
+      modal.style.display = 'block';
+      // Scroll the modal
+      modal.style.overflow = 'auto';
+      // Prevent scrolling the document body
+      document.body.style.overflow = 'hidden';
     }
-
+  }
 
   const modal = document.getElementById('modal');
-  const acceptedCookies = localStorage.getItem('acceptedCookies');
+  // const acceptedCookies = localStorage.getItem('acceptedCookies');
 
   // Check if key exists and value is 'true'
-  if (acceptedCookies !== 'true') {
+  if (!document.cookie.split('; ').find(row => row.startsWith('acceptedCookies'))) { // if (acceptedCookies !== 'true') {
     // If does not exist or is not 'true', prompt user via modal.
     // Parameters prevent closing unless user selects an option.
     showHideModal(modal, 'show');
@@ -55,7 +54,7 @@ function checkAcceptCookies () {
         // On user click accept, set value in localStorage so that the user
         // is not be re-prompted while navigating the site.
         if (buttons[i].id === 'modal-content-button-accept') {
-          localStorage.setItem('acceptedCookies', 'true');
+          document.cookie = 'acceptedCookies=true';  // localStorage.setItem('acceptedCookies', 'true');
         }
 
         // Fix bug where closing modal causes adjustment of carousel image -
