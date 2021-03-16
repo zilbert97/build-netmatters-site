@@ -37,10 +37,10 @@ function checkAcceptCookies () {
 
 
   const modal = document.getElementById('modal');
-  //const acceptedCookies = localStorage.getItem('acceptedCookies');
+  const acceptedCookies = document.cookie.split('; ').find(row => row.startsWith('acceptedCookies=')); //const acceptedCookies = localStorage.getItem('acceptedCookies');
 
   // Check if key exists and value is 'true'
-  if (!document.cookie.split('; ').find(row => row.startsWith('acceptedCookies='))) {//if (acceptedCookies !== 'true') {
+  if (acceptedCookies !== 'acceptedCookies=true' || !acceptedCookies) {//if (acceptedCookies !== 'true') {
     // If does not exist or is not 'true', prompt user via modal.
     // Parameters prevent closing unless user selects an option.
     showHideModal(modal, 'show');
