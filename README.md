@@ -25,7 +25,8 @@ JS reflection:
 ### Minor :exclamation:
 - [x] IE - Open side-menu always jumps to page top
 - [ ] IE - Open side-menu does not transition (but close does)
-- [ ] Header buttons and search fade in/out on scroll and side menu open/close events
+- [x] Header buttons and search fade in/out on scroll and side menu open/close events
+- [ ] IE - Header buttons and search fading in/out appear to fire twice
 - [ ] On side menu open the main page contents lacks a scroll bar
 - [ ] Subtle sticky header transition difference: transitions should fire when scroll events stop, not immediately
-- [ ] Minor carousel button positional differences (misalignment) on Firefox/IE
+- [ ] IE, FF - *Very slight* carousel button positional differences
