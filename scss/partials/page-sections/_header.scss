@@ -233,6 +233,7 @@ header {
   #toggle {                            // Hidden overlay checkbox which toggles
     display  : block;                  // toggles the state of other elements.
     position : absolute;               // Positioned relative to .main-header
+    top      : 20px;
     right    : 98px;
     z-index  : 100;                    // Ensure toggle is the top layer
 
