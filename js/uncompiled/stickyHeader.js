@@ -42,6 +42,7 @@ function createScrollSpy(target) {
 
     // If at top of the page
     if (scrollTop === 0) {
+      clearTimeout(timeout);
       target.unstick();
       target.removeClass('slide-up slide-down');
     }
@@ -52,13 +53,18 @@ function createScrollSpy(target) {
       // On scroll down
       if (scrollTop > lastScrollTop) {
 
-        // If changed direction of scroll
-        if (lastDirection !== 'down') {
-          // Hide the header
-          target.addClass('slide-up').removeClass('slide-down');
-        }
+        // Using timeout function to debounce scrolldown events - so that
+        // header hide is only on scroll top
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+          // If changed direction of scroll
+          if (lastDirection !== 'down') {
+            // Hide the header
+            target.addClass('slide-up').removeClass('slide-down');
+          }
 
-        lastDirection = 'down';
+          lastDirection = 'down';
+        }, 250);
       }
 
       // On scroll up, if changed direction of scroll
@@ -81,5 +87,6 @@ function createScrollSpy(target) {
   // Save processing by only executing on scroll direction change
   let lastDirection = null;
 
+  let timeout;
   return $(window).on('scroll', callback);
 }

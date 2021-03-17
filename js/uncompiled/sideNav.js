@@ -178,9 +178,10 @@ class SideMenu {
       // Define a 'stent', which is the same size as the header element and
       // will replace it while the header is taken out of the element flow
       const headerStent = $('<div id="header-stent"></div>').css({
-        height: `${headerHeight}px`,
+        height: `${headerHeight + 10}px`,
         width: '100%',
         display: 'block',
+        backgroundColor: '#fff'
       });
 
       // If header is sticky
