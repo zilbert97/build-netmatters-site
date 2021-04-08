@@ -297,6 +297,23 @@ $clients: ('busseys', 'crane', 'beat', 'northern-diver');
     }  // input
   }  // .input-field
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   #signup-confirm {
     @include grid;
 
@@ -325,34 +342,42 @@ $clients: ('busseys', 'crane', 'beat', 'northern-diver');
 
     #signup-checkbox {
       position           : relative;
-    }
-    input {
-      margin-bottom      : 50px;
-      height             : 32px;
-      width              : 32px;
-      appearance         : none;
-      -webkit-appearance : none;
-      -moz-appearance    : none;
-      -o-appearance      : none;
-      border             : 3px solid $primary-dark;
-      border-radius      : 4px;
-      outline            : none;
-      cursor             : pointer;
-      & ~ .icon-check {
-        visibility       : hidden;
-        color            : $primary-light;
-        position         : absolute;
-        font-size        : 1.5rem;
-        left             : 4px;
-        top              : 4px;
+
+      input {
+        margin-bottom      : 50px;
+        height             : 32px;
+        width              : 32px;
+        appearance         : none;
+        -webkit-appearance : none;
+        -moz-appearance    : none;
+        -o-appearance      : none;
+        border             : 3px solid $primary-dark;
+        border-radius      : 4px;
+        outline            : none;
+        &:hover {
+          cursor           : pointer;
+        }
+        ~ .icon-check {
+          visibility       : hidden;
+          color            : $primary-light;
+          position         : absolute;
+          font-size        : 1.5rem;
+          left             : 4px;
+          top              : 4px;
+        }
+      }
+
+      input:checked {
+        background-color   : $primary-dark;
+        ~ .icon-check {
+          visibility       : visible;
+        }
+        ~ .icon-check:hover {
+            cursor: pointer;
+        }
       }
     }
-    input:checked {
-      background-color   : $primary-dark;
-      & ~ .icon-check {
-        visibility       : visible;
-      }
-    }
+
     #signup-terms {
       font-weight        : 600;
       line-height        : 32px;
@@ -365,6 +390,24 @@ $clients: ('busseys', 'crane', 'beat', 'northern-diver');
       }
     }
   }  // #signup-confirm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   #signup-submit {
     @include button-base-style($context: "body", $service: "signup") {

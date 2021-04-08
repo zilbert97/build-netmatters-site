@@ -566,13 +566,22 @@
                 <input id="signup-email" type="email" name="email_addr">
               </div>
 
+              <div id="signup-confirm">
+                <div id="signup-checkbox">
+                  <input type="checkbox" name="agree_terms" id="signup-checkbox-input">
+                  <span class="icon-check" onclick="$('#signup-checkbox-input').prop('checked', false)"></span>
+                </div>
+                <label id="signup-terms" for="signup-checkbox-input">Please tick this box if you wish to receive marketing information from us. Please see our <a id="privacy-policy" href="#">Privacy Policy</a> for more information on how we use your data.</label>
+              </div>
+              <!--
               <label id="signup-confirm">
                 <div id="signup-checkbox">
-                  <input type="checkbox" name="agree_terms"> <!-- value attribute? -->
+                  <input type="checkbox" name="agree_terms">
                   <span class="icon-check"></span>
                 </div>
                 <span id="signup-terms">Please tick this box if you wish to receive marketing information from us. Please see our <a id="privacy-policy" href="#">Privacy Policy</a> for more information on how we use your data.</span>
               </label>
+              -->
 
               <button id="signup-submit" type="submit">Subscribe</button>
 
