@@ -45,3 +45,7 @@ Temporary Items
 ### Composer ###
 composer.phar
 vendor/
+
+### PHPUnit ###
+.phpunit.result.cache
+phpunit.xml
