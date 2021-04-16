@@ -121,7 +121,7 @@ include('src/inc/head.php');
                 <!-- Latest News cards -->
                 <div id="news-board">
                 <?php
-                foreach(get_latest_news() as $news_item) {
+                foreach (get_latest_news() as $news_item) {
                     echo display_latest_news($news_item);
                 }
                 ?>

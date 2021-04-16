@@ -1,6 +1,7 @@
 <?php
 
-function connect_database() {
+function connect_database()
+{
     try {
         $db = new PDO("sqlite:" . __DIR__ . '/database.db');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -12,7 +13,8 @@ function connect_database() {
     }
 }
 
-function get_latest_news() {
+function get_latest_news()
+{
     $db = connect_database();
     try {
         // Get the 3 most latest news items
@@ -24,7 +26,8 @@ function get_latest_news() {
     }
 }
 
-function generate_filename($string) {
+function generate_filename($string)
+{
     // Remove any special chars and replace whitespace/underscores with dashes
     $filename = str_replace([' ', '_'], '-', $string);
     $filename = preg_replace('/[^A-Za-z0-9\-]/', '', $filename);
@@ -35,7 +38,8 @@ function generate_filename($string) {
 }
 
 
-function get_card_image($filename) {
+function get_card_image($filename)
+{
     $extensions = ['.jpg','.jpeg','.png'];
     
     foreach ($extensions as $extension) {
@@ -53,13 +57,14 @@ function get_card_image($filename) {
     }
 }
 
-function display_latest_news(array $news_item) {
+function display_latest_news(array $news_item)
+{
     // Cover image filename is based on news item title
-    $cover_image_filepath = get_card_image(
+    $cover_img_filepath = get_card_image(
         generate_filename($news_item['title'])
     );
     // Posted by avatar image is based on news item posted_by
-    $posted_by_image_filepath = get_card_image(
+    $posted_by_img_filepath = get_card_image(
         generate_filename($news_item['posted_by'])
     );
     $posted_at = date('jS F Y', strtotime($news_item['posted_at']));
@@ -80,7 +85,7 @@ function display_latest_news(array $news_item) {
     <div class="news-card-cover">
         <a href="#">
             <div class="image-wrapper">
-                <img class="news-card-image" src="{$cover_image_filepath}" alt="{$news_item['title']}">
+                <img class="news-card-image" src="{$cover_img_filepath}" alt="{$news_item['title']}">
             </div>
         </a>
         <a class="news-card-category" href="#">{$news_item['category']}</a>
@@ -92,7 +97,7 @@ function display_latest_news(array $news_item) {
         <p class="card-description">{$news_item['summary']}&hellip;</p>
         <a class="read-more" href="#">Read more</a>
         <hr />
-        <img class="logo-small" src="{$posted_by_image_filepath}" alt="News article posted by {$news_item['posted_by']}">
+        <img class="logo-small" src="{$posted_by_img_filepath}" alt="News article posted by {$news_item['posted_by']}">
         <div class="card-publish-info">
             <p><strong>Posted by {$news_item['posted_by']}</strong></p>
             <p>{$posted_at}</p>
