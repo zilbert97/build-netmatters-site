@@ -1,0 +1,221 @@
+//==============================
+// FORM BODY
+//==============================
+
+#contact {
+    background-color: $primary-light;
+    padding: 50px 0;
+
+    &--form {
+        @include set-content-width;
+        margin        : 0 auto;
+        padding       : 0 45px;
+    }
+
+    &--title {
+        @include set-content-width;
+        margin        : 0 auto;
+        padding       : 0 45px 35px;
+        font-size     : 2rem;              // 32px
+        font-weight   : 400;
+        line-height   : 1.1;
+        text-transform: capitalize;
+    }
+
+    h2, label, a {
+        color         : $primary-dark;
+    }
+}
+
+
+//==============================
+// STANDARD FORM FIELD
+//==============================
+
+.form--field {
+    margin            : 0 0 15px;
+  
+    label span {
+      margin          : 0 0 5px;
+      width           : 100%;
+      font-weight     : 600;
+      &.required--label::after {
+        content         : " *";
+        color           : rgb(210,77,87);
+      }
+    }
+    .form--text-input {
+      padding         : 5px 15px;
+      width           : 100%;
+      height          : 47px;
+  
+      background-color: $primary-light;
+      border          : 1px solid $search-border;
+      border-radius   : 2px;
+      box-shadow      : $shadow-inset;
+  
+      font-size       : .875rem;       // 14px
+      line-height     : 1.4;
+      color           : $search-input;
+  
+      &:focus {
+        outline       : 0;
+        border-color  : $field-focus-color;
+        box-shadow    : $shadow-inset, $shadow-outer;
+      }
+    }
+}
+
+textarea.form--text-input {
+    resize: none;
+}
+
+.form--text-field-wrapper {
+    margin: 0 0 15px;
+    min-height: 600px;
+    .form--field {
+        label {
+           width: 100%;
+        }
+
+        &:last-child {
+            margin: 0;
+            height: 280px;
+            label, label > textarea {
+                height: 100%;
+                margin: 0;
+            }
+        }
+    }
+}
+
+@media (min-width: map-get($breakpoints, 'l')) {
+    .form--text-field-wrapper {
+        @include flexbox;
+        @include flex-flow(column wrap);
+        margin       : 0;
+        max-height   : 300px;
+        min-height   : 250px;
+
+        .form--field {
+            width    : 50%;
+
+            &:not(:last-child) {
+                @include flex($f-grow: 1, $f-shrink: 1, $f-basis: calc(100% / 3));
+                margin-right: 15px;
+            }
+            &:last-child {
+                @include flex($f-grow: 1, $f-shrink: 0, $f-basis: 100%);
+                
+                height: 100%;
+                label {
+                    height: 100%;
+                }
+
+                .form--text-input {
+                    height: 100%;
+                    min-height: 235px;
+                }
+            }
+        }
+    }
+}
+
+
+//==============================
+// ACCEPT GDPR FIELD
+//==============================
+
+#gdpr-field {
+    @include grid;
+
+    // IE (workaround due to no CSS grid gap support)
+    -ms-grid-columns : auto 20px auto;
+
+    .form--gdpr {
+        &-field {
+            -ms-grid-column: 1;
+        }
+        &-statement {
+            display        : block;
+            -ms-grid-column: 3;
+        }
+    }
+
+    // Modern browser approach for CSS grid
+    grid-template-columns: auto auto;
+    grid-gap             : 20px;
+
+    // I have added the 15px bottom margin, but at smaller breakpoints there
+    // is still a difference of 16px that I cannot account for. To replicate
+    // the layout I have added +16px for the small and medium breakpoints
+    margin               : 0 0 31px;
+    @media (min-width: map-get($breakpoints, 'l')) {
+      margin             : 0 0 15px;
+    }
+
+    .form--gdpr-field {
+      position           : relative;
+
+      input {
+        margin-bottom      : 50px;
+        height             : 32px;
+        width              : 32px;
+        appearance         : none;
+        -webkit-appearance : none;
+        -moz-appearance    : none;
+        -o-appearance      : none;
+        border             : 3px solid $primary-dark;
+        border-radius      : 4px;
+        outline            : none;
+        &:hover {
+          cursor           : pointer;
+        }
+        ~ .icon-check {
+          visibility       : hidden;
+          color            : $primary-light;
+          position         : absolute;
+          font-size        : 1.5rem;
+          left             : 4px;
+          top              : 4px;
+        }
+      }
+
+      input:checked {
+        background-color   : $primary-dark;
+        ~ .icon-check {
+          visibility       : visible;
+        }
+        ~ .icon-check:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .form--gdpr-statement {
+      font-weight        : 600;
+      line-height        : 32px;
+      cursor             : pointer;
+    }
+    .form--gdpr-statement > a {
+      text-decoration    : underline;
+      &:hover {
+        color            : darken($primary-dark, 10%);
+    }
+  }
+}
+
+
+//==============================
+// SUBMIT BUTTON
+//==============================
+
+form .form--submit {
+    @include button-base-style($context: "body", $service: "signup") {
+        height  : 47px;
+        border  : 1px solid $primary-dark;
+        &:hover {
+        border: 1px solid darken($primary-dark, 10%);
+        }
+    }
+}

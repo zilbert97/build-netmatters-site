@@ -57,26 +57,29 @@
         <h2>Email newsletter sign-up</h2>
         <form>
 
-            <div class="input-field">
-                <label for="signup-name">Your Name</label>
-                <input id="signup-name" type="text" name="user">
+            <div class="signup--field form--field">
+                <label for="signup-name">
+                    <span class="form--label-copy required--label">Your Name</span>
+                </label>
+                <input id="signup-name" class="form--text-input" type="text" name="user">
             </div>
 
-            <div class="input-field">
-                <label for="signup-email">Your Email</label>
-                <input id="signup-email" type="email" name="email_addr">
+            <div class="signup--field form--field">
+                <label for="signup-email">
+                    <span class="form--label-copy required--label">Your Email</span>
+                </label>
+                <input id="signup-email" class="form--text-input" type="email" name="email_addr">
             </div>
 
-            <div id="signup-confirm">
-                <div id="signup-checkbox">
-                    <input type="checkbox" name="agree_terms" id="signup-checkbox-input">
-                    <span class="icon-check" onclick="$('#signup-checkbox-input').prop('checked', false)"></span>
+            <div id="gdpr-field">
+                <div class="form--gdpr-field">
+                    <input id="gdpr-checkbox" class="form--checkbox-input" type="checkbox" name="agree_terms">
+                    <span class="icon-check" onclick="$('#gdpr-checkbox').prop('checked', false)"></span>
                 </div>
-                <label id="signup-terms" for="signup-checkbox-input">Please tick this box if you wish to receive marketing information from us. Please see our <a id="privacy-policy" href="#">Privacy Policy</a> for more information on how
-                    we use your data.</label>
+                <label class="form--gdpr-statement" for="gdpr-checkbox">Please tick this box if you wish to receive marketing information from us. Please see our <a class="form--gdpr-privacy-policy" href="#">Privacy Policy</a> for more information on how we use your data.</label>
             </div>
 
-            <button id="signup-submit" type="submit">Subscribe</button>
+            <button class="form--submit" type="submit">Subscribe</button>
 
         </form>
     </div> <!-- #footer-signup-inner -->
