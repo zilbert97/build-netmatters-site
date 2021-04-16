@@ -68,7 +68,7 @@
   }
 }
 
-@mixin latest-card($card-category, $desc-box-position-small:0, $desc-box-position-large:0) {
+@mixin latest-card($card-category) {
   @media (min-width: map-get($breakpoints, 'm')) {
     @include flex(0, 0, 345px);
   }
@@ -217,11 +217,11 @@
     padding         : 15px 15px;
 
     max-width       : 150px;
-    right           : $desc-box-position-small;
+    //right           : $desc-box-position-small;
 
     @media (min-width: map-get($breakpoints, 'm')) {
       max-width     : 200px;
-      right         : $desc-box-position-large;
+      //right         : $desc-box-position-large;
     }
 
     background-color: transparentize($primary-dark, .1);
@@ -265,23 +265,40 @@
 // positioned, for both small and medium+ breakpoints... not the most elegant
 // solution
 
-#kati-25th-birthday {
-  @include latest-card(
-    $card-category: 'it-support',
-    $desc-box-position-small: -45px,
-    $desc-box-position-large: -67px);
-}
+.news-card {
+  /* DEPRECATED FEATURE?
+  &:nth-of-type(1n) {
+    .description-box {
+      right: -45px;
+      @media (min-width: map-get($breakpoints, 'm')) {
+        right: -67px;
+      }
+    }
+  }
+  &:nth-of-type(2n) {
+    .description-box {
+      right: -20px;
+      @media (min-width: map-get($breakpoints, 'm')) {
+        right: -40px;
+      }
+    }
+  }
+  &:nth-of-type(3n) {
+    .description-box {
+      right: -30px;
+      @media (min-width: map-get($breakpoints, 'm')) {
+        right: -55px;
+      }
+    }
+  }
+  */
 
-#zsea-case-study {
-  @include latest-card(
-    $card-category: 'it-support',
-    $desc-box-position-small: -20px,
-    $desc-box-position-large: -40px);
-}
-
-#now-hiring {
-  @include latest-card(
-    $card-category: 'bespoke-software',
-    $desc-box-position-small: -30px,
-    $desc-box-position-large: -55px);
+  &-it-support {
+    @include latest-card(
+      $card-category: 'it-support');
+  }
+  &-bespoke-software {
+    @include latest-card(
+      $card-category: 'bespoke-software');
+  }
 }

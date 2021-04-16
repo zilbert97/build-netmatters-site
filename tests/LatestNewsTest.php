@@ -3,14 +3,7 @@
 require(__DIR__ . '/../src/functions.php');
 
 class LatestNewsTest extends PHPUnit\Framework\TestCase
-{
-    /** @test */
-    /*
-    public function displayThreeLatestNewsCards()
-    {
-    }
-    */
-    
+{   
     /** @test */
     public function getThreeLatestNewsEntries()
     {
@@ -28,4 +21,95 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
         $this->assertIsString($card);
     }
     
+    /** @test */
+    public function generateNewsCardFileName()
+    {
+        $filename = 'this-is-an-example-1-23-filename';
+        $this->assertEquals(
+            $filename,
+            generate_filename('/This/ !is @an EXAMPLE_1-2.3 filename')
+        );
+    }
+    
+    /** @test */
+    public function getNewsCardCoverImage()
+    {
+        // Image that does exist in file path - therefore gets default image
+        $this->assertFileExists(
+            get_card_image('A card title that does not exist')
+        );
+        
+        // Image that does exist in file path
+        $this->assertFileExists(
+            get_card_image('Happy 25th Birthday Kati!')
+        );
+    }
+    
+    /** @test */
+    public function getNewsCardPostedByImage()
+    {
+        // Image that does not exist in file path - therefore gets default image
+        $this->assertFileExists(
+            get_card_image('Something that does NOT exist!')
+        );
+        
+        // Image that does exist in file path - 1
+        $this->assertFileExists(
+            get_card_image('Simon Wright')
+        );
+        // Image that does exist in file path - 2
+        $this->assertFileExists(
+            get_card_image('Netmatters Ltd')
+        );
+    }
+    
+    /** @test */
+    public function formatPostedAtDate()
+    {
+        $formatted_date = date('jS F Y', strtotime('2020-12-18 00:00:00'));
+
+        $this->assertEquals($formatted_date, '18th December 2020');
+        //return strftime(, );
+    }
+
+    /** @test */
+    public function displayLatestNewsCard()
+    {
+        $expectedPost = <<<EOD
+        <div class="news-card news-card-it-support">
+            <div class="news-card-cover">
+                <a href="#">
+                    <div class="image-wrapper">
+                        <img class="news-card-image" src="img/happy-25th-birthday-kati.jpeg" alt="Happy 25th Birthday Kati!">
+                    </div>
+                    <span class="description-box">View all: IT Support / News</span>
+                </a>
+                <a class="news-card-category" href="#">news</a>
+            </div>
+            <div class="news-card-summary">
+                <a class="title-link" href="#">
+                    <h6>Happy 25th Birthday Kati!</h6>
+                </a>
+                <p class="card-description">Since joining Netmatters Kati has done a fantastic job keeping our IT projects progressing&hellip;</p>
+                <a class="read-more" href="#">Read more</a>
+                <hr />
+                <img class="logo-small" src="img/netmatters-logo-small.png" alt="News article posted by Netmatters Ltd">
+                <div class="card-publish-info">
+                    <p><strong>Posted by Netmatters Ltd</strong></p>
+                    <p>18th December 2020</p>
+                </div>
+            </div>
+        </div>
+        EOD;
+
+        $dataArray = array(
+            "title" => "Happy 25th Birthday Kati!",
+            "summary" => "Since joining Netmatters Kati has done a fantastic job keeping our IT projects progressing",
+            "category" => "news",
+            "posted_by" => "Netmatters Ltd",
+            "posted_at" => "2020-12-18 00:00:00"
+        );
+
+        $this->assertEquals($expectedPost, display_latest_news($dataArray));
+    }
 }
