@@ -67,7 +67,7 @@
 
                 <div class="form--field">
                     <label>
-                        <span class="form--label-copy required--label">Email Address:</span>
+                        <span class="form--label-copy required--label">Email Address</span>
                         <input class="form--text-input required--input" type="email" name="email" placeholder="example@domain.com">
                     </label>
                 </div>

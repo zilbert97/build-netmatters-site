@@ -51,7 +51,7 @@ include('src/inc/head.php');
 
                         <div class="form--field">
                             <label>
-                                <span class="form--label-copy required--label">Message:</span>
+                                <span class="form--label-copy required--label">Message</span>
                                 <textarea class="form--text-input required--input" type="text" name="message" placeholder="Lorem ipsum..."></textarea>
                             </label>
                         </div>
