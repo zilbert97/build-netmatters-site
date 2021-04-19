@@ -1,0 +1,14 @@
+.error {
+    &--wrapper {
+        @include set-content-width;
+        margin : 0 auto 15px;
+        padding: 0 45px;
+    }
+    &--message-body {
+        padding: 25px;
+
+    }
+    &--copy {
+        margin: 0;
+    }
+}
