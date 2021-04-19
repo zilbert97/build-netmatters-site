@@ -2,7 +2,7 @@
 <nav id="mobile-nav">
     <ul class="mobile-main-nav">
         <li class="mobile-main-nav-category">
-            <a href="#" class="mobile-main-nav-item">Contact us</a>
+            <a href="/contact.php" class="mobile-main-nav-item">Contact us</a>
         </li>
         <li class="mobile-main-nav-category">
             <a href="#" class="mobile-main-nav-item">

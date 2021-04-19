@@ -4,7 +4,7 @@
         <!-- Flex Item 1 -->
         <div id="logo-container">
             <!-- Site logo -->
-            <a href="#">
+            <a href="/">
                 <img src="img/netmatters-logo-large.png" alt="Netmatters logo" class="logo">
             </a>
         </div>
@@ -31,7 +31,7 @@
                 <span class="button-text">Support</span>
             </a>
 
-            <a class="button" id="contact-button" href="#">
+            <a class="button" id="contact-button" href="/contact.php">
                 <span class="icon-paperplane"></span>
                 <span class="button-text">Contact</span>
             </a>
