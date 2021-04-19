@@ -1,7 +1,66 @@
 //==============================
-// FORM BODY
+// STANDARD FORM FIELD
+//==============================
+.form--field {
+    margin                  : 0 0 15px;
+
+    label {
+        margin              : 0;
+        width               : 100%;
+
+        .form--label-copy {
+            font-weight     : 600;
+            color           : $primary-dark;
+        }
+        .required--label::after {
+            content         : " *";
+            color           : $error-red;
+        }
+
+        .form--text-input {
+            padding         : 5px 15px;
+            width           : 100%;
+            height          : 47px;
+
+            background-color: $primary-light;
+            border          : 1px solid $search-border;
+            border-radius   : 2px;
+            box-shadow      : $shadow-inset;
+
+            font-size       : .875rem;       // 14px
+            line-height     : 1.4;
+            color           : $search-input;
+
+            &:focus {
+                outline     : 0;
+                border-color: $field-focus-color;
+                box-shadow  : $shadow-inset, $shadow-outer;
+            }
+        }
+    }
+}
+
+
+//==============================
+// SUBMIT BUTTON
 //==============================
 
+form .form--submit {
+    @include button-base-style($context: "body", $service: "signup") {
+        height  : 47px;
+        border  : 1px solid $primary-dark;
+        &:hover {
+        border: 1px solid darken($primary-dark, 10%);
+        }
+    }
+}
+
+
+//==============================
+// CONTACT FORM
+//==============================
+
+// Form body
 #contact {
     background-color: $primary-light;
     padding: 50px 0;
@@ -25,100 +84,84 @@
     h2, label, a {
         color         : $primary-dark;
     }
-}
 
+    // Message input field
+    .form--text-field-wrapper {
+        margin    : 0 0 15px;
 
-//==============================
-// STANDARD FORM FIELD
-//==============================
-
-.form--field {
-    margin            : 0 0 15px;
-
-    label span {
-      margin          : 0 0 5px;
-      width           : 100%;
-      font-weight     : 600;
-      &.required--label::after {
-        content         : " *";
-        color           : rgb(210,77,87);
-      }
-    }
-    .form--text-input {
-      padding         : 5px 15px;
-      width           : 100%;
-      height          : 47px;
-
-      background-color: $primary-light;
-      border          : 1px solid $search-border;
-      border-radius   : 2px;
-      box-shadow      : $shadow-inset;
-
-      font-size       : .875rem;       // 14px
-      line-height     : 1.4;
-      color           : $search-input;
-
-      &:focus {
-        outline       : 0;
-        border-color  : $field-focus-color;
-        box-shadow    : $shadow-inset, $shadow-outer;
-      }
-    }
-}
-
-textarea.form--text-input {
-    resize: none;
-}
-
-.form--text-field-wrapper {
-    margin: 0 0 15px;
-    min-height: 600px;
-    .form--field {
-        label {
-           width: 100%;
-        }
-
-        &:last-child {
-            margin: 0;
-            height: 280px;
-            label, label > textarea {
-                height: 100%;
-                margin: 0;
-            }
+        // Last child only
+        .form--field:last-child {
             textarea {
                 padding-top: 12px;
+                height: 250px;
+                resize     : none;
+            }
+        }
+    }
+
+    @media (min-width: map-get($breakpoints, 'l')) {
+        .form--text-field-wrapper {
+            @include flexbox;
+            @include flex-flow(column wrap);
+            @include align-content(space-between);
+
+            height: 300px;
+
+            .form--field {
+                @include flex(1, 1, 71px);
+
+                width: 49%;
+
+                &:last-child {
+                    @include flex(3, 1, auto);
+                    box-sizing: content-box;
+
+                    label {
+                        height: 100%;
+                    }
+
+                    .form--text-input {
+                        height: 87%;
+                    }
+                }
             }
         }
     }
 }
 
-@media (min-width: map-get($breakpoints, 'l')) {
-    .form--text-field-wrapper {
-        @include flexbox;
-        @include flex-flow(column wrap);
-        margin       : 0;
-        max-height   : 300px;
-        min-height   : 250px;
 
-        .form--field {
-            width    : 50%;
+//==============================
+// SIGNUP FORM
+//==============================
 
-            &:not(:last-child) {
-                @include flex($f-grow: 1, $f-shrink: 1, $f-basis: calc(100% / 3));
-                margin-right: 25px;
-            }
-            &:last-child {
-                @include flex($f-grow: 1, $f-shrink: 0, $f-basis: 100%);
+#footer-signup {
+    background-color  : $newsletter-signup;
 
-                height: 100%;
-                label {
-                    height: 100%;
-                }
+    #footer-signup-inner {
+        @include set-content-width;
+        margin        : 0 auto;
+        padding       : 50px 45px;
+    }
 
-                .form--text-input {
-                    height: 100%;
-                    min-height: 235px;
-                }
+    h2, label, a {
+        color         : $primary-dark;
+    }
+    h2 {
+        margin        : 0 0 15px;
+        font-size     : 2rem;              // 32px
+        font-weight   : 400;
+        line-height   : 1.1;
+        text-transform: capitalize;
+    }
+
+    @media (min-width: map-get($breakpoints, 'l')) {
+        .form--text-field-wrapper {
+            @include flexbox;
+            @include flex-flow(row nowrap);
+            @include justify-content(space-between);
+
+            .form--field {
+                @include flex($f-grow: 0, $f-shrink: 0, $f-basis: 49%);
             }
         }
     }
@@ -206,19 +249,4 @@ textarea.form--text-input {
         color            : darken($primary-dark, 10%);
     }
   }
-}
-
-
-//==============================
-// SUBMIT BUTTON
-//==============================
-
-form .form--submit {
-    @include button-base-style($context: "body", $service: "signup") {
-        height  : 47px;
-        border  : 1px solid $primary-dark;
-        &:hover {
-        border: 1px solid darken($primary-dark, 10%);
-        }
-    }
 }

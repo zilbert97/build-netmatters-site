@@ -57,26 +57,28 @@
         <h2>Email newsletter sign-up</h2>
         <form>
 
-            <div class="signup--field form--field">
-                <label for="signup-name">
-                    <span class="form--label-copy required--label">Your Name</span>
-                </label>
-                <input id="signup-name" class="form--text-input" type="text" name="user">
-            </div>
+            <div class="form--text-field-wrapper">
+                <div class="form--field">
+                    <label>
+                        <span class="form--label-copy required--label">Your Name</span>
+                        <input class="form--text-input required--input" type="text" name="name" placeholder="Jane Smith">
+                    </label>
+                </div>
 
-            <div class="signup--field form--field">
-                <label for="signup-email">
-                    <span class="form--label-copy required--label">Your Email</span>
-                </label>
-                <input id="signup-email" class="form--text-input" type="email" name="email_addr">
+                <div class="form--field">
+                    <label>
+                        <span class="form--label-copy required--label">Email Address:</span>
+                        <input class="form--text-input required--input" type="email" name="email" placeholder="example@domain.com">
+                    </label>
+                </div>
             </div>
 
             <div id="gdpr-field">
                 <div class="form--gdpr-field">
-                    <input id="gdpr-checkbox" class="form--checkbox-input" type="checkbox" name="agree_terms">
-                    <span class="icon-check" onclick="$('#gdpr-checkbox').prop('checked', false)"></span>
+                    <input id="gdpr-checkbox--signup" class="form--checkbox-input" type="checkbox" name="agree_terms">
+                    <span class="icon-check" onclick="$('#gdpr-checkbox--signup').prop('checked', false)"></span>
                 </div>
-                <label class="form--gdpr-statement" for="gdpr-checkbox">Please tick this box if you wish to receive marketing information from us. Please see our <a class="form--gdpr-privacy-policy" href="#">Privacy Policy</a> for more information on how we use your data.</label>
+                <label class="form--gdpr-statement" for="gdpr-checkbox--signup">Please tick this box if you wish to receive marketing information from us. Please see our <a class="form--gdpr-privacy-policy" href="#">Privacy Policy</a> for more information on how we use your data.</label>
             </div>
 
             <button class="form--submit" type="submit">Subscribe</button>
