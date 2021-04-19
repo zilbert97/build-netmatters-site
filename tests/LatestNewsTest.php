@@ -3,7 +3,7 @@
 require(__DIR__ . '/../src/functions.php');
 
 class LatestNewsTest extends PHPUnit\Framework\TestCase
-{   
+{
     /** @test */
     public function getThreeLatestNewsEntries()
     {
@@ -13,14 +13,14 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
             $this->assertIsArray($news_item);
         }
     }
-    
+
     /** @test */
     public function showLatestNewsEntry()
     {
         $card = 'placeholder';
         $this->assertIsString($card);
     }
-    
+
     /** @test */
     public function generateNewsCardFileName()
     {
@@ -30,7 +30,7 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
             generate_filename('/This/ !is @an EXAMPLE_1-2.3 filename')
         );
     }
-    
+
     /** @test */
     public function getNewsCardCoverImage()
     {
@@ -38,13 +38,13 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
         $this->assertFileExists(
             get_card_image('A card title that does not exist')
         );
-        
+
         // Image that does exist in file path
         $this->assertFileExists(
             get_card_image('Happy 25th Birthday Kati!')
         );
     }
-    
+
     /** @test */
     public function getNewsCardPostedByImage()
     {
@@ -52,7 +52,7 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
         $this->assertFileExists(
             get_card_image('Something that does NOT exist!')
         );
-        
+
         // Image that does exist in file path - 1
         $this->assertFileExists(
             get_card_image('Simon Wright')
@@ -62,7 +62,7 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
             get_card_image('Netmatters Ltd')
         );
     }
-    
+
     /** @test */
     public function formatPostedAtDate()
     {
@@ -82,7 +82,6 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
                     <div class="image-wrapper">
                         <img class="news-card-image" src="img/happy-25th-birthday-kati.jpeg" alt="Happy 25th Birthday Kati!">
                     </div>
-                    <span class="description-box">View all: IT Support / News</span>
                 </a>
                 <a class="news-card-category" href="#">news</a>
             </div>
