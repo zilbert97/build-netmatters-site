@@ -34,7 +34,7 @@
 
 .form--field {
     margin            : 0 0 15px;
-  
+
     label span {
       margin          : 0 0 5px;
       width           : 100%;
@@ -48,16 +48,16 @@
       padding         : 5px 15px;
       width           : 100%;
       height          : 47px;
-  
+
       background-color: $primary-light;
       border          : 1px solid $search-border;
       border-radius   : 2px;
       box-shadow      : $shadow-inset;
-  
+
       font-size       : .875rem;       // 14px
       line-height     : 1.4;
       color           : $search-input;
-  
+
       &:focus {
         outline       : 0;
         border-color  : $field-focus-color;
@@ -105,11 +105,11 @@ textarea.form--text-input {
 
             &:not(:last-child) {
                 @include flex($f-grow: 1, $f-shrink: 1, $f-basis: calc(100% / 3));
-                margin-right: 15px;
+                margin-right: 25px;
             }
             &:last-child {
                 @include flex($f-grow: 1, $f-shrink: 0, $f-basis: 100%);
-                
+
                 height: 100%;
                 label {
                     height: 100%;
