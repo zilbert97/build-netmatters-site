@@ -1,5 +1,4 @@
 <?php
-
 require(__DIR__ . '/../src/ContactForm.php');
 
 class ContactFormTest extends PHPUnit\Framework\TestCase
@@ -10,12 +9,14 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
         $this->form = new ContactForm();
     }
 
+
     /* =================
         FILTER INPUT
     ================= */
 
     /** @test */
-    public function userRequiredInputIsFiltered() {
+    public function userRequiredInputIsFiltered()
+    {
         $fieldName = 'email';
         $returnedInput = $this->form->filterUserInput($fieldName);
         // Returned input should be a string
@@ -23,48 +24,84 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
     }
 
     /** @test */
-    public function userNotRequiredInputIsFiltered() {
+    public function userNotRequiredInputIsFiltered()
+    {
         $fieldName = 'phone';
         $this->form->filterUserInput($fieldName);
     }
+
+
+    /* ====================
+        REQUIRED FIELDS
+    ==================== */
+
+    public function checkRequiredFieldsEmpty()
+    {
+        // validateRequiredFields should return an error message if empty
+        $emptyInput = '';
+        $this->assertIsString(
+            $this->form->validateRequiredFields($emptyInput)
+        );
+
+        $this->assertEquals(
+            'Please fill in all required fields marked with *',
+            $this->form->validateRequiredFields($emptyInput)
+        );
+    }
+
+    public function checkRequiredFieldsNotEmpty()
+    {
+        // validateRequiredFields should return null if not empty
+        $notEmptyInput = 'A valid string';
+        $this->assertNull(
+            $this->form->validateRequiredFields($notEmptyInput)
+        );
+    }
+
 
     /* ====================
         NAME VALIDATION
     ==================== */
 
     /** @test */
-    public function performValidationInvalidName() {
+    public function performValidationInvalidName()
+    {
         $invalidNames = [
-            '',
             '123',
             '£$!crwWRCdq'
         ];
         foreach ($invalidNames as $name) {
-            // Should return false if name is invalid
-            $this->assertFalse($this->form->validateName($name));
+            // Should return error message if name is invalid
+            $this->assertIsString($this->form->validateName($name));
         }
+        $this->assertEquals(
+            "The name you've entered is invalid",
+            $this->form->validateName($name)
+        );
     }
 
     /** @test */
-    public function performValidationValidName() {
+    public function performValidationValidName()
+    {
         $validNames = [
             'Jo',
-            'Josephine O\'Englebert-McHumphryson'
+            "Josephine O'Englebert-McHumphryson"
         ];
         foreach ($validNames as $name) {
-            // Should return true if name is valid
-            $this->assertTrue($this->form->validateName($name));
+            // Should return null if name is valid
+            $this->assertNull($this->form->validateName($name));
         }
     }
+
 
     /* =====================
         EMAIL VALIDATION
     ===================== */
 
     /** @test */
-    public function performValidationInvalidEmail() {
+    public function performValidationInvalidEmail()
+    {
         $invalidEmails = [
-            '',
             'test@test',
             'test@test.c',
             'test',
@@ -72,29 +109,38 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
             'test@test.cwoijwecq'
         ];
         foreach ($invalidEmails as $email) {
-            // Should return false if email is invalid
-            $this->assertFalse($this->form->validateEmail($email));
+            // Should return error message if email is invalid
+            $this->assertIsString(
+                $this->form->validateEmail($email)
+            );
         }
+        $this->assertEquals(
+            "The email address you've entered is invalid",
+            $this->form->validateEmail($email)
+        );
     }
 
     /** @test */
-    public function performValidatioValidEmail() {
+    public function performValidationValidEmail()
+    {
         $validEmails = [
             'test@test.co',
             'another.test_email@test.gov.uk'
         ];
         foreach ($validEmails as $email) {
-            // Should return true if email is valid
-            $this->assertTrue($this->form->validateEmail($email));
+            // Should return null if email is valid
+            $this->assertNull($this->form->validateEmail($email));
         }
     }
+
 
     /* =====================
         PHONE VALIDATION
     ===================== */
 
     /** @test */
-    public function performValidationInvalidPhone() {
+    public function performValidationInvalidPhone()
+    {
         /*
         Must be stripped of whitespace
         Must be stripped of -, (, )
@@ -112,13 +158,18 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
             '4-2431-45443'
         ];
         foreach ($invalidPhones as $phone) {
-            // Should return false if phone is invalid
-            $this->assertFalse($this->form->validateEmail($phone));
+            // Should return string if phone is invalid
+            $this->assertIsString($this->form->validateEmail($phone));
         }
+        $this->assertEquals(
+            'The cotact number you\'ve entered is invalid',
+            $this->form->validateEmail($phone)
+        );
     }
 
     /** @test */
-    public function performValidationValidPhone() {
+    public function performValidationValidPhone()
+    {
         /*
         Must be stripped of whitespace
         Must be stripped of -, (, )
@@ -128,40 +179,45 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
         */
 
         $validPhones = [
-            '',
             '+441234567890',
             '+0800123456',
             '0800123456',
             '123456789012'
         ];
         foreach ($validPhones as $phone) {
-            // Should return true if phone is valid
-            $this->assertTrue($this->form->validateEmail($phone));
+            // Should return null if phone is valid
+            $this->assertNull($this->form->validateEmail($phone));
         }
     }
+
 
     /* =======================
         MESSAGE VALIDATION
     ======================= */
 
     /** @test */
-    public function performValidationInvalidMessage() {
+    public function performValidationInvalidMessage()
+    {
 
         $invalidMessages = [
-            '',
             '0',
             'Not long enough',
             // Must contain abc chars
             '+_=42235^&523521423^3358873 21!@£$@£11 3513£@23_34'
         ];
         foreach ($invalidMessages as $msg) {
-            // Should return false if message is invalid
-            $this->assertFalse($this->form->validateMessage($msg));
+            // Should return string if message is invalid
+            $this->assertIsString($this->form->validateMessage($msg));
         }
+        $this->assertEquals(
+            'The message you\'ve entered is invalid',
+            $this->form->validateMessage($msg)
+        );
     }
 
     /** @test */
-    public function performValidationValidMessage() {
+    public function performValidationValidMessage()
+    {
         /*
         Must be stripped of whitespace
         Must be stripped of -, (, )
@@ -171,17 +227,17 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
         */
 
         $validMessages = [
-            '',
             '+441234567890',
             '+0800123456',
             '0800123456',
             '123456789012'
         ];
         foreach ($validMessages as $msg) {
-            // Should return true if phone is valid
-            $this->assertTrue($this->form->validateMessage($msg));
+            // Should return null if phone is valid
+            $this->assertNull($this->form->validateMessage($msg));
         }
     }
+
 
     /* =================
         GDPR CHECKED

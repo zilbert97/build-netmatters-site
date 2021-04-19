@@ -25,7 +25,7 @@ include('src/inc/head.php');
                     </div>
                 </div>
 
-                <form id="contact--form" class="contact--form" action="" method="post">
+                <form id="contact--form" class="contact--form" action="src/submitContactForm.php" method="post">
 
                     <div class="form--text-field-wrapper">
                         <div class="form--field">
