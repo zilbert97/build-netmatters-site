@@ -1,6 +1,6 @@
 <?php
 
-require(__DIR__ . '/../src/functions.php');
+require __DIR__ . '/../src/functions.php';
 
 class LatestNewsTest extends PHPUnit\Framework\TestCase
 {

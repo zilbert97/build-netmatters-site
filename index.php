@@ -1,18 +1,31 @@
 <?php
+/**
+ * File index.php - Netmatters home page
+ *
+ * PHP version 8
+ *
+ * @category
+ * @package
+ * @author
+ * @license
+ * @link
+ *
+ */
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('html_errors', 1);
 
-include('src/functions.php');
+require 'src/functions.php';
+require 'src/inc/head.php';
 
-include('src/inc/head.php');
 ?>
 <body>
     <div id="page-content">
         <div class="full-viewport">
             <?php
-            include('src/inc/header.php');
-            include('src/inc/jumbotron.php');
+            require 'src/inc/header.php';
+            require 'src/inc/jumbotron.php';
             ?>
         </div> <!-- .full-viewport -->
 
@@ -130,15 +143,15 @@ include('src/inc/head.php');
             </section> <!-- #latest-news -->
         </main>
     <?php
-    include('src/inc/footer.php');
+    require 'src/inc/footer.php';
     ?>
 
     </div> <!-- #page-content -->
 
     <?php
-    include('src/inc/mobileNav.php');
-    include('src/inc/cookies.php');
-    include('src/inc/scripts.php');
+    require 'src/inc/mobileNav.php';
+    require 'src/inc/cookies.php';
+    require 'src/inc/scripts.php';
     ?>
 </body>
 </html>

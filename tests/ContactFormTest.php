@@ -15,19 +15,11 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
     ================= */
 
     /** @test */
-    public function userRequiredInputIsFiltered()
-    {
+    public function userRequiredInputIsFiltered() {
         $fieldName = 'email';
         $returnedInput = $this->form->filterUserInput($fieldName);
         // Returned input should be a string
         $this->assertIsString($returnedInput);
-    }
-
-    /** @test */
-    public function userNotRequiredInputIsFiltered()
-    {
-        $fieldName = 'phone';
-        $this->form->filterUserInput($fieldName);
     }
 
 
@@ -48,6 +40,7 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
             $this->form->validateRequiredFields($emptyInput)
         );
     }
+
 
     public function checkRequiredFieldsNotEmpty()
     {
@@ -79,6 +72,7 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
             $this->form->validateName($name)
         );
     }
+
 
     /** @test */
     public function performValidationValidName()
@@ -120,6 +114,7 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
         );
     }
 
+
     /** @test */
     public function performValidationValidEmail()
     {
@@ -155,38 +150,62 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
             '+123',
             '012hasabc23',
             '1 123 2432',
-            '4-2431-45443'
+            '14214134144+'
         ];
         foreach ($invalidPhones as $phone) {
             // Should return string if phone is invalid
-            $this->assertIsString($this->form->validateEmail($phone));
+            $this->assertIsString(
+                $this->form->validatePhone(formatPhoneNumber($phone))
+            );
         }
         $this->assertEquals(
-            'The cotact number you\'ve entered is invalid',
-            $this->form->validateEmail($phone)
+            'The contact number you\'ve entered is invalid',
+            $this->form->validatePhone($phone)
         );
     }
+
+
+    /** @test */
+    public function formatUserPhoneNumber()
+    {
+        $phones = [
+            '+441234567890',
+            '+0800123456',
+            '0800123456',
+            '123456789012',
+            '01223 123 123',
+            '(01223)123124',
+            '+44 7513 872 821',
+            '(+44)-134 1341 141',
+            '134-12454-214'
+        ];
+        foreach ($phones as $phone) {
+            $this->assertIsString($phone);
+        }
+    }
+
 
     /** @test */
     public function performValidationValidPhone()
     {
-        /*
-        Must be stripped of whitespace
-        Must be stripped of -, (, )
-        Can start with + but not have more than one +
-        Cannot have abc
-        Must be 10-13 chars
-        */
-
         $validPhones = [
             '+441234567890',
             '+0800123456',
             '0800123456',
-            '123456789012'
+            '123456789012',
+            '01223 123 123',
+            '(01223)123124',
+            '+44 7513 872 821',
+            '(+44)-134 1341 141',
+            '134-12454-214'
         ];
         foreach ($validPhones as $phone) {
             // Should return null if phone is valid
-            $this->assertNull($this->form->validateEmail($phone));
+            $this->assertMatchesRegularExpression(
+                '/^\+?\d{10,12}$/',
+                formatPhoneNumber($phone)
+            );
+            $this->assertNull($this->form->validatePhone($phone));
         }
     }
 
@@ -198,7 +217,6 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
     /** @test */
     public function performValidationInvalidMessage()
     {
-
         $invalidMessages = [
             '0',
             'Not long enough',
@@ -210,10 +228,11 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
             $this->assertIsString($this->form->validateMessage($msg));
         }
         $this->assertEquals(
-            'The message you\'ve entered is invalid',
+            "The message you've entered is invalid",
             $this->form->validateMessage($msg)
         );
     }
+
 
     /** @test */
     public function performValidationValidMessage()
@@ -227,10 +246,8 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
         */
 
         $validMessages = [
-            '+441234567890',
-            '+0800123456',
-            '0800123456',
-            '123456789012'
+            'This is a valid message that you may find in a contact form',
+            'Mus2 have at least 6 words !ncluded'
         ];
         foreach ($validMessages as $msg) {
             // Should return null if phone is valid

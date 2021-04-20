@@ -1,18 +1,31 @@
 <?php
+/**
+ * File contact.php - Netmatters /contact.php page
+ *
+ * PHP version 8
+ *
+ * @category
+ * @package
+ * @author
+ * @license
+ * @link
+ *
+ */
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('html_errors', 1);
 
-include('src/functions.php');
-include('src/ContactForm.php');
+require 'src/functions.php';
+require 'src/ContactForm.php';
 
-include('src/inc/head.php');
+require 'src/inc/head.php';
 ?>
 <body>
     <div id="page-content">
         <?php
-        include('src/inc/header.php');
-        //include('src/inc/jumbotron.php');
+        require 'src/inc/header.php';
+        //require 'src/inc/jumbotron.php');
         ?>
 
         <main>
@@ -59,7 +72,7 @@ include('src/inc/head.php');
 
                     <div id="gdpr-field">
                         <div class="form--gdpr-field">
-                            <input id="gdpr-checkbox--contact" class="form--checkbox-input" type="checkbox" name="agree_terms">
+                            <input id="gdpr-checkbox--contact" class="form--checkbox-input" type="checkbox" name="agree_terms_contact">
                             <span class="icon-check" onclick="$('#gdpr-checkbox--contact').prop('checked', false)"></span>
                         </div>
                         <label class="form--gdpr-statement" for="gdpr-checkbox--contact">Please tick this box if you wish to receive marketing information from us. Please see our <a class="form--gdpr-privacy-policy" href="#">Privacy Policy</a> for more information on how we use your data.</label>
@@ -71,15 +84,15 @@ include('src/inc/head.php');
             </section> <!-- #section-form -->
         </main>
         <?php
-        include('src/inc/footer.php');
+        require 'src/inc/footer.php';
         ?>
 
     </div> <!-- #page-content -->
 
     <?php
-    include('src/inc/mobileNav.php');
-    include('src/inc/cookies.php');
-    include('src/inc/scripts.php');
+    require 'src/inc/mobileNav.php';
+    require 'src/inc/cookies.php';
+    require 'src/inc/scripts.php';
     ?>
 </body>
 </html>

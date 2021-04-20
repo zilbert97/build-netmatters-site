@@ -75,7 +75,7 @@
 
             <div id="gdpr-field">
                 <div class="form--gdpr-field">
-                    <input id="gdpr-checkbox--signup" class="form--checkbox-input" type="checkbox" name="agree_terms">
+                    <input id="gdpr-checkbox--signup" class="form--checkbox-input" type="checkbox" name="agree_terms_subscribe">
                     <span class="icon-check" onclick="$('#gdpr-checkbox--signup').prop('checked', false)"></span>
                 </div>
                 <label class="form--gdpr-statement" for="gdpr-checkbox--signup">Please tick this box if you wish to receive marketing information from us. Please see our <a class="form--gdpr-privacy-policy" href="#">Privacy Policy</a> for more information on how we use your data.</label>

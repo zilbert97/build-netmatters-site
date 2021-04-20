@@ -59,12 +59,28 @@ class ContactForm
     //===== PHONE =====
     public function validatePhone($phone)
     {
+        /*
+        1. Strip any whitespace and special chars except +
+        2. Must match 0 or 1 +'s followed by 10-12 digits
+        */
+
+        if (!preg_match('/^\+?\d{10,12}$/', formatPhoneNumber($phone))) {
+            return "The contact number you've entered is invalid";
+        }
+
+        return null;
     }
 
 
     //===== MESSAGE =====
     public function validateMessage($msg)
     {
+        // Message must have at least 5 words
+        if (str_word_count($msg) <= 5) {
+            return "The message you've entered is invalid";
+        }
+
+        return null;
     }
 
     //===== GDPR =====

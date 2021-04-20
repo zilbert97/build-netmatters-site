@@ -1,6 +1,17 @@
 <?php
+/**
+ * File functions.php - Utility functions
+ *
+ * PHP version 8
+ *
+ * @category
+ * @package
+ * @author
+ * @license
+ * @link
+ */
 
-function connect_database()
+function connect_to_database()
 {
     try {
         $db = new PDO("sqlite:" . __DIR__ . '/database.db');
@@ -15,7 +26,7 @@ function connect_database()
 
 function get_latest_news()
 {
-    $db = connect_database();
+    $db = connect_to_database();
     try {
         // Get the 3 most latest news items
         $results = $db->query('SELECT * FROM latest_news ORDER BY posted_at DESC LIMIT 3');
@@ -33,7 +44,7 @@ function generate_filename($string)
     $filename = preg_replace('/[^A-Za-z0-9\-]/', '', $filename);
     // Convert to lower case
     $filename = strtolower($filename);
-    
+
     return $filename;
 }
 
@@ -41,14 +52,14 @@ function generate_filename($string)
 function get_card_image($filename)
 {
     $extensions = ['.jpg','.jpeg','.png'];
-    
+
     foreach ($extensions as $extension) {
         $filepath = "img/$filename" . $extension;
         if (file_exists($filepath)) {
             return $filepath;
         }
     }
-    
+
     switch ($filename) {
         case $filename == 'netmatters-ltd':
             return 'img/netmatters-logo-small.png';
@@ -74,7 +85,7 @@ function display_latest_news(array $news_item)
         case 'case studies':
             $card_style = 'bespoke-software';
             break;
-        
+
         default:
             $card_style = 'it-support';
             break;
@@ -107,4 +118,10 @@ function display_latest_news(array $news_item)
 EOD;
 
     return $post;
+}
+
+function formatPhoneNumber($phone)
+{
+    // Strip any whitespace, brackets, or dashes from phone number
+    return preg_replace('/[\s\(\)\-]/', '', $phone);
 }
