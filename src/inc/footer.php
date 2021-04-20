@@ -61,14 +61,14 @@
                 <div class="form--field">
                     <label>
                         <span class="form--label-copy required--label">Your Name</span>
-                        <input class="form--text-input required--input" type="text" name="name" placeholder="Jane Smith">
+                        <input class="form--text-input required--input" type="text" name="name_subscribe" placeholder="Jane Smith">
                     </label>
                 </div>
 
                 <div class="form--field">
                     <label>
                         <span class="form--label-copy required--label">Email Address</span>
-                        <input class="form--text-input required--input" type="email" name="email" placeholder="example@domain.com">
+                        <input class="form--text-input required--input" type="email" name="email_subscribe" placeholder="example@domain.com">
                     </label>
                 </div>
             </div>

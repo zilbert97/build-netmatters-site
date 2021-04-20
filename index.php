@@ -16,7 +16,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('html_errors', 1);
 
-require 'src/functions.php';
+require_once '/src/bootstrap.php';
 require 'src/inc/head.php';
 
 ?>

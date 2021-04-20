@@ -11,6 +11,7 @@
  * @link
  */
 
+
 function connect_to_database()
 {
     try {
@@ -124,4 +125,44 @@ function formatPhoneNumber($phone)
 {
     // Strip any whitespace, brackets, or dashes from phone number
     return preg_replace('/[\s\(\)\-]/', '', $phone);
+}
+
+function redirect($path)
+{
+    $response = \Symfony\Component\HttpFoundation\Response::create(
+        null, \Symfony\Component\HttpFoundation\Response::HTTP_FOUND, ['Location' => $path]
+    );
+    /*
+    if (key_exists('cookies', $extra)) {
+        foreach ($extra['cookies'] as $cookie) {
+            $response->headers->setCookie($cookie);
+        }
+    }
+    */
+
+    $response->send();
+    exit;
+}
+
+function displayErrorMessages()
+{
+    global $session;
+
+    if (!$session->getFlashBag()->has('error')) {
+        return;
+    }
+
+    $messages = $session->getFlashBag()->get('error');
+
+    $errorMessageContainer = '<div class="error--wrapper">';
+
+    foreach ($messages as $message) {
+        $errorMessageContainer .= '<div class="error--message-body">';
+        $errorMessageContainer .= '<p class="error--copy">' . $message . '</p>';
+        $errorMessageContainer .= '</div>';
+    }
+
+    $errorMessageContainer .= '</div>';
+
+    echo $errorMessageContainer;
 }

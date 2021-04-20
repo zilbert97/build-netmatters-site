@@ -16,10 +16,10 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('html_errors', 1);
 
-require 'src/functions.php';
-require 'src/ContactForm.php';
+require_once __DIR__ . '/src/bootstrap.php';
+require_once __DIR__ . '/src/ContactForm.php';
 
-require 'src/inc/head.php';
+require __DIR__ . '/src/inc/head.php';
 ?>
 <body>
     <div id="page-content">
@@ -32,11 +32,15 @@ require 'src/inc/head.php';
             <section id="contact">
                 <h2 id="contact--title">Get In Touch</h2>
 
+                <!--
                 <div class="error--wrapper">
                     <div class="error--message-body">
                         <p class="error--copy">Placeholder warning message!</p>
                     </div>
                 </div>
+                -->
+
+                <?php displayErrorMessages(); ?>
 
                 <form id="contact--form" class="contact--form" action="src/submitContactForm.php" method="post">
 
@@ -44,28 +48,28 @@ require 'src/inc/head.php';
                         <div class="form--field">
                             <label>
                                 <span class="form--label-copy required--label">Name</span>
-                                <input class="form--text-input required--input" type="text" name="name" placeholder="Jane Smith">
+                                <input class="form--text-input required--input" type="text" name="name_contact" placeholder="Jane Smith">
                             </label>
                         </div>
 
                         <div class="form--field">
                             <label>
                                 <span class="form--label-copy required--label">Email Address</span>
-                                <input class="form--text-input required--input" type="email" name="email" placeholder="example@domain.com">
+                                <input class="form--text-input required--input" type="email" name="email_contact" placeholder="example@domain.com">
                             </label>
                         </div>
 
                         <div class="form--field">
                             <label>
                                 <span class="form--label-copy">Contact Number</span>
-                                <input class="form--text-input" type="tel" name="phone" placeholder="07123456789">
+                                <input class="form--text-input" type="tel" name="phone_contact" placeholder="07123456789">
                             </label>
                         </div>
 
                         <div class="form--field">
                             <label>
                                 <span class="form--label-copy required--label">Message</span>
-                                <textarea class="form--text-input required--input" type="text" name="message" placeholder="Lorem ipsum..."></textarea>
+                                <textarea class="form--text-input required--input" type="text" name="message_contact" placeholder="Lorem ipsum..."></textarea>
                             </label>
                         </div>
                     </div>

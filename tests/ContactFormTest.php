@@ -1,5 +1,5 @@
 <?php
-require(__DIR__ . '/../src/ContactForm.php');
+require __DIR__ . '/../src/ContactForm.php';
 
 class ContactFormTest extends PHPUnit\Framework\TestCase
 {
@@ -15,12 +15,13 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
     ================= */
 
     /** @test */
+    /*
     public function userRequiredInputIsFiltered() {
         $fieldName = 'email';
         $returnedInput = $this->form->filterUserInput($fieldName);
         // Returned input should be a string
         $this->assertIsString($returnedInput);
-    }
+    }    */
 
 
     /* ====================
@@ -29,26 +30,28 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
 
     public function checkRequiredFieldsEmpty()
     {
-        // validateRequiredFields should return an error message if empty
         $emptyInput = '';
-        $this->assertIsString(
-            $this->form->validateRequiredFields($emptyInput)
-        );
+
+        $result = $this->form->validateRequiredFields($emptyInput);
+
+        $this->assertInstanceOf(WarningMessage::class, $result);
+        $this->assertIsString($result->getMessageCopy());
+        $this->assertIsString($result->getMessageBody());
 
         $this->assertEquals(
             'Please fill in all required fields marked with *',
-            $this->form->validateRequiredFields($emptyInput)
+            $result->getMessageCopy()
         );
     }
 
 
     public function checkRequiredFieldsNotEmpty()
     {
-        // validateRequiredFields should return null if not empty
         $notEmptyInput = 'A valid string';
-        $this->assertNull(
-            $this->form->validateRequiredFields($notEmptyInput)
-        );
+        $result = $this->form->validateRequiredFields($notEmptyInput);
+
+        $this->assertIsString($result);
+        $this->assertEquals($notEmptyInput, $result);
     }
 
 
@@ -64,13 +67,16 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
             '£$!crwWRCdq'
         ];
         foreach ($invalidNames as $name) {
-            // Should return error message if name is invalid
-            $this->assertIsString($this->form->validateName($name));
+            $result = $this->form->validateName($name);
+
+            $this->assertInstanceOf(WarningMessage::class, $result);
+            $this->assertIsString($result->getMessageCopy());
+            $this->assertIsString($result->getMessageBody());
+            $this->assertEquals(
+                "The name you've entered is invalid",
+                $result->getMessageCopy()
+            );
         }
-        $this->assertEquals(
-            "The name you've entered is invalid",
-            $this->form->validateName($name)
-        );
     }
 
 
@@ -82,8 +88,9 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
             "Josephine O'Englebert-McHumphryson"
         ];
         foreach ($validNames as $name) {
-            // Should return null if name is valid
-            $this->assertNull($this->form->validateName($name));
+            $result = $this->form->validateName($name);
+            $this->assertIsString($result);
+            $this->assertEquals(strtolower($name), $result);
         }
     }
 
@@ -103,15 +110,16 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
             'test@test.cwoijwecq'
         ];
         foreach ($invalidEmails as $email) {
-            // Should return error message if email is invalid
-            $this->assertIsString(
-                $this->form->validateEmail($email)
+            $result = $this->form->validateEmail($email);
+
+            $this->assertInstanceOf(WarningMessage::class, $result);
+            $this->assertIsString($result->getMessageCopy());
+            $this->assertIsString($result->getMessageBody());
+            $this->assertEquals(
+                "The email address you've entered is invalid",
+                $result->getMessageCopy()
             );
         }
-        $this->assertEquals(
-            "The email address you've entered is invalid",
-            $this->form->validateEmail($email)
-        );
     }
 
 
@@ -123,8 +131,9 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
             'another.test_email@test.gov.uk'
         ];
         foreach ($validEmails as $email) {
-            // Should return null if email is valid
-            $this->assertNull($this->form->validateEmail($email));
+            $result = $this->form->validateEmail($email);
+            $this->assertIsString($result);
+            $this->assertEquals($email, $result);
         }
     }
 
@@ -153,15 +162,16 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
             '14214134144+'
         ];
         foreach ($invalidPhones as $phone) {
-            // Should return string if phone is invalid
-            $this->assertIsString(
-                $this->form->validatePhone(formatPhoneNumber($phone))
+            $result = $this->form->validatePhone(formatPhoneNumber($phone));
+
+            $this->assertInstanceOf(WarningMessage::class, $result);
+            $this->assertIsString($result->getMessageCopy());
+            $this->assertIsString($result->getMessageBody());
+            $this->assertEquals(
+                "The contact number you've entered is invalid",
+                $result->getMessageCopy()
             );
         }
-        $this->assertEquals(
-            'The contact number you\'ve entered is invalid',
-            $this->form->validatePhone($phone)
-        );
     }
 
 
@@ -180,7 +190,11 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
             '134-12454-214'
         ];
         foreach ($phones as $phone) {
-            $this->assertIsString($phone);
+            $this->assertIsString(formatPhoneNumber($phone));
+            $this->assertMatchesRegularExpression(
+                '/^\+?\d{10,12}$/',
+                formatPhoneNumber($phone)
+            );
         }
     }
 
@@ -200,12 +214,9 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
             '134-12454-214'
         ];
         foreach ($validPhones as $phone) {
-            // Should return null if phone is valid
-            $this->assertMatchesRegularExpression(
-                '/^\+?\d{10,12}$/',
-                formatPhoneNumber($phone)
-            );
-            $this->assertNull($this->form->validatePhone($phone));
+            $result = $this->form->validatePhone($phone);
+            $this->assertIsString($result);
+            $this->assertEquals(formatPhoneNumber($phone), $result);
         }
     }
 
@@ -223,14 +234,18 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
             // Must contain abc chars
             '+_=42235^&523521423^3358873 21!@£$@£11 3513£@23_34'
         ];
+
         foreach ($invalidMessages as $msg) {
-            // Should return string if message is invalid
-            $this->assertIsString($this->form->validateMessage($msg));
+            $result = $this->form->validateMessage($msg);
+
+            $this->assertInstanceOf(WarningMessage::class, $result);
+            $this->assertIsString($result->getMessageCopy());
+            $this->assertIsString($result->getMessageBody());
+            $this->assertEquals(
+                "The message you've entered is invalid",
+                $result->getMessageCopy()
+            );
         }
-        $this->assertEquals(
-            "The message you've entered is invalid",
-            $this->form->validateMessage($msg)
-        );
     }
 
 
@@ -250,8 +265,9 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
             'Mus2 have at least 6 words !ncluded'
         ];
         foreach ($validMessages as $msg) {
-            // Should return null if phone is valid
-            $this->assertNull($this->form->validateMessage($msg));
+            $result = $this->form->validateMessage($msg);
+            $this->assertIsString($result);
+            $this->assertEquals($msg, $result);
         }
     }
 
@@ -260,4 +276,24 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
         GDPR CHECKED
     ================= */
 
+    /** @test */
+    public function validateGPDRCheckboxIsNotChecked()
+    {
+        $result = $this->form->validateGDPRAccepted(false);
+        $this->assertInstanceOf(WarningMessage::class, $result);
+        $this->assertIsString($result->getMessageCopy());
+        $this->assertIsString($result->getMessageBody());
+        $this->assertEquals(
+            "You must accept our GDPR statement to contact us",
+            $result->getMessageCopy()
+        );
+    }
+
+    /** @test */
+    public function validateGPDRCheckboxIsChecked()
+    {
+        $result = $this->form->validateGDPRAccepted(true);
+        $this->assertIsBool($result);
+        $this->assertTrue($result);
+    }
 }
