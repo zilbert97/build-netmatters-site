@@ -173,11 +173,12 @@ class ContactForm extends SubmitForm
             }
         }
 
-        // Add success message
+        // NTD - This needs to happen only if connected to and added to the database
         if (!$hasErrors) {
-            // NTD: empty $contactFormValuesBag;
             // Add success message to flash bag
             $session->getFlashBag()->add('success', 'Your message was sent successfully!');
+            // Empty stored values from $contactFormValuesBag
+            $contactFormValuesBag->clear();
         }
 
         redirect('/contact.php');

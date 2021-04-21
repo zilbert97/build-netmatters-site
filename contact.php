@@ -32,14 +32,6 @@ require __DIR__ . '/src/inc/head.php';
             <section id="contact">
                 <h2 id="contact--title">Get In Touch</h2>
 
-                <!--
-                <div class="error--wrapper">
-                    <div class="error--message-body">
-                        <p class="error--copy">Placeholder warning message!</p>
-                    </div>
-                </div>
-                -->
-
                 <?php displayFormResponseMessages(); ?>
 
                 <form id="contact--form" class="contact--form" action="src/submitContactForm.php" method="post" novalidate>
