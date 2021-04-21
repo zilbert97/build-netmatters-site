@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/../src/ContactForm.php';
+require_once __DIR__ . '/../src/ContactForm.php';
 
 class ContactFormTest extends PHPUnit\Framework\TestCase
 {
@@ -36,7 +36,6 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(WarningMessage::class, $result);
         $this->assertIsString($result->getMessageCopy());
-        $this->assertIsString($result->getMessageBody());
 
         $this->assertEquals(
             'Please fill in all required fields marked with *',
@@ -71,7 +70,6 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
 
             $this->assertInstanceOf(WarningMessage::class, $result);
             $this->assertIsString($result->getMessageCopy());
-            $this->assertIsString($result->getMessageBody());
             $this->assertEquals(
                 "The name you've entered is invalid",
                 $result->getMessageCopy()
@@ -114,7 +112,6 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
 
             $this->assertInstanceOf(WarningMessage::class, $result);
             $this->assertIsString($result->getMessageCopy());
-            $this->assertIsString($result->getMessageBody());
             $this->assertEquals(
                 "The email address you've entered is invalid",
                 $result->getMessageCopy()
@@ -166,7 +163,6 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
 
             $this->assertInstanceOf(WarningMessage::class, $result);
             $this->assertIsString($result->getMessageCopy());
-            $this->assertIsString($result->getMessageBody());
             $this->assertEquals(
                 "The contact number you've entered is invalid",
                 $result->getMessageCopy()
@@ -240,7 +236,6 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
 
             $this->assertInstanceOf(WarningMessage::class, $result);
             $this->assertIsString($result->getMessageCopy());
-            $this->assertIsString($result->getMessageBody());
             $this->assertEquals(
                 "The message you've entered is invalid",
                 $result->getMessageCopy()
@@ -282,7 +277,6 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
         $result = $this->form->validateGDPRAccepted(false);
         $this->assertInstanceOf(WarningMessage::class, $result);
         $this->assertIsString($result->getMessageCopy());
-        $this->assertIsString($result->getMessageBody());
         $this->assertEquals(
             "You must accept our GDPR statement to contact us",
             $result->getMessageCopy()
