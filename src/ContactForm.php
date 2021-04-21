@@ -128,6 +128,15 @@ class ContactForm extends SubmitForm
 
         global $session;
 
+        // Get the bag used to save values on fields in session, so failed
+        // submit does not clear fields (all except GDPR)
+        global $contactFormValuesBag;
+
+        foreach ($this->getResults() as $fieldName => $value) {
+            if ($fieldName === 'gdpr') continue;
+            $contactFormValuesBag->set($fieldName, $value);
+        }
+
         // Validate required fields not empty
         foreach ($this->getResults() as $field => $result) {
             // Skip input fields that do not have * required marker
