@@ -1,23 +1,40 @@
 <?php
+/**
+ *
+ */
+
 require_once __DIR__ . '/bootstrap.php';
 
+/**
+ *
+ */
 class FormErrorMessage
 {
-    private $messageBody;
-    private $messageCopy;
+    private $_messageBody;
+    private $_messageCopy;
 
+    /**
+     *
+     */
     public function __construct($message)
     {
-        $messageCopy = $message;
+        $_messageCopy = $message;
         $this->setMessageCopy($message);
     }
 
+    /**
+     *
+     */
     public function getMessageCopy()
     {
-        return $this->messageCopy;
+        return $this->_messageCopy;
     }
+    
+    /**
+     *
+     */
     public function setMessageCopy(string $copy)
     {
-        $this->messageCopy = $copy;
+        $this->_messageCopy = $copy;
     }
 }

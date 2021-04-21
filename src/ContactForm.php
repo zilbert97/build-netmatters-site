@@ -9,7 +9,9 @@ class ContactForm extends SubmitForm
         FORM VALIDATION
     ==================== */
 
-    //===== REQUIRED FIELDS =====
+    /**
+     * REQUIRED FIELDS
+     */
     public function validateRequiredFields($value)
     {
         if (empty($value)) {
@@ -22,7 +24,10 @@ class ContactForm extends SubmitForm
         return $value;
     }
 
-    //===== NAME =====
+
+    /**
+     * NAME
+     */
     public function validateName(string $name)
     {
         $nameParts = explode(' ', strtolower($name));
@@ -39,7 +44,10 @@ class ContactForm extends SubmitForm
         return strtolower($name);
     }
 
-    //===== EMAIL =====
+
+    /**
+     * EMAIL
+     */
     public function validateEmail(string $email)
     {
         if (!preg_match('/^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/', $email)) {
@@ -52,7 +60,10 @@ class ContactForm extends SubmitForm
         return $email;
     }
 
-    //===== PHONE =====
+
+    /**
+     * PHONE
+     */
     public function validatePhone(string $phone)
     {
         /*
@@ -71,7 +82,10 @@ class ContactForm extends SubmitForm
         return $formattedPhone;
     }
 
-    //===== MESSAGE =====
+
+    /**
+     * MESSAGE
+     */
     public function validateMessage(string $msg)
     {
         // Message must have at least 5 words
@@ -85,7 +99,10 @@ class ContactForm extends SubmitForm
         return $msg;
     }
 
-    //===== GDPR =====
+
+    /**
+     * GDPR
+     */
     public function validateGDPRAccepted()
     {
         if (!isset($_POST['agree_terms_contact'])) {
@@ -102,28 +119,42 @@ class ContactForm extends SubmitForm
         EXECUTE VALIDATION AND SUBMIT
     ================================== */
 
-    private $results;
+    private $_results;
 
-    private function getResults()
+    /**
+     *
+     */
+    private function _getResults()
     {
-        return $this->results;
+        return $this->_results;
     }
 
-    private function setResults(array $resultsArray)
+    /**
+     *
+     */
+    private function _setResults(array $resultsArray)
     {
-        $this->results = $resultsArray;
+        $this->_results = $resultsArray;
     }
 
+    /**
+     *
+     */
     public function validateFields()
     {
-        // Store values from form
-        $this->setResults([
-            'name'=>$this->getValueOnField('name_contact'),
-            'email'=>$this->getValueOnField('email_contact'),
-            'phone'=>$this->getValueOnField('phone_contact'),
-            'message'=>$this->getValueOnField('message_contact'),
-            'gdpr'=>$this->getValueOnField('accept_terms_contact'),
-        ]);
+        // Store values from form (sanitized)
+        // 513 = FILTER_SANITIZE_STRING
+        // 517 = FILTER_SANITIZE_EMAIL
+        // 519 = FILTER_SANITIZE_NUMBER_INT
+        $this->_setResults(
+            [
+                'name'=>$this->getValueOnField('name_contact', 513),
+                'email'=>$this->getValueOnField('email_contact', 517),
+                'phone'=>$this->getValueOnField('phone_contact', 519),
+                'message'=>$this->getValueOnField('message_contact', 513),
+                'gdpr'=>$this->getValueOnField('accept_terms_contact', 513),
+            ]
+        );
 
         $fieldsNotRequiredText = ['phone', 'gdpr'];
 
@@ -133,13 +164,13 @@ class ContactForm extends SubmitForm
         // submit does not clear fields (all except GDPR)
         global $contactFormValuesBag;
 
-        foreach ($this->getResults() as $fieldName => $value) {
+        foreach ($this->_getResults() as $fieldName => $value) {
             if ($fieldName === 'gdpr') continue;
             $contactFormValuesBag->set($fieldName, $value);
         }
 
         // Validate required fields not empty
-        foreach ($this->getResults() as $field => $result) {
+        foreach ($this->_getResults() as $field => $result) {
             // Skip input fields that do not have * required marker
             // Technically GDPR is required but it is validated elsewhere
             if (in_array($field, $fieldsNotRequiredText)) continue;
@@ -159,11 +190,11 @@ class ContactForm extends SubmitForm
         }
 
         $resultsValidated = [
-            $this->validateName($this->getResults()['name']),
-            $this->validateEmail($this->getResults()['email']),
-            $this->validatePhone($this->getResults()['phone']),
-            $this->validateMessage($this->getResults()['message']),
-            $this->validateGDPRAccepted($this->getResults()['gdpr']),
+            $this->validateName($this->_getResults()['name']),
+            $this->validateEmail($this->_getResults()['email']),
+            $this->validatePhone($this->_getResults()['phone']),
+            $this->validateMessage($this->_getResults()['message']),
+            $this->validateGDPRAccepted($this->_getResults()['gdpr']),
         ];
 
         foreach ($resultsValidated as $result) {

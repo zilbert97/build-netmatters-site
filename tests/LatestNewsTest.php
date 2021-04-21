@@ -7,7 +7,7 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
     /** @test */
     public function getThreeLatestNewsEntries()
     {
-        $entries = get_latest_news();
+        $entries = getLatestNews();
         $this->assertCount(3, $entries);
         foreach ($entries as $news_item) {
             $this->assertIsArray($news_item);
@@ -27,7 +27,7 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
         $filename = 'this-is-an-example-1-23-filename';
         $this->assertEquals(
             $filename,
-            generate_filename('/This/ !is @an EXAMPLE_1-2.3 filename')
+            generateFilename('/This/ !is @an EXAMPLE_1-2.3 filename')
         );
     }
 
@@ -36,12 +36,12 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
     {
         // Image that does exist in file path - therefore gets default image
         $this->assertFileExists(
-            get_card_image('A card title that does not exist')
+            getCardImage('A card title that does not exist')
         );
 
         // Image that does exist in file path
         $this->assertFileExists(
-            get_card_image('Happy 25th Birthday Kati!')
+            getCardImage('Happy 25th Birthday Kati!')
         );
     }
 
@@ -50,16 +50,16 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
     {
         // Image that does not exist in file path - therefore gets default image
         $this->assertFileExists(
-            get_card_image('Something that does NOT exist!')
+            getCardImage('Something that does NOT exist!')
         );
 
         // Image that does exist in file path - 1
         $this->assertFileExists(
-            get_card_image('Simon Wright')
+            getCardImage('Simon Wright')
         );
         // Image that does exist in file path - 2
         $this->assertFileExists(
-            get_card_image('Netmatters Ltd')
+            getCardImage('Netmatters Ltd')
         );
     }
 
@@ -109,6 +109,6 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
             "posted_at" => "2020-12-18 00:00:00"
         );
 
-        $this->assertEquals($expectedPost, display_latest_news($dataArray));
+        $this->assertEquals($expectedPost, displayLatestNews($dataArray));
     }
 }

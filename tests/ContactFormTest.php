@@ -9,21 +9,6 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
         $this->form = new ContactForm();
     }
 
-
-    /* =================
-        FILTER INPUT
-    ================= */
-
-    /** @test */
-    /*
-    public function userRequiredInputIsFiltered() {
-        $fieldName = 'email';
-        $returnedInput = $this->form->filterUserInput($fieldName);
-        // Returned input should be a string
-        $this->assertIsString($returnedInput);
-    }    */
-
-
     /* ====================
         REQUIRED FIELDS
     ==================== */

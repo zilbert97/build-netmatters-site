@@ -1,18 +1,22 @@
 <?php
 /**
- * File functions.php - Utility functions
+ * Utility functions
  *
  * PHP version 8
  *
  * @category
  * @package
- * @author
- * @license
- * @link
+ * @author   Z Gilbert <zach.gilbert@netmatters-scs.co.uk>
+ * @license  github.com/zilbert97/build-netmatters-site/blob/add-php/LICENSE LICENSE
+ * @link     https://www.github.com/zilbert97/build-netmatters-site/blob/add-php/src/functions.php
  */
 
-
-function connect_to_database()
+ /**
+  * Establishes a connection to the database
+  *
+  * @return PDO|bool Database connection object, or false if unsuccesful
+  */
+function connectToDatabase()
 {
     try {
         $db = new PDO("sqlite:" . __DIR__ . '/database.db');
@@ -25,23 +29,38 @@ function connect_to_database()
     }
 }
 
-function get_latest_news()
+/**
+ * Gets 3 most recent latest news results from the database
+ *
+ * @return array|bool Top 3 news results from database, or false if unsuccesful
+ */
+function getLatestNews()
 {
-    $db = connect_to_database();
-    try {
-        // Get the 3 most latest news items
-        $results = $db->query('SELECT * FROM latest_news ORDER BY posted_at DESC LIMIT 3');
-        return $results->fetchAll(PDO::FETCH_ASSOC);
-    } catch (Exception $e) {
-        echo $e->getMessage();
-        return false;
+    $db = connectToDatabase();
+    if ($db) {
+        try {
+            $query = 'SELECT * FROM latest_news ORDER BY posted_at DESC LIMIT 3';
+            $results = $db->query($query);
+            return $results->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return false;
+        }
     }
+    return false;
 }
 
-function generate_filename($string)
+/**
+ * Creates a filename for assets based on the latest news item title
+ *
+ * @param string $title Title of the latest news item
+ *
+ * @return string A formatted filename based on the item title
+ */
+function generateFilename($title)
 {
     // Remove any special chars and replace whitespace/underscores with dashes
-    $filename = str_replace([' ', '_'], '-', $string);
+    $filename = str_replace([' ', '_'], '-', $title);
     $filename = preg_replace('/[^A-Za-z0-9\-]/', '', $filename);
     // Convert to lower case
     $filename = strtolower($filename);
@@ -49,8 +68,14 @@ function generate_filename($string)
     return $filename;
 }
 
-
-function get_card_image($filename)
+/**
+ * Gets the image asset based on the latest news item title
+ *
+ * @param string $filename Formatted filename of the latest news item title
+ *
+ * @return string Path to the latest news item image based on news item filename
+ */
+function getCardImage($filename)
 {
     $extensions = ['.jpg','.jpeg','.png'];
 
@@ -69,15 +94,18 @@ function get_card_image($filename)
     }
 }
 
-function display_latest_news(array $news_item)
+/**
+ *
+ */
+function displayLatestNews(array $news_item)
 {
     // Cover image filename is based on news item title
-    $cover_img_filepath = get_card_image(
-        generate_filename($news_item['title'])
+    $cover_img_filepath = getCardImage(
+        generateFilename($news_item['title'])
     );
     // Posted by avatar image is based on news item posted_by
-    $posted_by_img_filepath = get_card_image(
-        generate_filename($news_item['posted_by'])
+    $posted_by_img_filepath = getCardImage(
+        generateFilename($news_item['posted_by'])
     );
     $posted_at = date('jS F Y', strtotime($news_item['posted_at']));
 
@@ -121,41 +149,49 @@ EOD;
     return $post;
 }
 
+/**
+ *
+ */
 function formatPhoneNumber($phone)
 {
     // Strip any whitespace, brackets, or dashes from phone number
     return preg_replace('/[\s\(\)\-]/', '', $phone);
 }
 
+/**
+ *
+ */
 function redirect($path)
 {
     $response = \Symfony\Component\HttpFoundation\Response::create(
         null, \Symfony\Component\HttpFoundation\Response::HTTP_FOUND, ['Location' => $path]
     );
-    /*
-    if (key_exists('cookies', $extra)) {
-        foreach ($extra['cookies'] as $cookie) {
-            $response->headers->setCookie($cookie);
-        }
-    }
-    */
 
     $response->send();
     exit;
 }
 
+/**
+ *
+ */
 function displayFormResponseMessages()
 {
     global $session;
 
     // If no error or success messages in the flash bag
     if (!$session->getFlashBag()->has('success') && !$session->getFlashBag()->has('error')) {
+        // No errors or success message means that the page has been refreshed
+        // or been navigated to - therefore we don't want to display the stored
+        // user values from the session on form fields
+        global $contactFormValuesBag;
+        $contactFormValuesBag->clear();
+
         // Early return
         return;
     }
 
     // Else display messages
-    $messageContainer = '<div class="form--response-wrapper">';
+    $messageBody = '<div class="form--response-wrapper">';
 
     // If error messages in flash bag
     if ($session->getFlashBag()->has('error')) {
@@ -163,22 +199,21 @@ function displayFormResponseMessages()
 
         // Display each error message
         foreach ($errorMessages as $message) {
-            $messageContainer .= '<div class="form--response-error-message">';
-            $messageContainer .= '<p class="form--response-copy">' . $message . '</p>';
-            $messageContainer .= '</div>';
+            $messageBody .= '<div class="form--response-error-message">';
+            $messageBody .= '<p class="form--response-copy">' . $message . '</p>';
+            $messageBody .= '</div>';
         }
-    }
-    // Else if not error messages, and success message, in flash bag
-    else if ($session->getFlashBag()->has('success')) {
+    } else if ($session->getFlashBag()->has('success')) {
+        // Else if not error messages, and success message, in flash bag
         $message = $session->getFlashBag()->get('success')[0];
 
         // Display a success message
-        $messageContainer .= '<div class="form--response-success-message">';
-        $messageContainer .= '<p class="form--response-copy">' . $message . '</p>';
-        $messageContainer .= '</div>';
+        $messageBody .= '<div class="form--response-success-message">';
+        $messageBody .= '<p class="form--response-copy">' . $message . '</p>';
+        $messageBody .= '</div>';
     }
 
-    $messageContainer .= '</div>';
+    $messageBody .= '</div>';
 
-    echo $messageContainer;
+    echo $messageBody;
 }

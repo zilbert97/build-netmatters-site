@@ -1,15 +1,14 @@
 <?php
 /**
- * File contact.php - Netmatters /contact.php page
+ * Netmatters contact page
  *
  * PHP version 8
  *
  * @category
  * @package
- * @author
- * @license
- * @link
- *
+ * @author   Z Gilbert <zach.gilbert@netmatters-scs.co.uk>
+ * @license  github.com/zilbert97/build-netmatters-site/blob/add-php/LICENSE LICENSE
+ * @link     https://www.github.com/zilbert97/build-netmatters-site/blob/add-php/contact.php
  */
 
 error_reporting(E_ALL);
@@ -25,7 +24,6 @@ require __DIR__ . '/src/inc/head.php';
     <div id="page-content">
         <?php
         require 'src/inc/header.php';
-        //require 'src/inc/jumbotron.php');
         ?>
 
         <main>

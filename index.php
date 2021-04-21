@@ -1,15 +1,14 @@
 <?php
 /**
- * File index.php - Netmatters home page
+ * Netmatters home page
  *
  * PHP version 8
  *
  * @category
  * @package
- * @author
- * @license
- * @link
- *
+ * @author   Z Gilbert <zach.gilbert@netmatters-scs.co.uk>
+ * @license  github.com/zilbert97/build-netmatters-site/blob/add-php/LICENSE LICENSE
+ * @link     https://www.github.com/zilbert97/build-netmatters-site/blob/add-php/index.php
  */
 
 error_reporting(E_ALL);
@@ -134,8 +133,8 @@ require __DIR__ . '/src/inc/head.php';
                 <!-- Latest News cards -->
                 <div id="news-board">
                 <?php
-                foreach (get_latest_news() as $news_item) {
-                    echo display_latest_news($news_item);
+                foreach (getLatestNews() as $news_item) {
+                    echo displayLatestNews($news_item);
                 }
                 ?>
                 </div> <!-- #news-board -->
