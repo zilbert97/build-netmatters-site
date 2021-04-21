@@ -4,7 +4,7 @@
 - [ ] Add form to database
 - [ ] Autoload classes
 - [ ] Prevent user access to any files except index.php and contact.php
-- [ ] Add filter input before form validation
+- [x] Add filter input before form validation
 
 ## Reflection Plan
 
