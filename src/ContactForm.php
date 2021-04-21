@@ -98,9 +98,9 @@ class ContactForm extends SubmitForm
     }
 
 
-    //
-    //
-    //
+    /* ==================================
+        EXECUTE VALIDATION AND SUBMIT
+    ================================== */
 
     private $results;
 
