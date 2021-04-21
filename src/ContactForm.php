@@ -88,7 +88,7 @@ class ContactForm extends SubmitForm
     //===== GDPR =====
     public function validateGDPRAccepted($checked)
     {
-        if (!$checked) {
+        if ($_POST['agree_terms_contact'] != 'accepted') {
             $warning = new FormErrorMessage(
                 "You must accept our GDPR statement to contact us"
             );
@@ -116,6 +116,7 @@ class ContactForm extends SubmitForm
 
     public function validateFields()
     {
+        // Store values from form
         $this->setResults([
             'name'=>$this->getValueOnField('name_contact'),
             'email'=>$this->getValueOnField('email_contact'),

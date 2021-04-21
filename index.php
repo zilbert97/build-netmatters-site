@@ -16,16 +16,16 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('html_errors', 1);
 
-require_once '/src/bootstrap.php';
-require 'src/inc/head.php';
+require_once __DIR__ . '/src/bootstrap.php';
+require __DIR__ . '/src/inc/head.php';
 
 ?>
 <body>
     <div id="page-content">
         <div class="full-viewport">
             <?php
-            require 'src/inc/header.php';
-            require 'src/inc/jumbotron.php';
+            require __DIR__ . '/src/inc/header.php';
+            require __DIR__ . '/src/inc/jumbotron.php';
             ?>
         </div> <!-- .full-viewport -->
 
@@ -143,15 +143,15 @@ require 'src/inc/head.php';
             </section> <!-- #latest-news -->
         </main>
     <?php
-    require 'src/inc/footer.php';
+    require __DIR__ . '/src/inc/footer.php';
     ?>
 
     </div> <!-- #page-content -->
 
     <?php
-    require 'src/inc/mobileNav.php';
-    require 'src/inc/cookies.php';
-    require 'src/inc/scripts.php';
+    require __DIR__ . '/src/inc/mobileNav.php';
+    require __DIR__ . '/src/inc/cookies.php';
+    require __DIR__ . '/src/inc/scripts.php';
     ?>
 </body>
 </html>
