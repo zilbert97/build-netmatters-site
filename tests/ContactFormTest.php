@@ -34,7 +34,7 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
 
         $result = $this->form->validateRequiredFields($emptyInput);
 
-        $this->assertInstanceOf(WarningMessage::class, $result);
+        $this->assertInstanceOf(FormErrorMessage::class, $result);
         $this->assertIsString($result->getMessageCopy());
 
         $this->assertEquals(
@@ -68,7 +68,7 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
         foreach ($invalidNames as $name) {
             $result = $this->form->validateName($name);
 
-            $this->assertInstanceOf(WarningMessage::class, $result);
+            $this->assertInstanceOf(FormErrorMessage::class, $result);
             $this->assertIsString($result->getMessageCopy());
             $this->assertEquals(
                 "The name you've entered is invalid",
@@ -110,7 +110,7 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
         foreach ($invalidEmails as $email) {
             $result = $this->form->validateEmail($email);
 
-            $this->assertInstanceOf(WarningMessage::class, $result);
+            $this->assertInstanceOf(FormErrorMessage::class, $result);
             $this->assertIsString($result->getMessageCopy());
             $this->assertEquals(
                 "The email address you've entered is invalid",
@@ -161,7 +161,7 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
         foreach ($invalidPhones as $phone) {
             $result = $this->form->validatePhone(formatPhoneNumber($phone));
 
-            $this->assertInstanceOf(WarningMessage::class, $result);
+            $this->assertInstanceOf(FormErrorMessage::class, $result);
             $this->assertIsString($result->getMessageCopy());
             $this->assertEquals(
                 "The contact number you've entered is invalid",
@@ -234,7 +234,7 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
         foreach ($invalidMessages as $msg) {
             $result = $this->form->validateMessage($msg);
 
-            $this->assertInstanceOf(WarningMessage::class, $result);
+            $this->assertInstanceOf(FormErrorMessage::class, $result);
             $this->assertIsString($result->getMessageCopy());
             $this->assertEquals(
                 "The message you've entered is invalid",
@@ -275,7 +275,7 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
     public function validateGPDRCheckboxIsNotChecked()
     {
         $result = $this->form->validateGDPRAccepted(false);
-        $this->assertInstanceOf(WarningMessage::class, $result);
+        $this->assertInstanceOf(FormErrorMessage::class, $result);
         $this->assertIsString($result->getMessageCopy());
         $this->assertEquals(
             "You must accept our GDPR statement to contact us",

@@ -144,7 +144,7 @@ function redirect($path)
     exit;
 }
 
-function displayErrorMessages()
+function displayFormErrorMessages()
 {
     global $session;
 

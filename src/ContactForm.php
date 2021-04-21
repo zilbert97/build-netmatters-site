@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/bootstrap.php';
 require_once __DIR__ . '/SubmitForm.php';
-require_once __DIR__ . '/WarningMessage.php';
+require_once __DIR__ . '/FormErrorMessage.php';
 
 class ContactForm extends SubmitForm
 {
@@ -13,7 +13,7 @@ class ContactForm extends SubmitForm
     public function validateRequiredFields($value)
     {
         if (empty($value)) {
-            $warning = new WarningMessage(
+            $warning = new FormErrorMessage(
                 'Please fill in all required fields marked with *'
             );
             return $warning;
@@ -29,7 +29,7 @@ class ContactForm extends SubmitForm
         foreach ($nameParts as $namePart) {
             // If does not match string with either alpha chars, ', or -
             if (!preg_match('/^([a-z]+\'?-?)+/', $namePart)) {
-                $warning = new WarningMessage(
+                $warning = new FormErrorMessage(
                     "The name you've entered is invalid"
                 );
                 return $warning;
@@ -43,7 +43,7 @@ class ContactForm extends SubmitForm
     public function validateEmail(string $email)
     {
         if (!preg_match('/^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/', $email)) {
-            $warning = new WarningMessage(
+            $warning = new FormErrorMessage(
                 "The email address you've entered is invalid"
             );
             return $warning;
@@ -62,7 +62,7 @@ class ContactForm extends SubmitForm
         $formattedPhone = formatPhoneNumber($phone);
 
         if (!preg_match('/^\+?\d{10,12}$/', $formattedPhone)) {
-            $warning = new WarningMessage(
+            $warning = new FormErrorMessage(
                 "The contact number you've entered is invalid"
             );
             return $warning;
@@ -76,7 +76,7 @@ class ContactForm extends SubmitForm
     {
         // Message must have at least 5 words
         if (str_word_count($msg) <= 5) {
-            $warning = new WarningMessage(
+            $warning = new FormErrorMessage(
                 "The message you've entered is invalid"
             );
             return $warning;
@@ -89,7 +89,7 @@ class ContactForm extends SubmitForm
     public function validateGDPRAccepted($checked)
     {
         if (!$checked) {
-            $warning = new WarningMessage(
+            $warning = new FormErrorMessage(
                 "You must accept our GDPR statement to contact us"
             );
             return $warning;
@@ -124,17 +124,27 @@ class ContactForm extends SubmitForm
             'gdpr'=>$this->getValueOnField('accept_terms_contact'),
         ]);
 
+        $fieldsNotRequiredText = ['phone', 'gdpr'];
+
         global $session;
 
         // Validate required fields not empty
-        foreach ($this->getResults() as $result) {
-            $value = $this->validateRequiredFields($result);
+        foreach ($this->getResults() as $field => $result) {
+            // Skip input fields that do not have * required marker
+            // Technically GDPR is required but it is validated elsewhere
+            if (in_array($field, $fieldsNotRequiredText)) continue;
 
-            if ($value instanceof WarningMessage) {
-                // Add to flashbag
-                // Trigger page reload
-                // Early return to prevent multiple identical messages added
-                echo 'EMPTY FIELD';
+            $validatedResult = $this->validateRequiredFields($result);
+
+            if ($validatedResult instanceof FormErrorMessage) {
+                $session->getFlashBag()->add(
+                    'error', $validatedResult->getMessageCopy()
+                );
+
+                // Only show required fields warning - otherwise other
+                // validations will fail (empty fields are implicitly invalid)
+                redirect('/contact.php');
+                return;
             }
         }
 
@@ -146,9 +156,9 @@ class ContactForm extends SubmitForm
             $this->validateGDPRAccepted($this->getResults()['gdpr']),
         ];
 
-        foreach ($resultsValidated as $value) {
-            if ($value instanceof WarningMessage) {
-                $session->getFlashBag()->add('error', $value->getMessageCopy());
+        foreach ($resultsValidated as $result) {
+            if ($result instanceof FormErrorMessage) {
+                $session->getFlashBag()->add('error', $result->getMessageCopy());
             }
         }
 
