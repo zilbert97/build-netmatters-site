@@ -1,17 +1,23 @@
-.error {
-    &--wrapper {
+.form--response {
+    &-wrapper {
         @include set-content-width;
         margin          : 0 auto 15px;
         padding         : 0 45px;
     }
-    &--message-body {
+    @mixin message-body($color) {
         margin          : 0 0 15px;
         padding         : 15px;
-        background-color: $error-red;
-        border          : 1px solid $error-red;
+        background-color: $color;
+        border          : 1px solid $color;
         border-radius   : $border-radius;
     }
-    &--copy {
+    &-error-message {
+        @include message-body($error-red);
+    }
+    &-success-message {
+        @include message-body($success-green);
+    }
+    &-copy {
         margin          : 0;
         color           : $primary-light;
     }

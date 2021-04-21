@@ -86,9 +86,9 @@ class ContactForm extends SubmitForm
     }
 
     //===== GDPR =====
-    public function validateGDPRAccepted($checked)
+    public function validateGDPRAccepted()
     {
-        if ($_POST['agree_terms_contact'] != 'accepted') {
+        if (!isset($_POST['agree_terms_contact'])) {
             $warning = new FormErrorMessage(
                 "You must accept our GDPR statement to contact us"
             );
@@ -169,7 +169,15 @@ class ContactForm extends SubmitForm
         foreach ($resultsValidated as $result) {
             if ($result instanceof FormErrorMessage) {
                 $session->getFlashBag()->add('error', $result->getMessageCopy());
+                $hasErrors = true;
             }
+        }
+
+        // Add success message
+        if (!$hasErrors) {
+            // NTD: empty $contactFormValuesBag;
+            // Add success message to flash bag
+            $session->getFlashBag()->add('success', 'Your message was sent successfully!');
         }
 
         redirect('/contact.php');

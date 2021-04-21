@@ -40,7 +40,7 @@ require __DIR__ . '/src/inc/head.php';
                 </div>
                 -->
 
-                <?php displayFormErrorMessages(); ?>
+                <?php displayFormResponseMessages(); ?>
 
                 <form id="contact--form" class="contact--form" action="src/submitContactForm.php" method="post" novalidate>
 

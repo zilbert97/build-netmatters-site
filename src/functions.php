@@ -144,25 +144,41 @@ function redirect($path)
     exit;
 }
 
-function displayFormErrorMessages()
+function displayFormResponseMessages()
 {
     global $session;
 
-    if (!$session->getFlashBag()->has('error')) {
+    // If no error or success messages in the flash bag
+    if (!$session->getFlashBag()->has('success') && !$session->getFlashBag()->has('error')) {
+        // Early return
         return;
     }
 
-    $messages = $session->getFlashBag()->get('error');
+    // Else display messages
+    $messageContainer = '<div class="form--response-wrapper">';
 
-    $errorMessageContainer = '<div class="error--wrapper">';
+    // If error messages in flash bag
+    if ($session->getFlashBag()->has('error')) {
+        $errorMessages = $session->getFlashBag()->get('error');
 
-    foreach ($messages as $message) {
-        $errorMessageContainer .= '<div class="error--message-body">';
-        $errorMessageContainer .= '<p class="error--copy">' . $message . '</p>';
-        $errorMessageContainer .= '</div>';
+        // Display each error message
+        foreach ($errorMessages as $message) {
+            $messageContainer .= '<div class="form--response-error-message">';
+            $messageContainer .= '<p class="form--response-copy">' . $message . '</p>';
+            $messageContainer .= '</div>';
+        }
+    }
+    // Else if not error messages, and success message, in flash bag
+    else if ($session->getFlashBag()->has('success')) {
+        $message = $session->getFlashBag()->get('success')[0];
+
+        // Display a success message
+        $messageContainer .= '<div class="form--response-success-message">';
+        $messageContainer .= '<p class="form--response-copy">' . $message . '</p>';
+        $messageContainer .= '</div>';
     }
 
-    $errorMessageContainer .= '</div>';
+    $messageContainer .= '</div>';
 
-    echo $errorMessageContainer;
+    echo $messageContainer;
 }
