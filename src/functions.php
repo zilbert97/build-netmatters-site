@@ -95,20 +95,26 @@ function getCardImage($filename)
 }
 
 /**
+ * Generates the news card HTML body from a news item data array
  *
+ * @param array $news_item Array of new item data to display
+ *
+ * @return string HTML for the news card to display
  */
 function displayLatestNews(array $news_item)
 {
-    // Cover image filename is based on news item title
+    // Get the cover image filename, which is based on news item title
     $cover_img_filepath = getCardImage(
         generateFilename($news_item['title'])
     );
-    // Posted by avatar image is based on news item posted_by
+    // Get the posted by avatar image, which is based on news item posted_by
     $posted_by_img_filepath = getCardImage(
         generateFilename($news_item['posted_by'])
     );
+    // Convert the datetime from the data row to a format for the card
     $posted_at = date('jS F Y', strtotime($news_item['posted_at']));
 
+    // Get the card style (colours) based on the card category
     $card_style;
     switch ($news_item['category']) {
     case 'case studies':
@@ -149,7 +155,11 @@ EOD;
 }
 
 /**
+ * Removes whitespace, brackets, and dashes from the phone number string
  *
+ * @param string $phone Contact number string
+ *
+ * @return string The formatted phone number string
  */
 function formatPhoneNumber($phone)
 {
@@ -158,12 +168,17 @@ function formatPhoneNumber($phone)
 }
 
 /**
+ * Redirects the page to the path passed
  *
+ * @param string $path Path to a site page to reidrect to
+ *
+ * @return void
  */
-function redirect($path)
+function redirect($path) : void
 {
     $response = \Symfony\Component\HttpFoundation\Response::create(
-        null, \Symfony\Component\HttpFoundation\Response::HTTP_FOUND, ['Location' => $path]
+        null,
+        \Symfony\Component\HttpFoundation\Response::HTTP_FOUND, ['Location'=>$path]
     );
 
     $response->send();
@@ -171,9 +186,11 @@ function redirect($path)
 }
 
 /**
+ * Displays an error or success message from the flash bag to the user
  *
+ * @return void
  */
-function displayFormResponseMessages()
+function displayFormResponseMessages() : void
 {
     global $session;
 
@@ -182,8 +199,6 @@ function displayFormResponseMessages()
         // No errors or success message means that the page has been refreshed
         // or been navigated to - therefore we don't want to display the stored
         // user values from the session on form fields
-        global $contactFormValuesBag;
-        $contactFormValuesBag->clear();
 
         // Early return
         return;
@@ -196,7 +211,7 @@ function displayFormResponseMessages()
     if ($session->getFlashBag()->has('error')) {
         $errorMessages = $session->getFlashBag()->get('error');
 
-        // Display each error message
+        // Generate each error message
         foreach ($errorMessages as $message) {
             $messageBody .= '<div class="form--response-error-message">';
             $messageBody .= '<p class="form--response-copy">' . $message . '</p>';
@@ -206,7 +221,7 @@ function displayFormResponseMessages()
         // Else if not error messages, and success message, in flash bag
         $message = $session->getFlashBag()->get('success')[0];
 
-        // Display a success message
+        // Generate a success message
         $messageBody .= '<div class="form--response-success-message">';
         $messageBody .= '<p class="form--response-copy">' . $message . '</p>';
         $messageBody .= '</div>';
