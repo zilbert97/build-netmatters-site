@@ -1,5 +1,11 @@
 # build-netmatters-site
 
+## To Do:
+- [ ] Add form to database
+- [ ] Autoload classes
+- [ ] Prevent user access to any files except index.php and contact.php
+- [x] Add filter input before form validation
+
 ## Reflection Plan
 
 ### INITIAL SETUP
