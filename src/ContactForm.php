@@ -8,13 +8,21 @@
  * @package
  * @author   Z Gilbert <zach.gilbert@netmatters-scs.co.uk>
  * @license  github.com/zilbert97/build-netmatters-site/blob/add-php/LICENSE LICENSE
- * @link     https://www.github.com/zilbert97/build-netmatters-site/blob/add-php/src/ContactForm.php
+ * @link     github.com/zilbert97/build-netmatters-site/blob/add-php/src/ContactForm.php
  */
 
 require_once __DIR__ . '/bootstrap.php';
 require_once __DIR__ . '/ValidateSubmitForm.php';
 require_once __DIR__ . '/FormErrorMessage.php';
 
+/**
+ *
+ * @category Class
+ * @package
+ * @author   Z Gilbert <zach.gilbert@netmatters-scs.co.uk>
+ * @license  github.com/zilbert97/build-netmatters-site/blob/add-php/LICENSE LICENSE
+ * @link     github.com/zilbert97/build-netmatters-site/blob/add-php/src/ContactForm.php
+ */
 class ContactForm extends ValidateSubmitForm
 {
     private $_formValuesBag;

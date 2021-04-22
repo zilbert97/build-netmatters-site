@@ -87,10 +87,10 @@ function getCardImage($filename)
     }
 
     switch ($filename) {
-        case $filename == 'netmatters-ltd':
-            return 'img/netmatters-logo-small.png';
-        default:
-            return 'img/netmatters-logo-background.png';
+    case 'netmatters-ltd':
+        return 'img/netmatters-logo-small.png';
+    default:
+        return 'img/netmatters-logo-background.png';
     }
 }
 
@@ -111,13 +111,12 @@ function displayLatestNews(array $news_item)
 
     $card_style;
     switch ($news_item['category']) {
-        case 'case studies':
-            $card_style = 'bespoke-software';
-            break;
-
-        default:
-            $card_style = 'it-support';
-            break;
+    case 'case studies':
+        $card_style = 'bespoke-software';
+        break;
+    default:
+        $card_style = 'it-support';
+        break;
     }
 
     $post = <<<EOD

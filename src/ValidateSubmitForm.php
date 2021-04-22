@@ -8,7 +8,7 @@
  * @package
  * @author   Z Gilbert <zach.gilbert@netmatters-scs.co.uk>
  * @license  github.com/zilbert97/build-netmatters-site/blob/add-php/LICENSE LICENSE
- * @link     https://www.github.com/zilbert97/build-netmatters-site/blob/add-php/src/SubmitForm.php
+ * @link     github.com/zilbert97/build-netmatters-site/blob/add-php/src/SubmitForm.php
  */
 
 require_once __DIR__ . '/bootstrap.php';
@@ -16,7 +16,6 @@ require_once __DIR__ . '/bootstrap.php';
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * SubmitForm Class
  *
  * @category Class
  * @package
@@ -30,13 +29,12 @@ abstract class ValidateSubmitForm extends Request
     private $_request;
 
     /**
-     * Constructor for SubmitForm abstract class
+     * Gets posted data upon class construction
      *
      * @return void
      */
     public function __construct()
     {
-        // Get posted data
         $this->_request = Request::createFromGlobals();
     }
 
