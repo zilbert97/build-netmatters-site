@@ -1,144 +1,57 @@
 <?php
+/**
+ *
+ *
+ * PHP version 8
+ *
+ * @category
+ * @package
+ * @author   Z Gilbert <zach.gilbert@netmatters-scs.co.uk>
+ * @license  github.com/zilbert97/build-netmatters-site/blob/add-php/LICENSE LICENSE
+ * @link     https://www.github.com/zilbert97/build-netmatters-site/blob/add-php/src/ContactForm.php
+ */
+
 require_once __DIR__ . '/bootstrap.php';
-require_once __DIR__ . '/SubmitForm.php';
+require_once __DIR__ . '/ValidateSubmitForm.php';
 require_once __DIR__ . '/FormErrorMessage.php';
 
-class ContactForm extends SubmitForm
+class ContactForm extends ValidateSubmitForm
 {
-    /* ====================
-        FORM VALIDATION
-    ==================== */
-
-    /**
-     * REQUIRED FIELDS
-     */
-    public function validateRequiredFields($value)
-    {
-        if (empty($value)) {
-            $warning = new FormErrorMessage(
-                'Please fill in all required fields marked with *'
-            );
-            return $warning;
-        }
-
-        return $value;
-    }
-
-
-    /**
-     * NAME
-     */
-    public function validateName(string $name)
-    {
-        $nameParts = explode(' ', strtolower($name));
-        foreach ($nameParts as $namePart) {
-            // If does not match string with either alpha chars, ', or -
-            if (!preg_match('/^([a-z]+\'?-?)+/', $namePart)) {
-                $warning = new FormErrorMessage(
-                    "The name you've entered is invalid"
-                );
-                return $warning;
-            }
-        }
-
-        return strtolower($name);
-    }
-
-
-    /**
-     * EMAIL
-     */
-    public function validateEmail(string $email)
-    {
-        if (!preg_match('/^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/', $email)) {
-            $warning = new FormErrorMessage(
-                "The email address you've entered is invalid"
-            );
-            return $warning;
-        }
-
-        return $email;
-    }
-
-
-    /**
-     * PHONE
-     */
-    public function validatePhone(string $phone)
-    {
-        /*
-        1. Strip any whitespace and special chars except +
-        2. Must match 0 or 1 +'s followed by 10-12 digits
-        */
-        $formattedPhone = formatPhoneNumber($phone);
-
-        if (!preg_match('/^\+?\d{10,12}$/', $formattedPhone)) {
-            $warning = new FormErrorMessage(
-                "The contact number you've entered is invalid"
-            );
-            return $warning;
-        }
-
-        return $formattedPhone;
-    }
-
-
-    /**
-     * MESSAGE
-     */
-    public function validateMessage(string $msg)
-    {
-        // Message must have at least 5 words
-        if (str_word_count($msg) <= 5) {
-            $warning = new FormErrorMessage(
-                "The message you've entered is invalid"
-            );
-            return $warning;
-        }
-
-        return $msg;
-    }
-
-
-    /**
-     * GDPR
-     */
-    public function validateGDPRAccepted()
-    {
-        if (!isset($_POST['agree_terms_contact'])) {
-            $warning = new FormErrorMessage(
-                "You must accept our GDPR statement to contact us"
-            );
-            return $warning;
-        }
-        return true;
-    }
-
-
-    /* ==================================
-        EXECUTE VALIDATION AND SUBMIT
-    ================================== */
-
+    private $_formValuesBag;
+    private $_session;
     private $_results;
 
+    public function __construct($session, $formValuesBag)
+    {
+        parent::__construct();
+        $this->_session = $session;
+        $this->_formValuesBag = $formValuesBag;
+    }
+
     /**
+     * Gets the results array
      *
+     * @return array
      */
-    private function _getResults()
+    private function _getResults() : array
     {
         return $this->_results;
     }
 
     /**
+     * Sets the results array
      *
+     * @return void
      */
-    private function _setResults(array $resultsArray)
+    private function _setResults(array $resultsArray) : void
     {
         $this->_results = $resultsArray;
     }
 
     /**
+     * Validates values on a the contact form and reloads the page if fails
      *
+     * @return array|void Returns form values if validation passes else reloads page
      */
     public function validateFields()
     {
@@ -158,15 +71,13 @@ class ContactForm extends SubmitForm
 
         $fieldsNotRequiredText = ['contact_number', 'gdpr'];
 
-        global $session;
-
         // Get the bag used to save values on fields in session, so failed
         // submit does not clear fields (all except GDPR)
-        global $contactFormValuesBag;
 
         foreach ($this->_getResults() as $fieldName => $value) {
-            if ($fieldName === 'gdpr') continue;
-            $contactFormValuesBag->set($fieldName, $value);
+            if ($fieldName !== 'gdpr') {
+                $this->_formValuesBag->set($fieldName, $value);
+            }
         }
 
         // Validate required fields are not empty
@@ -178,7 +89,7 @@ class ContactForm extends SubmitForm
             $validatedResult = $this->validateRequiredFields($result);
 
             if ($validatedResult instanceof FormErrorMessage) {
-                $session->getFlashBag()->add(
+                $this->_session->getFlashBag()->add(
                     'error', $validatedResult->getMessageCopy()
                 );
 
@@ -203,76 +114,89 @@ class ContactForm extends SubmitForm
 
         foreach ($resultsValidated as $result) {
             if ($result instanceof FormErrorMessage) {
-                $session->getFlashBag()->add('error', $result->getMessageCopy());
+                $this->_session->getFlashBag()->add('error', $result->getMessageCopy());
                 $hasErrors = true;
             }
         }
 
-        // If no validation errors, attempt to submit (add to database)
+        // If no validation errors, return the values
         if (!$hasErrors) {
+            return $resultsValidated;
+        }
 
-            $db = connectToDatabase();
+        // Else refresh the page
+        redirect('/contact.php');
+    }
 
-            // If succesful connection to database, add row
-            if ($db) {
+    /**
+     * Submits values to the database, then reloads the page
+     *
+     * @param array $formValues Values from a form to submit to the database
+     *
+     * @return void Does not return, instead reloads the page
+     */
+    public function submitForm(array $formValues) : void
+    {
+        $db = connectToDatabase();
 
-                /* ============ SCHEMA ============
-                    CREATE TABLE contact (
-                        name TEXT NOT NULL,
-                        email_address TEXT NOT NULL,
-                        contact_number TEXT NOT NULL,
-                        message TEXT NOT NULL,
-                        submitted_at DATE NOT NULL
-                    );
-                ================================ */
+        // If succesful connection to database, add row
+        if ($db) {
 
-                $resultsToSubmit = array_merge(
-                    // Get values from validated results array that have keys
-                    array_intersect_key(
-                        $resultsValidated,
-                        array_flip(array('name', 'email_address', 'contact_number', 'message'))
-                    ),
-                    // Add current datetime to results to submit to database
-                    array('submitted_at'=>date('Y-m-d H:i:s'))
+            /* ============ SCHEMA ============
+                CREATE TABLE contact (
+                    name TEXT NOT NULL,
+                    email_address TEXT NOT NULL,
+                    contact_number TEXT NOT NULL,
+                    message TEXT NOT NULL,
+                    submitted_at DATE NOT NULL
+                );
+            ================================ */
+
+            $valuesToSubmit = array_merge(
+                // Get values from validated results array that have keys
+                array_intersect_key(
+                    $formValues,
+                    array_flip(array('name', 'email_address', 'contact_number', 'message'))
+                ),
+                // Add current datetime to results to submit to database
+                array('submitted_at'=>date('Y-m-d H:i:s'))
+            );
+
+            try {
+                $query = 'INSERT INTO contact VALUES (
+                    :name, :email_address, :contact_number, :message, :submitted_at
+                )';
+
+                $stmt = $db->prepare($query);
+
+                foreach ($valuesToSubmit as $column=>$value) {
+                    $stmt->bindValue(":$column", $value, PDO::PARAM_STR);
+                }
+                $stmt->execute();
+
+                // Add success message to flash bag
+                $this->_session->getFlashBag()->add(
+                    'success',
+                    'Your message was sent successfully!'
                 );
 
-                try {
-                    $query = 'INSERT INTO contact VALUES (
-                        :name, :email_address, :contact_number, :message, :submitted_at
-                    )';
+                // Empty stored values from $this->_formValuesBag
+                $this->_formValuesBag->clear();
 
-                    $stmt = $db->prepare($query);
-
-                    foreach ($resultsToSubmit as $key=>$val) {
-                        $stmt->bindValue(":$key", $val, PDO::PARAM_STR);
-                    }
-                    $stmt->execute();
-
-                    // Add success message to flash bag
-                    $session->getFlashBag()->add(
-                        'success',
-                        'Your message was sent successfully!'
-                    );
-
-                    // Empty stored values from $contactFormValuesBag
-                    $contactFormValuesBag->clear();
-
-                } catch (Exception $e) {
-                    // If unsucessful submit, add error to flashbag
-                    $session->getFlashBag()->add(
-                        'error',
-                        'Server error - failed to submit message'
-                    );
-                }
-
-            } else {
-                // If no connection to database, add error message to flash bag
-                // Note do not empty stored values from form so user can try again
-                $session->getFlashBag()->add(
+            } catch (Exception $e) {
+                // If unsucessful submit, add error to flashbag
+                $this->_session->getFlashBag()->add(
                     'error',
                     'Server error - failed to submit message'
                 );
             }
+        } else {
+            // If no connection to database, add error message to flash bag
+            // Note do not empty stored values from form so user can try again
+            $this->_session->getFlashBag()->add(
+                'error',
+                'Server error - failed to submit message'
+            );
         }
 
         redirect('/contact.php');

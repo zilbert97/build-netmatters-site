@@ -56,7 +56,7 @@ require __DIR__ . '/src/inc/head.php';
                                     type="email"
                                     name="email_contact"
                                     placeholder="example@domain.com"
-                                    value="<?php echo $contactFormValuesBag->get('email'); ?>"
+                                    value="<?php echo $contactFormValuesBag->get('email_address'); ?>"
                                 >
                             </label>
                         </div>
@@ -69,7 +69,7 @@ require __DIR__ . '/src/inc/head.php';
                                     type="tel"
                                     name="phone_contact"
                                     placeholder="07123456789"
-                                    value="<?php echo $contactFormValuesBag->get('phone'); ?>"
+                                    value="<?php echo $contactFormValuesBag->get('contact_number'); ?>"
                                 >
                             </label>
                         </div>
