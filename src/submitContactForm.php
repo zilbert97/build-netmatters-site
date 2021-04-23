@@ -19,4 +19,4 @@ global $session;
 
 $contactForm = new ContactForm($session, $contactFormValuesBag);
 
-handleForm($contactForm, '/contact.php');
+handleForm($contactForm, $_SERVER['HTTP_REFERER']);

@@ -173,7 +173,7 @@ class SubscribeForm extends ValidateSubmitForm
                 // Add success message to flash bag
                 $this->_session->getFlashBag()->add(
                     'subscribe-success',
-                    'Your message was sent successfully!'
+                    'You\'re now subscribed to our mailing list!'
                 );
 
                 // Empty stored values from $this->_formValuesBag
@@ -185,7 +185,7 @@ class SubscribeForm extends ValidateSubmitForm
                 // If unsucessful submit, add error to flashbag
                 $this->_session->getFlashBag()->add(
                     'subscribe-error',
-                    'Server error - failed to submit message'
+                    'Server error - failed to submit form'
                 );
                 return false;
             }
@@ -194,7 +194,7 @@ class SubscribeForm extends ValidateSubmitForm
             // Note do not empty stored values from form so user can try again
             $this->_session->getFlashBag()->add(
                 'subscribe-error',
-                'Server error - failed to submit message'
+                'Server error - failed to submit form'
             );
             return false;
         }

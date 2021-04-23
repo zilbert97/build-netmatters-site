@@ -19,4 +19,4 @@ global $session;
 
 $subscribeForm = new SubscribeForm($session, $subscribeFormValuesBag);
 
-handleForm($subscribeForm, '/contact.php');
+handleForm($subscribeForm, $_SERVER['HTTP_REFERER'] . '#footer-signup');

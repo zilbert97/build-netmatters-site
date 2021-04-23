@@ -177,9 +177,11 @@ function redirect(string $path) : void
 /**
  * Displays an error or success message from the flash bag to the user
  *
+ * @param string $prefix Form type (subscribe or contact)
+ *
  * @return void
  */
-function displayFormResponseMessages($prefix) : void
+function displayFormResponseMessages(string $prefix) : void
 {
     global $session;
 

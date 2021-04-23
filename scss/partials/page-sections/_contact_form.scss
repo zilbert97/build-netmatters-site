@@ -140,7 +140,11 @@ form .form--submit {
     #footer-signup-inner {
         @include set-content-width;
         margin        : 0 auto;
-        padding       : 50px 45px;
+        padding       : 50px 0; //45px;
+
+        form {
+            padding   : 0 45px;
+        }
     }
 
     h2, label, a {
@@ -148,6 +152,7 @@ form .form--submit {
     }
     h2 {
         margin        : 0 0 15px;
+        padding       : 0 45px;
         font-size     : 2rem;              // 32px
         font-weight   : 400;
         line-height   : 1.1;
