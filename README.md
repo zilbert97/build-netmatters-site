@@ -4,6 +4,7 @@
 - [ ] Add form validation and submit to subscribe
 - [ ] Log failed connection to database (`./src/functions.php` function `connectToDatabase()`)
 - [ ] Log failed connection to database (`./src/functions.php` function `getLatestNews()`)
+- [ ] Log attempt to get default image (`./src/functions.php` function `getCardImage()`)
 - [x] Add form to database
 - [ ] Autoload classes
 - [ ] Prevent user access to any files except index.php and contact.php
