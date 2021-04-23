@@ -72,8 +72,8 @@ function generateFilename($title)
 /**
  * Gets a partial project root-level path for an image filename passed
  *
- * @param string $filename          Name (without extension) of an image to retrieve
- * @param string $defaultImagePath  Root-level path for a default image
+ * @param string $filename         Name (without extension) of an image to retrieve
+ * @param string $defaultImagePath Root-level path for a default image
  *
  * @return string Project root-level path to an image
  */
@@ -194,9 +194,8 @@ function displayFormResponseMessages(string $prefix) : void
     global $session;
 
     // If no error or success messages in the flash bag
-    if (
-        !$session->getFlashBag()->has($prefix . '-success') &&
-        !$session->getFlashBag()->has($prefix . '-error')
+    if (!$session->getFlashBag()->has($prefix . '-success')
+        && !$session->getFlashBag()->has($prefix . '-error')
     ) {
         // No errors or success message means that the page has been refreshed
         // or been navigated to - therefore we don't want to display the stored
@@ -237,7 +236,7 @@ function displayFormResponseMessages(string $prefix) : void
 /**
  * Validates and submits the form, then reloads the page
  *
- * @param ValidateSubmitForm $form Contact form object to validate and submit
+ * @param ValidateSubmitForm $form     Contact form object to validate and submit
  * @param string             $redirect Path to the form to reload
  *
  * @return void
