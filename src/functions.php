@@ -23,8 +23,7 @@ function connectToDatabase()
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $db;
     } catch (Exception $e) {
-        echo $e->getMessage();
-        exit;
+        // NTD - LOG FAILED CONNECTION TO DATABASE
         return false;
     }
 }
@@ -43,7 +42,7 @@ function getLatestNews()
             $results = $db->query($query);
             return $results->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
-            echo $e->getMessage();
+            // NTD - LOG FAILED CONNECTION TO DATABASE
             return false;
         }
     }
@@ -68,14 +67,8 @@ function generateFilename($title)
     return $filename;
 }
 
-/**
- * Gets the image asset based on the latest news item title
- *
- * @param string $filename Formatted filename of the latest news item title
- *
- * @return string Path to the latest news item image based on news item filename
- */
-function getCardImage($filename)
+
+function getCardCoverImage($filename)
 {
     $extensions = ['.jpg','.jpeg','.png'];
 
@@ -86,12 +79,25 @@ function getCardImage($filename)
         }
     }
 
-    switch ($filename) {
-    case 'netmatters-ltd':
+    return 'img/netmatters-logo-background.png';
+}
+
+function getCardPostedByImage($filename)
+{
+    if ($filename == 'netmatters-ltd') {
         return 'img/netmatters-logo-small.png';
-    default:
-        return 'img/netmatters-logo-background.png';
     }
+
+    $extensions = ['.jpg','.jpeg','.png'];
+
+    foreach ($extensions as $extension) {
+        $filepath = "img/$filename" . $extension;
+        if (file_exists($filepath)) {
+            return $filepath;
+        }
+    }
+
+    return 'img/netmatters-logo-small.png';
 }
 
 /**
@@ -101,14 +107,14 @@ function getCardImage($filename)
  *
  * @return string HTML for the news card to display
  */
-function displayLatestNews(array $news_item)
+function createLatestNewsCard(array $news_item)
 {
     // Get the cover image filename, which is based on news item title
-    $cover_img_filepath = getCardImage(
+    $cover_img_filepath = getCardCoverImage(
         generateFilename($news_item['title'])
     );
     // Get the posted by avatar image, which is based on news item posted_by
-    $posted_by_img_filepath = getCardImage(
+    $posted_by_img_filepath = getCardPostedByImage(
         generateFilename($news_item['posted_by'])
     );
     // Convert the datetime from the data row to a format for the card

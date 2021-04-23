@@ -127,7 +127,7 @@ require __DIR__ . '/src/inc/head.php';
                 <div id="news-board">
                 <?php
                 foreach (getLatestNews() as $news_item) {
-                    echo displayLatestNews($news_item);
+                    echo createLatestNewsCard($news_item);
                 }
                 ?>
                 </div> <!-- #news-board -->

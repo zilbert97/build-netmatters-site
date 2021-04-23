@@ -17,6 +17,7 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
         REQUIRED FIELDS
     ==================== */
 
+    /** @test */
     public function checkRequiredFieldsEmpty()
     {
         $emptyInput = '';
@@ -32,7 +33,7 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
         );
     }
 
-
+    /** @test */
     public function checkRequiredFieldsNotEmpty()
     {
         $notEmptyInput = 'A valid string';

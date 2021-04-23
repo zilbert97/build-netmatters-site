@@ -36,12 +36,12 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
     {
         // Image that does exist in file path - therefore gets default image
         $this->assertFileExists(
-            getCardImage('A card title that does not exist')
+            getCardCoverImage('A card title that does not exist')
         );
 
         // Image that does exist in file path
         $this->assertFileExists(
-            getCardImage('Happy 25th Birthday Kati!')
+            getCardCoverImage('Happy 25th Birthday Kati!')
         );
     }
 
@@ -50,16 +50,16 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
     {
         // Image that does not exist in file path - therefore gets default image
         $this->assertFileExists(
-            getCardImage('Something that does NOT exist!')
+            getCardPostedByImage('Something that does NOT exist!')
         );
 
         // Image that does exist in file path - 1
         $this->assertFileExists(
-            getCardImage('Simon Wright')
+            getCardPostedByImage('Simon Wright')
         );
         // Image that does exist in file path - 2
         $this->assertFileExists(
-            getCardImage('Netmatters Ltd')
+            getCardPostedByImage('Netmatters Ltd')
         );
     }
 
@@ -113,6 +113,6 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
             "posted_at" => "2020-12-18 00:00:00"
         );
 
-        $this->assertEquals($expectedPost, displayLatestNews($dataArray));
+        $this->assertEquals($expectedPost, createLatestNewsCard($dataArray));
     }
 }
