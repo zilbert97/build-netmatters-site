@@ -8,11 +8,19 @@ use \Symfony\Component\HttpFoundation\Session\Attribute\NamespacedAttributeBag;
 $session = new Session();
 
 try {
-    $contactFormValuesBag = $session->getBag('field_values');
+    $contactFormValuesBag = $session->getBag('contact_form_values');
 } catch (InvalidArgumentException $e) {
-    $contactFormValuesBag = new NamespacedAttributeBag('field_values');
-    $contactFormValuesBag->setName('field_values');
+    $contactFormValuesBag = new NamespacedAttributeBag('contact_form_values');
+    $contactFormValuesBag->setName('contact_form_values');
     $session->registerBag($contactFormValuesBag);
+}
+
+try {
+    $subscribeFormValuesBag = $session->getBag('subscribe_form_values');
+} catch (InvalidArgumentException $e) {
+    $subscribeFormValuesBag = new NamespacedAttributeBag('subscribe_form_values');
+    $subscribeFormValuesBag->setName('subscribe_form_values');
+    $session->registerBag($subscribeFormValuesBag);
 }
 
 $session->start();

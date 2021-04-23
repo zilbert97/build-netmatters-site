@@ -8,7 +8,7 @@
  * @package
  * @author   Z Gilbert <zach.gilbert@netmatters-scs.co.uk>
  * @license  github.com/zilbert97/build-netmatters-site/blob/add-php/LICENSE LICENSE
- * @link     github.com/zilbert97/build-netmatters-site/blob/add-php/src/ContactForm.php
+ * @link     github.com/zilbert97/build-netmatters-site/blob/add-php/src/SubscribeForm.php
  */
 
 require_once __DIR__ . '/bootstrap.php';
@@ -23,7 +23,7 @@ require_once __DIR__ . '/FormErrorMessage.php';
  * @license  github.com/zilbert97/build-netmatters-site/blob/add-php/LICENSE LICENSE
  * @link     github.com/zilbert97/build-netmatters-site/blob/add-php/src/ContactForm.php
  */
-class ContactForm extends ValidateSubmitForm
+class SubscribeForm extends ValidateSubmitForm
 {
     private $_formValuesBag;
     private $_session;
@@ -59,9 +59,9 @@ class ContactForm extends ValidateSubmitForm
     }
 
     /**
-     * Validates values on a the contact form and reloads the page if fails
+     * Validates values on a the subscribe form and reloads the page if fails
      *
-     * @return array|void Returns form values if validation passes else void
+     * @return array|void Returns form values if validation passes else reloads page
      */
     public function validateFields()
     {
@@ -70,14 +70,10 @@ class ContactForm extends ValidateSubmitForm
         // 517 = FILTER_SANITIZE_EMAIL
         // 519 = FILTER_SANITIZE_NUMBER_INT
         $results = [
-            'name'=>$this->getValueOnField('name_contact', 513),
-            'email_address'=>$this->getValueOnField('email_contact', 517),
-            'contact_number'=>$this->getValueOnField('phone_contact', 519),
-            'message'=>$this->getValueOnField('message_contact', 513),
-            'gdpr'=>$this->getValueOnField('accept_terms_contact', 513),
+            'name'=>$this->getValueOnField('name_subscribe', 513),
+            'email_address'=>$this->getValueOnField('email_subscribe', 517),
+            'gdpr'=>$this->getValueOnField('accept_terms_subscribe', 513),
         ];
-
-        $fieldsNotRequiredText = ['contact_number', 'gdpr'];
 
         // Get the bag used to save values on fields in session, so failed
         // submit does not clear fields (all except GDPR)
@@ -90,19 +86,18 @@ class ContactForm extends ValidateSubmitForm
 
         // Validate required fields are not empty
         foreach ($results as $field => $result) {
-            // Skip input fields that do not have * required marker
-            // Technically GDPR is required but it is validated elsewhere
-            if (in_array($field, $fieldsNotRequiredText)) continue;
+            // Skip GDPR input field (required but it is validated elsewhere)
+            if ($field == 'gdpr') continue;
 
             $validatedResult = $this->validateRequiredFields($result);
 
             if ($validatedResult instanceof FormErrorMessage) {
+                // Only show required fields warning - otherwise other
+                // validations will fail (empty fields are implicitly invalid)
                 $this->_session->getFlashBag()->add(
                     'error', $validatedResult->getMessageCopy()
                 );
 
-                // Only show required fields warning - otherwise other
-                // validations will fail (empty fields are implicitly invalid)
                 return;
             }
         }
@@ -111,9 +106,7 @@ class ContactForm extends ValidateSubmitForm
         $resultsValidated = [
             'name'=>$this->validateName($results['name']),
             'email_address'=>$this->validateEmail($results['email_address']),
-            'contact_number'=>$this->validatePhone($results['contact_number']),
-            'message'=>$this->validateMessage($results['message']),
-            'gdpr'=>$this->validateGDPRAccepted($results['gdpr'], 'accept_gdpr_contact'),
+            'gdpr'=>$this->validateGDPRAccepted($results['gdpr'], 'accept_gdpr_subscribe'),
         ];
 
         // If any validation returns a FormErrorMessage object, set error status
@@ -148,12 +141,10 @@ class ContactForm extends ValidateSubmitForm
         if ($db) {
 
             /* ============ SCHEMA ============
-                CREATE TABLE contact (
+                CREATE TABLE newsletter_signup (
                     name TEXT NOT NULL,
-                    email_address TEXT NOT NULL,
-                    contact_number TEXT NOT NULL,
-                    message TEXT NOT NULL,
-                    submitted_at DATE NOT NULL
+                    email TEXT UNIQUE,
+                    signed_up_at DATE NOT NULL
                 );
             ================================ */
 
@@ -161,15 +152,15 @@ class ContactForm extends ValidateSubmitForm
                 // Get values from validated results array that have keys
                 array_intersect_key(
                     $this->_getValidatedFormValues(),
-                    array_flip(array('name', 'email_address', 'contact_number', 'message'))
+                    array_flip(array('name', 'email_address'))
                 ),
                 // Add current datetime to results to submit to database
                 array('submitted_at'=>date('Y-m-d H:i:s'))
             );
 
             try {
-                $query = 'INSERT INTO contact VALUES (
-                    :name, :email_address, :contact_number, :message, :submitted_at
+                $query = 'INSERT INTO newsletter_signup VALUES (
+                    :name, :email_address, :submitted_at
                 )';
 
                 $stmt = $db->prepare($query);

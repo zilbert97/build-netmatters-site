@@ -55,27 +55,47 @@
 <section id="footer-signup">
     <div id="footer-signup-inner">
         <h2>Email newsletter sign-up</h2>
-        <form>
+        <form action="src/submitSubscribeForm.php" method="post" novalidate>
 
             <div class="form--text-field-wrapper">
                 <div class="form--field">
                     <label>
                         <span class="form--label-copy required--label">Your Name</span>
-                        <input class="form--text-input required--input" type="text" name="name_subscribe" placeholder="Jane Smith">
+                        <input
+                            class="form--text-input required--input"
+                            type="text"
+                            name="name_subscribe"
+                            placeholder="Jane Smith"
+                            value="<?php
+                                echo $subscribeFormValuesBag->get('name');
+                            ?>">
                     </label>
                 </div>
 
                 <div class="form--field">
                     <label>
                         <span class="form--label-copy required--label">Email Address</span>
-                        <input class="form--text-input required--input" type="email" name="email_subscribe" placeholder="example@domain.com">
+                        <input
+                            class="form--text-input required--input"
+                            type="email"
+                            name="email_subscribe"
+                            placeholder="example@domain.com"
+                            value="<?php
+                                echo $subscribeFormValuesBag->get('email_address');
+                                $subscribeFormValuesBag->clear();  // Last field with retained values
+                            ?>">
                     </label>
                 </div>
             </div>
 
             <div id="gdpr-field">
                 <div class="form--gdpr-field">
-                    <input id="gdpr-checkbox--signup" class="form--checkbox-input" type="checkbox" name="agree_terms_subscribe">
+                    <input
+                        id="gdpr-checkbox--signup"
+                        class="form--checkbox-input"
+                        type="checkbox"
+                        name="accept_gdpr_subscribe"
+                        value="accepted">
                     <span class="icon-check" onclick="$('#gdpr-checkbox--signup').prop('checked', false)"></span>
                 </div>
                 <label class="form--gdpr-statement" for="gdpr-checkbox--signup">Please tick this box if you wish to receive marketing information from us. Please see our <a class="form--gdpr-privacy-policy" href="#">Privacy Policy</a> for more information on how we use your data.</label>

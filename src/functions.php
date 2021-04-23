@@ -124,34 +124,34 @@ function createLatestNewsCard(array $news_item)
     }
 
     $post = <<<EOD
-<div class="news-card news-card-{$card_style}">
-    <div class="news-card-cover">
-        <a href="#">
-            <div class="image-wrapper">
-                <img class="news-card-image"
-                     src="{$cover_img_filepath}"
-                     alt="{$news_item['title']}">
+    <div class="news-card news-card-{$card_style}">
+        <div class="news-card-cover">
+            <a href="#">
+                <div class="image-wrapper">
+                    <img class="news-card-image"
+                         src="{$cover_img_filepath}"
+                         alt="{$news_item['title']}">
+                </div>
+            </a>
+            <a class="news-card-category" href="#">{$news_item['category']}</a>
+        </div>
+        <div class="news-card-summary">
+            <a class="title-link" href="#">
+                <h6>{$news_item['title']}</h6>
+            </a>
+            <p class="card-description">{$news_item['summary']}&hellip;</p>
+            <a class="read-more" href="#">Read more</a>
+            <hr />
+            <img class="logo-small"
+                 src="{$posted_by_img_filepath}"
+                 alt="News article posted by {$news_item['posted_by']}">
+            <div class="card-publish-info">
+                <p><strong>Posted by {$news_item['posted_by']}</strong></p>
+                <p>{$posted_at}</p>
             </div>
-        </a>
-        <a class="news-card-category" href="#">{$news_item['category']}</a>
-    </div>
-    <div class="news-card-summary">
-        <a class="title-link" href="#">
-            <h6>{$news_item['title']}</h6>
-        </a>
-        <p class="card-description">{$news_item['summary']}&hellip;</p>
-        <a class="read-more" href="#">Read more</a>
-        <hr />
-        <img class="logo-small"
-             src="{$posted_by_img_filepath}"
-             alt="News article posted by {$news_item['posted_by']}">
-        <div class="card-publish-info">
-            <p><strong>Posted by {$news_item['posted_by']}</strong></p>
-            <p>{$posted_at}</p>
         </div>
     </div>
-</div>
-EOD;
+    EOD;
 
     return $post;
 }
@@ -163,7 +163,7 @@ EOD;
  *
  * @return void
  */
-function redirect($path) : void
+function redirect(string $path) : void
 {
     $response = \Symfony\Component\HttpFoundation\Response::create(
         null,

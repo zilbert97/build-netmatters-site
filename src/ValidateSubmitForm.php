@@ -161,11 +161,13 @@ abstract class ValidateSubmitForm extends Request
     /**
      * Validates the checkbox value submitted in a post request is checked
      *
+     * @param $fieldNameAttr Name attribute of the checkbox input field
+     *
      * @return FormErrorMessage|bool Message object if unsuccesful, else true
      */
-    public function validateGDPRAccepted()
+    public function validateGDPRAccepted($value, string $fieldNameAttr)
     {
-        if (!isset($_POST['agree_terms_contact'])) {
+        if (!isset($_POST[$fieldNameAttr])) {
             $warning = new FormErrorMessage(
                 "You must accept our GDPR statement to contact us"
             );
