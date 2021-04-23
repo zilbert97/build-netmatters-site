@@ -23,7 +23,8 @@ function connectToDatabase()
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $db;
     } catch (Exception $e) {
-        // NTD - LOG FAILED CONNECTION TO DATABASE
+        // Silently log the error to logfile
+        error_log($e->getMessage());
         return false;
     }
 }
@@ -42,7 +43,8 @@ function getLatestNews()
             $results = $db->query($query);
             return $results->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
-            // NTD - LOG FAILED CONNECTION TO DATABASE
+            // Silently log the error to logfile
+            error_log($e->getMessage());
             return false;
         }
     }
@@ -86,7 +88,13 @@ function getCardImage(string $filename, string $defaultImagePath) : string
         }
     }
 
-    // NTD - Check if default exists and if not log error
+    // If no image based on the filename coiuld be found, log as error
+    error_log("Latest news cards: No image matching img/$filename.* could be found.");
+
+    // If use default image but it does not exist, silently log the error
+    if (!file_exists($defaultImagePath)) {
+        error_log("Latest news cards: The default image $defaultImagePath could not be found.");
+    }
     return $defaultImagePath;
 }
 

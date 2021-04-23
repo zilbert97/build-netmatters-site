@@ -240,7 +240,7 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
     /** @test */
     public function validateGPDRCheckboxIsNotChecked()
     {
-        $result = $this->form->validateGDPRAccepted();
+        $result = $this->form->validateGDPRAccepted('accepted', 'accept_gdpr_test');
         $this->assertInstanceOf(FormErrorMessage::class, $result);
         $this->assertIsString($result->getMessageCopy());
         $this->assertEquals(
@@ -252,8 +252,8 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
     /** @test */
     public function validateGPDRCheckboxIsChecked()
     {
-        $_POST['agree_terms_contact'] = 'accepted';
-        $result = $this->form->validateGDPRAccepted();
+        $_POST['accept_gdpr_test'] = 'accepted';
+        $result = $this->form->validateGDPRAccepted('accepted', 'accept_gdpr_test');
         $this->assertIsBool($result);
         $this->assertTrue($result);
     }
