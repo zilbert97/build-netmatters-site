@@ -30,80 +30,73 @@ require __DIR__ . '/src/inc/head.php';
 
         <main>
             <section class="nm-cards">
+                <?php
+                $allCardsData = [
+                    [
+                        'title'=>'Bespoke Software',
+                        'category'=>'bespoke-software',
+                        'icon'=>'apps',
+                        'description'=>'Tailored software solutions to improve business productivity and online profits. Our expert team will ensure a software solution.',
+                    ],
+                    [
+                        'title'=>'IT Support',
+                        'category'=>'it-support',
+                        'icon'=>'display',
+                        'description'=>'Remotely managed IT services that is catered to your business needs, adds value and reduces costs.',
+                    ],
+                    [
+                        'title'=>'Digital Marketing',
+                        'category'=>'digital-marketing',
+                        'icon'=>'bar-graph',
+                        'description'=>'Driving brand awareness and ROI through creative digital marketing campaigns. We review and monitor online performaces.',
+                    ],
+                    [
+                        'title'=>'Telecoms Services',
+                        'category'=>'telecoms-services',
+                        'icon'=>'phone_in_talk',
+                        'description'=>'Stary connected with bespoke telecoms solutions when you need it most.',
+                    ],
+                    [
+                        'title'=>'Web Design',
+                        'category'=>'web-design',
+                        'icon'=>'code',
+                        'description'=>'User-centric design for business looking to make a lasting first impression.',
+                    ],
+                    [
+                        'title'=>'Cyber Security',
+                        'category'=>'cyber-security',
+                        'icon'=>'security',
+                        'description'=>'Ensuring your online business stays secure 24/7, 365 days of the year.',
+                    ],
+                    [
+                        'title'=>'Developer Training',
+                        'category'=>'web-design',
+                        'icon'=>'school',
+                        'description'=>'Have you considered a career in web development but you aren\'t sure where to start?',
+                    ]
+                ];
 
-                <div class="nm-cards-bespoke-software">
-                    <a href="#">
-                        <span class="icon-apps"></span>
-                        <h5>Bespoke Software</h5>
-                        <hr />
-                        <p>Tailored software solutions to improve business productivity and online profits. Our expert team will ensure a software solution.</p>
-                        <span class="read-more">Read more</span>
-                    </a>
-                </div>
+                for ($i = 0; $i < count($allCardsData); $i++) {
+                    $cardData = $allCardsData[$i];
+                    $card = <<<EOD
+                    <div class="nm-cards-{$cardData['category']}">
+                        <a href="#">
+                            <span class="icon-{$cardData['icon']}"></span>
+                            <h5>{$cardData['title']}</h5>
+                            <hr />
+                            <p>{$cardData['description']}</p>
+                            <span class="read-more">Read more</span>
+                        </a>
+                    </div>
+                    EOD;
 
-                <div class="nm-cards-it-support">
-                    <a href="#">
-                        <span class="icon-display"></span>
-                        <h5>IT Support</h5>
-                        <hr />
-                        <p>Remotely managed IT services that is catered to your business needs, adds value and reduces costs.</p>
-                        <span class="read-more">Read more</span>
-                    </a>
-                </div>
+                    echo $card;
 
-                <div class="nm-cards-digital-marketing">
-                    <a href="#">
-                        <span class="icon-bar-graph"></span>
-                        <h5>Digital Marketing</h5>
-                        <hr />
-                        <p>Driving brand awareness and ROI through creative digital marketing campaigns. We review and monitor online performaces.</p>
-                        <span class="read-more">Read more</span>
-                    </a>
-                </div>
-
-                <div class="nm-cards-break"></div> <!-- break to a new row (at larger breakpoints) -->
-
-                <div class="nm-cards-telecoms-services">
-                    <a href="#">
-                        <span class="icon-phone_in_talk"></span>
-                        <h5>Telecoms Services</h5>
-                        <hr />
-                        <p>Stary connected with bespoke telecoms solutions when you need it most.</p>
-                        <span class="read-more">Read more</span>
-                    </a>
-                </div>
-
-                <div class="nm-cards-web-design">
-                    <a href="#">
-                        <span class="icon-code"></span>
-                        <h5>Web Design</h5>
-                        <hr />
-                        <p>User-centric design for business looking to make a lasting first impression.</p>
-                        <span class="read-more">Read more</span>
-                    </a>
-                </div>
-
-                <div class="nm-cards-cyber-security">
-                    <a href="#">
-                        <span class="icon-security"></span>
-                        <h5>Cyber Security</h5>
-                        <hr />
-                        <p>Ensuring your online business stays secure 24/7, 365 days of the year.</p>
-                        <span class="read-more">Read more</span>
-                    </a>
-                </div>
-
-                <div class="nm-cards-web-design">
-                    <!-- Same styling as web design card -->
-                    <a href="#">
-                        <span class="icon-school"></span>
-                        <h5>Developer Training</h5>
-                        <hr />
-                        <p>Have you considered a career in web development but you aren't sure where to start?</p>
-                        <span class="read-more">Read more</span>
-                    </a>
-                </div>
-
+                    if ($i == 2) {
+                        echo '<div class="nm-cards-break"></div>';
+                    }
+                }
+                ?>
             </section> <!-- .nm-cards -->
 
             <section id="about">
