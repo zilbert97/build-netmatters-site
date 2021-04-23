@@ -30,7 +30,7 @@ require __DIR__ . '/src/inc/head.php';
             <section id="contact">
                 <h2 id="contact--title">Get In Touch</h2>
 
-                <?php displayFormResponseMessages(); ?>
+                <?php displayFormResponseMessages('contact'); ?>
 
                 <form id="contact--form" class="contact--form" action="src/submitContactForm.php" method="post" novalidate>
 

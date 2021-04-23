@@ -98,7 +98,7 @@ class ContactForm extends ValidateSubmitForm
 
             if ($validatedResult instanceof FormErrorMessage) {
                 $this->_session->getFlashBag()->add(
-                    'error', $validatedResult->getMessageCopy()
+                    'contact-error', $validatedResult->getMessageCopy()
                 );
 
                 // Only show required fields warning - otherwise other
@@ -121,7 +121,7 @@ class ContactForm extends ValidateSubmitForm
 
         foreach ($resultsValidated as $result) {
             if ($result instanceof FormErrorMessage) {
-                $this->_session->getFlashBag()->add('error', $result->getMessageCopy());
+                $this->_session->getFlashBag()->add('contact-error', $result->getMessageCopy());
                 $hasErrors = true;
             }
         }
@@ -181,7 +181,7 @@ class ContactForm extends ValidateSubmitForm
 
                 // Add success message to flash bag
                 $this->_session->getFlashBag()->add(
-                    'success',
+                    'contact-success',
                     'Your message was sent successfully!'
                 );
 
@@ -193,7 +193,7 @@ class ContactForm extends ValidateSubmitForm
             } catch (Exception $e) {
                 // If unsucessful submit, add error to flashbag
                 $this->_session->getFlashBag()->add(
-                    'error',
+                    'contact-error',
                     'Server error - failed to submit message'
                 );
                 return false;
@@ -202,7 +202,7 @@ class ContactForm extends ValidateSubmitForm
             // If no connection to database, add error message to flash bag
             // Note do not empty stored values from form so user can try again
             $this->_session->getFlashBag()->add(
-                'error',
+                'contact-error',
                 'Server error - failed to submit message'
             );
             return false;

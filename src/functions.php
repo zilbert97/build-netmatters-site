@@ -179,14 +179,14 @@ function redirect(string $path) : void
  *
  * @return void
  */
-function displayFormResponseMessages() : void
+function displayFormResponseMessages($prefix) : void
 {
     global $session;
 
     // If no error or success messages in the flash bag
     if (
-        !$session->getFlashBag()->has('success') &&
-        !$session->getFlashBag()->has('error')
+        !$session->getFlashBag()->has($prefix . '-success') &&
+        !$session->getFlashBag()->has($prefix . '-error')
     ) {
         // No errors or success message means that the page has been refreshed
         // or been navigated to - therefore we don't want to display the stored
@@ -200,8 +200,8 @@ function displayFormResponseMessages() : void
     $messageBody = '<div class="form--response-wrapper">';
 
     // If error messages in flash bag
-    if ($session->getFlashBag()->has('error')) {
-        $errorMessages = $session->getFlashBag()->get('error');
+    if ($session->getFlashBag()->has($prefix . '-error')) {
+        $errorMessages = $session->getFlashBag()->get($prefix . '-error');
 
         // Generate each error message
         foreach ($errorMessages as $message) {
@@ -209,9 +209,9 @@ function displayFormResponseMessages() : void
             $messageBody .= '<p class="form--response-copy">' . $message . '</p>';
             $messageBody .= '</div>';
         }
-    } else if ($session->getFlashBag()->has('success')) {
+    } else if ($session->getFlashBag()->has($prefix . '-success')) {
         // Else if not error messages, and success message, in flash bag
-        $message = $session->getFlashBag()->get('success')[0];
+        $message = $session->getFlashBag()->get($prefix . '-success')[0];
 
         // Generate a success message
         $messageBody .= '<div class="form--response-success-message">';

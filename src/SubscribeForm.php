@@ -95,7 +95,7 @@ class SubscribeForm extends ValidateSubmitForm
                 // Only show required fields warning - otherwise other
                 // validations will fail (empty fields are implicitly invalid)
                 $this->_session->getFlashBag()->add(
-                    'error', $validatedResult->getMessageCopy()
+                    'subscribe-error', $validatedResult->getMessageCopy()
                 );
 
                 return;
@@ -114,7 +114,7 @@ class SubscribeForm extends ValidateSubmitForm
 
         foreach ($resultsValidated as $result) {
             if ($result instanceof FormErrorMessage) {
-                $this->_session->getFlashBag()->add('error', $result->getMessageCopy());
+                $this->_session->getFlashBag()->add('subscribe-error', $result->getMessageCopy());
                 $hasErrors = true;
             }
         }
@@ -172,7 +172,7 @@ class SubscribeForm extends ValidateSubmitForm
 
                 // Add success message to flash bag
                 $this->_session->getFlashBag()->add(
-                    'success',
+                    'subscribe-success',
                     'Your message was sent successfully!'
                 );
 
@@ -184,7 +184,7 @@ class SubscribeForm extends ValidateSubmitForm
             } catch (Exception $e) {
                 // If unsucessful submit, add error to flashbag
                 $this->_session->getFlashBag()->add(
-                    'error',
+                    'subscribe-error',
                     'Server error - failed to submit message'
                 );
                 return false;
@@ -193,7 +193,7 @@ class SubscribeForm extends ValidateSubmitForm
             // If no connection to database, add error message to flash bag
             // Note do not empty stored values from form so user can try again
             $this->_session->getFlashBag()->add(
-                'error',
+                'subscribe-error',
                 'Server error - failed to submit message'
             );
             return false;

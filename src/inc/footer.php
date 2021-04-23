@@ -55,6 +55,9 @@
 <section id="footer-signup">
     <div id="footer-signup-inner">
         <h2>Email newsletter sign-up</h2>
+
+        <?php displayFormResponseMessages('subscribe'); ?>
+
         <form action="src/submitSubscribeForm.php" method="post" novalidate>
 
             <div class="form--text-field-wrapper">
