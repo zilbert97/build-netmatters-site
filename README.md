@@ -2,7 +2,8 @@
 
 ## To Do:
 - [ ] Add form validation and submit to subscribe
-- [ ] Log failed connect to database (`./src/functions.php`)
+- [ ] Log failed connection to database (`./src/functions.php` function `connectToDatabase()`)
+- [ ] Log failed connection to database (`./src/functions.php` function `getLatestNews()`)
 - [x] Add form to database
 - [ ] Autoload classes
 - [ ] Prevent user access to any files except index.php and contact.php
