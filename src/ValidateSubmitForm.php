@@ -124,7 +124,8 @@ abstract class ValidateSubmitForm extends Request
      */
     public function validatePhone(string $phone)
     {
-        $formattedPhone = formatPhoneNumber($phone);
+        // Strip any whitespace, brackets, or dashes from phone number
+        $formattedPhone = preg_replace('/[\s\(\)\-]/', '', $phone);
 
         // Match 0 or 1 +'s followed by 10-12 digits
         if (!preg_match('/^\+?\d{10,12}$/', $formattedPhone)) {
@@ -185,7 +186,7 @@ abstract class ValidateSubmitForm extends Request
      * Submit the form values to the database
      *
      * @abstract
-     * @return   void
+     * @return   bool True if form submits, else false
      */
-    abstract public function submitForm(array $formValues) : void;
+    abstract public function submitForm() : bool;
 }

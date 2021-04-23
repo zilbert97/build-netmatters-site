@@ -14,14 +14,9 @@
 require_once __DIR__ . '/bootstrap.php';
 require_once __DIR__ . '/ContactForm.php';
 
-global $session;
 global $contactFormValuesBag;
+global $session;
 
 $contactForm = new ContactForm($session, $contactFormValuesBag);
 
-// Returns values if validation passes, else will refresh page
-$formValues = $contactForm->validateFields();
-
-if ($formValues) {
-    $contactForm->submitForm($formValues);
-}
+handleForm($contactForm, '/contact.php');

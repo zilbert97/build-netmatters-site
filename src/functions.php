@@ -130,7 +130,9 @@ function displayLatestNews(array $news_item)
     <div class="news-card-cover">
         <a href="#">
             <div class="image-wrapper">
-                <img class="news-card-image" src="{$cover_img_filepath}" alt="{$news_item['title']}">
+                <img class="news-card-image"
+                     src="{$cover_img_filepath}"
+                     alt="{$news_item['title']}">
             </div>
         </a>
         <a class="news-card-category" href="#">{$news_item['category']}</a>
@@ -142,7 +144,9 @@ function displayLatestNews(array $news_item)
         <p class="card-description">{$news_item['summary']}&hellip;</p>
         <a class="read-more" href="#">Read more</a>
         <hr />
-        <img class="logo-small" src="{$posted_by_img_filepath}" alt="News article posted by {$news_item['posted_by']}">
+        <img class="logo-small"
+             src="{$posted_by_img_filepath}"
+             alt="News article posted by {$news_item['posted_by']}">
         <div class="card-publish-info">
             <p><strong>Posted by {$news_item['posted_by']}</strong></p>
             <p>{$posted_at}</p>
@@ -152,19 +156,6 @@ function displayLatestNews(array $news_item)
 EOD;
 
     return $post;
-}
-
-/**
- * Removes whitespace, brackets, and dashes from the phone number string
- *
- * @param string $phone Contact number string
- *
- * @return string The formatted phone number string
- */
-function formatPhoneNumber($phone)
-{
-    // Strip any whitespace, brackets, or dashes from phone number
-    return preg_replace('/[\s\(\)\-]/', '', $phone);
 }
 
 /**
@@ -195,7 +186,10 @@ function displayFormResponseMessages() : void
     global $session;
 
     // If no error or success messages in the flash bag
-    if (!$session->getFlashBag()->has('success') && !$session->getFlashBag()->has('error')) {
+    if (
+        !$session->getFlashBag()->has('success') &&
+        !$session->getFlashBag()->has('error')
+    ) {
         // No errors or success message means that the page has been refreshed
         // or been navigated to - therefore we don't want to display the stored
         // user values from the session on form fields
@@ -230,4 +224,23 @@ function displayFormResponseMessages() : void
     $messageBody .= '</div>';
 
     echo $messageBody;
+}
+
+/**
+ * Validates and submits the form, then reloads the page
+ *
+ * @param ValidateSubmitForm $form Contact form object to validate and submit
+ * @param string             $redirect Path to the form to reload
+ *
+ * @return void
+ */
+function handleForm(ValidateSubmitForm $form, string $redirect) : void
+{
+    // If form validates, submit the form
+    if ($form->validateFields()) {
+        $form->submitForm();
+    }
+
+    // Regardless of whether form validates and submits succesfully, reload the page
+    redirect($redirect);
 }

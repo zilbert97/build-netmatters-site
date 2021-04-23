@@ -37,23 +37,23 @@ class ContactForm extends ValidateSubmitForm
     }
 
     /**
-     * Gets the results array
+     * Gets the array of validated form values
      *
      * @return array
      */
-    private function _getResults() : array
+    private function _getValidatedFormValues() : array
     {
         return $this->_results;
     }
 
     /**
-     * Sets the results array
+     * Sets the array of validated form values
      *
      * @return void
      */
-    private function _setResults(array $resultsArray) : void
+    private function _setValidatedFormValues(array $values) : void
     {
-        $this->_results = $resultsArray;
+        $this->_results = $values;
     }
 
     /**
@@ -67,29 +67,27 @@ class ContactForm extends ValidateSubmitForm
         // 513 = FILTER_SANITIZE_STRING
         // 517 = FILTER_SANITIZE_EMAIL
         // 519 = FILTER_SANITIZE_NUMBER_INT
-        $this->_setResults(
-            [
-                'name'=>$this->getValueOnField('name_contact', 513),
-                'email_address'=>$this->getValueOnField('email_contact', 517),
-                'contact_number'=>$this->getValueOnField('phone_contact', 519),
-                'message'=>$this->getValueOnField('message_contact', 513),
-                'gdpr'=>$this->getValueOnField('accept_terms_contact', 513),
-            ]
-        );
+        $results = [
+            'name'=>$this->getValueOnField('name_contact', 513),
+            'email_address'=>$this->getValueOnField('email_contact', 517),
+            'contact_number'=>$this->getValueOnField('phone_contact', 519),
+            'message'=>$this->getValueOnField('message_contact', 513),
+            'gdpr'=>$this->getValueOnField('accept_terms_contact', 513),
+        ];
 
         $fieldsNotRequiredText = ['contact_number', 'gdpr'];
 
         // Get the bag used to save values on fields in session, so failed
         // submit does not clear fields (all except GDPR)
 
-        foreach ($this->_getResults() as $fieldName => $value) {
+        foreach ($results as $fieldName => $value) {
             if ($fieldName !== 'gdpr') {
                 $this->_formValuesBag->set($fieldName, $value);
             }
         }
 
         // Validate required fields are not empty
-        foreach ($this->_getResults() as $field => $result) {
+        foreach ($results as $field => $result) {
             // Skip input fields that do not have * required marker
             // Technically GDPR is required but it is validated elsewhere
             if (in_array($field, $fieldsNotRequiredText)) continue;
@@ -110,11 +108,11 @@ class ContactForm extends ValidateSubmitForm
 
         // Get results and perform specific field validation on each
         $resultsValidated = [
-            'name'=>$this->validateName($this->_getResults()['name']),
-            'email_address'=>$this->validateEmail($this->_getResults()['email_address']),
-            'contact_number'=>$this->validatePhone($this->_getResults()['contact_number']),
-            'message'=>$this->validateMessage($this->_getResults()['message']),
-            'gdpr'=>$this->validateGDPRAccepted($this->_getResults()['gdpr']),
+            'name'=>$this->validateName($results['name']),
+            'email_address'=>$this->validateEmail($results['email_address']),
+            'contact_number'=>$this->validatePhone($results['contact_number']),
+            'message'=>$this->validateMessage($results['message']),
+            'gdpr'=>$this->validateGDPRAccepted($results['gdpr']),
         ];
 
         // If any validation returns a FormErrorMessage object, set error status
@@ -127,8 +125,9 @@ class ContactForm extends ValidateSubmitForm
             }
         }
 
-        // If no validation errors, return the values
+        // If no validation errors, set and return the values
         if (!$hasErrors) {
+            $this->_setValidatedFormValues($resultsValidated);
             return $resultsValidated;
         }
 
@@ -137,13 +136,11 @@ class ContactForm extends ValidateSubmitForm
     }
 
     /**
-     * Submits values to the database, then reloads the page
+     * Submits values to the database
      *
-     * @param array $formValues Values from a form to submit to the database
-     *
-     * @return void Does not return, instead reloads the page
+     * @return bool True if submits susccesfully, else false
      */
-    public function submitForm(array $formValues) : void
+    public function submitForm() : bool
     {
         $db = connectToDatabase();
 
@@ -163,7 +160,7 @@ class ContactForm extends ValidateSubmitForm
             $valuesToSubmit = array_merge(
                 // Get values from validated results array that have keys
                 array_intersect_key(
-                    $formValues,
+                    $this->_getValidatedFormValues(),
                     array_flip(array('name', 'email_address', 'contact_number', 'message'))
                 ),
                 // Add current datetime to results to submit to database
@@ -191,12 +188,15 @@ class ContactForm extends ValidateSubmitForm
                 // Empty stored values from $this->_formValuesBag
                 $this->_formValuesBag->clear();
 
+                return true;
+
             } catch (Exception $e) {
                 // If unsucessful submit, add error to flashbag
                 $this->_session->getFlashBag()->add(
                     'error',
                     'Server error - failed to submit message'
                 );
+                return false;
             }
         } else {
             // If no connection to database, add error message to flash bag
@@ -205,8 +205,7 @@ class ContactForm extends ValidateSubmitForm
                 'error',
                 'Server error - failed to submit message'
             );
+            return false;
         }
-
-        redirect('/contact.php');
     }
 }

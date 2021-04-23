@@ -80,7 +80,9 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
             <div class="news-card-cover">
                 <a href="#">
                     <div class="image-wrapper">
-                        <img class="news-card-image" src="img/happy-25th-birthday-kati.jpeg" alt="Happy 25th Birthday Kati!">
+                        <img class="news-card-image"
+                             src="img/happy-25th-birthday-kati.jpeg"
+                             alt="Happy 25th Birthday Kati!">
                     </div>
                 </a>
                 <a class="news-card-category" href="#">news</a>
@@ -92,7 +94,9 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
                 <p class="card-description">Since joining Netmatters Kati has done a fantastic job keeping our IT projects progressing&hellip;</p>
                 <a class="read-more" href="#">Read more</a>
                 <hr />
-                <img class="logo-small" src="img/netmatters-logo-small.png" alt="News article posted by Netmatters Ltd">
+                <img class="logo-small"
+                     src="img/netmatters-logo-small.png"
+                     alt="News article posted by Netmatters Ltd">
                 <div class="card-publish-info">
                     <p><strong>Posted by Netmatters Ltd</strong></p>
                     <p>18th December 2020</p>

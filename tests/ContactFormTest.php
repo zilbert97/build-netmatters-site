@@ -1,12 +1,16 @@
 <?php
 require_once __DIR__ . '/../src/ContactForm.php';
 
+use \Symfony\Component\HttpFoundation\Session\Session;
+
 class ContactFormTest extends PHPUnit\Framework\TestCase
 {
     protected $form;
     protected function setUp(): void
     {
-        $this->form = new ContactForm();
+        $session = new Session();
+        $valuesBag = null;
+        $this->form = new ContactForm($session, $valuesBag);
     }
 
     /* ====================
@@ -144,37 +148,13 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
             '14214134144+'
         ];
         foreach ($invalidPhones as $phone) {
-            $result = $this->form->validatePhone(formatPhoneNumber($phone));
+            $result = $this->form->validatePhone($phone);
 
             $this->assertInstanceOf(FormErrorMessage::class, $result);
             $this->assertIsString($result->getMessageCopy());
             $this->assertEquals(
                 "The contact number you've entered is invalid",
                 $result->getMessageCopy()
-            );
-        }
-    }
-
-
-    /** @test */
-    public function formatUserPhoneNumber()
-    {
-        $phones = [
-            '+441234567890',
-            '+0800123456',
-            '0800123456',
-            '123456789012',
-            '01223 123 123',
-            '(01223)123124',
-            '+44 7513 872 821',
-            '(+44)-134 1341 141',
-            '134-12454-214'
-        ];
-        foreach ($phones as $phone) {
-            $this->assertIsString(formatPhoneNumber($phone));
-            $this->assertMatchesRegularExpression(
-                '/^\+?\d{10,12}$/',
-                formatPhoneNumber($phone)
             );
         }
     }
@@ -197,7 +177,7 @@ class ContactFormTest extends PHPUnit\Framework\TestCase
         foreach ($validPhones as $phone) {
             $result = $this->form->validatePhone($phone);
             $this->assertIsString($result);
-            $this->assertEquals(formatPhoneNumber($phone), $result);
+            //$this->assertEquals(formatPhoneNumber($phone), $result);
         }
     }
 
