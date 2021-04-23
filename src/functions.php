@@ -67,8 +67,15 @@ function generateFilename($title)
     return $filename;
 }
 
-
-function getCardCoverImage($filename)
+/**
+ * Gets a partial project root-level path for an image filename passed
+ *
+ * @param string $filename          Name (without extension) of an image to retrieve
+ * @param string $defaultImagePath  Root-level path for a default image
+ *
+ * @return string Project root-level path to an image
+ */
+function getCardImage(string $filename, string $defaultImagePath) : string
 {
     $extensions = ['.jpg','.jpeg','.png'];
 
@@ -79,25 +86,8 @@ function getCardCoverImage($filename)
         }
     }
 
-    return 'img/netmatters-logo-background.png';
-}
-
-function getCardPostedByImage($filename)
-{
-    if ($filename == 'netmatters-ltd') {
-        return 'img/netmatters-logo-small.png';
-    }
-
-    $extensions = ['.jpg','.jpeg','.png'];
-
-    foreach ($extensions as $extension) {
-        $filepath = "img/$filename" . $extension;
-        if (file_exists($filepath)) {
-            return $filepath;
-        }
-    }
-
-    return 'img/netmatters-logo-small.png';
+    // NTD - Check if default exists and if not log error
+    return $defaultImagePath;
 }
 
 /**
@@ -110,12 +100,14 @@ function getCardPostedByImage($filename)
 function createLatestNewsCard(array $news_item)
 {
     // Get the cover image filename, which is based on news item title
-    $cover_img_filepath = getCardCoverImage(
-        generateFilename($news_item['title'])
+    $cover_img_filepath = getCardImage(
+        generateFilename($news_item['title']),
+        'img/netmatters-logo-background.png'
     );
     // Get the posted by avatar image, which is based on news item posted_by
-    $posted_by_img_filepath = getCardPostedByImage(
-        generateFilename($news_item['posted_by'])
+    $posted_by_img_filepath = getCardImage(
+        generateFilename($news_item['posted_by']),
+        'img/netmatters-logo-small.png'
     );
     // Convert the datetime from the data row to a format for the card
     $posted_at = date('jS F Y', strtotime($news_item['posted_at']));

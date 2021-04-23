@@ -36,12 +36,18 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
     {
         // Image that does exist in file path - therefore gets default image
         $this->assertFileExists(
-            getCardCoverImage('A card title that does not exist')
+            getCardImage(
+                'A card title that does not exist',
+                'img/netmatters-logo-background.png'
+            )
         );
 
         // Image that does exist in file path
         $this->assertFileExists(
-            getCardCoverImage('Happy 25th Birthday Kati!')
+            getCardImage(
+                'Happy 25th Birthday Kati!',
+                'img/netmatters-logo-background.png'
+            )
         );
     }
 
@@ -50,16 +56,25 @@ class LatestNewsTest extends PHPUnit\Framework\TestCase
     {
         // Image that does not exist in file path - therefore gets default image
         $this->assertFileExists(
-            getCardPostedByImage('Something that does NOT exist!')
+            getCardImage(
+                'Something that does NOT exist!',
+                'img/netmatters-logo-small.png'
+            )
         );
 
         // Image that does exist in file path - 1
         $this->assertFileExists(
-            getCardPostedByImage('Simon Wright')
+            getCardImage(
+                'Simon Wright',
+                'img/netmatters-logo-background.png'
+            )
         );
         // Image that does exist in file path - 2
         $this->assertFileExists(
-            getCardPostedByImage('Netmatters Ltd')
+            getCardImage(
+                'Netmatters Ltd',
+                'img/netmatters-logo-background.png'
+            )
         );
     }
 

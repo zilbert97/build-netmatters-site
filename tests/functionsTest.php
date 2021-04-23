@@ -45,7 +45,7 @@ class FunctionsTest extends PHPUnit\Framework\TestCase
 
         $this->assertFileDoesNotExist(__DIR__ . '/../img/' . $filename);
 
-        $image = getCardCoverImage($filename);
+        $image = getCardImage($filename, 'img/netmatters-logo-background.png');
         $filepath = __DIR__ . '/../' . $image;
 
         $this->assertEquals(
@@ -64,7 +64,7 @@ class FunctionsTest extends PHPUnit\Framework\TestCase
 
         $this->assertFileDoesNotExist(__DIR__ . '/../img/' . $filename);
 
-        $image = getCardPostedByImage($filename);
+        $image = getCardImage($filename, 'img/netmatters-logo-small.png');
         $filepath = __DIR__ . '/../' . $image;
 
         $this->assertEquals(
@@ -82,7 +82,7 @@ class FunctionsTest extends PHPUnit\Framework\TestCase
 
         $this->assertFileExists(__DIR__ . '/../img/' . $filename . '.png');
 
-        $image = getCardCoverImage($filename);
+        $image = getCardImage($filename, 'img/netmatters-logo-background.png');
         $filepath = __DIR__ . '/../' . $image;
 
         $this->assertEquals(
@@ -100,7 +100,7 @@ class FunctionsTest extends PHPUnit\Framework\TestCase
 
         $this->assertFileExists(__DIR__ . '/../img/' . $filename . '.png');
 
-        $image = getCardPostedByImage($filename);
+        $image = getCardImage($filename, 'img/netmatters-logo-small.png');
         $filepath = __DIR__ . '/../' . $image;
 
         $this->assertEquals(
@@ -159,5 +159,47 @@ class FunctionsTest extends PHPUnit\Framework\TestCase
     /** @test */
     public function generateLatestNewsCardUseReal()
     {
+        $news_item = [
+            'category'=>'case studies',
+            'title'=>'Happy 25th Birthday, Kati!',
+            'summary'=>'This is another test summary to be displayed',
+            'posted_by'=>'Simon Wright',
+            'posted_at'=>'2021-04-14 01:23:45'
+        ];
+
+        $card = createLatestNewsCard($news_item);
+
+        $expectedCardBody = <<<EOD
+        <div class="news-card news-card-bespoke-software">
+            <div class="news-card-cover">
+                <a href="#">
+                    <div class="image-wrapper">
+                        <img class="news-card-image"
+                             src="img/happy-25th-birthday-kati.jpeg"
+                             alt="Happy 25th Birthday, Kati!">
+                    </div>
+                </a>
+                <a class="news-card-category" href="#">case studies</a>
+            </div>
+            <div class="news-card-summary">
+                <a class="title-link" href="#">
+                    <h6>Happy 25th Birthday, Kati!</h6>
+                </a>
+                <p class="card-description">This is another test summary to be displayed&hellip;</p>
+                <a class="read-more" href="#">Read more</a>
+                <hr />
+                <img class="logo-small"
+                     src="img/simon-wright.jpeg"
+                     alt="News article posted by Simon Wright">
+                <div class="card-publish-info">
+                    <p><strong>Posted by Simon Wright</strong></p>
+                    <p>14th April 2021</p>
+                </div>
+            </div>
+        </div>
+        EOD;
+
+        $this->assertIsString($card);
+        $this->assertEquals($expectedCardBody, $card);
     }
 }
