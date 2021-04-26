@@ -4,16 +4,12 @@
  *
  * PHP version 8
  *
- * @category
- * @package
+ * @category Webpage
+ * @package  BuildNetmattersSite
  * @author   Z Gilbert <zach.gilbert@netmatters-scs.co.uk>
  * @license  github.com/zilbert97/build-netmatters-site/blob/add-php/LICENSE LICENSE
  * @link     https://www.github.com/zilbert97/build-netmatters-site/blob/add-php/contact.php
  */
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('html_errors', 1);
 
 require_once __DIR__ . '/src/bootstrap.php';
 require_once __DIR__ . '/src/ContactForm.php';

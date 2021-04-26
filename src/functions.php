@@ -4,8 +4,8 @@
  *
  * PHP version 8
  *
- * @category
- * @package
+ * @category Functions
+ * @package  BuildNetmattersSite
  * @author   Z Gilbert <zach.gilbert@netmatters-scs.co.uk>
  * @license  github.com/zilbert97/build-netmatters-site/blob/add-php/LICENSE LICENSE
  * @link     https://www.github.com/zilbert97/build-netmatters-site/blob/add-php/src/functions.php

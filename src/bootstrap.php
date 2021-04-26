@@ -1,4 +1,20 @@
 <?php
+/**
+ *
+ *
+ * PHP version 8
+ *
+ * @category Action
+ * @package  BuildNetmattersSite
+ * @author   Z Gilbert <zach.gilbert@netmatters-scs.co.uk>
+ * @license  github.com/zilbert97/build-netmatters-site/blob/add-php/LICENSE LICENSE
+ * @link     github.com/zilbert97/build-netmatters-site/blob/add-php/src/bootstrap.php
+ */
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('html_errors', 1);
+
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/error_logs.log');
 
