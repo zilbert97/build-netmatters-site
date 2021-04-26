@@ -10,11 +10,11 @@
 - [ ] Prevent user access to any files except index.php and contact.php
 - [x] Add filter input before form validation
 - [ ] Decide on a message length and error message for contact form
-- [ ] Unicode character acceptance
+- [x] Unicode character acceptance
 - [ ] Possibly too strict a RegEx for email?
-- [ ] Phone number is being treated as required but doesn't allow form submit if not filled in
-- [ ] In some instances the phone number value does not carry over upon submitting a failed form
-- [ ] Check GDPR - not actually GDPR (marketing opt-in)
+- [x] Phone number is being treated as required but doesn't allow form submit if not filled in
+- [x] In some instances the phone number value does not carry over upon submitting a failed form
+- [x] Check GDPR - not actually GDPR (marketing opt-in)
 - [x] Dim placeholder text on form
 - [x] Netmatters Ltd logs an error when using default icon
 
