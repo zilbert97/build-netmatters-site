@@ -94,7 +94,7 @@ abstract class ValidateSubmitForm extends Request
             }
         }
 
-        return mb_strtolower($name);
+        return $name;
     }
 
     /**
@@ -125,10 +125,15 @@ abstract class ValidateSubmitForm extends Request
      */
     public function validatePhone(string $phone)
     {
+        // If no value passed, return NULL
+        if (empty($phone)) {
+            return 'NULL';
+        }
+
         // Strip any whitespace, brackets, or dashes from phone number
         $formattedPhone = preg_replace('/[\s\(\)\-]/', '', $phone);
 
-        // Match 0 or 1 +'s followed by 10-12 digits
+        // If number provided and does not match 0 or 1 +'s followed by 10-12 digits
         if (!preg_match('/^\+?\d{10,12}$/', $formattedPhone)) {
             $warning = new FormErrorMessage(
                 "The contact number you've entered is invalid"

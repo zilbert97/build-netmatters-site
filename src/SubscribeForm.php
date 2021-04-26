@@ -29,6 +29,9 @@ class SubscribeForm extends ValidateSubmitForm
     private $_session;
     private $_results;
 
+    /**
+     *
+     */
     public function __construct($session, $formValuesBag)
     {
         parent::__construct();
