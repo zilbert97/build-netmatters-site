@@ -16,7 +16,7 @@
 - [ ] In some instances the phone number value does not carry over upon submitting a failed form
 - [ ] Check GDPR - not actually GDPR (marketing opt-in)
 - [x] Dim placeholder text on form
-- [ ] Netmatters Ltd logs an error when using default icon
+- [x] Netmatters Ltd logs an error when using default icon
 
 ## Reflection Plan
 
