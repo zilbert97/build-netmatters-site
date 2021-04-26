@@ -88,8 +88,11 @@ function getCardImage(string $filename, string $defaultImagePath) : string
         }
     }
 
-    // If no image based on the filename coiuld be found, log as error
-    error_log("Latest news cards: No image matching img/$filename.* could be found.");
+    // If no image based on the filename could be found (and filename is not
+    // the default), log as error
+    if ($filename != 'netmatters-ltd') {
+        error_log("Latest news cards: No image matching img/$filename.* could be found.");
+    }
 
     // If use default image but it does not exist, silently log the error
     if (!file_exists($defaultImagePath)) {

@@ -72,22 +72,22 @@ class SubscribeForm extends ValidateSubmitForm
         $results = [
             'name'=>$this->getValueOnField('name_subscribe', 513),
             'email_address'=>$this->getValueOnField('email_subscribe', 517),
-            'gdpr'=>$this->getValueOnField('accept_terms_subscribe', 513),
+            'marketing'=>$this->getValueOnField('accept_terms_subscribe', 513),
         ];
 
         // Get the bag used to save values on fields in session, so failed
-        // submit does not clear fields (all except GDPR)
+        // submit does not clear fields (all except marketing checkbox)
 
         foreach ($results as $fieldName => $value) {
-            if ($fieldName !== 'gdpr') {
+            if ($fieldName !== 'marketing') {
                 $this->_formValuesBag->set($fieldName, $value);
             }
         }
 
         // Validate required fields are not empty
         foreach ($results as $field => $result) {
-            // Skip GDPR input field (required but it is validated elsewhere)
-            if ($field == 'gdpr') continue;
+            // Skip marketing input field (required but it is validated elsewhere)
+            if ($field == 'marketing') continue;
 
             $validatedResult = $this->validateRequiredFields($result);
 
@@ -106,7 +106,7 @@ class SubscribeForm extends ValidateSubmitForm
         $resultsValidated = [
             'name'=>$this->validateName($results['name']),
             'email_address'=>$this->validateEmail($results['email_address']),
-            'gdpr'=>$this->validateGDPRAccepted($results['gdpr'], 'accept_gdpr_subscribe'),
+            'marketing'=>$this->validateMarketingAccepted($results['marketing'], 'accept_marketing_subscribe'),
         ];
 
         // If any validation returns a FormErrorMessage object, set error status

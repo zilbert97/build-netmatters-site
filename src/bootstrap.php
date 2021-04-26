@@ -2,6 +2,11 @@
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/error_logs.log');
 
+mb_internal_encoding('UTF-8');
+mb_regex_encoding('UTF-8');
+mb_http_input('P');
+mb_http_output('UTF-8');
+
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ .'/functions.php';
 

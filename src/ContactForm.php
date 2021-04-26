@@ -77,16 +77,16 @@ class ContactForm extends ValidateSubmitForm
             'email_address'=>$this->getValueOnField('email_contact', 517),
             'contact_number'=>$this->getValueOnField('phone_contact', 519),
             'message'=>$this->getValueOnField('message_contact', 513),
-            'gdpr'=>$this->getValueOnField('accept_terms_contact', 513),
+            'marketing'=>$this->getValueOnField('accept_terms_contact', 513),
         ];
 
-        $fieldsNotRequiredText = ['contact_number', 'gdpr'];
+        $fieldsNotRequiredText = ['contact_number', 'marketing'];
 
         // Get the bag used to save values on fields in session, so failed
-        // submit does not clear fields (all except GDPR)
+        // submit does not clear fields (all except marketing)
 
         foreach ($results as $fieldName => $value) {
-            if ($fieldName !== 'gdpr') {
+            if ($fieldName !== 'marketing') {
                 $this->_formValuesBag->set($fieldName, $value);
             }
         }
@@ -94,7 +94,7 @@ class ContactForm extends ValidateSubmitForm
         // Validate required fields are not empty
         foreach ($results as $field => $result) {
             // Skip input fields that do not have * required marker
-            // Technically GDPR is required but it is validated elsewhere
+            // Technically marketing is required but it is validated elsewhere
             if (in_array($field, $fieldsNotRequiredText)) continue;
 
             $validatedResult = $this->validateRequiredFields($result);
@@ -116,7 +116,7 @@ class ContactForm extends ValidateSubmitForm
             'email_address'=>$this->validateEmail($results['email_address']),
             'contact_number'=>$this->validatePhone($results['contact_number']),
             'message'=>$this->validateMessage($results['message']),
-            'gdpr'=>$this->validateGDPRAccepted($results['gdpr'], 'accept_gdpr_contact'),
+            'marketing'=>$this->validateMarketingAccepted($results['marketing'], 'accept_marketing_contact'),
         ];
 
         // If any validation returns a FormErrorMessage object, set error status

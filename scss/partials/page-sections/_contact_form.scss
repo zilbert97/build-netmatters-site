@@ -181,13 +181,13 @@ form .form--submit {
 // ACCEPT GDPR FIELD
 //==============================
 
-#gdpr-field {
+#marketing-field {
     @include grid;
 
     // IE (workaround due to no CSS grid gap support)
     -ms-grid-columns : auto 20px auto;
 
-    .form--gdpr {
+    .form--marketing {
         &-field {
             -ms-grid-column: 1;
         }
@@ -209,7 +209,7 @@ form .form--submit {
       margin             : 0 0 15px;
     }
 
-    .form--gdpr-field {
+    div {
       position           : relative;
 
       input {
@@ -247,15 +247,16 @@ form .form--submit {
       }
     }
 
-    .form--gdpr-statement {
-      font-weight        : 600;
-      line-height        : 32px;
-      cursor             : pointer;
+    label {
+        font-weight        : 600;
+        line-height        : 32px;
+        cursor             : pointer;
+
+        > a {
+            text-decoration    : underline;
+            &:hover {
+                color            : darken($primary-dark, 10%);
+            }
+        }
     }
-    .form--gdpr-statement > a {
-      text-decoration    : underline;
-      &:hover {
-        color            : darken($primary-dark, 10%);
-    }
-  }
 }

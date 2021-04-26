@@ -82,10 +82,11 @@ abstract class ValidateSubmitForm extends Request
      */
     public function validateName(string $name)
     {
-        $nameParts = explode(' ', strtolower($name));
+        $nameParts = explode(' ', mb_strtolower($name));
         foreach ($nameParts as $namePart) {
+
             // If does not match string with either alpha chars, ', or -
-            if (!preg_match('/^([a-z]+\'?-?)+/', $namePart)) {
+            if (!preg_match('/^([\p{L}]+\'?-?)+/u', $namePart)) {
                 $warning = new FormErrorMessage(
                     "The name you've entered is invalid"
                 );
@@ -93,7 +94,7 @@ abstract class ValidateSubmitForm extends Request
             }
         }
 
-        return strtolower($name);
+        return mb_strtolower($name);
     }
 
     /**
@@ -165,11 +166,11 @@ abstract class ValidateSubmitForm extends Request
      *
      * @return FormErrorMessage|bool Message object if unsuccesful, else true
      */
-    public function validateGDPRAccepted($value, string $fieldNameAttr)
+    public function validateMarketingAccepted($value, string $fieldNameAttr)
     {
         if (!isset($_POST[$fieldNameAttr])) {
             $warning = new FormErrorMessage(
-                "You must accept our GDPR statement to contact us"
+                "Please accept to receive marketing information from us"
             );
             return $warning;
         }
