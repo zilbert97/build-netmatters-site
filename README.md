@@ -15,7 +15,7 @@
 - [ ] Phone number is being treated as required but doesn't allow form submit if not filled in
 - [ ] In some instances the phone number value does not carry over upon submitting a failed form
 - [ ] Check GDPR - not actually GDPR (marketing opt-in)
-- [ ] Dim placeholder text on form
+- [x] Dim placeholder text on form
 - [ ] Netmatters Ltd logs an error when using default icon
 
 ## Reflection Plan
