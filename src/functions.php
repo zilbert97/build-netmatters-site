@@ -11,11 +11,11 @@
  * @link     https://www.github.com/zilbert97/build-netmatters-site/blob/add-php/src/functions.php
  */
 
- /**
-  * Establishes a connection to the database
-  *
-  * @return PDO|bool Database connection object, or false if unsuccesful
-  */
+/**
+ * Establishes a connection to the database
+ *
+ * @return PDO|bool Database connection object, or false if unsuccesful
+ */
 function connectToDatabase()
 {
     try {
@@ -91,12 +91,16 @@ function getCardImage(string $filename, string $defaultImagePath) : string
     // If no image based on the filename could be found (and filename is not
     // the default), log as error
     if ($filename != 'netmatters-ltd') {
-        error_log("Latest news cards: No image matching img/$filename.* could be found.");
+        error_log(
+            "Latest news cards: No image matching img/$filename.* could be found."
+        );
     }
 
     // If use default image but it does not exist, silently log the error
     if (!file_exists($defaultImagePath)) {
-        error_log("Latest news cards: The default image $defaultImagePath could not be found.");
+        error_log(
+            "Latest news cards: default image $defaultImagePath could not be found."
+        );
     }
     return $defaultImagePath;
 }
@@ -178,7 +182,8 @@ function redirect(string $path) : void
 {
     $response = \Symfony\Component\HttpFoundation\Response::create(
         null,
-        \Symfony\Component\HttpFoundation\Response::HTTP_FOUND, ['Location'=>$path]
+        \Symfony\Component\HttpFoundation\Response::HTTP_FOUND,
+        ['Location'=>$path]
     );
 
     $response->send();

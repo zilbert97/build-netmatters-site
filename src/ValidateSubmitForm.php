@@ -16,7 +16,7 @@ require_once __DIR__ . '/bootstrap.php';
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- *
+ * Handles form validation and submission
  *
  * @category Class
  * @package  BuildNetmattersSite
@@ -122,7 +122,8 @@ abstract class ValidateSubmitForm extends Request
      *
      * @param string $phone The phone number value obtained from a form input field
      *
-     * @return FormErrorMessage|string Message object if unsuccesful, else the value
+     * @return FormErrorMessage|string Message object if unsuccesful, 'NULL' if
+     *                                 no value passed, else the formatted value
      */
     public function validatePhone(string $phone)
     {
@@ -168,6 +169,7 @@ abstract class ValidateSubmitForm extends Request
     /**
      * Validates the checkbox value submitted in a post request is checked
      *
+     * @param $value         The expected value on the input field
      * @param $fieldNameAttr Name attribute of the checkbox input field
      *
      * @return FormErrorMessage|bool Message object if unsuccesful, else true

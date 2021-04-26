@@ -1,0 +1,10 @@
+[26-Apr-2021 17:47:40 UTC] PHP Fatal error:  Uncaught TypeError: ContactForm::__construct(): Argument #1 ($session) must be of type Session, Symfony\Component\HttpFoundation\Session\Session given, called in /Users/zg/Documents/Programming/NetMatters/Reflections/build-netmatters-site/src/submitContactForm.php on line 20 and defined in /Users/zg/Documents/Programming/NetMatters/Reflections/build-netmatters-site/src/ContactForm.php:39
+Stack trace:
+#0 /Users/zg/Documents/Programming/NetMatters/Reflections/build-netmatters-site/src/submitContactForm.php(20): ContactForm->__construct(Object(Symfony\Component\HttpFoundation\Session\Session), Object(Symfony\Component\HttpFoundation\Session\Attribute\NamespacedAttributeBag))
+#1 {main}
+  thrown in /Users/zg/Documents/Programming/NetMatters/Reflections/build-netmatters-site/src/ContactForm.php on line 39
+[26-Apr-2021 17:48:23 UTC] PHP Fatal error:  Uncaught TypeError: ContactForm::__construct(): Argument #1 ($session) must be of type Session, Symfony\Component\HttpFoundation\Session\Session given, called in /Users/zg/Documents/Programming/NetMatters/Reflections/build-netmatters-site/src/submitContactForm.php on line 20 and defined in /Users/zg/Documents/Programming/NetMatters/Reflections/build-netmatters-site/src/ContactForm.php:39
+Stack trace:
+#0 /Users/zg/Documents/Programming/NetMatters/Reflections/build-netmatters-site/src/submitContactForm.php(20): ContactForm->__construct(Object(Symfony\Component\HttpFoundation\Session\Session), Object(Symfony\Component\HttpFoundation\Session\Attribute\NamespacedAttributeBag))
+#1 {main}
+  thrown in /Users/zg/Documents/Programming/NetMatters/Reflections/build-netmatters-site/src/ContactForm.php on line 39

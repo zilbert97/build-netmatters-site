@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * Defines an error message class
  *
  * PHP version 8
  *
@@ -14,7 +14,7 @@
 require_once __DIR__ . '/bootstrap.php';
 
 /**
- *
+ * Error message object
  *
  * @category Class
  * @package  BuildNetmattersSite
@@ -28,6 +28,10 @@ class FormErrorMessage
 
     /**
      * At instantiation sets the message copy
+     *
+     * @param string $message Error message to display
+     *
+     * @return void
      */
     public function __construct($message)
     {
@@ -37,6 +41,8 @@ class FormErrorMessage
 
     /**
      * Gets the message copy
+     *
+     * @return void
      */
     public function getMessageCopy() : string
     {
@@ -45,6 +51,10 @@ class FormErrorMessage
 
     /**
      * Sets the message copy
+     *
+     * @param string $copy The error message string
+     *
+     * @return void
      */
     public function setMessageCopy(string $copy) : void
     {

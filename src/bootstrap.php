@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * Sets settings, includes files, and  starts the session
  *
  * PHP version 8
  *

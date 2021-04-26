@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * Executes contact form validation and submission
  *
  * PHP version 8
  *

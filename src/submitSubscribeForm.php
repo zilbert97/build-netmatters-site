@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * Executes subscribe sign-up form validation and submission
  *
  * PHP version 8
  *

@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * Defines the class that validates and submits the contact form
  *
  * PHP version 8
  *
@@ -16,7 +16,7 @@ require_once __DIR__ . '/ValidateSubmitForm.php';
 require_once __DIR__ . '/FormErrorMessage.php';
 
 /**
- *
+ * Performs validation and submits the contact form
  *
  * @category Class
  * @package  BuildNetmattersSite
@@ -31,7 +31,10 @@ class ContactForm extends ValidateSubmitForm
     private $_results;
 
     /**
+     * Sets the session and values from the form in the instance of the class
      *
+     * @param $session       The session object
+     * @param $formValuesBag Bag of session values
      */
     public function __construct($session, $formValuesBag)
     {
@@ -53,7 +56,7 @@ class ContactForm extends ValidateSubmitForm
     /**
      * Sets the array of validated form values
      *
-     * @param array $values
+     * @param array $values Validated values from the form
      *
      * @return void
      */
