@@ -36,6 +36,10 @@
                 border-color: $field-focus-color;
                 box-shadow  : $shadow-inset, $shadow-outer;
             }
+
+            &::placeholder {
+                color       : $utility-button;
+            }
         }
     }
 }
