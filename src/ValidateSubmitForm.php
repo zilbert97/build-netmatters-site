@@ -156,9 +156,9 @@ abstract class ValidateSubmitForm extends Request
     public function validateMessage(string $msg)
     {
         // Message must have at least 5 words
-        if (str_word_count($msg) <= 5) {
+        if (mb_strlen($msg) < 50) {
             $warning = new FormErrorMessage(
-                "The message you've entered is invalid"
+                "Please provide a longer message (min. 50 characters)"
             );
             return $warning;
         }

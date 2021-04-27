@@ -77,6 +77,7 @@ require __DIR__ . '/src/inc/head.php';
                                     class="form--text-input required--input"
                                     type="text"
                                     name="message_contact"
+                                    minlength="50"
                                     placeholder="Lorem ipsum..."><?php echo $contactFormValuesBag->get('message'); ?></textarea>
                             </label>
                         </div>
